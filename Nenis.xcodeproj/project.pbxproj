@@ -1,0 +1,624 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E30432AA75786003AF470 /* AppDelegate.swift */; };
+		F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E30452AA75786003AF470 /* SceneDelegate.swift */; };
+		F01E30482AA75786003AF470 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E30472AA75786003AF470 /* ViewController.swift */; };
+		F01E304B2AA75786003AF470 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01E30492AA75786003AF470 /* Main.storyboard */; };
+		F01E304E2AA75786003AF470 /* Nenis.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F01E304C2AA75786003AF470 /* Nenis.xcdatamodeld */; };
+		F01E30502AA75787003AF470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F01E304F2AA75787003AF470 /* Assets.xcassets */; };
+		F01E30532AA75787003AF470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F01E30512AA75787003AF470 /* LaunchScreen.storyboard */; };
+		F01E305E2AA75787003AF470 /* NenisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E305D2AA75787003AF470 /* NenisTests.swift */; };
+		F01E30682AA75787003AF470 /* NenisUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E30672AA75787003AF470 /* NenisUITests.swift */; };
+		F01E306A2AA75787003AF470 /* NenisUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E30692AA75787003AF470 /* NenisUITestsLaunchTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F01E305A2AA75787003AF470 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F01E30382AA75786003AF470 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F01E303F2AA75786003AF470;
+			remoteInfo = Nenis;
+		};
+		F01E30642AA75787003AF470 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F01E30382AA75786003AF470 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F01E303F2AA75786003AF470;
+			remoteInfo = Nenis;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F01E30402AA75786003AF470 /* Nenis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nenis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F01E30432AA75786003AF470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F01E30452AA75786003AF470 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F01E30472AA75786003AF470 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F01E304A2AA75786003AF470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F01E304D2AA75786003AF470 /* Nenis.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Nenis.xcdatamodel; sourceTree = "<group>"; };
+		F01E304F2AA75787003AF470 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F01E30522AA75787003AF470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F01E30542AA75787003AF470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F01E30592AA75787003AF470 /* NenisTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NenisTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F01E305D2AA75787003AF470 /* NenisTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NenisTests.swift; sourceTree = "<group>"; };
+		F01E30632AA75787003AF470 /* NenisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NenisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F01E30672AA75787003AF470 /* NenisUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NenisUITests.swift; sourceTree = "<group>"; };
+		F01E30692AA75787003AF470 /* NenisUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NenisUITestsLaunchTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F01E303D2AA75786003AF470 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F01E30562AA75787003AF470 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F01E30602AA75787003AF470 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F01E30372AA75786003AF470 = {
+			isa = PBXGroup;
+			children = (
+				F01E30422AA75786003AF470 /* Nenis */,
+				F01E305C2AA75787003AF470 /* NenisTests */,
+				F01E30662AA75787003AF470 /* NenisUITests */,
+				F01E30412AA75786003AF470 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F01E30412AA75786003AF470 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F01E30402AA75786003AF470 /* Nenis.app */,
+				F01E30592AA75787003AF470 /* NenisTests.xctest */,
+				F01E30632AA75787003AF470 /* NenisUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F01E30422AA75786003AF470 /* Nenis */ = {
+			isa = PBXGroup;
+			children = (
+				F01E30432AA75786003AF470 /* AppDelegate.swift */,
+				F01E30452AA75786003AF470 /* SceneDelegate.swift */,
+				F01E30472AA75786003AF470 /* ViewController.swift */,
+				F01E30492AA75786003AF470 /* Main.storyboard */,
+				F01E304F2AA75787003AF470 /* Assets.xcassets */,
+				F01E30512AA75787003AF470 /* LaunchScreen.storyboard */,
+				F01E30542AA75787003AF470 /* Info.plist */,
+				F01E304C2AA75786003AF470 /* Nenis.xcdatamodeld */,
+			);
+			path = Nenis;
+			sourceTree = "<group>";
+		};
+		F01E305C2AA75787003AF470 /* NenisTests */ = {
+			isa = PBXGroup;
+			children = (
+				F01E305D2AA75787003AF470 /* NenisTests.swift */,
+			);
+			path = NenisTests;
+			sourceTree = "<group>";
+		};
+		F01E30662AA75787003AF470 /* NenisUITests */ = {
+			isa = PBXGroup;
+			children = (
+				F01E30672AA75787003AF470 /* NenisUITests.swift */,
+				F01E30692AA75787003AF470 /* NenisUITestsLaunchTests.swift */,
+			);
+			path = NenisUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F01E303F2AA75786003AF470 /* Nenis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F01E306D2AA75787003AF470 /* Build configuration list for PBXNativeTarget "Nenis" */;
+			buildPhases = (
+				F01E303C2AA75786003AF470 /* Sources */,
+				F01E303D2AA75786003AF470 /* Frameworks */,
+				F01E303E2AA75786003AF470 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Nenis;
+			productName = Nenis;
+			productReference = F01E30402AA75786003AF470 /* Nenis.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F01E30582AA75787003AF470 /* NenisTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F01E30702AA75787003AF470 /* Build configuration list for PBXNativeTarget "NenisTests" */;
+			buildPhases = (
+				F01E30552AA75787003AF470 /* Sources */,
+				F01E30562AA75787003AF470 /* Frameworks */,
+				F01E30572AA75787003AF470 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F01E305B2AA75787003AF470 /* PBXTargetDependency */,
+			);
+			name = NenisTests;
+			productName = NenisTests;
+			productReference = F01E30592AA75787003AF470 /* NenisTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		F01E30622AA75787003AF470 /* NenisUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F01E30732AA75787003AF470 /* Build configuration list for PBXNativeTarget "NenisUITests" */;
+			buildPhases = (
+				F01E305F2AA75787003AF470 /* Sources */,
+				F01E30602AA75787003AF470 /* Frameworks */,
+				F01E30612AA75787003AF470 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F01E30652AA75787003AF470 /* PBXTargetDependency */,
+			);
+			name = NenisUITests;
+			productName = NenisUITests;
+			productReference = F01E30632AA75787003AF470 /* NenisUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F01E30382AA75786003AF470 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					F01E303F2AA75786003AF470 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+					F01E30582AA75787003AF470 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = F01E303F2AA75786003AF470;
+					};
+					F01E30622AA75787003AF470 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = F01E303F2AA75786003AF470;
+					};
+				};
+			};
+			buildConfigurationList = F01E303B2AA75786003AF470 /* Build configuration list for PBXProject "Nenis" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F01E30372AA75786003AF470;
+			productRefGroup = F01E30412AA75786003AF470 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F01E303F2AA75786003AF470 /* Nenis */,
+				F01E30582AA75787003AF470 /* NenisTests */,
+				F01E30622AA75787003AF470 /* NenisUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F01E303E2AA75786003AF470 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F01E30532AA75787003AF470 /* LaunchScreen.storyboard in Resources */,
+				F01E30502AA75787003AF470 /* Assets.xcassets in Resources */,
+				F01E304B2AA75786003AF470 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F01E30572AA75787003AF470 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F01E30612AA75787003AF470 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F01E303C2AA75786003AF470 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F01E30482AA75786003AF470 /* ViewController.swift in Sources */,
+				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
+				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
+				F01E304E2AA75786003AF470 /* Nenis.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F01E30552AA75787003AF470 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F01E305E2AA75787003AF470 /* NenisTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F01E305F2AA75787003AF470 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F01E306A2AA75787003AF470 /* NenisUITestsLaunchTests.swift in Sources */,
+				F01E30682AA75787003AF470 /* NenisUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F01E305B2AA75787003AF470 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F01E303F2AA75786003AF470 /* Nenis */;
+			targetProxy = F01E305A2AA75787003AF470 /* PBXContainerItemProxy */;
+		};
+		F01E30652AA75787003AF470 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F01E303F2AA75786003AF470 /* Nenis */;
+			targetProxy = F01E30642AA75787003AF470 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F01E30492AA75786003AF470 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F01E304A2AA75786003AF470 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F01E30512AA75787003AF470 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F01E30522AA75787003AF470 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F01E306B2AA75787003AF470 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F01E306C2AA75787003AF470 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F01E306E2AA75787003AF470 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7MD546WHY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Nenis/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ilustris.Nenis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F01E306F2AA75787003AF470 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7MD546WHY;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Nenis/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ilustris.Nenis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F01E30712AA75787003AF470 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7MD546WHY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ilustris.NenisTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nenis.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Nenis";
+			};
+			name = Debug;
+		};
+		F01E30722AA75787003AF470 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7MD546WHY;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ilustris.NenisTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nenis.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Nenis";
+			};
+			name = Release;
+		};
+		F01E30742AA75787003AF470 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7MD546WHY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ilustris.NenisUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Nenis;
+			};
+			name = Debug;
+		};
+		F01E30752AA75787003AF470 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = P7MD546WHY;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = ilustris.NenisUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Nenis;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F01E303B2AA75786003AF470 /* Build configuration list for PBXProject "Nenis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F01E306B2AA75787003AF470 /* Debug */,
+				F01E306C2AA75787003AF470 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F01E306D2AA75787003AF470 /* Build configuration list for PBXNativeTarget "Nenis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F01E306E2AA75787003AF470 /* Debug */,
+				F01E306F2AA75787003AF470 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F01E30702AA75787003AF470 /* Build configuration list for PBXNativeTarget "NenisTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F01E30712AA75787003AF470 /* Debug */,
+				F01E30722AA75787003AF470 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F01E30732AA75787003AF470 /* Build configuration list for PBXNativeTarget "NenisUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F01E30742AA75787003AF470 /* Debug */,
+				F01E30752AA75787003AF470 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F01E304C2AA75786003AF470 /* Nenis.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F01E304D2AA75786003AF470 /* Nenis.xcdatamodel */,
+			);
+			currentVersion = F01E304D2AA75786003AF470 /* Nenis.xcdatamodel */;
+			path = Nenis.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = F01E30382AA75786003AF470 /* Project object */;
+}
