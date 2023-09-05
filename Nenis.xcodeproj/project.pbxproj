@@ -17,6 +17,9 @@
 		F01E305E2AA75787003AF470 /* NenisTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E305D2AA75787003AF470 /* NenisTests.swift */; };
 		F01E30682AA75787003AF470 /* NenisUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E30672AA75787003AF470 /* NenisUITests.swift */; };
 		F01E306A2AA75787003AF470 /* NenisUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E30692AA75787003AF470 /* NenisUITestsLaunchTests.swift */; };
+		F01E307C2AA75BF2003AF470 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307B2AA75BF2003AF470 /* HomeViewController.swift */; };
+		F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307D2AA75C04003AF470 /* ProfileViewController.swift */; };
+		F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307F2AA75C11003AF470 /* ExploreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		F01E30632AA75787003AF470 /* NenisUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NenisUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01E30672AA75787003AF470 /* NenisUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NenisUITests.swift; sourceTree = "<group>"; };
 		F01E30692AA75787003AF470 /* NenisUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NenisUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		F01E307B2AA75BF2003AF470 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		F01E307D2AA75C04003AF470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F01E307F2AA75C11003AF470 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +107,7 @@
 		F01E30422AA75786003AF470 /* Nenis */ = {
 			isa = PBXGroup;
 			children = (
+				F01E30762AA75BB3003AF470 /* features */,
 				F01E30432AA75786003AF470 /* AppDelegate.swift */,
 				F01E30452AA75786003AF470 /* SceneDelegate.swift */,
 				F01E30472AA75786003AF470 /* ViewController.swift */,
@@ -128,6 +135,40 @@
 				F01E30692AA75787003AF470 /* NenisUITestsLaunchTests.swift */,
 			);
 			path = NenisUITests;
+			sourceTree = "<group>";
+		};
+		F01E30762AA75BB3003AF470 /* features */ = {
+			isa = PBXGroup;
+			children = (
+				F01E307A2AA75BD8003AF470 /* explore */,
+				F01E30792AA75BD0003AF470 /* profile */,
+				F01E30782AA75BCC003AF470 /* home */,
+			);
+			path = features;
+			sourceTree = "<group>";
+		};
+		F01E30782AA75BCC003AF470 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				F01E307B2AA75BF2003AF470 /* HomeViewController.swift */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		F01E30792AA75BD0003AF470 /* profile */ = {
+			isa = PBXGroup;
+			children = (
+				F01E307D2AA75C04003AF470 /* ProfileViewController.swift */,
+			);
+			path = profile;
+			sourceTree = "<group>";
+		};
+		F01E307A2AA75BD8003AF470 /* explore */ = {
+			isa = PBXGroup;
+			children = (
+				F01E307F2AA75C11003AF470 /* ExploreViewController.swift */,
+			);
+			path = explore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,9 +302,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */,
+				F01E307C2AA75BF2003AF470 /* HomeViewController.swift in Sources */,
 				F01E30482AA75786003AF470 /* ViewController.swift in Sources */,
 				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
 				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
+				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F01E304E2AA75786003AF470 /* Nenis.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
