@@ -21,6 +21,7 @@
 		F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307D2AA75C04003AF470 /* ProfileViewController.swift */; };
 		F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307F2AA75C11003AF470 /* ExploreViewController.swift */; };
 		F09F3F332AA96A9200143522 /* NewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F3F322AA96A9200143522 /* NewActivityViewController.swift */; };
+		F0B38D382AAAA19E00FBBA64 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B38D372AAAA19E00FBBA64 /* Activity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		F01E307D2AA75C04003AF470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F01E307F2AA75C11003AF470 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		F09F3F322AA96A9200143522 /* NewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActivityViewController.swift; sourceTree = "<group>"; };
+		F0B38D372AAAA19E00FBBA64 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,9 +179,18 @@
 		F09F3F312AA96A6C00143522 /* activities */ = {
 			isa = PBXGroup;
 			children = (
+				F0B38D362AAAA18A00FBBA64 /* model */,
 				F09F3F322AA96A9200143522 /* NewActivityViewController.swift */,
 			);
 			path = activities;
+			sourceTree = "<group>";
+		};
+		F0B38D362AAAA18A00FBBA64 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F0B38D372AAAA19E00FBBA64 /* Activity.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -319,6 +330,7 @@
 				F01E30482AA75786003AF470 /* ViewController.swift in Sources */,
 				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
 				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
+				F0B38D382AAAA19E00FBBA64 /* Activity.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F01E304E2AA75786003AF470 /* Nenis.xcdatamodeld in Sources */,
 			);

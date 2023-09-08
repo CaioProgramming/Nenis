@@ -9,7 +9,7 @@ import UIKit
 
 class HomeViewController: UIViewController, ActivityProtocol{
     
-    var activities = [String]();
+    var activities = [Activity]();
     @IBOutlet weak var activityTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class HomeViewController: UIViewController, ActivityProtocol{
     @IBAction func createNewActivity(_ sender: UIButton) {
         performSegue(withIdentifier: "NewActivitySegue", sender: self)
     }
-    func retrieveActivity(activityDescription: String) {
+    func retrieveActivity(activityDescription: Activity) {
         activities.append(activityDescription)
         print("new activity -> \(activityDescription)")
         print(activities.description)
@@ -51,9 +51,21 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath)
         let activity = activities[indexPath.row]
-        cell.textLabel?.text = activity
+        cell.textLabel?.text = activity.description
+        cell.detailTextLabel?.text = formatDate(date: activity.time)
+        cell.imageView?.image =  activity.type.cellImage
+        cell.imageView?.tintColor = activity.type.imageTint
         return cell
     }
+    
+    func formatDate(date: Date) -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: date)
+    }
 }
+
+ 
 
  
