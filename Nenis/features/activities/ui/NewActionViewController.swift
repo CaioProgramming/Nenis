@@ -8,21 +8,20 @@
 import UIKit
 
 protocol ActivityProtocol: AnyObject {
-    func retrieveActivity(activityDescription: Activity)
+    func retrieveActivity(activityDescription: Action)
 }
 
-class NewActivityViewController: UIViewController {
+class NewActionViewController: UIViewController {
 
     var activtyProtocol: ActivityProtocol?
-    var activityType = ActivityType.bath
+    var activityType = ActionType.bath
     @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var activityTypeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        activityTypeButton.setTitle(activityType.emoji, for: .normal)
+        
         activityTypeButton.menu = UIMenu(
             title: "Atividade do bebê",
             identifier: UIMenu.Identifier(rawValue: "activityMenu"),
@@ -30,38 +29,43 @@ class NewActivityViewController: UIViewController {
         )
         activityTypeButton.showsMenuAsPrimaryAction = true
         activityTypeButton.changesSelectionAsPrimaryAction = true
+        updateActivityType()
         // Do any additional setup after loading the view.
     }
     
+    
     func getMenuForTypes() -> [UIAction] {
-        var actions = [UIAction]()
         let activityClosure = {(action: UIAction) in
             self.activityType = self.getActivityForValue(identifier: action.identifier.rawValue)
             self.updateActivityType()
         }
-        ActivityType.allCases.forEach({ type in
-            actions.append(UIAction(title: type.title, identifier: UIAction.Identifier(type.description),state: .on, handler: activityClosure))
+      return ActionType.allCases.map({ type in
+          var menuState = UIMenuElement.State.off
+          return UIAction(
+                        title: type.title,
+                          identifier: UIAction.Identifier(type.description),
+                          state: menuState,
+                          handler: activityClosure)
         })
-        
-        return actions
     }
     
     func updateActivityType() {
-        activityTypeButton.setTitle(activityType.emoji, for: .normal)
+        activityTypeButton.setTitle("\(activityType.emoji) \(activityType.title)", for: .normal)
+        activityTypeButton.tintColor = activityType.imageTint
     }
     
     @IBAction func saveActivityTap(_ sender: UIButton) {
         let text = textField.text
         if(textField.hasText) {
-            activtyProtocol?.retrieveActivity(activityDescription: Activity(description: text!, type: activityType, time: Date.now))
+            activtyProtocol?.retrieveActivity(activityDescription: Action(description: text!, type: activityType, time: Date.now))
             self.dismiss(animated: true)
         }
         
     }
     
     
-    func getActivityForValue(identifier: String) -> ActivityType {
-        return ActivityType.allCases.first(where: { type in
+    func getActivityForValue(identifier: String) -> ActionType {
+        return ActionType.allCases.first(where: { type in
             type.description == identifier
         }) ?? .bath
     }
