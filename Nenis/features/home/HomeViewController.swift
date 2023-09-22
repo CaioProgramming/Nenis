@@ -6,19 +6,58 @@
 //
 
 import UIKit
+import FirebaseAuth
 
-class HomeViewController: UIViewController, ActivityProtocol{
+class HomeViewController: UIViewController, ActivityProtocol, FUIAuthDelegate {
     
     var activities = [Action]();
+    let homeViewoModel = HomeViewModel()
+    var authHandler: AuthStateDidChangeListenerHandle? = nil
     @IBOutlet weak var kidImage: UIImageView!
     @IBOutlet weak var activityTable: UITableView!
+    var user: User? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         activityTable.dataSource = self
         activityTable.delegate = self
+      
         clipImage(uiImage: kidImage, color: UIColor.tintColor)
+        //signIn()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(performLogin))
+        kidImage.addGestureRecognizer(tapGesture)
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+      authHandler = Auth.auth().addStateDidChangeListener{ auth, user in
+            if(user == nil) {
+                self.signIn()
+            } else {
+                self.updateUser(withUser: user!)
+            }
+        }
+    }
+
+    func updateUser(withUser: User) {
+        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        if authHandler != nil {
+            Auth.auth().removeStateDidChangeListener(authHandler!)
+
+        }
+    }
+    
+    func signIn() {
+        performSegue(withIdentifier: "SignUpSegue", sender: self)
+    }
+    
+    @objc func performLogin() {
+        signIn()
+    }
+    
     
     @IBAction func createNewActivity(_ sender: UIButton) {
         performSegue(withIdentifier: "NewActivitySegue", sender: self)
