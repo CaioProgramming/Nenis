@@ -13,6 +13,8 @@ protocol AuthProtocol {
     func loginError()
     func signUpSuccess(userName: String?)
     func signUpError()
+    func resetPasswordError()
+    func resetPasswordSuccess()
 }
 
 class AuthViewModel {
@@ -44,14 +46,32 @@ class AuthViewModel {
     }
     
     func loginUser(email: String, password: String) {
-        print("Authenticating... \(email) / \(password)")
+        //print("Authenticating... \(email) / \(password)")
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
             self.handleAuthComplete(isLogin: true, authResult: authResult, authError: error)
         }
     }
     
+    func signWithCredentials(with credential: AuthCredential) {
+        Auth.auth().signIn(with: credential) { result, error in
+            self.handleAuthComplete(isLogin: true, authResult: result, authError: error)
+        }
+    }
+    
+    func resetPassword(email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            
+            if let resetError = error {
+                print(resetError.localizedDescription)
+                self.authDelegate?.resetPasswordError()
+            } else {
+                self.authDelegate?.resetPasswordSuccess()
+            }
+        }
+    }
+    
     func signUpUser(email: String, password: String, username: String) {
-        print("Registering... \(username) \(email) / \(password)")
+        //print("Registering... \(username) \(email) / \(password)")
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
             changeRequest?.displayName = username

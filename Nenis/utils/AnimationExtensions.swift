@@ -26,7 +26,7 @@ extension UIView {
         UIView.animate(withDuration: duration,
                        animations: { self.alpha = 0 },
                        completion: { (value: Bool) in
-                           self.isHidden = true
+                           //self.isHidden = true
                            if let complete = onCompletion { complete() }
                        }
         )

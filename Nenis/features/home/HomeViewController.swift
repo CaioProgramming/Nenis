@@ -8,12 +8,13 @@
 import UIKit
 import FirebaseAuth
 
-class HomeViewController: UIViewController, ActivityProtocol, FUIAuthDelegate {
+class HomeViewController: UIViewController, ActivityProtocol {
     
     var activities = [Action]();
     let homeViewoModel = HomeViewModel()
     var authHandler: AuthStateDidChangeListenerHandle? = nil
     @IBOutlet weak var kidImage: UIImageView!
+    @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var activityTable: UITableView!
     var user: User? = nil
     override func viewDidLoad() {
@@ -40,7 +41,7 @@ class HomeViewController: UIViewController, ActivityProtocol, FUIAuthDelegate {
     }
 
     func updateUser(withUser: User) {
-        
+        userLabel.text = "Olá \(withUser.displayName ?? "cuidador")."
     }
     
     override func viewWillDisappear(_ animated: Bool) {

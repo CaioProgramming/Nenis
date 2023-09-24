@@ -8,15 +8,24 @@
 import UIKit
 import CoreData
 import FirebaseCore
-import FirebaseAuthUI
-import FirebaseGoogleAuthUI
+import FirebaseAuth
 import GoogleSignIn
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+    
+
+        FirebaseApp.configure()
+       
+        return true
+    }
+    
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         
@@ -24,27 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, FUIAuthDelegate {
         
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-    
-
-        FirebaseApp.configure()
-        let authUI = FUIAuth.defaultAuthUI()
-        authUI?.delegate = self
-        authUI?.providers = authProviders()
-       
-        return true
-    }
-    
-    func authUI(_ authUI: FUIAuth, didFinish operation: FUIAccountSettingsOperationType, error: Error?) {
-        print(error?.localizedDescription ?? "Error not founded")
-    }
-    
-    func authProviders() -> [FUIAuthProvider] {
-        return [FUIGoogleAuth(authUI: FUIAuth.defaultAuthUI()!)]
-    }
-    
-
 
     // MARK: UISceneSession Lifecycle
 
