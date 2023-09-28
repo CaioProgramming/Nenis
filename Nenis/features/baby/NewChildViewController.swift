@@ -8,6 +8,7 @@
 import UIKit
 import UniformTypeIdentifiers
 
+
 class NewChildViewController: UIViewController {
 
     @IBOutlet weak var navBar: UINavigationBar!
@@ -17,6 +18,7 @@ class NewChildViewController: UIViewController {
     @IBOutlet weak var babyNameTextField: UITextField!
     var imagePickerController: UIImagePickerController? = nil
     var selectedPhoto: UIImage? = nil
+    var childCompletition: ((Child) -> Void )? = nil
     let newBabyViewModel = NewChildViewModel()
     
     override func viewDidLoad() {
@@ -135,6 +137,7 @@ extension NewChildViewController: NewChildProtocol {
          alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in
              alert.dismiss(animated: true)
              self.dismiss(animated: true)
+             self.saveSuccess(child: child)
          }))
          self.present(alert, animated: true)
     }

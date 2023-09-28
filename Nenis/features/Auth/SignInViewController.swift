@@ -106,29 +106,7 @@ class SignInViewController: UIViewController {
     }
     
     func showErrorAlert(with message: String, anchor: UIView? = nil) {
-    
-        let sourceView = anchor ?? loginButton
-        let controller = self.storyboard?.instantiateViewController(withIdentifier: "ErrorPopOver") as? PopOverViewController
-        controller?.modalPresentationStyle = .popover
-        controller?.message = message
-        if let popoverPresentationController = controller?.popoverPresentationController {
-            
-            controller?.preferredContentSize = CGSize(width: 300, height: 50)
-
-            popoverPresentationController.permittedArrowDirections = .up
-            popoverPresentationController.sourceView = sourceView
-            popoverPresentationController.sourceRect = self.loginButton.bounds
-            popoverPresentationController.delegate = self
-            if let popOverController = controller {
-                present(popOverController, animated: true)
-            }
-        }
-
-        let alert = UIAlertController(title: "Unexpected error!", message: message, preferredStyle: .alert)
-         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in
-             alert.dismiss(animated: true)
-         }))
-         //self.present(alert, animated: true)
+        self.showPopOver(with: message, anchor: anchor ?? loginButton, presentationDelegate: self)
     }
     
     func updateView() {

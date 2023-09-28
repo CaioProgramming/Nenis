@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need to acess your gallery, for you user share pics that you would like.</string>
+	<key>CFBundleIdentifier</key>
+	<string></string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

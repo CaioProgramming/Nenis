@@ -7,31 +7,66 @@
 
 import UIKit
 import FirebaseAuth
+import moa
+import os
 
-class HomeViewController: UIViewController, ActivityProtocol {
+class HomeViewController: UIViewController, ActionProtocol {
     
-    var activities = [Action]();
-    let homeViewoModel = HomeViewModel()
+    
+    let homeViewModel = HomeViewModel()
     var authHandler: AuthStateDidChangeListenerHandle? = nil
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var babyActivities: UILabel!
+    @IBOutlet weak var emptyBabyView: UIStackView!
     @IBOutlet weak var kidImage: UIImageView!
     @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var activityTable: UITableView!
-    var user: User? = nil
+    @IBOutlet weak var newActionButton: UIButton!
+    @IBOutlet weak var childLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var errorButton: UIButton!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    var child: Child? = nil
+    var errorClosure: (() -> Void)? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         activityTable.dataSource = self
         activityTable.delegate = self
-      
-        clipImage(uiImage: kidImage, color: UIColor.tintColor)
-        //signIn()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(performLogin))
-        kidImage.addGestureRecognizer(tapGesture)
+        homeViewModel.homeDelegate = self
+     
         // Do any additional setup after loading the view.
     }
     
+    func showError(message: String, buttonMessage: String) {
+        emptyBabyView.fadeIn()
+        errorLabel.text = message
+        errorButton.setTitle(buttonMessage, for: .normal)
+        activityTable.isHidden = true
+        kidImage.isHidden = true
+        babyActivities.isHidden = true
+        headerView.isHidden = true
+        userLabel.isHidden = true
+        newActionButton.isHidden = true
+        loadingIndicator.stopAnimating()
+    }
+    
+    @IBAction func errorClick(_ sender: UIButton) {
+        if let closure = errorClosure {
+            Logger.init().debug("Calling error closure")
+            closure()
+        } else {
+            Logger.init().warning("Closure not defined!")
+
+        }
+         
+        
+    }
     override func viewWillAppear(_ animated: Bool) {
-      authHandler = Auth.auth().addStateDidChangeListener{ auth, user in
+        homeViewModel.initialize()
+        loadingIndicator.startAnimating()
+        authHandler = Auth.auth().addStateDidChangeListener{ auth, user in
             if(user == nil) {
                 self.signIn()
             } else {
@@ -39,7 +74,7 @@ class HomeViewController: UIViewController, ActivityProtocol {
             }
         }
     }
-
+    
     func updateUser(withUser: User) {
         userLabel.text = "Olá \(withUser.displayName ?? "cuidador")."
     }
@@ -47,11 +82,12 @@ class HomeViewController: UIViewController, ActivityProtocol {
     override func viewWillDisappear(_ animated: Bool) {
         if authHandler != nil {
             Auth.auth().removeStateDidChangeListener(authHandler!)
-
+            
         }
     }
     
     func signIn() {
+        loadingIndicator.startAnimating()
         performSegue(withIdentifier: "SignUpSegue", sender: self)
     }
     
@@ -63,17 +99,11 @@ class HomeViewController: UIViewController, ActivityProtocol {
     @IBAction func createNewActivity(_ sender: UIButton) {
         performSegue(withIdentifier: "NewActivitySegue", sender: self)
     }
-    func retrieveActivity(activityDescription: Action) {
-        activities.append(activityDescription)
-        print("new activity -> \(activityDescription)")
-        print(activities.description)
-        activities.sort(by: { firstData, secondData in
-            
-            firstData.time.compare(secondData.time) == .orderedDescending
-            
-        })
-        activityTable.reloadData()
-        
+    func retrieveActivity(with action: Action) {
+        if var currentChild = child {
+            currentChild.actions.append(action)
+            homeViewModel.babyService?.updateData(id: child?.id, data: currentChild)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -84,28 +114,79 @@ class HomeViewController: UIViewController, ActivityProtocol {
     }
 }
 
-extension HomeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("selected row -> \(indexPath.row)")
+extension HomeViewController: HomeProtocol {
+    
+    func createNewBaby() {
+        let babyStoryBoard = UIStoryboard(name: "Baby", bundle: nil)
+        
+        let viewController = babyStoryBoard.instantiateViewController(withIdentifier: "babyViewController") as! NewChildViewController
+        viewController.childCompletition = { child in
+            self.childRetrieved(with: child)
+        }
+        self.show(viewController, sender: self)
     }
+    
+    func childRetrieved(with child: Child) {
+        loadingIndicator.stopAnimating()
+        childLabel.text = "Resumo do \(child.name)"
+        kidImage.clipImageToCircle(color: UIColor.accent)
+        kidImage.moa.url = child.photo
+        emptyBabyView.fadeOut()
+        kidImage.fadeIn()
+        babyActivities.fadeIn()
+        activityTable.fadeIn()
+        headerView.fadeIn()
+        userLabel.fadeIn()
+        newActionButton.fadeIn()
+        self.child = child
+        activityTable.reloadData()
+
+    }
+    
+    func childNotFound() {
+        loadingIndicator.stopAnimating()
+        showError(message: "Você não é responsável por nenhuma criança, adicione uma para começar.", buttonMessage: "Adicionar criança")
+        self.errorClosure = {
+            self.createNewBaby()
+        }
+    }
+    
+    func requireAuth() {
+        loadingIndicator.stopAnimating()
+        showError(message: "Faça login para começar a usar o Nenis.", buttonMessage: "Entrar")
+        self.errorClosure = {
+            self.signIn()
+        }
+        signIn()
+    }
+    
+    func authSuccess(user: User) {
+        userLabel.text = "Bem-vindo \(user.displayName ?? "")"
+        emptyBabyView.fadeOut()
+    }
+    
+    
 }
 
-func clipImage(uiImage: UIImageView, color: UIColor) {
-    uiImage.backgroundColor = color
-    uiImage.layer.masksToBounds = false
-    uiImage.layer.borderColor =  UIColor.placeholderText.cgColor
-    uiImage.layer.cornerRadius = uiImage.frame.height / 2
-    uiImage.clipsToBounds = true
-}
 
-extension HomeViewController: UITableViewDataSource {
+extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func sortedActions() -> [Action] {
+        if let childActions = child?.actions {
+            return childActions.sorted(by: { firstData, secondData in
+                firstData.time.compare(secondData.time) == .orderedDescending
+            })
+        }
+        return []
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return activities.count
+        return sortedActions().count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activityCell", for: indexPath)
-        let activity = activities[indexPath.row]
+        let activity = sortedActions()[indexPath.row]
         cell.backgroundColor = UIColor.clear
         cell.textLabel?.text = activity.description
         cell.detailTextLabel?.textColor = UIColor.placeholderText
@@ -113,11 +194,11 @@ extension HomeViewController: UITableViewDataSource {
         cell.imageView?.image =  activity.type.cellImage
         cell.imageView?.tintColor = activity.type.imageTint
         
-//        cell.imageView?.backgroundColor = activity.type.imageTint.withAlphaComponent(0.1)
-//        cell.imageView?.layer.masksToBounds = false
-//        cell.imageView?.layer.borderColor =  activity.type.imageTint.cgColor
-//        cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.height ?? 25.0)/2
-//        cell.imageView?.clipsToBounds = true
+        //        cell.imageView?.backgroundColor = activity.type.imageTint.withAlphaComponent(0.1)
+        //        cell.imageView?.layer.masksToBounds = false
+        //        cell.imageView?.layer.borderColor =  activity.type.imageTint.cgColor
+        //        cell.imageView?.layer.cornerRadius = (cell.imageView?.frame.height ?? 25.0)/2
+        //        cell.imageView?.clipsToBounds = true
         
         return cell
     }
@@ -130,6 +211,6 @@ extension HomeViewController: UITableViewDataSource {
     }
 }
 
- 
 
- 
+
+
