@@ -27,13 +27,13 @@ class HomeViewModel: DatabaseDelegate {
     }
     
     func taskFailure(databaseError: ErrorType) {
-        homeDelegate?.childNotFound()
+        delegate?.childNotFound()
     }
     
     
     func taskFailure(message: String) {
         Logger.init().error("\(message)")
-        homeDelegate?.childNotFound()
+        delegate?.childNotFound()
     }
     
     func taskSuccess(message: String) {
@@ -42,20 +42,20 @@ class HomeViewModel: DatabaseDelegate {
     
     func retrieveListData(dataList: [Child]) {
         if let child = dataList.first {
-            homeDelegate?.childRetrieved(with: child)
+            delegate?.childRetrieved(with: child)
         }
     }
     
     func retrieveData(data: Child) {
         print(data)
-        homeDelegate?.childRetrieved(with: data)
+        delegate?.childRetrieved(with: data)
     }
     
     typealias T = Child
     
 
     
-    var homeDelegate: HomeProtocol?
+    var delegate: HomeProtocol?
     var babyService: BabyService?
     func isUserLogged() -> Bool {
         
@@ -71,10 +71,12 @@ class HomeViewModel: DatabaseDelegate {
         babyService = BabyService(delegate: self)
 
         if let user = Auth.auth().currentUser {
-            homeDelegate?.authSuccess(user: user)
+            print("Current user -> \(user.displayName)")
+            delegate?.authSuccess(user: user)
             fetchChild(uid: user.uid)
         } else {
-            homeDelegate?.requireAuth()
+            print("Auth required!")
+            delegate?.requireAuth()
         }
     }
     

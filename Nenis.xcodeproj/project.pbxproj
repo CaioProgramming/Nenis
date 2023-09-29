@@ -49,6 +49,7 @@
 		F0B38D382AAAA19E00FBBA64 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B38D372AAAA19E00FBBA64 /* Action.swift */; };
 		F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */ = {isa = PBXBuildFile; productRef = F0BB3CC22AC5138E00ED5314 /* moa */; };
 		F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */; };
+		F0C255802AC6F78E0002A6E9 /* CircularProgressView in Frameworks */ = {isa = PBXBuildFile; productRef = F0C2557F2AC6F78E0002A6E9 /* CircularProgressView */; };
 		F0CA22422AC461D50079C1ED /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA22412AC461D50079C1ED /* Child.swift */; };
 		F0CA22442AC4628E0079C1ED /* NewChildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA22432AC4628E0079C1ED /* NewChildViewModel.swift */; };
 		F0CBE7962AC5A42400AD6185 /* BabyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBE7952AC5A42400AD6185 /* BabyService.swift */; };
@@ -128,6 +129,7 @@
 				F09EB4A92AB3E6790058B7AB /* FirebaseAuthCombine-Community in Frameworks */,
 				F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */,
 				F09EB4A72AB3E6790058B7AB /* FirebaseAuth in Frameworks */,
+				F0C255802AC6F78E0002A6E9 /* CircularProgressView in Frameworks */,
 				F0A5BFC02AB485C90045AD1C /* Lottie in Frameworks */,
 				F01A91702ABE200900139466 /* GoogleSignIn in Frameworks */,
 			);
@@ -375,6 +377,7 @@
 				F01A916F2ABE200900139466 /* GoogleSignIn */,
 				F01A91712ABE200900139466 /* GoogleSignInSwift */,
 				F0BB3CC22AC5138E00ED5314 /* moa */,
+				F0C2557F2AC6F78E0002A6E9 /* CircularProgressView */,
 			);
 			productName = Nenis;
 			productReference = F01E30402AA75786003AF470 /* Nenis.app */;
@@ -453,6 +456,7 @@
 				F0A5BFBE2AB485C90045AD1C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */,
+				F0C2557E2AC6F78E0002A6E9 /* XCRemoteSwiftPackageReference "CircularProgressView" */,
 			);
 			productRefGroup = F01E30412AA75786003AF470 /* Products */;
 			projectDirPath = "";
@@ -905,6 +909,14 @@
 				minimumVersion = 12.0.0;
 			};
 		};
+		F0C2557E2AC6F78E0002A6E9 /* XCRemoteSwiftPackageReference "CircularProgressView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bdolewski/CircularProgressView";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -962,6 +974,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */;
 			productName = moa;
+		};
+		F0C2557F2AC6F78E0002A6E9 /* CircularProgressView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0C2557E2AC6F78E0002A6E9 /* XCRemoteSwiftPackageReference "CircularProgressView" */;
+			productName = CircularProgressView;
 		};
 /* End XCSwiftPackageProductDependency section */
 

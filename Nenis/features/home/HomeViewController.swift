@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import moa
 import os
+import CircularProgressView
 
 class HomeViewController: UIViewController, ActionProtocol {
     
@@ -26,6 +27,10 @@ class HomeViewController: UIViewController, ActionProtocol {
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var errorButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var diaperProgress: CircularProgressView!
+    @IBOutlet weak var statsCard: UIView!
+    @IBOutlet weak var diaperIcon: UIImageView!
+
     var child: Child? = nil
     var errorClosure: (() -> Void)? = nil
     
@@ -34,25 +39,37 @@ class HomeViewController: UIViewController, ActionProtocol {
         
         activityTable.dataSource = self
         activityTable.delegate = self
-        homeViewModel.homeDelegate = self
-     
+        homeViewModel.delegate = self
+        diaperProgress.lineWidth = CGFloat(10)
+        diaperProgress.animationDuration = TimeInterval(2.5)
+        diaperProgress.foregroundBarColor = ActionType.bath.imageTint
+        diaperProgress.setProgress(to: 0.8, animated: true)
+        diaperProgress.backgroundBarColor = UIColor.clear
+        diaperIcon.image = ActionType.bath.cellImage
+        diaperIcon.tintColor = ActionType.bath.imageTint
+        statsCard.layer.cornerRadius = 20
         // Do any additional setup after loading the view.
     }
     
     func showError(message: String, buttonMessage: String) {
         emptyBabyView.fadeIn()
+        emptyBabyView.isHidden = false
         errorLabel.text = message
         errorButton.setTitle(buttonMessage, for: .normal)
+        errorButton.configuration?.showsActivityIndicator = false
         activityTable.isHidden = true
         kidImage.isHidden = true
         babyActivities.isHidden = true
         headerView.isHidden = true
         userLabel.isHidden = true
         newActionButton.isHidden = true
+        statsCard.isHidden = true
         loadingIndicator.stopAnimating()
+        loadingIndicator.fadeOut()
     }
     
     @IBAction func errorClick(_ sender: UIButton) {
+        sender.configuration?.showsActivityIndicator = true
         if let closure = errorClosure {
             Logger.init().debug("Calling error closure")
             closure()
@@ -63,16 +80,12 @@ class HomeViewController: UIViewController, ActionProtocol {
          
         
     }
+    
+   
+    
     override func viewWillAppear(_ animated: Bool) {
         homeViewModel.initialize()
-        loadingIndicator.startAnimating()
-        authHandler = Auth.auth().addStateDidChangeListener{ auth, user in
-            if(user == nil) {
-                self.signIn()
-            } else {
-                self.updateUser(withUser: user!)
-            }
-        }
+
     }
     
     func updateUser(withUser: User) {
@@ -87,7 +100,6 @@ class HomeViewController: UIViewController, ActionProtocol {
     }
     
     func signIn() {
-        loadingIndicator.startAnimating()
         performSegue(withIdentifier: "SignUpSegue", sender: self)
     }
     
@@ -124,6 +136,7 @@ extension HomeViewController: HomeProtocol {
             self.childRetrieved(with: child)
         }
         self.show(viewController, sender: self)
+        errorButton.configuration?.showsActivityIndicator = false
     }
     
     func childRetrieved(with child: Child) {
@@ -138,6 +151,7 @@ extension HomeViewController: HomeProtocol {
         headerView.fadeIn()
         userLabel.fadeIn()
         newActionButton.fadeIn()
+        loadingIndicator.fadeOut()
         self.child = child
         activityTable.reloadData()
 
@@ -145,6 +159,7 @@ extension HomeViewController: HomeProtocol {
     
     func childNotFound() {
         loadingIndicator.stopAnimating()
+        
         showError(message: "Você não é responsável por nenhuma criança, adicione uma para começar.", buttonMessage: "Adicionar criança")
         self.errorClosure = {
             self.createNewBaby()
@@ -152,7 +167,7 @@ extension HomeViewController: HomeProtocol {
     }
     
     func requireAuth() {
-        loadingIndicator.stopAnimating()
+        loadingIndicator.fadeOut()
         showError(message: "Faça login para começar a usar o Nenis.", buttonMessage: "Entrar")
         self.errorClosure = {
             self.signIn()

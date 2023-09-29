@@ -42,8 +42,8 @@ enum ActionType: Codable, CaseIterable {
         get {
             switch self {
             case .sleep: return UIImage(systemName: "powersleep")
-            case .bath: return UIImage(systemName:  "bathtub.fill")
-            case .exercise: return UIImage(systemName: "figure.run")
+            case .bath: return UIImage(named: "poop.fill")
+            case .exercise: return UIImage(named: "baby.walk.fill")
             case .feed: return UIImage(systemName: "carrot.fill")
             }
         }

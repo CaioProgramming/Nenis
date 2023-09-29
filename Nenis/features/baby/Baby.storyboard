@@ -2,8 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -44,22 +44,27 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyb-OH-8SI">
                                         <rect key="frame" x="96.666666666666686" y="0.0" width="200" height="200"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear.fill" translatesAutoresizingMaskIntoConstraints="NO" id="Zwf-O7-kOc">
+                                                <rect key="frame" x="50" y="50" width="100" height="100"/>
+                                                <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
+                                            </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xat-Il-UHk">
                                                 <rect key="frame" x="4" y="4" width="192" height="192"/>
-                                                <color key="tintColor" systemColor="systemGray5Color"/>
-                                                <imageReference key="image" image="bear.fill" symbolScale="medium"/>
-                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                        <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="xat-Il-UHk" secondAttribute="trailing" constant="4" id="5I6-cW-Efb"/>
                                             <constraint firstAttribute="width" constant="200" id="5w9-ST-JTA"/>
                                             <constraint firstAttribute="height" constant="200" id="Clu-J3-ox2"/>
+                                            <constraint firstAttribute="bottom" secondItem="Zwf-O7-kOc" secondAttribute="bottom" constant="50" id="DfT-PC-ppI"/>
+                                            <constraint firstItem="Zwf-O7-kOc" firstAttribute="top" secondItem="dyb-OH-8SI" secondAttribute="top" constant="50" id="Gu5-s7-5Wp"/>
                                             <constraint firstItem="xat-Il-UHk" firstAttribute="centerX" secondItem="dyb-OH-8SI" secondAttribute="centerX" id="N9h-aZ-i3f"/>
-                                            <constraint firstItem="xat-Il-UHk" firstAttribute="top" secondItem="dyb-OH-8SI" secondAttribute="top" constant="4" id="b5U-dY-7Ji"/>
-                                            <constraint firstAttribute="bottom" secondItem="xat-Il-UHk" secondAttribute="bottom" constant="4" id="ghY-GI-huj"/>
-                                            <constraint firstItem="xat-Il-UHk" firstAttribute="leading" secondItem="dyb-OH-8SI" secondAttribute="leading" constant="4" id="p3Z-z9-1VI"/>
+                                            <constraint firstItem="Zwf-O7-kOc" firstAttribute="centerX" secondItem="dyb-OH-8SI" secondAttribute="centerX" id="PXM-Uu-JtQ"/>
+                                            <constraint firstItem="xat-Il-UHk" firstAttribute="leading" secondItem="dyb-OH-8SI" secondAttribute="leading" constant="4" id="SYW-hN-Ds3"/>
+                                            <constraint firstAttribute="trailing" secondItem="Zwf-O7-kOc" secondAttribute="trailing" constant="50" id="ToH-6x-VjD"/>
+                                            <constraint firstItem="Zwf-O7-kOc" firstAttribute="leading" secondItem="dyb-OH-8SI" secondAttribute="leading" constant="50" id="Xne-QA-8Mm"/>
+                                            <constraint firstItem="xat-Il-UHk" firstAttribute="top" secondItem="dyb-OH-8SI" secondAttribute="top" constant="4" id="irE-z7-aCS"/>
+                                            <constraint firstItem="Zwf-O7-kOc" firstAttribute="centerY" secondItem="dyb-OH-8SI" secondAttribute="centerY" id="rjh-E5-DQS"/>
                                             <constraint firstItem="xat-Il-UHk" firstAttribute="centerY" secondItem="dyb-OH-8SI" secondAttribute="centerY" id="t8e-7M-pwd"/>
                                         </constraints>
                                     </view>
@@ -154,14 +159,11 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
