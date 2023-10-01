@@ -10,17 +10,36 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 import os
 
+protocol ServideProtocol {
+    
+}
+
 class BabyService: DatabaseProtocol {
     
     
-    var path: String = "Childs"
+    
     typealias T = Child
-    var delegate: any DatabaseDelegate<T>
+    var path = "Childs"
+    var delegate: any DatabaseDelegate<Child>
+    var firebaseDataSource: FirebaseDataSource<Child>?
+    
+    init(delegate: any DatabaseDelegate<Child>) {
+        self.delegate = delegate
+        self.firebaseDataSource = FirebaseDataSource(databaseProtocol: self)
+    }
+    
+    
+    func mapSnapshot(querySnapshot: DocumentSnapshot) -> Child? {
+        do  {
+            return try querySnapshot.data(as: Child.self)
+        } catch {
+            return nil
+        }
+        
+    }
     
 
-    init(delegate: any DatabaseDelegate<T>) {
-        self.delegate = delegate
-    }
+  
     
     private func handleSnapshot(querySnapshot: [QueryDocumentSnapshot], isQuery: Bool) {
         let childArray = querySnapshot.compactMap( { doc in
@@ -29,7 +48,7 @@ class BabyService: DatabaseProtocol {
                 child.id = doc.documentID
                 return child
             } catch {
-                Logger.init().error("Failed to map snapshot \(error)")
+                getLogger().error("Failed to map snapshot \(error)")
                 return nil
             }
         })
@@ -58,7 +77,7 @@ class BabyService: DatabaseProtocol {
     }
     
     func getAllData() {
-        Logger.init().info("Fetching all data from \(self.path)")
+        getLogger().info("Fetching all data from \(self.path)")
         collectionReference().getDocuments() { snapshot, error in
             self.validateQueryCompletition(querySnapshot: snapshot, error: error, isQuery: false)
         }

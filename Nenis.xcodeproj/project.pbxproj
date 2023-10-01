@@ -53,6 +53,8 @@
 		F0CA22442AC4628E0079C1ED /* NewChildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA22432AC4628E0079C1ED /* NewChildViewModel.swift */; };
 		F0CBE7962AC5A42400AD6185 /* BabyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBE7952AC5A42400AD6185 /* BabyService.swift */; };
 		F0CBE7982AC5EB2D00AD6185 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBE7972AC5EB2D00AD6185 /* StorageService.swift */; };
+		F0CDB99C2AC9444E00430A96 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDB99B2AC9444E00430A96 /* InviteViewController.swift */; };
+		F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +114,8 @@
 		F0CA22432AC4628E0079C1ED /* NewChildViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChildViewModel.swift; sourceTree = "<group>"; };
 		F0CBE7952AC5A42400AD6185 /* BabyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyService.swift; sourceTree = "<group>"; };
 		F0CBE7972AC5EB2D00AD6185 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		F0CDB99B2AC9444E00430A96 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +269,7 @@
 		F0891AE52AC1F2FA00BC6C6B /* baby */ = {
 			isa = PBXGroup;
 			children = (
+				F0CDB99D2AC9446100430A96 /* invite */,
 				F0BB3CC42AC51AD800ED5314 /* service */,
 				F0CA22402AC461B90079C1ED /* model */,
 				F0891AE62AC1F37600BC6C6B /* Baby.storyboard */,
@@ -345,6 +350,15 @@
 				F0CA22432AC4628E0079C1ED /* NewChildViewModel.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		F0CDB99D2AC9446100430A96 /* invite */ = {
+			isa = PBXGroup;
+			children = (
+				F0CDB99B2AC9444E00430A96 /* InviteViewController.swift */,
+				F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */,
+			);
+			path = invite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,6 +520,7 @@
 				F09D40C02ABFCA930006E4BF /* PopOverViewController.swift in Sources */,
 				F0CBE7982AC5EB2D00AD6185 /* StorageService.swift in Sources */,
 				F0B310612ABD2CB300530994 /* AnimationExtensions.swift in Sources */,
+				F0CDB99C2AC9444E00430A96 /* InviteViewController.swift in Sources */,
 				F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */,
 				F0CBE7962AC5A42400AD6185 /* BabyService.swift in Sources */,
 				F0A5BFBD2AB484460045AD1C /* SignInViewController.swift in Sources */,
@@ -521,6 +536,7 @@
 				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
 				F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */,
 				F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */,
+				F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */,
 				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
 				F0B38D382AAAA19E00FBBA64 /* Action.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
