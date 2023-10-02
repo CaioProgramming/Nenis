@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol ActivityProtocol: AnyObject {
-    func retrieveActivity(activityDescription: Action)
+protocol ActionProtocol: AnyObject {
+    func retrieveActivity(with newAction: Action)
 }
 
 class NewActionViewController: UIViewController {
 
-    var activtyProtocol: ActivityProtocol?
+    var activtyProtocol: ActionProtocol?
     var activityType = ActionType.bath
     @IBOutlet weak var textField: UITextField!
     
@@ -57,7 +57,7 @@ class NewActionViewController: UIViewController {
     @IBAction func saveActivityTap(_ sender: UIButton) {
         let text = textField.text
         if(textField.hasText) {
-            activtyProtocol?.retrieveActivity(activityDescription: Action(description: text!, type: activityType, time: Date.now))
+            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType, time: Date.now))
             self.dismiss(animated: true)
         }
         

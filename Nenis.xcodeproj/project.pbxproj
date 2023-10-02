@@ -24,6 +24,10 @@
 		F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307D2AA75C04003AF470 /* ProfileViewController.swift */; };
 		F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307F2AA75C11003AF470 /* ExploreViewController.swift */; };
 		F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */; };
+		F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0891AE62AC1F37600BC6C6B /* Baby.storyboard */; };
+		F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */; };
+		F09B42CD2AC30BB4004910F7 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B42CC2AC30BB4004910F7 /* ViewExtensions.swift */; };
+		F09B42CF2AC3229D004910F7 /* Utils.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09B42CE2AC3229D004910F7 /* Utils.storyboard */; };
 		F09D40BC2ABFAFDD0006E4BF /* baby_sleep.json in Resources */ = {isa = PBXBuildFile; fileRef = F09D40BB2ABFAFDD0006E4BF /* baby_sleep.json */; };
 		F09D40C02ABFCA930006E4BF /* PopOverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09D40BE2ABFCA930006E4BF /* PopOverViewController.swift */; };
 		F09EB4A52AB3E6790058B7AB /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F09EB4A42AB3E6790058B7AB /* FirebaseAnalytics */; };
@@ -43,6 +47,14 @@
 		F0B310612ABD2CB300530994 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B310602ABD2CB300530994 /* AnimationExtensions.swift */; };
 		F0B310632ABD300500530994 /* TextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B310622ABD300500530994 /* TextFieldExtension.swift */; };
 		F0B38D382AAAA19E00FBBA64 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B38D372AAAA19E00FBBA64 /* Action.swift */; };
+		F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */ = {isa = PBXBuildFile; productRef = F0BB3CC22AC5138E00ED5314 /* moa */; };
+		F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */; };
+		F0CA22422AC461D50079C1ED /* Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA22412AC461D50079C1ED /* Child.swift */; };
+		F0CA22442AC4628E0079C1ED /* NewChildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA22432AC4628E0079C1ED /* NewChildViewModel.swift */; };
+		F0CBE7962AC5A42400AD6185 /* BabyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBE7952AC5A42400AD6185 /* BabyService.swift */; };
+		F0CBE7982AC5EB2D00AD6185 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBE7972AC5EB2D00AD6185 /* StorageService.swift */; };
+		F0CDB99C2AC9444E00430A96 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDB99B2AC9444E00430A96 /* InviteViewController.swift */; };
+		F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +94,10 @@
 		F01E307D2AA75C04003AF470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F01E307F2AA75C11003AF470 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
 		F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F0891AE62AC1F37600BC6C6B /* Baby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Baby.storyboard; sourceTree = "<group>"; };
+		F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChildViewController.swift; sourceTree = "<group>"; };
+		F09B42CC2AC30BB4004910F7 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
+		F09B42CE2AC3229D004910F7 /* Utils.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Utils.storyboard; sourceTree = "<group>"; };
 		F09D40BB2ABFAFDD0006E4BF /* baby_sleep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = baby_sleep.json; path = ../../../../../Downloads/baby_sleep.json; sourceTree = "<group>"; };
 		F09D40BE2ABFCA930006E4BF /* PopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		F09F3F322AA96A9200143522 /* NewActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActionViewController.swift; sourceTree = "<group>"; };
@@ -93,6 +109,13 @@
 		F0B310602ABD2CB300530994 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
 		F0B310622ABD300500530994 /* TextFieldExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldExtension.swift; sourceTree = "<group>"; };
 		F0B38D372AAAA19E00FBBA64 /* Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		F0CA22412AC461D50079C1ED /* Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Child.swift; sourceTree = "<group>"; };
+		F0CA22432AC4628E0079C1ED /* NewChildViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChildViewModel.swift; sourceTree = "<group>"; };
+		F0CBE7952AC5A42400AD6185 /* BabyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyService.swift; sourceTree = "<group>"; };
+		F0CBE7972AC5EB2D00AD6185 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		F0CDB99B2AC9444E00430A96 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
+		F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +130,7 @@
 				F09EB4B12AB3E6790058B7AB /* FirebaseStorage in Frameworks */,
 				F01A91722ABE200900139466 /* GoogleSignInSwift in Frameworks */,
 				F09EB4A92AB3E6790058B7AB /* FirebaseAuthCombine-Community in Frameworks */,
+				F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */,
 				F09EB4A72AB3E6790058B7AB /* FirebaseAuth in Frameworks */,
 				F0A5BFC02AB485C90045AD1C /* Lottie in Frameworks */,
 				F01A91702ABE200900139466 /* GoogleSignIn in Frameworks */,
@@ -198,9 +222,10 @@
 		F01E30762AA75BB3003AF470 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				F0891AE52AC1F2FA00BC6C6B /* baby */,
 				F09D40BD2ABFCA730006E4BF /* popover */,
 				F0A5BFBB2AB484280045AD1C /* Auth */,
-				F09F3F312AA96A6C00143522 /* activities */,
+				F09F3F312AA96A6C00143522 /* actions */,
 				F01E307A2AA75BD8003AF470 /* explore */,
 				F01E30792AA75BD0003AF470 /* profile */,
 				F01E30782AA75BCC003AF470 /* home */,
@@ -241,6 +266,18 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		F0891AE52AC1F2FA00BC6C6B /* baby */ = {
+			isa = PBXGroup;
+			children = (
+				F0CDB99D2AC9446100430A96 /* invite */,
+				F0BB3CC42AC51AD800ED5314 /* service */,
+				F0CA22402AC461B90079C1ED /* model */,
+				F0891AE62AC1F37600BC6C6B /* Baby.storyboard */,
+				F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */,
+			);
+			path = baby;
+			sourceTree = "<group>";
+		};
 		F09D40BD2ABFCA730006E4BF /* popover */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,13 +286,13 @@
 			path = popover;
 			sourceTree = "<group>";
 		};
-		F09F3F312AA96A6C00143522 /* activities */ = {
+		F09F3F312AA96A6C00143522 /* actions */ = {
 			isa = PBXGroup;
 			children = (
 				F0A635802AAB563800FC8C62 /* ui */,
 				F0B38D362AAAA18A00FBBA64 /* model */,
 			);
-			path = activities;
+			path = actions;
 			sourceTree = "<group>";
 		};
 		F0A5BFBB2AB484280045AD1C /* Auth */ = {
@@ -282,6 +319,10 @@
 			children = (
 				F0B310602ABD2CB300530994 /* AnimationExtensions.swift */,
 				F0B310622ABD300500530994 /* TextFieldExtension.swift */,
+				F09B42CC2AC30BB4004910F7 /* ViewExtensions.swift */,
+				F09B42CE2AC3229D004910F7 /* Utils.storyboard */,
+				F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */,
+				F0CBE7972AC5EB2D00AD6185 /* StorageService.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -292,6 +333,32 @@
 				F0B38D372AAAA19E00FBBA64 /* Action.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		F0BB3CC42AC51AD800ED5314 /* service */ = {
+			isa = PBXGroup;
+			children = (
+				F0CBE7952AC5A42400AD6185 /* BabyService.swift */,
+			);
+			path = service;
+			sourceTree = "<group>";
+		};
+		F0CA22402AC461B90079C1ED /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F0CA22412AC461D50079C1ED /* Child.swift */,
+				F0CA22432AC4628E0079C1ED /* NewChildViewModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F0CDB99D2AC9446100430A96 /* invite */ = {
+			isa = PBXGroup;
+			children = (
+				F0CDB99B2AC9444E00430A96 /* InviteViewController.swift */,
+				F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */,
+			);
+			path = invite;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,6 +388,7 @@
 				F0A5BFBF2AB485C90045AD1C /* Lottie */,
 				F01A916F2ABE200900139466 /* GoogleSignIn */,
 				F01A91712ABE200900139466 /* GoogleSignInSwift */,
+				F0BB3CC22AC5138E00ED5314 /* moa */,
 			);
 			productName = Nenis;
 			productReference = F01E30402AA75786003AF470 /* Nenis.app */;
@@ -398,6 +466,7 @@
 				F09EB4A32AB3E6790058B7AB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F0A5BFBE2AB485C90045AD1C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */,
 			);
 			productRefGroup = F01E30412AA75786003AF470 /* Products */;
 			projectDirPath = "";
@@ -417,8 +486,10 @@
 			files = (
 				F01A916C2ABE189D00139466 /* baby_yoda.json in Resources */,
 				F01E30532AA75787003AF470 /* LaunchScreen.storyboard in Resources */,
+				F09B42CF2AC3229D004910F7 /* Utils.storyboard in Resources */,
 				F01E30502AA75787003AF470 /* Assets.xcassets in Resources */,
 				F09D40BC2ABFAFDD0006E4BF /* baby_sleep.json in Resources */,
+				F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */,
 				F0B3105C2ABD1F3200530994 /* GoogleService-Info.plist in Resources */,
 				F0A635862AAB567100FC8C62 /* ActivityTableViewCell.xib in Resources */,
 				F01E304B2AA75786003AF470 /* Main.storyboard in Resources */,
@@ -447,16 +518,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				F09D40C02ABFCA930006E4BF /* PopOverViewController.swift in Sources */,
+				F0CBE7982AC5EB2D00AD6185 /* StorageService.swift in Sources */,
 				F0B310612ABD2CB300530994 /* AnimationExtensions.swift in Sources */,
+				F0CDB99C2AC9444E00430A96 /* InviteViewController.swift in Sources */,
+				F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */,
+				F0CBE7962AC5A42400AD6185 /* BabyService.swift in Sources */,
 				F0A5BFBD2AB484460045AD1C /* SignInViewController.swift in Sources */,
+				F09B42CD2AC30BB4004910F7 /* ViewExtensions.swift in Sources */,
+				F0CA22422AC461D50079C1ED /* Child.swift in Sources */,
 				F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */,
 				F0B310632ABD300500530994 /* TextFieldExtension.swift in Sources */,
 				F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */,
 				F0A635852AAB567100FC8C62 /* ActivityTableViewCell.swift in Sources */,
 				F01E307C2AA75BF2003AF470 /* HomeViewController.swift in Sources */,
+				F0CA22442AC4628E0079C1ED /* NewChildViewModel.swift in Sources */,
 				F01E30482AA75786003AF470 /* ViewController.swift in Sources */,
 				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
 				F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */,
+				F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */,
+				F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */,
 				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
 				F0B38D382AAAA19E00FBBA64 /* Action.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
@@ -833,6 +913,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/moa";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -885,6 +973,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0A5BFBE2AB485C90045AD1C /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		F0BB3CC22AC5138E00ED5314 /* moa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */;
+			productName = moa;
 		};
 /* End XCSwiftPackageProductDependency section */
 

@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-struct Action {
+struct Action : Codable {
     let description: String
     let type: ActionType
     let time: Date
 }
 
-enum ActionType: CaseIterable {
+enum ActionType: Codable, CaseIterable {
   case sleep, bath, exercise, feed
   var description: String { get { return String(reflecting: self) } }
   var emoji: String {
