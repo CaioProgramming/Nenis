@@ -10,9 +10,6 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 import os
 
-protocol ServideProtocol {
-    
-}
 
 class BabyService: DatabaseProtocol {
     
@@ -31,15 +28,18 @@ class BabyService: DatabaseProtocol {
     
     func mapSnapshot(querySnapshot: DocumentSnapshot) -> Child? {
         do  {
+            var data = try querySnapshot.data(as: Child.self)
+            data.id = querySnapshot.documentID
             return try querySnapshot.data(as: Child.self)
         } catch {
+            sendError(message: "Error mapping snapshot \(error.localizedDescription)", errorType: .delete)
             return nil
         }
         
     }
     
-
-  
+    
+    
     
     private func handleSnapshot(querySnapshot: [QueryDocumentSnapshot], isQuery: Bool) {
         let childArray = querySnapshot.compactMap( { doc in
@@ -85,7 +85,7 @@ class BabyService: DatabaseProtocol {
     
     func queryData(field: String, value: String, isArray: Bool){
         Logger.init().info("Querying data from \(self.path) \(field) = \(value)")
-
+        
         if(!isArray) {
             collectionReference().whereField(field, isEqualTo: value).getDocuments() { snapshot, error in
                 self.validateQueryCompletition(querySnapshot: snapshot, error: error, isQuery: true)
@@ -97,12 +97,17 @@ class BabyService: DatabaseProtocol {
         }
     }
     
+    func getType() {}
+    
     func getSingleData(id: String) {
         getLogger().info("Querying child from \(self.path) = \(id)")
         collectionReference().document(id).getDocument(as: T.self) { result in
             switch result {
             case .success(let child):
-                self.delegate.retrieveData(data: child)
+                var foundedChild = child
+                foundedChild.id = id
+                self.getLogger().debug("Data founded => \(String(describing: foundedChild))")
+                self.delegate.retrieveData(data: foundedChild)
             case .failure(let error):
                 self.sendError(message: "Failed to get document \(error.localizedDescription)", errorType: .query)
             }
@@ -139,7 +144,7 @@ class BabyService: DatabaseProtocol {
                         self.delegate.taskFailure(databaseError: .update)
                     } else {
                         self.delegate.taskSuccess(message: "Data supdated sucessfully.")
-                        self.delegate.retrieveData(data: data)
+                        self.delegate.updateSuccess(data: data)
                     }
                 }
             } else {

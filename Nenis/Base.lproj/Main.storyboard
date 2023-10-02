@@ -120,9 +120,6 @@
                                     <constraint firstAttribute="height" constant="60" id="mpp-1s-gJi"/>
                                 </constraints>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="xy4-Qq-hhm">
-                                <rect key="frame" x="169" y="388" width="37" height="36"/>
-                            </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Atividades do bebê" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5w0-Ci-hXQ">
                                 <rect key="frame" x="23" y="154" width="329" height="20.333333333333343"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
@@ -200,25 +197,21 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="EYl-BE-XOg" secondAttribute="trailing" id="3Mh-e8-QtE"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xy4-Qq-hhm" secondAttribute="bottom" constant="305" id="6UP-82-MRP"/>
                             <constraint firstItem="EYl-BE-XOg" firstAttribute="centerX" secondItem="5w0-Ci-hXQ" secondAttribute="centerX" id="7Nc-Xd-glK"/>
                             <constraint firstItem="5Jv-wY-Anf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="C15-Wl-hdd"/>
                             <constraint firstItem="EYl-BE-XOg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="HZI-eS-XaS"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="XUa-GS-f1U" secondAttribute="trailing" constant="16" id="I90-WL-C8F"/>
                             <constraint firstAttribute="bottomMargin" secondItem="EYl-BE-XOg" secondAttribute="bottom" constant="-125" id="N4n-O3-0s1"/>
                             <constraint firstItem="EYl-BE-XOg" firstAttribute="top" secondItem="XUa-GS-f1U" secondAttribute="bottom" constant="8" id="RxO-ZO-BMs"/>
-                            <constraint firstItem="xy4-Qq-hhm" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Syz-gT-vYa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="5w0-Ci-hXQ" secondAttribute="bottom" constant="554.66666666666674" id="THo-vP-fsn"/>
                             <constraint firstItem="5w0-Ci-hXQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="23" id="UQS-IA-pLF"/>
                             <constraint firstItem="Xam-pC-yxq" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="VGF-6B-O88"/>
                             <constraint firstItem="5Jv-wY-Anf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="32" id="VXM-NF-ZEv"/>
                             <constraint firstItem="5Jv-wY-Anf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XYt-BU-ra6"/>
-                            <constraint firstItem="EYl-BE-XOg" firstAttribute="centerX" secondItem="xy4-Qq-hhm" secondAttribute="centerX" id="Yd3-jr-dZU"/>
                             <constraint firstItem="Xam-pC-yxq" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="ZIn-5H-kFE"/>
                             <constraint firstItem="WKa-RW-fFn" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="Zp4-AB-57J"/>
                             <constraint firstItem="XUa-GS-f1U" firstAttribute="top" secondItem="5w0-Ci-hXQ" secondAttribute="bottom" constant="15" id="b2m-ep-yGX"/>
                             <constraint firstItem="XUa-GS-f1U" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ofr-Za-uoV"/>
-                            <constraint firstItem="xy4-Qq-hhm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="169" id="qsu-QV-vk1"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="WKa-RW-fFn" secondAttribute="trailing" constant="8" id="r8N-2I-FXT"/>
                             <constraint firstItem="5w0-Ci-hXQ" firstAttribute="top" secondItem="Xam-pC-yxq" secondAttribute="top" constant="96" id="rrT-6J-HBG"/>
                             <constraint firstAttribute="trailing" secondItem="5Jv-wY-Anf" secondAttribute="trailing" constant="32" id="sWB-ez-Itz"/>
@@ -574,7 +567,7 @@
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="safari.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
-            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.9570000171661377" green="0.89899998903274536" blue="0.46000000834465027" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

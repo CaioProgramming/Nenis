@@ -25,6 +25,11 @@ struct UploadTask {
 
 class NewChildViewModel: DatabaseDelegate {
     
+    func updateSuccess(data: Child) {
+        
+    }
+    
+    
     func saveSuccess(data: Child) {
         newChildDelegate?.saveSuccess(child: data)
     }

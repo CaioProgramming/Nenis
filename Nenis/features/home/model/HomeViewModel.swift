@@ -21,6 +21,11 @@ protocol HomeProtocol {
 
 class HomeViewModel: DatabaseDelegate {
     
+    func updateSuccess(data: Child) {
+    
+    }
+    
+    
     
     func saveSuccess(data: Child) {
         
@@ -79,6 +84,6 @@ class HomeViewModel: DatabaseDelegate {
     }
     
     private func fetchChild(uid: String) {
-        babyService?.getAllData()
+        babyService?.queryData(field: "tutors", value: uid, isArray: true)
     }
 }

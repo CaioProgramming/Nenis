@@ -28,7 +28,7 @@ extension DatabaseProtocol {
         
         let childArray = querySnapshot.compactMap( { doc in
             
-            var data = mapSnapshot(querySnapshot: doc)
+            let data = mapSnapshot(querySnapshot: doc)
             return data
             
         })
@@ -225,16 +225,18 @@ protocol DatabaseDelegate<T> {
     func retrieveListData(dataList: [T])
     func retrieveData(data: T)
     func saveSuccess(data: T)
+    func updateSuccess(data: T)
     func taskFailure(databaseError: ErrorType)
     func taskSuccess(message: String)
 }
 
 enum ErrorType {
-    case update, query, fetch, delete, save
+    case update, query, fetch, delete, save, parse
     var description: String {
         get {
             switch self {
-                
+            case .parse:
+                "Error mapping data"
             case .save:
                 "Error saving data."
             case .update:

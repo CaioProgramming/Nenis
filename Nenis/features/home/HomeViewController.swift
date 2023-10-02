@@ -10,7 +10,7 @@ import FirebaseAuth
 import moa
 import os
 
-class HomeViewController: UIViewController, ActionProtocol {
+class HomeViewController: UIViewController {
     
     
     let homeViewModel = HomeViewModel()
@@ -40,6 +40,7 @@ class HomeViewController: UIViewController, ActionProtocol {
     }
     
     func showError(message: String, buttonMessage: String) {
+        loadingIndicator.stopAnimating()
         emptyBabyView.fadeIn()
         errorLabel.text = message
         errorButton.setTitle(buttonMessage, for: .normal)
@@ -49,7 +50,8 @@ class HomeViewController: UIViewController, ActionProtocol {
         headerView.isHidden = true
         userLabel.isHidden = true
         newActionButton.isHidden = true
-        loadingIndicator.stopAnimating()
+        loadingIndicator.isHidden = true
+        
     }
     
     @IBAction func errorClick(_ sender: UIButton) {
@@ -66,24 +68,10 @@ class HomeViewController: UIViewController, ActionProtocol {
     override func viewWillAppear(_ animated: Bool) {
         homeViewModel.initialize()
         loadingIndicator.startAnimating()
-        authHandler = Auth.auth().addStateDidChangeListener{ auth, user in
-            if(user == nil) {
-                self.signIn()
-            } else {
-                self.updateUser(withUser: user!)
-            }
-        }
     }
     
     func updateUser(withUser: User) {
         userLabel.text = "Olá \(withUser.displayName ?? "cuidador")."
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        if authHandler != nil {
-            Auth.auth().removeStateDidChangeListener(authHandler!)
-            
-        }
     }
     
     func signIn() {
@@ -99,12 +87,6 @@ class HomeViewController: UIViewController, ActionProtocol {
     @IBAction func createNewActivity(_ sender: UIButton) {
         performSegue(withIdentifier: "NewActivitySegue", sender: self)
     }
-    func retrieveActivity(with action: Action) {
-        if var currentChild = child {
-            currentChild.actions.append(action)
-            homeViewModel.babyService?.updateData(id: child?.id, data: currentChild)
-        }
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "NewActivitySegue") {
@@ -114,6 +96,21 @@ class HomeViewController: UIViewController, ActionProtocol {
     }
 }
 
+//MARK: - ActionProtcols section
+
+extension HomeViewController: ActionProtocol {
+    
+    func retrieveActivity(with newAction: Action) {
+        if var currentChild = child {
+            currentChild.actions.append(newAction)
+            homeViewModel.babyService?.updateData(id: child?.id, data: currentChild)
+        }
+    }
+    
+    
+}
+
+//MARK: - HomeProtocols section
 extension HomeViewController: HomeProtocol {
     
     func createNewBaby() {
@@ -152,7 +149,6 @@ extension HomeViewController: HomeProtocol {
     }
     
     func requireAuth() {
-        loadingIndicator.stopAnimating()
         showError(message: "Faça login para começar a usar o Nenis.", buttonMessage: "Entrar")
         self.errorClosure = {
             self.signIn()
@@ -168,7 +164,7 @@ extension HomeViewController: HomeProtocol {
     
 }
 
-
+//MARK: - TableView Delegates
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func sortedActions() -> [Action] {

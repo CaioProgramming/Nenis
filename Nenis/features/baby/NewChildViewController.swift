@@ -18,6 +18,7 @@ class NewChildViewController: UIViewController {
     @IBOutlet weak var babyNameTextField: UITextField!
     var imagePickerController: UIImagePickerController? = nil
     var selectedPhoto: UIImage? = nil
+    @IBOutlet weak var photoPlaceHolder: UIImageView!
     var childCompletition: ((Child) -> Void )? = nil
     let newBabyViewModel = NewChildViewModel()
     
@@ -30,7 +31,14 @@ class NewChildViewController: UIViewController {
         babyNameTextField.delegate = self
         newBabyViewModel.newChildDelegate = self
         setupDatePicker()
-        
+        babyImage.fadeOut()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "InviteSegue") {
+            let viewController = segue.destination as! InviteViewController
+            viewController.inviteDelegate = self
+        }
     }
     
     @IBAction func nameEditEnd(_ sender: UITextField) {
@@ -39,8 +47,8 @@ class NewChildViewController: UIViewController {
     func updateKidImage(with newPhoto: UIImage) {
         selectedPhoto = newPhoto
         babyImage.image = newPhoto
-        babyImage.alpha = 1
-        
+        babyImage.fadeIn()
+        photoPlaceHolder.fadeOut()
     }
     
     @objc func openPicker() {
@@ -86,6 +94,15 @@ class NewChildViewController: UIViewController {
 
 }
 
+extension NewChildViewController : InviteDelegate {
+    func childUpdated(child: Child) {
+        print("Child updated success")
+        saveSuccess(child: child)
+    }
+    
+    
+}
+
 extension NewChildViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -95,6 +112,7 @@ extension NewChildViewController: UITextFieldDelegate {
     
 }
 
+// MARK: - PopOver Delegate
 extension NewChildViewController: UIPopoverPresentationControllerDelegate {
 
     func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {

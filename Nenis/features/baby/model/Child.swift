@@ -13,7 +13,7 @@ public struct Child: Codable {
     let name: String
     let birthDate: Date
     let photo: String
-    let tutors: [String]
+    var tutors: [String]
     var actions: [Action]
     enum CodingKeys: String, CodingKey {
         case name
