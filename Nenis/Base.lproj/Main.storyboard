@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Suh-mE-rye">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Suh-mE-rye">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -113,8 +113,9 @@
                                     <constraint firstItem="hhf-Rv-yAi" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tYY-U4-kGw" secondAttribute="leading" id="xZv-dM-2Kg"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" image="ianbaby" translatesAutoresizingMaskIntoConstraints="NO" id="WKa-RW-fFn">
+                            <imageView clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="251" image="bear.fill" translatesAutoresizingMaskIntoConstraints="NO" id="WKa-RW-fFn">
                                 <rect key="frame" x="307" y="60" width="60" height="60"/>
+                                <color key="tintColor" systemColor="placeholderTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="7Pi-fO-oLB"/>
                                     <constraint firstAttribute="height" constant="60" id="mpp-1s-gJi"/>
@@ -561,9 +562,9 @@
     </scenes>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
+        <image name="bear.fill" width="17" height="16"/>
         <image name="face.smiling.inverse" catalog="system" width="128" height="123"/>
         <image name="g.circle.fill" catalog="system" width="128" height="123"/>
-        <image name="ianbaby" width="140" height="140"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="safari.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">

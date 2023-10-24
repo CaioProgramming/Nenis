@@ -49,6 +49,7 @@ class NewChildViewController: UIViewController {
         babyImage.image = newPhoto
         babyImage.fadeIn()
         photoPlaceHolder.fadeOut()
+        imageBackground.clipImageToCircle(color: UIColor.accent)
     }
     
     @objc func openPicker() {
