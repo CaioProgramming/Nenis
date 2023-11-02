@@ -58,19 +58,19 @@ class NewChildViewModel: DatabaseDelegate {
     var storageService: StorageService? = nil
     init() {
         self.babyService = BabyService(delegate: self)
-        self.storageService = StorageService(path: path)
+        self.storageService = StorageService(path:"Childs")
         
     }
     
-    let path = "Childs"
     var newChildDelegate: NewChildProtocol? = nil
     
-    func saveChild(name: String, birthDate: Date, photoPath: Data) {
+    
+    func saveChild(name: String, birthDate: Date, photoPath: Data, gender: String) {
         if let currentUser = Auth.auth().currentUser {
             storageService?.uploadFile(fileName: name, fileData: photoPath, extension: ".JPEG") { downloadURL in
                 do {
                     let fileURL = try downloadURL.get()
-                    self.babyService?.saveData(data: Child(name: name, birthDate: birthDate, photo: fileURL, tutors: [currentUser.uid], actions: []))
+                    self.babyService?.saveData(data: Child(name: name, birthDate: birthDate, photo: fileURL, gender: gender.uppercased(),tutors: [currentUser.uid], actions: []))
                     
                 } catch {
                     self.sendError(messsage: "Error uploading file.")

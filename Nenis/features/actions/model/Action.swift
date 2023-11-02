@@ -16,7 +16,7 @@ struct Action : Codable {
 
 enum ActionType: Codable, CaseIterable {
   case sleep, bath, exercise, feed
-  var description: String { get { return String(reflecting: self) } }
+  var description: String { get { return "\(self)" } }
   var emoji: String {
         get {
             switch self {
@@ -54,7 +54,7 @@ enum ActionType: Codable, CaseIterable {
         get {
             switch self {
                 
-            case .sleep: return #colorLiteral(red: 0.6598719587, green: 0.5069644535, blue: 0.9686274529, alpha: 1)
+            case .sleep: return #colorLiteral(red: 0.6598719587, green: 0.5069644535, blue: 0.9686274529, alpha: 1) 
             case .bath: return #colorLiteral(red: 0.4140695331, green: 0.5963088957, blue: 0.9172512755, alpha: 1)
             case .exercise: return  #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
             case .feed: return #colorLiteral(red: 0.8749734269, green: 0.524994685, blue: 0.3914501651, alpha: 1)

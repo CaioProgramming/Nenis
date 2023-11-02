@@ -47,7 +47,8 @@ class StorageService: StorageProtocol {
     
     func uploadFile(fileName: String, fileData: Data, extension: String, taskResult: @escaping (Result<String,StorageError>) -> Void) {
         print("Uploading file to storage...")
-        let reference = getStoragePath().child(fileName)
+        let longDate = Date.now.timeIntervalSince1970
+        let reference = getStoragePath().child("\(fileName.replacingOccurrences(of: " ", with: ""))_\(longDate)")
         reference.putData(fileData) { metaData, error in
                 
             do {

@@ -21,19 +21,37 @@ class NewChildViewController: UIViewController {
     @IBOutlet weak var photoPlaceHolder: UIImageView!
     var childCompletition: ((Child) -> Void )? = nil
     let newBabyViewModel = NewChildViewModel()
+    @IBOutlet weak var imageUploadIndicator: UIActivityIndicatorView!
+    
+    
+    var currentGender = Gender.boy
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openPicker))
-       imageBackground.addGestureRecognizer(tapGesture)
+        imageBackground.addGestureRecognizer(tapGesture)
         imageBackground.clipImageToCircle(color: UIColor.systemGray4)
-        babyImage.clipImageToCircle(color: UIColor.clear)
+        babyImage.clipImageToCircle(color: Gender.boy.color)
         babyNameTextField.delegate = self
         newBabyViewModel.newChildDelegate = self
         setupDatePicker()
         babyImage.fadeOut()
     }
     
+    private func updateGenderUi() {
+        
+    }
+    
+    @IBAction func genderSelected(_ sender: UISegmentedControl) {
+        let gender = Gender.allCases[sender.selectedSegmentIndex]
+        currentGender = gender
+        imageBackground.clipImageToCircle(color: currentGender.color)
+ 
+    }
+    @IBAction func saveChild(_ sender: UIBarButtonItem) {
+        saveChild(sender: nil)
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "InviteSegue") {
             let viewController = segue.destination as! InviteViewController
@@ -49,6 +67,8 @@ class NewChildViewController: UIViewController {
         babyImage.image = newPhoto
         babyImage.fadeIn()
         photoPlaceHolder.fadeOut()
+        imageBackground.clipImageToCircle(color: currentGender.color)
+        imageUploadIndicator.stopAnimating()
     }
     
     @objc func openPicker() {
@@ -73,14 +93,18 @@ class NewChildViewController: UIViewController {
         babyBirthDatePicker.maximumDate = Date.now
         babyBirthDatePicker.minimumDate = Calendar.current.date(byAdding: .year, value: -10, to: Date())
     }
-
-    @IBAction func saveBabyTouch(_ sender: UIButton) {
+    
+    private func saveChild(sender: UIButton?) {
         guard let babyName = babyNameTextField.validText(), let babyPhoto = selectedPhoto?.jpegData(compressionQuality: 1) else {
             showPopOver(with: "Some informations are missing", anchor: babyImage, presentationDelegate: self)
             return
         }
-        newBabyViewModel.saveChild(name: babyName, birthDate: babyBirthDatePicker.date, photoPath: babyPhoto)
-        sender.configuration?.showsActivityIndicator = true
+        newBabyViewModel.saveChild(name: babyName, birthDate: babyBirthDatePicker.date, photoPath: babyPhoto, gender: currentGender.description)
+        sender?.configuration?.showsActivityIndicator = true
+    }
+
+    @IBAction func saveBabyTouch(_ sender: UIButton) {
+     saveChild(sender: sender)
     }
     /*
     // MARK: - Navigation
