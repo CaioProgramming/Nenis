@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSe-1V-xXr">
-                                <rect key="frame" x="0.0" y="91" width="428" height="801"/>
+                                <rect key="frame" x="0.0" y="101" width="428" height="791"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-cz-jdT">
                                         <rect key="frame" x="0.0" y="0.0" width="444" height="838.66666666666663"/>
@@ -34,6 +34,10 @@
                                                         <rect key="frame" x="4" y="4" width="192" height="192"/>
                                                         <color key="tintColor" systemColor="systemGray6Color"/>
                                                     </imageView>
+                                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="AsA-fP-m2Q">
+                                                        <rect key="frame" x="90" y="90" width="20" height="20"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </activityIndicatorView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="separatorColor"/>
                                                 <constraints>
@@ -73,6 +77,9 @@
                                                     <segment title="Menino"/>
                                                     <segment title="Menina"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="genderSelected:" destination="11b-9S-gbk" eventType="valueChanged" id="y7Y-Iv-wpZ"/>
+                                                </connections>
                                             </segmentedControl>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Data de nascimento" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TRw-Ex-h1F">
                                                 <rect key="frame" x="24" y="336" width="396" height="25"/>
@@ -145,14 +152,20 @@
                                                 </connections>
                                             </button>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="IIi-ej-QLV">
+                                            <connections>
+                                                <action selector="saveChild:" destination="11b-9S-gbk" id="iia-s9-ebh"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <navigationBarAppearance key="standardAppearance" backgroundEffect="prominent"/>
                             </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wRb-13-9iX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="BSe-1V-xXr" firstAttribute="top" secondItem="lSI-EF-Aol" secondAttribute="bottom" id="CGS-I0-We5"/>
+                            <constraint firstItem="BSe-1V-xXr" firstAttribute="top" secondItem="lSI-EF-Aol" secondAttribute="bottom" constant="10" id="CGS-I0-We5"/>
                             <constraint firstItem="wRb-13-9iX" firstAttribute="trailing" secondItem="BSe-1V-xXr" secondAttribute="trailing" id="KYE-RS-x1X"/>
                             <constraint firstItem="BSe-1V-xXr" firstAttribute="leading" secondItem="wRb-13-9iX" secondAttribute="leading" id="NLN-hc-OmW"/>
                             <constraint firstItem="lSI-EF-Aol" firstAttribute="top" secondItem="wRb-13-9iX" secondAttribute="top" id="XSw-Ax-UGG"/>
@@ -166,6 +179,7 @@
                         <outlet property="babyImage" destination="xat-Il-UHk" id="lpI-5s-Md6"/>
                         <outlet property="babyNameTextField" destination="XQ1-qF-9Y0" id="QfM-YX-ZWp"/>
                         <outlet property="imageBackground" destination="dyb-OH-8SI" id="gFZ-dH-LS2"/>
+                        <outlet property="imageUploadIndicator" destination="AsA-fP-m2Q" id="hDN-eM-2my"/>
                         <outlet property="navBar" destination="lSI-EF-Aol" id="94V-Bg-KJX"/>
                         <outlet property="photoPlaceHolder" destination="yM4-oz-Lif" id="urw-yF-Hxg"/>
                     </connections>
