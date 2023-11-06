@@ -57,7 +57,7 @@ class NewActionViewController: UIViewController {
     @IBAction func saveActivityTap(_ sender: UIButton) {
         let text = textField.text
         if(textField.hasText) {
-            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType, time: Date.now))
+            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType.description, time: Date.now))
             self.dismiss(animated: true)
         }
         

@@ -23,6 +23,12 @@
 		F01E307C2AA75BF2003AF470 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307B2AA75BF2003AF470 /* HomeViewController.swift */; };
 		F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307D2AA75C04003AF470 /* ProfileViewController.swift */; };
 		F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307F2AA75C11003AF470 /* ExploreViewController.swift */; };
+		F026ECB12AF53DCA0004F3B3 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */; };
+		F026ECBE2AF5587F0004F3B3 /* Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECBD2AF5587F0004F3B3 /* Vaccine.swift */; };
+		F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECC12AF5784C0004F3B3 /* VaccineTableViewCell.swift */; };
+		F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F026ECC22AF5784C0004F3B3 /* VaccineTableViewCell.xib */; };
+		F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */; };
+		F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */; };
 		F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */; };
 		F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0891AE62AC1F37600BC6C6B /* Baby.storyboard */; };
 		F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */; };
@@ -93,6 +99,12 @@
 		F01E307B2AA75BF2003AF470 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F01E307D2AA75C04003AF470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F01E307F2AA75C11003AF470 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
+		F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
+		F026ECBD2AF5587F0004F3B3 /* Vaccine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vaccine.swift; sourceTree = "<group>"; };
+		F026ECC12AF5784C0004F3B3 /* VaccineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineTableViewCell.swift; sourceTree = "<group>"; };
+		F026ECC22AF5784C0004F3B3 /* VaccineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineTableViewCell.xib; sourceTree = "<group>"; };
+		F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionViewCell.swift; sourceTree = "<group>"; };
+		F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCollectionViewCell.xib; sourceTree = "<group>"; };
 		F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F0891AE62AC1F37600BC6C6B /* Baby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Baby.storyboard; sourceTree = "<group>"; };
 		F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChildViewController.swift; sourceTree = "<group>"; };
@@ -222,6 +234,7 @@
 		F01E30762AA75BB3003AF470 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				F03ED7D52AF449020025E8BF /* vaccine */,
 				F0891AE52AC1F2FA00BC6C6B /* baby */,
 				F09D40BD2ABFCA730006E4BF /* popover */,
 				F0A5BFBB2AB484280045AD1C /* Auth */,
@@ -258,12 +271,57 @@
 			path = explore;
 			sourceTree = "<group>";
 		};
+		F026ECB52AF5477F0004F3B3 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				F026ECC02AF5781B0004F3B3 /* tableview */,
+				F026ECBF2AF578140004F3B3 /* collection */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		F026ECBC2AF558740004F3B3 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F026ECBD2AF5587F0004F3B3 /* Vaccine.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F026ECBF2AF578140004F3B3 /* collection */ = {
+			isa = PBXGroup;
+			children = (
+				F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */,
+				F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */,
+			);
+			path = collection;
+			sourceTree = "<group>";
+		};
+		F026ECC02AF5781B0004F3B3 /* tableview */ = {
+			isa = PBXGroup;
+			children = (
+				F026ECC22AF5784C0004F3B3 /* VaccineTableViewCell.xib */,
+				F026ECC12AF5784C0004F3B3 /* VaccineTableViewCell.swift */,
+			);
+			path = tableview;
+			sourceTree = "<group>";
+		};
 		F02F8E532ABA8F020008E560 /* model */ = {
 			isa = PBXGroup;
 			children = (
 				F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */,
+				F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */,
 			);
 			path = model;
+			sourceTree = "<group>";
+		};
+		F03ED7D52AF449020025E8BF /* vaccine */ = {
+			isa = PBXGroup;
+			children = (
+				F026ECBC2AF558740004F3B3 /* model */,
+				F026ECB52AF5477F0004F3B3 /* ui */,
+			);
+			path = vaccine;
 			sourceTree = "<group>";
 		};
 		F0891AE52AC1F2FA00BC6C6B /* baby */ = {
@@ -486,6 +544,8 @@
 			files = (
 				F01A916C2ABE189D00139466 /* baby_yoda.json in Resources */,
 				F01E30532AA75787003AF470 /* LaunchScreen.storyboard in Resources */,
+				F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */,
+				F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */,
 				F09B42CF2AC3229D004910F7 /* Utils.storyboard in Resources */,
 				F01E30502AA75787003AF470 /* Assets.xcassets in Resources */,
 				F09D40BC2ABFAFDD0006E4BF /* baby_sleep.json in Resources */,
@@ -527,6 +587,7 @@
 				F09B42CD2AC30BB4004910F7 /* ViewExtensions.swift in Sources */,
 				F0CA22422AC461D50079C1ED /* Child.swift in Sources */,
 				F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */,
+				F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */,
 				F0B310632ABD300500530994 /* TextFieldExtension.swift in Sources */,
 				F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */,
 				F0A635852AAB567100FC8C62 /* ActivityTableViewCell.swift in Sources */,
@@ -538,7 +599,10 @@
 				F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */,
 				F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */,
 				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
+				F026ECBE2AF5587F0004F3B3 /* Vaccine.swift in Sources */,
 				F0B38D382AAAA19E00FBBA64 /* Action.swift in Sources */,
+				F026ECB12AF53DCA0004F3B3 /* HomeSection.swift in Sources */,
+				F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F0B3105E2ABD2A6C00530994 /* AuthViewModel.swift in Sources */,
 				F01E304E2AA75786003AF470 /* Nenis.xcdatamodeld in Sources */,

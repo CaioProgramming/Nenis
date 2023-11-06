@@ -13,10 +13,15 @@ extension UIView {
     
     func clipImageToCircle( color: UIColor) {
         self.backgroundColor = color
-        
         self.layer.masksToBounds = false
         self.layer.borderColor =  UIColor.placeholderText.cgColor
         self.layer.cornerRadius = self.frame.height / 2
+        self.clipsToBounds = true
+    }
+    
+    func roundedCorner(radius: CGFloat) {
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = radius
         self.clipsToBounds = true
     }
     

@@ -28,9 +28,10 @@ public struct Child: Codable {
 }
 
 enum Gender : Codable, CaseIterable {
+    
     case boy, girl
     
-    var description: String { get { return "\(self)" } }
+    var description: String { get { return "\(self)".uppercased() } }
 
     
     var color: UIColor {
@@ -43,5 +44,15 @@ enum Gender : Codable, CaseIterable {
                 #colorLiteral(red: 0.9098039269, green: 0.4784313738, blue: 0.6431372762, alpha: 1)
             }
         }
+    }
+}
+
+extension String {
+    func getGender() -> Gender? {
+        let cases = Gender.allCases
+        return cases.first(where: { element in
+            print("querying gender -> \(self)")
+            return element.description.caseInsensitiveCompare(self) == .orderedSame
+      })
     }
 }

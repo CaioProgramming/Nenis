@@ -12,6 +12,7 @@ import os
 
 protocol HomeProtocol {
     
+    func retrieveHome(with homeSection: [any Section])
     func childRetrieved(with child: Child)
     func childNotFound()
     func requireAuth()
@@ -21,11 +22,18 @@ protocol HomeProtocol {
 
 class HomeViewModel: DatabaseDelegate {
     
+    var child: Child? = nil
+    
     func updateSuccess(data: Child) {
     
     }
     
-    
+    func addNewAction(action: Action) {
+        if var currentChild = child {
+            currentChild.actions.append(action)
+            babyService?.updateData(id: child?.id, data: currentChild)
+        }
+    }
     
     func saveSuccess(data: Child) {
         
@@ -48,12 +56,30 @@ class HomeViewModel: DatabaseDelegate {
     func retrieveListData(dataList: [Child]) {
         if let child = dataList.first {
             homeDelegate?.childRetrieved(with: child)
+            self.child = child
+            buildHomeFromChild(with: child)
         }
+    }
+    
+    
+    func buildHomeFromChild(with child: Child) {
+        let vaccines = Vaccine.allCases.prefix(4).map({ item in
+            item.title
+        })
+        let sections: [any Section] = [
+            VaccineSection(items: vaccines, type: .vaccines, title: "Próximas vacinas"),
+            ActionSection(items: child.actions.sortByDate(), type: .actions, title: "Atividades de \(child.name)")
+        ]
+        Logger().info("Home sections -> \(sections.debugDescription)")
+        homeDelegate?.retrieveHome(with: sections)
     }
     
     func retrieveData(data: Child) {
         print(data)
+        child = data
         homeDelegate?.childRetrieved(with: data)
+        buildHomeFromChild(with: data)
+    
     }
     
     typealias T = Child
@@ -87,3 +113,13 @@ class HomeViewModel: DatabaseDelegate {
         babyService?.queryData(field: "tutors", value: uid, isArray: true)
     }
 }
+
+extension [Action] {
+    func sortByDate() -> [ Action] {
+        return sorted(by: { firstData, secondData in
+            firstData.time.compare(secondData.time) == .orderedDescending
+        })
+    }
+}
+
+
