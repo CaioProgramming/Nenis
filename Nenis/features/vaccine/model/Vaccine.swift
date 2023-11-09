@@ -52,7 +52,7 @@ enum Vaccine: Codable, CaseIterable {
             case .BCG:
                 description
             case .HPB:
-                "Hepatitie B"
+                "Hepatite B"
             case .PNT:
                 "Penta/DTP"
             case .VP:

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VaccineCollectionViewCell" customModule="Nenis" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s9i-Eh-oWC">
+                    <rect key="frame" x="0.0" y="0.0" width="170" height="102"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rCC-MU-l70">
+                            <rect key="frame" x="35" y="20" width="100" height="100"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="syringe.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YG4-wu-w4f">
+                                    <rect key="frame" x="16" y="15.666666666666664" width="68" height="68.666666666666686"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                            <constraints>
+                                <constraint firstItem="YG4-wu-w4f" firstAttribute="leading" secondItem="rCC-MU-l70" secondAttribute="leading" constant="16" id="35Y-va-rCx"/>
+                                <constraint firstAttribute="trailing" secondItem="YG4-wu-w4f" secondAttribute="trailing" constant="16" id="I3S-fs-0Wu"/>
+                                <constraint firstAttribute="width" constant="100" id="KDB-r7-H3u"/>
+                                <constraint firstAttribute="bottom" secondItem="YG4-wu-w4f" secondAttribute="bottom" constant="16" id="MhT-et-xlj"/>
+                                <constraint firstItem="YG4-wu-w4f" firstAttribute="top" secondItem="rCC-MU-l70" secondAttribute="top" constant="16" id="TY1-1U-sAS"/>
+                                <constraint firstAttribute="height" constant="100" id="urw-hR-H1p"/>
+                            </constraints>
+                        </view>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfH-U3-89b">
+                            <rect key="frame" x="35" y="156.33333333333334" width="100" height="14.333333333333343"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="DwT-NN-8kj">
+                            <rect key="frame" x="35" y="124" width="100" height="4"/>
+                        </progressView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1D-LI-W0b">
+                            <rect key="frame" x="35" y="136" width="100" height="20.333333333333343"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="DwT-NN-8kj" firstAttribute="top" secondItem="rCC-MU-l70" secondAttribute="bottom" constant="4" id="0ED-On-Xq1"/>
+                        <constraint firstItem="rCC-MU-l70" firstAttribute="top" secondItem="s9i-Eh-oWC" secondAttribute="top" constant="20" id="CEP-zk-pKM"/>
+                        <constraint firstItem="QfH-U3-89b" firstAttribute="leading" secondItem="rCC-MU-l70" secondAttribute="leading" id="ClW-rM-jZo"/>
+                        <constraint firstItem="v1D-LI-W0b" firstAttribute="leading" secondItem="rCC-MU-l70" secondAttribute="leading" id="Knj-Ze-j6Z"/>
+                        <constraint firstItem="rCC-MU-l70" firstAttribute="trailing" secondItem="DwT-NN-8kj" secondAttribute="trailing" id="NUl-RM-036"/>
+                        <constraint firstItem="rCC-MU-l70" firstAttribute="trailing" secondItem="QfH-U3-89b" secondAttribute="trailing" id="V7S-vx-Ucm"/>
+                        <constraint firstItem="rCC-MU-l70" firstAttribute="centerX" secondItem="s9i-Eh-oWC" secondAttribute="centerX" id="f4Y-ic-oJ4"/>
+                        <constraint firstItem="DwT-NN-8kj" firstAttribute="leading" secondItem="rCC-MU-l70" secondAttribute="leading" id="pFy-6c-bCy"/>
+                        <constraint firstItem="DwT-NN-8kj" firstAttribute="centerX" secondItem="v1D-LI-W0b" secondAttribute="centerX" id="q0I-t5-jXL"/>
+                        <constraint firstItem="rCC-MU-l70" firstAttribute="trailing" secondItem="v1D-LI-W0b" secondAttribute="trailing" id="tyV-ry-V8t"/>
+                        <constraint firstItem="QfH-U3-89b" firstAttribute="top" secondItem="v1D-LI-W0b" secondAttribute="bottom" id="uIb-CK-O9Z"/>
+                        <constraint firstItem="v1D-LI-W0b" firstAttribute="top" secondItem="rCC-MU-l70" secondAttribute="bottom" constant="16" id="w1s-c2-Wqw"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="s9i-Eh-oWC" secondAttribute="bottom" constant="34" id="24i-uy-hPr"/>
+                <constraint firstItem="s9i-Eh-oWC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="S3x-b7-aie"/>
+                <constraint firstItem="s9i-Eh-oWC" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VeH-3l-E8X"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="s9i-Eh-oWC" secondAttribute="trailing" id="mDF-tB-HMj"/>
+                <constraint firstItem="s9i-Eh-oWC" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-34" id="oIg-rt-SmN"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="dateLabel" destination="QfH-U3-89b" id="pQQ-W5-qkT"/>
+                <outlet property="iconBackground" destination="rCC-MU-l70" id="aRf-7P-LgP"/>
+                <outlet property="nameLabel" destination="v1D-LI-W0b" id="rs0-vr-TYV"/>
+                <outlet property="progressView" destination="DwT-NN-8kj" id="ekA-m2-MR1"/>
+                <outlet property="vaccineIcon" destination="YG4-wu-w4f" id="SA2-9Z-bht"/>
+            </connections>
+            <point key="canvasLocation" x="97.70992366412213" y="-186.61971830985917"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="syringe.fill" catalog="system" width="128" height="115"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

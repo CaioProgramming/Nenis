@@ -83,7 +83,7 @@ class NewChildViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        showPopOver(with: "Envie uma foto do seu filho.", anchor: babyImage, presentationDelegate: self)
+        errorSaving(errorMessage: "Envie uma foto do seu filho.")
     }
     
     @IBAction func dismissForm(_ sender: UIButton) {
@@ -96,7 +96,7 @@ class NewChildViewController: UIViewController {
     
     private func saveChild(sender: UIButton?) {
         guard let babyName = babyNameTextField.validText(), let babyPhoto = selectedPhoto?.jpegData(compressionQuality: 1) else {
-            showPopOver(with: "Some informations are missing", anchor: babyImage, presentationDelegate: self)
+            errorSaving(errorMessage: "Some informations are missing")
             return
         }
         newBabyViewModel.saveChild(name: babyName, birthDate: babyBirthDatePicker.date, photoPath: babyPhoto, gender: currentGender.description)
@@ -165,7 +165,7 @@ extension NewChildViewController:  UIImagePickerControllerDelegate, UINavigation
     func updateSelectedImage(info: [UIImagePickerController.InfoKey : Any]) {
         let photoImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         guard let newPhoto = photoImage else {
-            showPopOver(with: "Error getting Image", anchor: babyImage, presentationDelegate: self)
+            errorSaving(errorMessage: "Error getting Image")
             return
         }
         updateKidImage(with: newPhoto)
@@ -185,7 +185,7 @@ extension NewChildViewController: NewChildProtocol {
     }
     
     func errorSaving(errorMessage: String) {
-        showPopOver(with: errorMessage, anchor: babyImage, presentationDelegate: self)
+        babyImage.showPopOver(viewController: self,message: errorMessage, presentationDelegate: self)
 
     }
     

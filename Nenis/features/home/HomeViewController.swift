@@ -12,40 +12,68 @@ import os
 //MARK: UI SECTION
 class HomeViewController: UIViewController {
     
-    
+    let vaccineStoryBoard = "VaccineStoryboard"
     let homeViewModel = HomeViewModel()
     var authHandler: AuthStateDidChangeListenerHandle? = nil
     var sections: [any Section] = []
-    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var emptyBabyView: UIStackView!
-    @IBOutlet weak var kidImage: UIImageView!
-    @IBOutlet weak var userLabel: UILabel!
     @IBOutlet weak var activityTable: UITableView!
-    @IBOutlet weak var newActionButton: UIButton!
-    @IBOutlet weak var childLabel: UILabel!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var errorButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var activitiesView: UIView!
     
     @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet weak var contentScroll: UIScrollView!
-    @IBOutlet weak var imageLoadIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var ageLabel: UILabel!
-    @IBOutlet weak var vaccinesView: UIView!
     var errorClosure: (() -> Void)? = nil
 
+    private func registerTableViews() {
+        let cells : [any CustomViewProtocol] = [ ActivityTableViewCell(), VaccineTableViewCell(), ChildTableViewCell()]
+        let headers : [any CustomViewProtocol] = [ActionHeaderView(), VaccineHeaderView(), ChildHeaderView()]
+        cells.forEach({ view in
+            activityTable.register(view.buildNib(), forCellReuseIdentifier: view.identifier)
+        })
+        headers.forEach({ item in
+            activityTable.register(item.buildNib(), forHeaderFooterViewReuseIdentifier: item.identifier)
+        })
+    }
+    
+    func setupTableView(){
+        registerTableViews()
+        activityTable.dataSource = self
+        activityTable.delegate = self
+    }
+    
+    func openVaccines() {
+        if let currentChild = homeViewModel.child {
+            let storyBoard = UIStoryboard(name: vaccineStoryBoard, bundle: nil)
+            if let controller = storyBoard.instantiateViewController(withIdentifier: VaccinesViewController.identifier) as? VaccinesViewController {
+                controller.delegate = self
+                controller.child = currentChild
+                controller.modalPresentationStyle = .overFullScreen
+                show(controller, sender: self)
+            }
+        }
+    }
+    
+    func updateVaccine() {
+        if let currentChild = homeViewModel.child {
+            let storyBoard = UIStoryboard(name: vaccineStoryBoard, bundle: nil)
+            if let controller = storyBoard.instantiateViewController(withIdentifier: UpdateVaccineViewController.identifier) as? UpdateVaccineViewController {
+                controller.modalPresentationStyle = .formSheet
+                controller.delegate = self
+                controller.info = homeViewModel.vaccineUpdateInfo
+                present(controller, animated: true)
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activityTable.register(VaccineTableViewCell.nib(), forCellReuseIdentifier: VaccineTableViewCell.identifier)
-        activityTable.register(ActivityTableViewCell.nib(), forCellReuseIdentifier: ActivityTableViewCell.identifier)
-        activityTable.dataSource = self
-        activityTable.delegate = self
-        contentScroll.delegate = self
+       
+        homeViewModel.homeDelegate = self
+        setupTableView()
         //activityTable.bounces = false
         //activityTable.isScrollEnabled = false
-        homeViewModel.homeDelegate = self
+        
         // Do any additional setup after loading the view.
     }
     
@@ -54,11 +82,7 @@ class HomeViewController: UIViewController {
         emptyBabyView.fadeIn()
         errorLabel.text = message
         errorButton.setTitle(buttonMessage, for: .normal)
-        toggleViews(views: [ activitiesView,
-                             headerView,
-                             vaccinesView,
-                             loadingIndicator,
-                            ], isHidden: true)
+        toggleViews(views: [activityTable,loadingIndicator], isHidden: true)
 
         
     }
@@ -85,9 +109,7 @@ class HomeViewController: UIViewController {
         loadingIndicator.startAnimating()
     }
     
-    func updateUser(withUser: User) {
-        userLabel.text = "Olá \(withUser.displayName ?? "cuidador")."
-    }
+
     
     func signIn() {
         loadingIndicator.startAnimating()
@@ -99,7 +121,7 @@ class HomeViewController: UIViewController {
     }
     
     
-    @IBAction func createNewActivity(_ sender: UIButton) {
+    @IBAction func createNewActivity(_ sender: UIView) {
         performSegue(withIdentifier: "NewActivitySegue", sender: self)
     }
     
@@ -107,8 +129,39 @@ class HomeViewController: UIViewController {
         if(segue.identifier == "NewActivitySegue") {
             let destination = segue.destination as! NewActionViewController
             destination.activtyProtocol = self
+            if let childDate = homeViewModel.child?.birthDate {
+                destination.birthDate = childDate
+            }
+        } else if (segue.identifier == VaccinesViewController.identifier) {
+            if  let destination = segue.destination as? VaccinesViewController {
+                destination.delegate = self
+                destination.child = homeViewModel.child
+            }
+        } else if(segue.identifier == UpdateVaccineViewController.identifier) {
+            if let destination = segue.destination as? UpdateVaccineViewController {
+                destination.delegate = self
+                destination.info = homeViewModel.vaccineUpdateInfo
+            }
         }
     }
+}
+
+//MARK: - VaccineProtocols
+extension HomeViewController: VaccinesProtocol {
+    func updateChildVaccine(newVaccine: Vaccination) {
+        homeViewModel.updateChildVaccine(vaccinate: newVaccine)
+    }
+
+    
+}
+
+extension HomeViewController: VaccineUpdateDelegate {
+    
+    func updateVaccine(vaccine: Vaccine, newDose: Int) {
+        updateChildVaccine(newVaccine: Vaccination(vaccine: vaccine.description, dose: newDose))
+    }
+    
+    
 }
 
 //MARK: - ActionProtcols section
@@ -145,22 +198,7 @@ extension HomeViewController: HomeProtocol {
     
     func childRetrieved(with child: Child) {
         loadingIndicator.stopAnimating()
-        childLabel.text = child.name
-        kidImage.clipImageToCircle(color: child.gender.getGender()?.color ?? UIColor.accent)
-        kidImage.moa.onSuccess = { image in
-            self.toggleViews(views: [self.imageLoadIndicator], isHidden: true)
-            self.kidImage.fadeIn()
-            return image
-            
-        }
-        kidImage.moa.url = child.photo
-        
-        toggleViews(views: [activitiesView,headerView], isHidden: false)
-        toggleViews(views: [loadingIndicator, emptyBabyView], isHidden: true)
-        let age = child.getAge()
-        ageLabel.textColor = child.gender.getGender()?.color ?? UIColor.accent
-        //ageLabel.roundedCorner(radius: 10)
-        ageLabel.text = age
+        navBar.topItem?.title = child.name
     }
     
     
@@ -181,7 +219,6 @@ extension HomeViewController: HomeProtocol {
     }
     
     func authSuccess(user: User) {
-        userLabel.text = "Bem-vindo \(user.displayName ?? "")"
         emptyBabyView.fadeOut()
     }
     
@@ -192,12 +229,66 @@ extension HomeViewController: HomeProtocol {
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        
+        let section = sections[indexPath.section]
+        
+        switch section.type {
+        case .actions:
+            return .delete
+        default:
+            return .none
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        
+        let section = sections[section]
+        
+        if(section.type == .child){
+            navBar.fadeOut()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        let section = sections[section]
+        
+        if(section.type == .child){
+            navBar.fadeIn()
+        }
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if(editingStyle == .delete) {
+            if sections[indexPath.section] is ActionSection {
+                homeViewModel.deleteAction(actionIndex: indexPath.row)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let section = sections[indexPath.section]
+        switch section.type {
+        case .actions:
+          return  75
+        case .vaccines:
+           return 160
+        case .child:
+            return 250
+        }
+    }
   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = sections[section]
         var rows = 1
         switch section.type {
-            
+         
+        case .child:
+            rows = section.items.count
         case .actions:
            rows = section.items.count
         case .vaccines:
@@ -210,103 +301,108 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+ 
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = sections[section]
-        return section.title
+        let headerIdentifier = getHeaderIdentifier(sectionType: section.type)
+        switch section.type {
+            
+        case .actions:
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! ActionHeaderView
+            header.setupHeader(title: section.title)
+            header.buttonAction = { sender in
+                self.createNewActivity(sender)
+            }
+            return header
+        case .vaccines:
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! VaccineHeaderView
+            header.titleLabel.text = section.title
+            header.buttonAction = {
+                self.openVaccines()
+            }
+            return header
+            
+        case .child:
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! ChildHeaderView
+            if let childSection = section as? ChildSection {
+                header.titleLabel.text = childSection.title
+                header.subtitleLabel.text = childSection.subtitle
+            }
+            return header
+        }
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let section = sections[indexPath.section]
+        let cellType = getCellIdentifier(sectionType: section.type)
         switch(section.type) {
             
         case .actions:
             if let actionSection = section as? ActionSection {
-                let cell = tableView.dequeueReusableCell(withIdentifier: ActivityTableViewCell.identifier, for: indexPath) as! ActivityTableViewCell
+
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellType, for: indexPath) as! ActivityTableViewCell
                 let activity = actionSection.items[indexPath.row]
-                cell.setupAction(activity: activity)
+                cell.setupAction(activity: activity, isFirst: indexPath.row == 0, isLast: indexPath.row == (actionSection.items.count - 1))
                 return cell
             }
         case .vaccines:
             if let vaccineSection = section as? VaccineSection {
-                let cell = tableView.dequeueReusableCell(withIdentifier: VaccineTableViewCell.identifier, for: indexPath) as! VaccineTableViewCell
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellType, for: indexPath) as! VaccineTableViewCell
                 cell.updateVaccines(vaccineList: vaccineSection.items)
+                cell.selectVaccine = { item in
+                    self.homeViewModel.selectVaccine(vaccineItem: item)
+                    self.updateVaccine()
+                }
                  return cell
+            }
+        case .child:
+            if let childSection = section as? ChildSection {
+                let cell = tableView.dequeueReusableCell(withIdentifier: cellType, for: indexPath) as! ChildTableViewCell
+                let child = childSection.items[indexPath.row]
+                
+                cell.childImage.moa.url = child.photo
+                
+                
+                cell.childImage.moa.onSuccess = { image in
+                    cell.imageLoadingIndicator.stopAnimating()
+                    cell.imageLoadingIndicator.fadeOut()
+                    cell.childImage.fadeIn()
+                    cell.setupChild(child: child)
+                    return image
+                }
+                return cell
             }
         }
         return UITableViewCell.init()
     }
     
-}
-// MARK: ScrollView Delegate
-extension HomeViewController: UIScrollViewDelegate {
-    func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
-        navBar.fadeOut()
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+       return  60
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let navBarHidden = (scrollView.contentOffset.y > 50)
-        if(navBarHidden) {
-            navBar.fadeOut()
-        } else {
-            navBar.fadeIn()
-        }
-        
-        if scrollView == self.contentScroll {
-               //activityTable.isScrollEnabled = (self.contentScroll.contentOffset.y >= 200)
-           }
-
-           if scrollView == self.activityTable {
-               //self.activityTable.isScrollEnabled = (activityTable.contentOffset.y > 0)
-           }
-    }
-}
-
-// MARK: CHILD EXTENSIONS
-
-extension Child {
-    
-    func getAge() -> String {
-        let calendar = NSCalendar.current
-        let birth = self.birthDate
-        let currentDate = Date.now
-        let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
-        
-        Logger.init().info("Data diff -> \(components.debugDescription)")
-        let year = components.year ?? 0
-        let weeks = components.weekOfYear ?? 0
-        let days = components.day ?? 0
-        
-        var ageFormatted = ""
-        
-        if(year > 0) {
-            ageFormatted += "\(year) ano"
-            if(year > 1) {
-                ageFormatted += "s"
-            }
-        }
-        
-        if(weeks > 0) {
-            ageFormatted += " \(weeks) semana"
-            if(weeks > 1) {
-                ageFormatted += "s"
-            }
-        }
-        
-        if(days > 0) {
-            ageFormatted += " \(days) dia"
-            if(days > 1) {
-                ageFormatted += "s"
-            }
-        }
+    func getCellIdentifier(sectionType: SectionType) -> String {
+        switch sectionType {
             
-        
-        return ageFormatted
+        case .actions:
+            ActivityTableViewCell().identifier
+        case .vaccines:
+            VaccineTableViewCell().identifier
+        case .child:
+            ChildTableViewCell().identifier
+        }
+    }
+    
+    func getHeaderIdentifier(sectionType: SectionType) -> String {
+        switch sectionType {
+        case .actions:
+            ActionHeaderView().identifier
+        case .vaccines:
+            VaccineHeaderView().identifier
+        case .child:
+            ChildHeaderView().identifier
+        }
     }
     
 }
-
-
-
-

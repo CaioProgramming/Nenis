@@ -16,14 +16,14 @@ protocol Section<T> {
 }
 
 enum SectionType {
-    case actions,vaccines
+    case actions,vaccines, child
 }
 
 struct VaccineSection: Section {
     
-    var items: [String]
+    var items: [VaccineItem]
     
-    typealias T = String
+    typealias T = VaccineItem
     
     
     var type: SectionType
@@ -40,6 +40,18 @@ struct ActionSection: Section {
     var type: SectionType
     
     var title: String
+    
+}
+
+struct ChildSection : Section {
+    var items: [Child]
+    
+    typealias T = Child
+    
+    var type: SectionType
+    
+    var title: String
+    var subtitle: String
     
     
 }

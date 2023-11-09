@@ -7,23 +7,23 @@
 
 import UIKit
 
-class ActivityTableViewCell: UITableViewCell {
+class ActivityTableViewCell: UITableViewCell, CustomViewProtocol {
     
-    static let identifier = "ActivityTableViewCell"
-    static func nib() -> UINib {
-        return UINib(nibName: "ActivityTableViewCell", bundle: nil)
-    }
+   let identifier = "ActivityTableViewCell"
 
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var caption: UILabel!
    
+    @IBOutlet weak var topProgressLine: UIView!
+    @IBOutlet weak var bottomProgressLine: UIView!
+    @IBOutlet weak var iconContainer: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func setupAction(activity: Action) {
+    func setupAction(activity: Action, isFirst: Bool, isLast: Bool) {
         
         let actionType = activity.type.getAction()
         icon.backgroundColor = UIColor.clear
@@ -32,7 +32,12 @@ class ActivityTableViewCell: UITableViewCell {
         caption.text = activity.formatDate()
         if let action = actionType {
             icon.image =  action.cellImage
+            iconContainer.clipImageToCircle(color: action.imageTint.withAlphaComponent(0.4))
             icon.tintColor = action.imageTint
+            topProgressLine.backgroundColor = action.imageTint
+            bottomProgressLine.backgroundColor = action.imageTint
+            topProgressLine.isHidden = isFirst
+            bottomProgressLine.isHidden = isLast
         }
     }
 

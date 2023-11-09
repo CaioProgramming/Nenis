@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 import UIKit
+import os
 
 public struct Child: Codable {
     @DocumentID var id: String?
@@ -17,6 +18,7 @@ public struct Child: Codable {
     var gender: String
     var tutors: [String]
     var actions: [Action]
+    var vaccines: [Vaccination]
     enum CodingKeys: String, CodingKey {
         case name
         case birthDate
@@ -24,7 +26,13 @@ public struct Child: Codable {
         case gender
         case tutors
         case actions
+        case vaccines
     }
+}
+
+struct Vaccination: Codable {
+    let vaccine: String
+    let dose: Int
 }
 
 enum Gender : Codable, CaseIterable {
@@ -51,8 +59,48 @@ extension String {
     func getGender() -> Gender? {
         let cases = Gender.allCases
         return cases.first(where: { element in
-            print("querying gender -> \(self)")
             return element.description.caseInsensitiveCompare(self) == .orderedSame
       })
     }
+}
+extension Child {
+    
+    func getAge() -> String {
+        let calendar = NSCalendar.current
+        let birth = self.birthDate
+        let currentDate = Date.now
+        let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
+        
+        Logger.init().info("Data diff -> \(components.debugDescription)")
+        let year = components.year ?? 0
+        let weeks = components.weekOfYear ?? 0
+        let days = components.day ?? 0
+        
+        var ageFormatted = ""
+        
+        if(year > 0) {
+            ageFormatted += "\(year) ano"
+            if(year > 1) {
+                ageFormatted += "s"
+            }
+        }
+        
+        if(weeks > 0) {
+            ageFormatted += " \(weeks) semana"
+            if(weeks > 1) {
+                ageFormatted += "s"
+            }
+        }
+        
+        if(days > 0) {
+            ageFormatted += " \(days) dia"
+            if(days > 1) {
+                ageFormatted += "s"
+            }
+        }
+            
+        
+        return ageFormatted
+    }
+    
 }

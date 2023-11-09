@@ -1,0 +1,102 @@
+
+/* Class = "UIButton"; configuration.title = "Entrar com conta Apple"; ObjectID = "60c-4Z-hbB"; */
+"60c-4Z-hbB.configuration.title" = "Entrar com conta Apple";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "60c-4Z-hbB"; */
+"60c-4Z-hbB.normalTitle" = "Button";
+
+/* Class = "UITabBarItem"; title = "Eu"; ObjectID = "6Ok-O9-38a"; */
+"6Ok-O9-38a.title" = "Eu";
+
+/* Class = "UIButton"; configuration.title = "Adicionar bebê"; ObjectID = "7U2-wt-PEV"; */
+"7U2-wt-PEV.configuration.title" = "Adicionar bebê";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7U2-wt-PEV"; */
+"7U2-wt-PEV.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Hoje meu bebê fez muito popô"; ObjectID = "9bZ-CW-gPj"; */
+"9bZ-CW-gPj.placeholder" = "Hoje meu bebê fez muito popô";
+
+/* Class = "UINavigationItem"; title = "Nenis"; ObjectID = "Fvo-Ij-unC"; */
+"Fvo-Ij-unC.title" = "Nenis";
+
+/* Class = "UITabBarItem"; title = "Meu bebê"; ObjectID = "ItM-jL-7kL"; */
+"ItM-jL-7kL.title" = "Meu bebê";
+
+/* Class = "UIButton"; configuration.title = "Esqueceu a senha?"; ObjectID = "Iwj-Os-0LB"; */
+"Iwj-Os-0LB.configuration.title" = "Esqueceu a senha?";
+
+/* Class = "UIButton"; normalTitle = "Esqueceu a senha?"; ObjectID = "Iwj-Os-0LB"; */
+"Iwj-Os-0LB.normalTitle" = "Esqueceu a senha?";
+
+/* Class = "UITextField"; placeholder = "Seu nome"; ObjectID = "L9B-1D-2WP"; */
+"L9B-1D-2WP.placeholder" = "Seu nome";
+
+/* Class = "UILabel"; text = "Entre na sua conta."; ObjectID = "MFH-GK-Vby"; */
+"MFH-GK-Vby.text" = "Entre na sua conta.";
+
+/* Class = "UIBarButtonItem"; title = "Cancelar"; ObjectID = "MZj-rM-R2E"; */
+"MZj-rM-R2E.title" = "Cancelar";
+
+/* Class = "UILabel"; text = "Você ainda nao vinculou nenhum bebê a sua conta"; ObjectID = "MwK-WE-efn"; */
+"MwK-WE-efn.text" = "Você ainda nao vinculou nenhum bebê a sua conta";
+
+/* Class = "UIButton"; configuration.title = "Cancelar"; ObjectID = "NbB-Gg-130"; */
+"NbB-Gg-130.configuration.title" = "Cancelar";
+
+/* Class = "UIButton"; configuration.title = "Salvar"; ObjectID = "PyY-hD-ILH"; */
+"PyY-hD-ILH.configuration.title" = "Salvar";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "PyY-hD-ILH"; */
+"PyY-hD-ILH.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Bem-vindo ao Nenis"; ObjectID = "Rfw-aT-XpF"; */
+"Rfw-aT-XpF.text" = "Bem-vindo ao Nenis";
+
+/* Class = "UITabBarItem"; title = "Explorar"; ObjectID = "SrV-CX-ira"; */
+"SrV-CX-ira.title" = "Explorar";
+
+/* Class = "UILabel"; text = "Data e horário"; ObjectID = "U3I-Hr-gBD"; */
+"U3I-Hr-gBD.text" = "Data e horário";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "UgS-41-Vaf"; */
+"UgS-41-Vaf.placeholder" = "Email";
+
+/* Class = "UITextField"; placeholder = "Senha"; ObjectID = "fNd-vs-OVv"; */
+"fNd-vs-OVv.placeholder" = "Senha";
+
+/* Class = "UILabel"; text = "Aprenda mais com seu bebê"; ObjectID = "fy3-4a-TaM"; */
+"fy3-4a-TaM.text" = "Aprenda mais com seu bebê";
+
+/* Class = "UILabel"; text = "Verifique informações importantes"; ObjectID = "i8Q-zf-Llb"; */
+"i8Q-zf-Llb.text" = "Verifique informações importantes";
+
+/* Class = "UILabel"; text = "Ou entre com:"; ObjectID = "jHz-YL-nJt"; */
+"jHz-YL-nJt.text" = "Ou entre com:";
+
+/* Class = "UINavigationItem"; title = "Home"; ObjectID = "sE5-Z4-gug"; */
+"sE5-Z4-gug.title" = "Home";
+
+/* Class = "UIButton"; normalTitle = "Não possui conta? Cadastre-se"; ObjectID = "spy-Cs-4dk"; */
+"spy-Cs-4dk.normalTitle" = "Não possui conta? Cadastre-se";
+
+/* Class = "UIButton"; configuration.title = "Entrar com o Google"; ObjectID = "t7z-Tc-f8g"; */
+"t7z-Tc-f8g.configuration.title" = "Entrar com o Google";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "t7z-Tc-f8g"; */
+"t7z-Tc-f8g.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Nova atividade"; ObjectID = "ta4-uh-gpj"; */
+"ta4-uh-gpj.title" = "Nova atividade";
+
+/* Class = "UIButton"; configuration.title = "Login"; ObjectID = "yf2-ft-SpJ"; */
+"yf2-ft-SpJ.configuration.title" = "Login";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "yf2-ft-SpJ"; */
+"yf2-ft-SpJ.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "😴"; ObjectID = "zBJ-Jz-AhS"; */
+"zBJ-Jz-AhS.configuration.title" = "😴";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "zBJ-Jz-AhS"; */
+"zBJ-Jz-AhS.normalTitle" = "Button";

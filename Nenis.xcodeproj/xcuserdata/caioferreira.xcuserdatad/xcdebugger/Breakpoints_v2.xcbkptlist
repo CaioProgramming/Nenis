@@ -690,28 +690,28 @@
             filePath = "Nenis/features/home/model/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "retrieveData(data:)"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "D73BF7E9-325B-4052-843D-0B1D67184431 - ff6990aaa0aedc12"
+                  uuid = "D73BF7E9-325B-4052-843D-0B1D67184431 - 9075d62327a3bc25"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Nenis.HomeViewModel.retrieveData(data: Nenis.Child) -&gt; ()"
+                  symbolName = "Nenis.HomeViewModel.init() -&gt; Nenis.HomeViewModel"
                   moduleName = "Nenis"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/home/model/HomeViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
-                  offsetFromSymbolStart = "2832">
+                  startingLineNumber = "143"
+                  endingLineNumber = "143"
+                  offsetFromSymbolStart = "116">
                </Location>
                <Location
-                  uuid = "D73BF7E9-325B-4052-843D-0B1D67184431 - ff6990aaa0aedc12"
+                  uuid = "D73BF7E9-325B-4052-843D-0B1D67184431 - ff6990aaa0aec4f1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -721,9 +721,24 @@
                   urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/home/model/HomeViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "78"
-                  endingLineNumber = "78"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
                   offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "D73BF7E9-325B-4052-843D-0B1D67184431 - ff6990aaa0aec4f1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.HomeViewModel.retrieveData(data: Nenis.Child) -&gt; ()"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/home/model/HomeViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "139"
+                  endingLineNumber = "139"
+                  offsetFromSymbolStart = "180">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -741,6 +756,22 @@
             startingLineNumber = "23"
             endingLineNumber = "23"
             landmarkName = "updateVaccines(vaccineList:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58E82E24-4CC9-4AD6-9561-2CEA6C78D254"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nenis/features/vaccine/ui/VaccinesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "registerCells()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

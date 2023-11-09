@@ -11,12 +11,17 @@ protocol ActionProtocol: AnyObject {
     func retrieveActivity(with newAction: Action)
 }
 
-class NewActionViewController: UIViewController {
+class NewActionViewController: UIViewController, UIPopoverPresentationControllerDelegate {
 
     var activtyProtocol: ActionProtocol?
     var activityType = ActionType.bath
+    var birthDate: Date?
     @IBOutlet weak var textField: UITextField!
     
+    @IBAction func dismissButton(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true)
+    }
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var activityTypeButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     override func viewDidLoad() {
@@ -29,6 +34,10 @@ class NewActionViewController: UIViewController {
         )
         activityTypeButton.showsMenuAsPrimaryAction = true
         activityTypeButton.changesSelectionAsPrimaryAction = true
+        datePicker.maximumDate = Date.now
+        if let childDate = birthDate {
+            datePicker.minimumDate = childDate
+        }
         updateActivityType()
         // Do any additional setup after loading the view.
     }
@@ -40,7 +49,7 @@ class NewActionViewController: UIViewController {
             self.updateActivityType()
         }
       return ActionType.allCases.map({ type in
-          var menuState = UIMenuElement.State.off
+          let menuState = UIMenuElement.State.off
           return UIAction(
                         title: type.title,
                           identifier: UIAction.Identifier(type.description),
@@ -54,16 +63,20 @@ class NewActionViewController: UIViewController {
         activityTypeButton.tintColor = activityType.imageTint
     }
     
+    
+    
     @IBAction func saveActivityTap(_ sender: UIButton) {
         let text = textField.text
         if(textField.hasText) {
-            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType.description, time: Date.now))
+            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType.description, time: datePicker.date))
             self.dismiss(animated: true)
+        } else {
+            textField.showPopOver(viewController: self, message: "Fill the information", presentationDelegate: self)
         }
         
     }
     
-    
+
     func getActivityForValue(identifier: String) -> ActionType {
         return ActionType.allCases.first(where: { type in
             type.description == identifier
@@ -77,14 +90,16 @@ class NewActionViewController: UIViewController {
     func enableButton(enabled: Bool) {
         saveButton.isEnabled = enabled
     }
-    /*
-    // MARK: - Navigation
+   
+        func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+            return .none
+        }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+        }
 
+        func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+            return true
+        }
+    
 }

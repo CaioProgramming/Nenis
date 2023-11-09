@@ -7,28 +7,39 @@
 
 import UIKit
 
-class VaccineCollectionViewCell: UICollectionViewCell {
+class VaccineCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
     
-    static let identifier = "VaccineCollectionViewCell"
+    let verticalIdentifier = "VaccineVerticalViewCell"
+    static let horizontalIdentifier = "VaccineCollectionViewCell"
     
-    static func nib() -> UINib {
-        return UINib(nibName: "VaccineCollectionViewCell", bundle: nil)
-    }
+     var identifier = "VaccineCollectionViewCell"
+     
 
+    @IBOutlet weak var iconBackground: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var progress: UIProgressView!
+    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var vaccineIcon: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
         
     }
     
-    func setupVaccine(vaccine: String, progress: Float, nextDate: String) {
+    func setupVaccine(vaccine: String, progress: Float, nextDate: String, status: Status) {
         nameLabel.text = vaccine
         dateLabel.text = nextDate
-        vaccineIcon.clipImageToCircle(color: UIColor.blue.withAlphaComponent(0.8))
+        let color = status.color
+        vaccineIcon.tintColor = color
+        iconBackground.clipImageToCircle(color: color.withAlphaComponent(0.3))
+        progressView.setProgress(progress, animated: true)
+        progressView.progressTintColor = color
+        
+    }
+    
+    func buildVerticalCell() -> UINib {
+        return UINib(nibName: verticalIdentifier, bundle: nil)
     }
 
 }

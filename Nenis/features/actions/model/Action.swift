@@ -67,18 +67,14 @@ enum ActionType: Codable, CaseIterable {
 extension String {
     func getAction() -> ActionType? {
         let cases = ActionType.allCases
-        print("Querying action \(self)")
         return cases.first(where: { element in
             return element.description.caseInsensitiveCompare(self) == .orderedSame
       })
     }
 }
 extension Action {
-    func formatDate() -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .none
-        dateFormatter.timeStyle = .short
-        return dateFormatter.string(from: self.time)
+    func formatDate() -> String {
+        return self.time.formatted(date: .complete, time: .shortened)
     }
 }
 

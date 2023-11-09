@@ -23,15 +23,46 @@ protocol HomeProtocol {
 class HomeViewModel: DatabaseDelegate {
     
     var child: Child? = nil
+    var vaccineUpdateInfo : (Child, Vaccine, Int)? = nil
     
     func updateSuccess(data: Child) {
+        child = data
+        buildHomeFromChild(with: data)
+    }
     
+    func updateChildVaccine(vaccinate: Vaccination) {
+        if var currentChild = child {
+            let vaccineIndex = currentChild.vaccines.firstIndex(where: { item in
+                
+                item.vaccine.description.caseInsensitiveCompare(vaccinate.vaccine) == .orderedSame
+            })
+            if(vaccineIndex == nil){
+                currentChild.vaccines.append(vaccinate)
+            } else {
+                currentChild.vaccines[vaccineIndex!] = vaccinate
+            }
+            babyService?.updateData(id: currentChild.id, data: currentChild)
+        }
+    }
+    
+    func selectVaccine(vaccineItem: VaccineItem) {
+        if let currentChild = child {
+            vaccineUpdateInfo = (currentChild, vaccineItem.vaccine, vaccineItem.nextDose)
+        }
     }
     
     func addNewAction(action: Action) {
         if var currentChild = child {
             currentChild.actions.append(action)
-            babyService?.updateData(id: child?.id, data: currentChild)
+            babyService?.updateData(id: currentChild.id, data: currentChild)
+        }
+    }
+    
+    
+    func deleteAction(actionIndex: Int) {
+        if var currentChild = child {
+            currentChild.actions.remove(at: actionIndex)
+            babyService?.updateData(id: currentChild.id, data: currentChild)
         }
     }
     
@@ -61,18 +92,48 @@ class HomeViewModel: DatabaseDelegate {
         }
     }
     
+    func buildChildSection(with child: Child, userName: String) -> ChildSection {
+        return ChildSection(items: [child], type: .child,  title: "Olá, \(userName)!", subtitle: Date.now.formatted(date: .complete, time: .omitted))
+    }
     
     func buildHomeFromChild(with child: Child) {
-        let vaccines = Vaccine.allCases.prefix(4).map({ item in
-            item.title
-        })
+        
+        let actionsTitle = String.localizedStringWithFormat(NSLocalizedString("ActivitiesTitle", comment: ""), child.name)
+        let userName = babyService?.currentUser()?.displayName ?? ""
         let sections: [any Section] = [
-            VaccineSection(items: vaccines, type: .vaccines, title: "Próximas vacinas"),
-            ActionSection(items: child.actions.sortByDate(), type: .actions, title: "Atividades de \(child.name)")
+            buildChildSection(with: child, userName: userName),
+            buildVaccineSection(with: child),
+            ActionSection(items: child.actions.sortByDate(), type: .actions, title: actionsTitle)
         ]
         Logger().info("Home sections -> \(sections.debugDescription)")
         homeDelegate?.retrieveHome(with: sections)
     }
+    
+    func buildVaccineSection(with child: Child) -> VaccineSection {
+        let vaccineHelper = VaccineHelper()
+        let calendar = NSCalendar.current
+        let birth = child.birthDate
+        let currentDate = Date.now
+        let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
+        
+        Logger.init().info("Data diff -> \(components.debugDescription)")
+        let year = components.year ?? 0
+        let weeks = components.weekOfYear ?? 0
+        let days = components.day ?? 0
+        let months = components.month ?? 0
+        
+        let vaccines = Vaccine.allCases.map({ vaccine in
+           
+           return vaccineHelper.getVaccineItem(with: child, vaccine: vaccine)
+            
+        })
+        
+        let vaccinesTitle =  String(localized: "NextVaccines", table: "Localizable")
+        return VaccineSection(items: Array(vaccines.prefix(4)), type: .vaccines, title: vaccinesTitle)
+        
+    }
+    
+
     
     func retrieveData(data: Child) {
         print(data)
@@ -119,6 +180,14 @@ extension [Action] {
         return sorted(by: { firstData, secondData in
             firstData.time.compare(secondData.time) == .orderedDescending
         })
+    }
+}
+
+extension Date {
+    func addMonth(month: Int) -> Date? {
+
+        let calendar = NSCalendar.current
+        return calendar.date(byAdding: .month, value: month, to: self)
     }
 }
 
