@@ -88,7 +88,7 @@ extension InviteViewController: InviteProtcol {
     }
     
     func childNotFound() {
-        showPopOver(with: "Invalid code, please try again.", anchor: inviteTextField, presentationDelegate: self)
+        inviteTextField.showPopOver(viewController: self, message: "Invalid code, please try again.", presentationDelegate: self)
     }
     
 }
