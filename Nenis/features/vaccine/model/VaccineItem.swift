@@ -10,14 +10,36 @@ import UIKit
 
 struct VaccineItem {
     let vaccine: Vaccine
-    let nextDate: String
+    let nextDate: Date
     let doseProgress: Float
     let status: Status
     let nextDose: Int
 }
 
+extension VaccineItem {
+    func formatDate() -> String {
+        return nextDate.formatted(date: .abbreviated, time: .omitted) 
+    }
+}
+
 enum Status {
-    case late, done, soon
+    case  done, soon, late
+    
+    var description: String { get { return "\(self)".uppercased() } }
+
+    var title: String {
+        get {
+            switch self {
+                
+            case .late:
+                "Vacinas atrasadas"
+            case .done:
+                "Vacinas concluídas"
+            case .soon:
+                "Próximas vacinas"
+            }
+        }
+    }
     
     var color: UIColor {
         get {

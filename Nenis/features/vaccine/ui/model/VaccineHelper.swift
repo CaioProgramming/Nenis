@@ -9,6 +9,32 @@ import Foundation
 
 class VaccineHelper {
     
+    func groupVaccines(with child: Child) -> [Status : [VaccineItem]] {
+        
+        let vaccines = Vaccine.allCases.map({ vaccine in
+            return self.getVaccineItem(with: child, vaccine: vaccine)
+        }).sorted(by: { firstItem, secondItem in
+            firstItem.nextDate.compare(secondItem.nextDate) == .orderedAscending
+        })
+        
+        let vaccineDictionary =  Dictionary(grouping: vaccines, by: { $0.status })
+        
+        return vaccineDictionary.filter({ dictionary in
+                
+           return !dictionary.value.isEmpty
+            
+        })
+    }
+    
+    func filterVaccineStatus(with child: Child, status: Status) -> [VaccineItem] {
+        return Vaccine.allCases.map({ vaccine in
+            return self.getVaccineItem(with: child, vaccine: vaccine)
+        }).filter({ vac in
+            vac.status == status
+        })
+        
+        
+    }
     
     func getVaccineItem(with child: Child, vaccine: Vaccine) -> VaccineItem {
         
@@ -35,7 +61,7 @@ class VaccineHelper {
         }
         let vaccinePeriod = vaccine.periods[periodIndex]
         let doseProgress = Float(currentDose / vaccine.periods.count)
-        let vaccineNextDate = birth.addMonth(month: vaccinePeriod)
+        let vaccineNextDate = birth.addMonth(month: vaccinePeriod) ?? Date()
         var vaccineStatus: Status = .soon
         
         if(currentDose == vaccine.periods.count) {
@@ -47,7 +73,7 @@ class VaccineHelper {
         }
         
         
-        return VaccineItem(vaccine: vaccine, nextDate: vaccineNextDate?.formatted(date: .abbreviated, time: .omitted) ?? "-", doseProgress: doseProgress, status: vaccineStatus, nextDose: nextPeriod)
+        return VaccineItem(vaccine: vaccine, nextDate: vaccineNextDate, doseProgress: doseProgress, status: vaccineStatus, nextDose: currentDose)
     }
     
 }

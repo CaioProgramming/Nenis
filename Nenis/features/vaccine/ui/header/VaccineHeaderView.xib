@@ -21,11 +21,11 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iuf-Y2-GOs">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iuf-Y2-GOs">
                     <rect key="frame" x="280.33333333333331" y="33" width="96.666666666666686" height="34.333333333333343"/>
                     <buttonConfiguration key="configuration" style="plain" title="Ver todas"/>
                     <connections>
-                        <action selector="headerTap:" destination="-2" eventType="touchUpInside" id="1pa-N5-qxJ"/>
+                        <action selector="headerTap:" destination="-2" eventType="touchUpInside" id="23s-cs-iif"/>
                     </connections>
                 </button>
             </subviews>
@@ -39,7 +39,8 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="titleLabel" destination="mhw-xt-VGM" id="9ak-CJ-lDz"/>
+                <outlet property="headerAction" destination="Iuf-Y2-GOs" id="Gip-CY-49f"/>
+                <outlet property="titleLabel" destination="mhw-xt-VGM" id="Ndh-qW-fVk"/>
             </connections>
             <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
         </view>

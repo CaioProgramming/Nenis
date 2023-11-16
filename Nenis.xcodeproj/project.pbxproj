@@ -32,6 +32,8 @@
 		F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */; };
 		F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0891AE62AC1F37600BC6C6B /* Baby.storyboard */; };
 		F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */; };
+		F09724142B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */; };
+		F09724162B02C28900F9D249 /* VaccineCollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F09724152B02C28900F9D249 /* VaccineCollectionHeaderView.xib */; };
 		F09B42CD2AC30BB4004910F7 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B42CC2AC30BB4004910F7 /* ViewExtensions.swift */; };
 		F09B42CF2AC3229D004910F7 /* Utils.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F09B42CE2AC3229D004910F7 /* Utils.storyboard */; };
 		F09D40BC2ABFAFDD0006E4BF /* baby_sleep.json in Resources */ = {isa = PBXBuildFile; fileRef = F09D40BB2ABFAFDD0006E4BF /* baby_sleep.json */; };
@@ -125,6 +127,8 @@
 		F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F0891AE62AC1F37600BC6C6B /* Baby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Baby.storyboard; sourceTree = "<group>"; };
 		F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChildViewController.swift; sourceTree = "<group>"; };
+		F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionHeaderView.swift; sourceTree = "<group>"; };
+		F09724152B02C28900F9D249 /* VaccineCollectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCollectionHeaderView.xib; sourceTree = "<group>"; };
 		F09B42CC2AC30BB4004910F7 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		F09B42CE2AC3229D004910F7 /* Utils.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Utils.storyboard; sourceTree = "<group>"; };
 		F09D40BB2ABFAFDD0006E4BF /* baby_sleep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = baby_sleep.json; path = ../../../../../Downloads/baby_sleep.json; sourceTree = "<group>"; };
@@ -460,6 +464,8 @@
 			children = (
 				F0C170962AF9729B00BD6326 /* VaccineHeaderView.swift */,
 				F0C170982AF972A700BD6326 /* VaccineHeaderView.xib */,
+				F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */,
+				F09724152B02C28900F9D249 /* VaccineCollectionHeaderView.xib */,
 			);
 			path = header;
 			sourceTree = "<group>";
@@ -641,6 +647,7 @@
 				F01E30532AA75787003AF470 /* LaunchScreen.storyboard in Resources */,
 				F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */,
 				F0CDFE2A2AF90FE60016984A /* ActionHeaderView.xib in Resources */,
+				F09724162B02C28900F9D249 /* VaccineCollectionHeaderView.xib in Resources */,
 				F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */,
 				F0C170992AF972A700BD6326 /* VaccineHeaderView.xib in Resources */,
 				F09B42CF2AC3229D004910F7 /* Utils.storyboard in Resources */,
@@ -717,6 +724,7 @@
 				F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */,
 				F0B3105E2ABD2A6C00530994 /* AuthViewModel.swift in Sources */,
 				F01E304E2AA75786003AF470 /* Nenis.xcdatamodeld in Sources */,
+				F09724142B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

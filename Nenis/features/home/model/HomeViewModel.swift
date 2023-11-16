@@ -111,25 +111,11 @@ class HomeViewModel: DatabaseDelegate {
     
     func buildVaccineSection(with child: Child) -> VaccineSection {
         let vaccineHelper = VaccineHelper()
-        let calendar = NSCalendar.current
-        let birth = child.birthDate
-        let currentDate = Date.now
-        let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
-        
-        Logger.init().info("Data diff -> \(components.debugDescription)")
-        let year = components.year ?? 0
-        let weeks = components.weekOfYear ?? 0
-        let days = components.day ?? 0
-        let months = components.month ?? 0
-        
-        let vaccines = Vaccine.allCases.map({ vaccine in
-           
-           return vaccineHelper.getVaccineItem(with: child, vaccine: vaccine)
-            
-        })
+   
+        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon)
         
         let vaccinesTitle =  String(localized: "NextVaccines", table: "Localizable")
-        return VaccineSection(items: Array(vaccines.prefix(4)), type: .vaccines, title: vaccinesTitle)
+        return VaccineSection(items: vaccines, type: .vaccines, title: vaccinesTitle)
         
     }
     

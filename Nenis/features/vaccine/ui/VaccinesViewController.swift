@@ -15,7 +15,7 @@ class VaccinesViewController: UIViewController {
 
     static let identifier = "VaccinesView"
     @IBOutlet weak var vaccinesCollection: UICollectionView!
-    var vaccines: [VaccineItem] = []
+    var vaccines: [Status : [VaccineItem]] = [:]
     var cells: [any CustomViewProtocol] = [VaccineCollectionViewCell()]
     var child: Child? = nil
     var delegate: VaccinesProtocol? = nil
@@ -38,15 +38,18 @@ class VaccinesViewController: UIViewController {
         dismiss(animated: true)
     }
     func registerCells() {
-        var collectionCell = VaccineCollectionViewCell()
+        let collectionCell = VaccineCollectionViewCell()
+        let headerView = VaccineCollectionHeaderView()
+
+        vaccinesCollection.register(headerView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerView.identifier)
         vaccinesCollection.register(collectionCell.buildVerticalCell(), forCellWithReuseIdentifier: collectionCell.verticalIdentifier)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == UpdateVaccineViewController.identifier) {
             if let viewController = segue.destination as? UpdateVaccineViewController {
                 if let info = vaccinesViewModel.selectedInfo {
-                    viewController.info = info
                     viewController.delegate = self
+                    viewController.updateInfo(newInfo: info)
                 }
             }
         }
@@ -70,29 +73,57 @@ extension VaccinesViewController : VaccineUpdateDelegate {
 extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return vaccines.count
+        let key = Array(vaccines.keys)[section]
+        return vaccines[key]?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        
+     
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: VaccineCollectionHeaderView().identifier, for: indexPath) as! VaccineCollectionHeaderView
+            
+        let key = Array(vaccines.keys)[indexPath.section]
+        headerView.setTitle(with: key.title)
+                
+        return headerView
+        
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.contentSize.width, height: 50)
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return vaccines.keys.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VaccineCollectionViewCell().verticalIdentifier, for: indexPath) as! VaccineCollectionViewCell
-        let vaccine = vaccines[indexPath.row]
-        cell.setupVaccine(vaccine: vaccine.vaccine.title, progress: vaccine.doseProgress  , nextDate: vaccine.nextDate, status: vaccine.status)
+        let vaccineGroup = Array(vaccines.keys)[indexPath.section]
+        if let vaccine = vaccines[vaccineGroup]?[indexPath.row] {
+            cell.setupVaccine(vaccine: vaccine.vaccine.title, progress: vaccine.doseProgress  , nextDate: vaccine.formatDate(), status: vaccine.status)
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width/3
-         let height : CGFloat = 175
-        return CGSize(width: width, height: height)
+        let width = collectionView.frame.width / 3
+        let height : CGFloat = 150
+        return CGSize(width: width, height: width)
     
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let vaccineItem = vaccines[indexPath.row]
-        if(vaccineItem.status != .done) {
-            vaccinesViewModel.selectVaccine(vaccineItem: vaccineItem)
-            confirmVaccine()
+        let vaccineGroup = Array(vaccines.keys)[indexPath.section]
+        if let vaccine = vaccines[vaccineGroup]?[indexPath.row] {
+            if(vaccine.status != .done) {
+                vaccinesViewModel.selectVaccine(vaccineItem: vaccine)
+                confirmVaccine()
+            }
+            
         }
         
     }

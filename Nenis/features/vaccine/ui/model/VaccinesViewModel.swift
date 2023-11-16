@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import os
 
 protocol VaccineProtocol {
     func confirmVaccine()
@@ -15,18 +16,18 @@ class VaccinesViewModel {
     var child: Child? = nil
     var selectedInfo: (Child, Vaccine,Int)? = nil
     var delegate: VaccineProtocol? = nil
+    
     func selectVaccine(vaccineItem: VaccineItem) {
         if let currentChild = child {
-            selectedInfo = (currentChild,  vaccineItem.vaccine, vaccineItem.nextDose)
+            Logger.init().debug("Selected vaccine => \(vaccineItem.vaccine.description) with \(vaccineItem.vaccine.periods.count) periods, child \(currentChild.name) has taken \(vaccineItem.nextDose)")
+            selectedInfo = (currentChild,  vaccineItem.vaccine, vaccineItem.nextDose + 1)
             delegate?.confirmVaccine()
         }
     }
     
-    func loadVaccines(with child: Child) -> [VaccineItem] {
+    func loadVaccines(with child: Child) -> [Status : [VaccineItem]] {
+        let logger = Logger.init()
         let vaccineHelper = VaccineHelper()
-        self.child = child
-       return Vaccine.allCases.map({ vaccine in
-           return vaccineHelper.getVaccineItem(with: child, vaccine: vaccine)
-        })
+        return vaccineHelper.groupVaccines(with: child)
     }
 }

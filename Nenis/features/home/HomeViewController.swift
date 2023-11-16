@@ -25,16 +25,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var navBar: UINavigationBar!
     var errorClosure: (() -> Void)? = nil
 
-    private func registerTableViews() {
-        let cells : [any CustomViewProtocol] = [ ActivityTableViewCell(), VaccineTableViewCell(), ChildTableViewCell()]
-        let headers : [any CustomViewProtocol] = [ActionHeaderView(), VaccineHeaderView(), ChildHeaderView()]
-        cells.forEach({ view in
-            activityTable.register(view.buildNib(), forCellReuseIdentifier: view.identifier)
-        })
-        headers.forEach({ item in
-            activityTable.register(item.buildNib(), forHeaderFooterViewReuseIdentifier: item.identifier)
-        })
-    }
+
     
     func setupTableView(){
         registerTableViews()
@@ -228,6 +219,18 @@ extension HomeViewController: HomeProtocol {
 //MARK: - TableView Delegates
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
+    private func registerTableViews() {
+        let cells : [any CustomViewProtocol] = [ ActivityTableViewCell(), VaccineTableViewCell(), ChildTableViewCell()]
+        let headers : [any CustomViewProtocol] = [ActionHeaderView(), VaccineHeaderView(), ChildHeaderView()]
+        cells.forEach({ view in
+            activityTable.register(view.buildNib(), forCellReuseIdentifier: view.identifier)
+        })
+        headers.forEach({ item in
+            activityTable.register(item.buildNib(), forHeaderFooterViewReuseIdentifier: item.identifier)
+        })
+    }
+    
+
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
@@ -317,7 +320,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         case .vaccines:
             let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! VaccineHeaderView
             header.titleLabel.text = section.title
-            header.buttonAction = {
+            header.setButtonAction {
                 self.openVaccines()
             }
             return header

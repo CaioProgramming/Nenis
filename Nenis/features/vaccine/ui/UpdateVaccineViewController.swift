@@ -33,6 +33,9 @@ class UpdateVaccineViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
      
+    func updateInfo(newInfo: (Child,  Vaccine, Int)) {
+        info = newInfo
+    }
 
 
     @IBAction func confirmVaccineTap(_ sender: Any) {

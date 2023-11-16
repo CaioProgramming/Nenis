@@ -58,7 +58,7 @@ extension VaccineTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VaccineCollectionViewCell().identifier, for: indexPath) as! VaccineCollectionViewCell
         let vaccine = vaccines[indexPath.row]
-        cell.setupVaccine(vaccine: vaccine.vaccine.title, progress: vaccine.doseProgress  , nextDate: vaccine.nextDate, status: vaccine.status)
+        cell.setupVaccine(vaccine: vaccine.vaccine.title, progress: vaccine.doseProgress  , nextDate: vaccine.formatDate(), status: vaccine.status)
         return cell
     }
     
