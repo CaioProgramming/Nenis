@@ -22,6 +22,9 @@ class VaccinesViewModel {
             Logger.init().debug("Selected vaccine => \(vaccineItem.vaccine.description) with \(vaccineItem.vaccine.periods.count) periods, child \(currentChild.name) has taken \(vaccineItem.nextDose)")
             selectedInfo = (currentChild,  vaccineItem.vaccine, vaccineItem.nextDose + 1)
             delegate?.confirmVaccine()
+        } else {
+            Logger.init().warning("No child setted => \(self.child.debugDescription)")
+
         }
     }
     

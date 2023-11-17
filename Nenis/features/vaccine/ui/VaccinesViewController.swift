@@ -11,7 +11,7 @@ protocol VaccinesProtocol {
     func updateChildVaccine(newVaccine: Vaccination)
 }
 
-class VaccinesViewController: UIViewController {
+class VaccinesViewController: UIViewController, VaccineProtocol {
 
     static let identifier = "VaccinesView"
     @IBOutlet weak var vaccinesCollection: UICollectionView!
@@ -24,14 +24,20 @@ class VaccinesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        vaccinesViewModel.delegate = self
         registerCells()
         vaccinesCollection.delegate = self
         vaccinesCollection.dataSource = self
         if let currentChild = child {
+            vaccinesViewModel.child = currentChild
             vaccines = vaccinesViewModel.loadVaccines(with: currentChild)
             vaccinesCollection.reloadData()
         }
         // Do any additional setup after loading the view.
+    }
+    
+    func confirmVaccine() {
+        performSegue(withIdentifier: "ConfirmVaccine", sender: self)
     }
 
     @IBAction func dismissView(_ sender: Any) {
@@ -49,15 +55,13 @@ class VaccinesViewController: UIViewController {
             if let viewController = segue.destination as? UpdateVaccineViewController {
                 if let info = vaccinesViewModel.selectedInfo {
                     viewController.delegate = self
-                    viewController.updateInfo(newInfo: info)
+                    viewController.info = info
                 }
             }
         }
     }
     
-    func confirmVaccine() {
-        performSegue(withIdentifier: "ConfirmVaccine", sender: self)
-    }
+    
 
 }
 
@@ -121,7 +125,6 @@ extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDele
         if let vaccine = vaccines[vaccineGroup]?[indexPath.row] {
             if(vaccine.status != .done) {
                 vaccinesViewModel.selectVaccine(vaccineItem: vaccine)
-                confirmVaccine()
             }
             
         }

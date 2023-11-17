@@ -784,8 +784,8 @@
             filePath = "Nenis/features/vaccine/ui/VaccinesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "45"
-            endingLineNumber = "45"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "registerCells()"
             landmarkType = "7">
          </BreakpointContent>
@@ -816,8 +816,8 @@
             filePath = "Nenis/features/vaccine/ui/VaccinesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
             <Locations>
@@ -884,6 +884,38 @@
             endingLineNumber = "76"
             landmarkName = "getVaccineItem(with:vaccine:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0E2C8780-6113-45A1-96BA-D395F28ED16E - e57005e178006d21"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.VaccineHelper.getVaccineItem(with: Nenis.Child, vaccine: Nenis.Vaccine) -&gt; Nenis.VaccineItem"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/vaccine/ui/model/VaccineHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "3124">
+               </Location>
+               <Location
+                  uuid = "0E2C8780-6113-45A1-96BA-D395F28ED16E - e57005e178006d21"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.VaccineHelper.getVaccineItem(with: Nenis.Child, vaccine: Nenis.Vaccine) -&gt; Nenis.VaccineItem"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/vaccine/ui/model/VaccineHelper.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "76"
+                  endingLineNumber = "76"
+                  offsetFromSymbolStart = "2848">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -899,6 +931,22 @@
             startingLineNumber = "29"
             endingLineNumber = "29"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "78ADF8B0-98D5-4426-90F9-41DBC7A87C64"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nenis/features/vaccine/ui/VaccinesViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

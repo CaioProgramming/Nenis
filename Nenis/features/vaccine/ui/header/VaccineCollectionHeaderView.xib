@@ -16,7 +16,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pE1-c0-nhH">
-                    <rect key="frame" x="16" y="59" width="1024" height="122"/>
+                    <rect key="frame" x="0.0" y="69" width="1056" height="102"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -25,10 +25,11 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="pE1-c0-nhH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="BoO-7d-jhZ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pE1-c0-nhH" secondAttribute="bottom" id="LHz-Dm-0oL"/>
-                <constraint firstItem="pE1-c0-nhH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="vl5-2W-PZ6"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pE1-c0-nhH" secondAttribute="trailing" constant="16" id="wfN-dq-fLt"/>
+                <constraint firstItem="pE1-c0-nhH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="BoO-7d-jhZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pE1-c0-nhH" secondAttribute="bottom" constant="10" id="LHz-Dm-0oL"/>
+                <constraint firstItem="pE1-c0-nhH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="p4I-c0-ABY"/>
+                <constraint firstItem="pE1-c0-nhH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vl5-2W-PZ6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pE1-c0-nhH" secondAttribute="trailing" id="wfN-dq-fLt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
