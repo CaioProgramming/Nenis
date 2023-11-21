@@ -106,7 +106,7 @@ class SignInViewController: UIViewController {
     }
     
     func showErrorAlert(with message: String, anchor: UIView? = nil) {
-        self.showPopOver(with: message, anchor: anchor ?? loginButton, presentationDelegate: self)
+        anchor?.showPopOver(viewController: self, message: message, presentationDelegate: self)
     }
     
     func updateView() {

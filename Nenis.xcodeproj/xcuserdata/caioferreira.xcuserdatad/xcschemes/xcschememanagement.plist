@@ -7,7 +7,7 @@
 		<key>Nenis.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>1</integer>
 		</dict>
 		<key>Promises (Playground) 1.xcscheme</key>
 		<dict>
@@ -29,6 +29,24 @@
 			<false/>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F01E303F2AA75786003AF470</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F01E30582AA75787003AF470</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F01E30622AA75787003AF470</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

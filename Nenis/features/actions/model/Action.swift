@@ -10,13 +10,14 @@ import UIKit
 
 struct Action : Codable {
     let description: String
-    let type: ActionType
+    let type: String
     let time: Date
 }
 
 enum ActionType: Codable, CaseIterable {
+
   case sleep, bath, exercise, feed
-  var description: String { get { return "\(self)" } }
+  var description: String { get { return "\(self)".uppercased() } }
   var emoji: String {
         get {
             switch self {
@@ -62,3 +63,18 @@ enum ActionType: Codable, CaseIterable {
         }
     }
 }
+
+extension String {
+    func getAction() -> ActionType? {
+        let cases = ActionType.allCases
+        return cases.first(where: { element in
+            return element.description.caseInsensitiveCompare(self) == .orderedSame
+      })
+    }
+}
+extension Action {
+    func formatDate() -> String {
+        return self.time.formatted(date: .complete, time: .shortened)
+    }
+}
+

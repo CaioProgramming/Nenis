@@ -13,10 +13,15 @@ extension UIView {
     
     func clipImageToCircle( color: UIColor) {
         self.backgroundColor = color
-        
         self.layer.masksToBounds = false
         self.layer.borderColor =  UIColor.placeholderText.cgColor
         self.layer.cornerRadius = self.frame.height / 2
+        self.clipsToBounds = true
+    }
+    
+    func roundedCorner(radius: CGFloat) {
+        self.layer.masksToBounds = false
+        self.layer.cornerRadius = radius
         self.clipsToBounds = true
     }
     
@@ -24,14 +29,14 @@ extension UIView {
     
 }
 
-extension UIViewController {
+extension UIView {
     
-        func showPopOver(with message: String, anchor: UIView, presentationDelegate: UIPopoverPresentationControllerDelegate?) {
+    func showPopOver(viewController: UIViewController, message: String, presentationDelegate: UIPopoverPresentationControllerDelegate?) {
             
             let utilsStoryBoard = UIStoryboard(name: "Utils", bundle: nil)
              
         
-            let sourceView = anchor
+            let sourceView = self
             let controller = utilsStoryBoard.instantiateViewController(withIdentifier: "ErrorPopOver") as? PopOverViewController
             controller?.modalPresentationStyle = .popover
             controller?.message = message
@@ -41,10 +46,10 @@ extension UIViewController {
 
                 popoverPresentationController.permittedArrowDirections = .up
                 popoverPresentationController.sourceView = sourceView
-                popoverPresentationController.sourceRect = anchor.bounds
+                popoverPresentationController.sourceRect = self.bounds
                 popoverPresentationController.delegate = presentationDelegate
                 if let popOverController = controller {
-                    present(popOverController, animated: true)
+                    viewController.present(popOverController, animated: true)
                 }
         }
     }

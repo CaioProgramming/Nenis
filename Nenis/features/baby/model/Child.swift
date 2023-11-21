@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 import UIKit
+import os
 
 public struct Child: Codable {
     @DocumentID var id: String?
@@ -17,6 +18,7 @@ public struct Child: Codable {
     var gender: String
     var tutors: [String]
     var actions: [Action]
+    var vaccines: [Vaccination]
     enum CodingKeys: String, CodingKey {
         case name
         case birthDate
@@ -24,13 +26,20 @@ public struct Child: Codable {
         case gender
         case tutors
         case actions
+        case vaccines
     }
 }
 
+struct Vaccination: Codable {
+    let vaccine: String
+    let dose: Int
+}
+
 enum Gender : Codable, CaseIterable {
+    
     case boy, girl
     
-    var description: String { get { return "\(self)" } }
+    var description: String { get { return "\(self)".uppercased() } }
 
     
     var color: UIColor {
@@ -44,4 +53,57 @@ enum Gender : Codable, CaseIterable {
             }
         }
     }
+}
+
+extension String {
+    func getGender() -> Gender? {
+        let cases = Gender.allCases
+        return cases.first(where: { element in
+            return element.description.caseInsensitiveCompare(self) == .orderedSame
+      })
+    }
+}
+extension Child {
+    
+    
+    
+    func getAge() -> (String, String) {
+        let calendar = NSCalendar.current
+        let birth = self.birthDate
+        let currentDate = Date.now
+        let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
+        
+        Logger.init().info("Data diff -> \(components.debugDescription)")
+        let year = components.year ?? 0
+        let weeks = components.weekOfYear ?? 0
+        let days = components.day ?? 0
+        var ageFormatted = ""
+        var mainAgeInfo = ""
+        
+        if(year > 0) {
+            mainAgeInfo = "\(year)"
+            ageFormatted = "ano"
+            ageFormatted += addFieldPlural(count: year)
+        } else if(weeks > 0) {
+            mainAgeInfo = "\(weeks)"
+            ageFormatted = "semana"
+            ageFormatted += addFieldPlural(count: weeks)
+        } else if(days > 0) {
+            mainAgeInfo = "\(days)"
+            ageFormatted = "dia" 
+            ageFormatted += addFieldPlural(count: days)
+        }
+        ageFormatted += "."
+            
+        
+        return (mainAgeInfo, ageFormatted)
+    }
+    
+    func addFieldPlural(count: Int) -> String {
+        if(count > 1) {
+            return "s"
+        }
+        return ""
+    }
+    
 }
