@@ -76,5 +76,13 @@ extension Action {
     func formatDate() -> String {
         return self.time.formatted(date: .complete, time: .shortened)
     }
+    
 }
 
+extension [Action] {
+    func sortByDate() -> [ Action] {
+        return sorted(by: { firstData, secondData in
+            firstData.time.compare(secondData.time) == .orderedDescending
+        })
+    }
+}

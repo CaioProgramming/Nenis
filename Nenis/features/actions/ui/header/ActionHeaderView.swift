@@ -13,7 +13,7 @@ class ActionHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     
 
     @IBOutlet weak var newActionButton: UIButton!
-    var buttonAction: ((UIView) -> Void)? = nil
+    var buttonAction: (() -> Void)? = nil
     @IBOutlet weak var titleLabel: UILabel!
   
     /*
@@ -37,7 +37,7 @@ class ActionHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     @IBAction func newActionTap(_ sender: UIButton) {
         
         if let closure = buttonAction {
-            closure(sender)
+            closure()
         }
     }
     

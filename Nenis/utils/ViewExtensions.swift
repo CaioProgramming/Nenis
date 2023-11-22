@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import os
 
 extension UIView {
     
@@ -24,12 +24,6 @@ extension UIView {
         self.layer.cornerRadius = radius
         self.clipsToBounds = true
     }
-    
-  
-    
-}
-
-extension UIView {
     
     func showPopOver(viewController: UIViewController, message: String, presentationDelegate: UIPopoverPresentationControllerDelegate?) {
             
@@ -53,4 +47,24 @@ extension UIView {
                 }
         }
     }
+    
+    func createGradientBlur() {
+           let gradientLayer = CAGradientLayer()
+           gradientLayer.colors = [
+           UIColor.white.withAlphaComponent(0).cgColor,
+           UIColor.white.withAlphaComponent(1).cgColor]
+           let viewEffect = UIBlurEffect(style: .light)
+           let effectView = UIVisualEffectView(effect: viewEffect)
+           effectView.frame = CGRect(x: self.bounds.origin.x, y: self.bounds.size.height, width: self.bounds.width, height: self.bounds.size.height)
+           gradientLayer.frame = effectView.bounds
+           gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+           gradientLayer.endPoint = CGPoint(x: 0.0 , y: 0.8)
+           effectView.autoresizingMask = [.flexibleHeight]
+           effectView.layer.mask = gradientLayer
+           effectView.isUserInteractionEnabled = false //Use this to pass touches under this blur effect
+           addSubview(effectView)
+
+       }
+    
 }
+ 

@@ -100,6 +100,15 @@
       }
     },
     {
+      "identity" : "kdcircularprogress",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaandedeoglu/KDCircularProgress",
+      "state" : {
+        "revision" : "a0f30e0605b7ac91ac1b243efd9914b3fd592ad3",
+        "version" : "1.5.4"
+      }
+    },
+    {
       "identity" : "leveldb",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/leveldb.git",

@@ -77,3 +77,10 @@ class VaccineHelper {
     }
     
 }
+extension Date {
+    func addMonth(month: Int) -> Date? {
+
+        let calendar = NSCalendar.current
+        return calendar.date(byAdding: .month, value: month, to: self)
+    }
+}

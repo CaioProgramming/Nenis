@@ -20,14 +20,11 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
         imageUrl = nil
     }
 
-    @IBOutlet weak var ageDescription: UILabel!
-    @IBOutlet weak var labelBlur: UIVisualEffectView!
+
     @IBOutlet weak var childAgeLabel: UILabel!
     @IBOutlet weak var childNameLabel: UILabel!
     @IBOutlet weak var childImage: UIImageView!
-    @IBOutlet weak var ageContainer: UIView!
     
-    @IBOutlet weak var tutorsContainer: UIView!
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -36,21 +33,16 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
     }
   
     func setupChild(child: Child) {
-        let radius = CGFloat(15)
-        labelBlur.roundedCorner(radius: radius)
-        ageContainer.roundedCorner(radius: radius)
-        //tutorsContainer.roundedCorner(radius: 25)
+    
         let color = child.gender.getGender()?.color ?? UIColor.accent
-        ageContainer.backgroundColor = color.withAlphaComponent(0.3)
-        //tutorsContainer.backgroundColor = color.withAlphaComponent(0.3)
         childNameLabel.text = child.name
-        childAgeLabel.text = child.getAge().0
-        ageDescription.text = child.getAge().1
+        childAgeLabel.text = child.getFullAge()
         childAgeLabel.textColor = color
-        ageDescription.textColor = color
-        labelBlur.fadeIn()
-        //childImage.clipImageToCircle(color: color)
-       
+        self.inputView?.createGradientBlur()
+        self.contentView.createGradientBlur()
+        self.accessoryView?.createGradientBlur()
+        self.backgroundView?.createGradientBlur()
+        
     }
     
 }

@@ -17,7 +17,10 @@ protocol HomeProtocol {
     func childNotFound()
     func requireAuth()
     func authSuccess(user: User)
+    func requestNewAction()
 }
+
+
 
 
 class HomeViewModel: DatabaseDelegate {
@@ -25,9 +28,59 @@ class HomeViewModel: DatabaseDelegate {
     var child: Child? = nil
     var vaccineUpdateInfo : (Child, Vaccine, Int)? = nil
     
+    
+    //MARK: Child tasks
+    
+    private func fetchChild(uid: String) {
+        babyService?.queryData(field: "tutors", value: uid, isArray: true)
+    }
+    
     func updateSuccess(data: Child) {
         child = data
         buildHomeFromChild(with: data)
+    }
+    
+    func retrieveListData(dataList: [Child]) {
+        if let child = dataList.first {
+            homeDelegate?.childRetrieved(with: child)
+            self.child = child
+            buildHomeFromChild(with: child)
+        }
+    }
+    
+    func buildChildSection(with child: Child, userName: String) -> ChildSection {
+        return ChildSection(items: [child], title: "Olá, \(userName)!", subtitle: Date.now.formatted(date: .complete, time: .omitted))
+    }
+    
+    
+    
+    func retrieveData(data: Child) {
+        print(data)
+        child = data
+        homeDelegate?.childRetrieved(with: data)
+        buildHomeFromChild(with: data)
+    
+    }
+    
+    
+    func taskFailure(databaseError: ErrorType) {
+        homeDelegate?.childNotFound()
+    }
+    
+    //MARK: - Vaccine Tasks
+    
+    func buildVaccineSection(with child: Child) -> VaccineSection {
+        let vaccineHelper = VaccineHelper()
+   
+        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon)
+        
+        let vaccinesTitle =  String(localized: "NextVaccines", table: "Localizable")
+        return VaccineSection(items: vaccines,title: vaccinesTitle, itemClosure: { vaccine in
+            self.selectVaccine(vaccineItem: vaccine)
+        }, headerClosure: { section in
+            self.sectionDelegate?.openVaccines()
+        })
+        
     }
     
     func updateChildVaccine(vaccinate: Vaccination) {
@@ -51,6 +104,8 @@ class HomeViewModel: DatabaseDelegate {
         }
     }
     
+    //MARK: - Action Tasks
+    
     func addNewAction(action: Action) {
         if var currentChild = child {
             currentChild.actions.append(action)
@@ -66,82 +121,57 @@ class HomeViewModel: DatabaseDelegate {
         }
     }
     
-    func saveSuccess(data: Child) {
-        
+    
+    //MARK: - Diapers Tasks
+    
+    func addDiaper(with diaper: Diaper) {
+        if var currentChild = child {
+            currentChild.diapers.append(diaper)
+            babyService?.updateData(id: currentChild.id, data: currentChild)
+        }
     }
-    
-    func taskFailure(databaseError: ErrorType) {
-        homeDelegate?.childNotFound()
-    }
-    
-    
-    func taskFailure(message: String) {
-        Logger.init().error("\(message)")
-        homeDelegate?.childNotFound()
-    }
-    
-    func taskSuccess(message: String) {
-        print(message)
-    }
-    
-    func retrieveListData(dataList: [Child]) {
-        if let child = dataList.first {
-            homeDelegate?.childRetrieved(with: child)
-            self.child = child
-            buildHomeFromChild(with: child)
+
+    func deleteDiaper(with diaperIndex: Int) {
+        if var currentChild = child {
+             
+            currentChild.diapers.remove(at: diaperIndex)
+            babyService?.updateData(id: currentChild.id, data: currentChild)
         }
     }
     
-    func buildChildSection(with child: Child, userName: String) -> ChildSection {
-        return ChildSection(items: [child], type: .child,  title: "Olá, \(userName)!", subtitle: Date.now.formatted(date: .complete, time: .omitted))
+    func updateDiaper(with diaper: Diaper, index: Int) {
+        if var currentChild = child {
+            currentChild.diapers[index] = diaper
+            babyService?.updateData(id: currentChild.id, data: currentChild)
+        }
     }
     
-    func buildHomeFromChild(with child: Child) {
-        
-        let actionsTitle = String.localizedStringWithFormat(NSLocalizedString("ActivitiesTitle", comment: ""), child.name)
-        let userName = babyService?.currentUser()?.displayName ?? ""
-        let sections: [any Section] = [
-            buildChildSection(with: child, userName: userName),
-            buildVaccineSection(with: child),
-            ActionSection(items: child.actions.sortByDate(), type: .actions, title: actionsTitle)
-        ]
-        Logger().info("Home sections -> \(sections.debugDescription)")
-        homeDelegate?.retrieveHome(with: sections)
+    func buildChildDiapers(with child: Child) -> DiaperSection {
+        let diapers = SizeType.allCases.map({ size in
+            let randomQuantity = Int.random(in: 50..<100)
+            let randomDiscard = Int.random(in: (randomQuantity/2)..<randomQuantity - 10)
+            let diaper = Diaper(type: size.description, quantity: randomQuantity, discarded: randomDiscard)
+            print("building random diaper => \(String(describing: diaper))")
+
+            return Diaper(type: size.description, quantity: randomQuantity, discarded: randomDiscard)
+        })
+        return DiaperSection(title: "Fraldas", items: diapers, headerClosure: { section in
+            self.sectionDelegate?.openDiapers()
+        })
     }
     
-    func buildVaccineSection(with child: Child) -> VaccineSection {
-        let vaccineHelper = VaccineHelper()
-   
-        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon)
-        
-        let vaccinesTitle =  String(localized: "NextVaccines", table: "Localizable")
-        return VaccineSection(items: vaccines, type: .vaccines, title: vaccinesTitle)
-        
-    }
     
 
-    
-    func retrieveData(data: Child) {
-        print(data)
-        child = data
-        homeDelegate?.childRetrieved(with: data)
-        buildHomeFromChild(with: data)
-    
-    }
-    
+    //MARK: ViewModelSetup
+
+  
     typealias T = Child
-    
-
-    
     var homeDelegate: HomeProtocol?
+    var sectionDelegate: SectionsProtocol?
     var babyService: BabyService?
+    
     func isUserLogged() -> Bool {
-        
-        let user = Auth.auth().currentUser
-        
-        return user != nil
-        
-        
+        return Auth.auth().currentUser != nil
     }
     
     
@@ -156,25 +186,27 @@ class HomeViewModel: DatabaseDelegate {
         }
     }
     
-    private func fetchChild(uid: String) {
-        babyService?.queryData(field: "tutors", value: uid, isArray: true)
+    func buildHomeFromChild(with child: Child) {
+        
+        let actionsTitle = String.localizedStringWithFormat(NSLocalizedString("ActivitiesTitle", comment: ""), child.name)
+        let userName = babyService?.currentUser()?.displayName ?? ""
+        let sections: [any Section] = [
+            buildChildSection(with: child, userName: userName),
+            buildChildDiapers(with: child),
+            buildVaccineSection(with: child),
+            ActionSection(items: child.actions.sortByDate(), title: actionsTitle, headerClosure: { section in
+                self.homeDelegate?.requestNewAction()
+            })
+        ]
+        Logger().info("Home sections -> \(sections.debugDescription)")
+        homeDelegate?.retrieveHome(with: sections)
     }
+    
+
 }
 
-extension [Action] {
-    func sortByDate() -> [ Action] {
-        return sorted(by: { firstData, secondData in
-            firstData.time.compare(secondData.time) == .orderedDescending
-        })
-    }
-}
 
-extension Date {
-    func addMonth(month: Int) -> Date? {
 
-        let calendar = NSCalendar.current
-        return calendar.date(byAdding: .month, value: month, to: self)
-    }
-}
+
 
 

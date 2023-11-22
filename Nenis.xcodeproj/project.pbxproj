@@ -23,13 +23,16 @@
 		F01E307C2AA75BF2003AF470 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307B2AA75BF2003AF470 /* HomeViewController.swift */; };
 		F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307D2AA75C04003AF470 /* ProfileViewController.swift */; };
 		F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307F2AA75C11003AF470 /* ExploreViewController.swift */; };
-		F026ECB12AF53DCA0004F3B3 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */; };
+		F026ECB12AF53DCA0004F3B3 /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECB02AF53DCA0004F3B3 /* SectionModel.swift */; };
 		F026ECBE2AF5587F0004F3B3 /* Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECBD2AF5587F0004F3B3 /* Vaccine.swift */; };
 		F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECC12AF5784C0004F3B3 /* VaccineTableViewCell.swift */; };
 		F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F026ECC22AF5784C0004F3B3 /* VaccineTableViewCell.xib */; };
 		F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */; };
 		F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */; };
 		F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */; };
+		F05CBD682B0DA46800EBB376 /* DiaperHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */; };
+		F05CBD6A2B0DA47200EBB376 /* DiaperHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */; };
+		F05CBD6C2B0DAA3400EBB376 /* DiapersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */; };
 		F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0891AE62AC1F37600BC6C6B /* Baby.storyboard */; };
 		F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */; };
 		F09724142B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */; };
@@ -50,6 +53,13 @@
 		F0A5BFC02AB485C90045AD1C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F0A5BFBF2AB485C90045AD1C /* Lottie */; };
 		F0A635852AAB567100FC8C62 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A635832AAB567100FC8C62 /* ActivityTableViewCell.swift */; };
 		F0A635862AAB567100FC8C62 /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A635842AAB567100FC8C62 /* ActivityTableViewCell.xib */; };
+		F0AC1ABC2B0C4FDE00481C5E /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = F0AC1ABB2B0C4FDE00481C5E /* KDCircularProgress */; };
+		F0AC1AC32B0C502D00481C5E /* Diaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AC1AC22B0C502D00481C5E /* Diaper.swift */; };
+		F0AC1AC52B0C517100481C5E /* DiaperStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AC1AC42B0C517100481C5E /* DiaperStoryboard.storyboard */; };
+		F0AC1AC92B0C51C100481C5E /* DiaperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AC1AC72B0C51C100481C5E /* DiaperTableViewCell.swift */; };
+		F0AC1ACA2B0C51C100481C5E /* DiaperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0AC1AC82B0C51C100481C5E /* DiaperTableViewCell.xib */; };
+		F0AC1ACD2B0C52AB00481C5E /* DiaperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AC1ACB2B0C52AB00481C5E /* DiaperCollectionViewCell.swift */; };
+		F0AC1ACE2B0C52AB00481C5E /* DiaperCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0AC1ACC2B0C52AB00481C5E /* DiaperCollectionViewCell.xib */; };
 		F0B3105C2ABD1F3200530994 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0B3105B2ABD1F3200530994 /* GoogleService-Info.plist */; };
 		F0B3105E2ABD2A6C00530994 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B3105D2ABD2A6C00530994 /* AuthViewModel.swift */; };
 		F0B310612ABD2CB300530994 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B310602ABD2CB300530994 /* AnimationExtensions.swift */; };
@@ -118,13 +128,16 @@
 		F01E307B2AA75BF2003AF470 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F01E307D2AA75C04003AF470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F01E307F2AA75C11003AF470 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
-		F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
+		F026ECB02AF53DCA0004F3B3 /* SectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
 		F026ECBD2AF5587F0004F3B3 /* Vaccine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vaccine.swift; sourceTree = "<group>"; };
 		F026ECC12AF5784C0004F3B3 /* VaccineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineTableViewCell.swift; sourceTree = "<group>"; };
 		F026ECC22AF5784C0004F3B3 /* VaccineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineTableViewCell.xib; sourceTree = "<group>"; };
 		F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionViewCell.swift; sourceTree = "<group>"; };
 		F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCollectionViewCell.xib; sourceTree = "<group>"; };
 		F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperHeaderView.swift; sourceTree = "<group>"; };
+		F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaperHeaderView.xib; sourceTree = "<group>"; };
+		F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiapersViewController.swift; sourceTree = "<group>"; };
 		F0891AE62AC1F37600BC6C6B /* Baby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Baby.storyboard; sourceTree = "<group>"; };
 		F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChildViewController.swift; sourceTree = "<group>"; };
 		F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionHeaderView.swift; sourceTree = "<group>"; };
@@ -137,6 +150,12 @@
 		F0A5BFBC2AB484460045AD1C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		F0A635832AAB567100FC8C62 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		F0A635842AAB567100FC8C62 /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
+		F0AC1AC22B0C502D00481C5E /* Diaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diaper.swift; sourceTree = "<group>"; };
+		F0AC1AC42B0C517100481C5E /* DiaperStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiaperStoryboard.storyboard; sourceTree = "<group>"; };
+		F0AC1AC72B0C51C100481C5E /* DiaperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperTableViewCell.swift; sourceTree = "<group>"; };
+		F0AC1AC82B0C51C100481C5E /* DiaperTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaperTableViewCell.xib; sourceTree = "<group>"; };
+		F0AC1ACB2B0C52AB00481C5E /* DiaperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperCollectionViewCell.swift; sourceTree = "<group>"; };
+		F0AC1ACC2B0C52AB00481C5E /* DiaperCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaperCollectionViewCell.xib; sourceTree = "<group>"; };
 		F0B3105B2ABD1F3200530994 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0B3105D2ABD2A6C00530994 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F0B310602ABD2CB300530994 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
@@ -182,6 +201,7 @@
 				F09EB4B12AB3E6790058B7AB /* FirebaseStorage in Frameworks */,
 				F01A91722ABE200900139466 /* GoogleSignInSwift in Frameworks */,
 				F09EB4A92AB3E6790058B7AB /* FirebaseAuthCombine-Community in Frameworks */,
+				F0AC1ABC2B0C4FDE00481C5E /* KDCircularProgress in Frameworks */,
 				F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */,
 				F09EB4A72AB3E6790058B7AB /* FirebaseAuth in Frameworks */,
 				F0A5BFC02AB485C90045AD1C /* Lottie in Frameworks */,
@@ -275,6 +295,7 @@
 		F01E30762AA75BB3003AF470 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				F0AC1ABD2B0C4FEF00481C5E /* diapers */,
 				F03ED7D52AF449020025E8BF /* vaccine */,
 				F0891AE52AC1F2FA00BC6C6B /* baby */,
 				F09D40BD2ABFCA730006E4BF /* popover */,
@@ -358,7 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */,
-				F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */,
+				F026ECB02AF53DCA0004F3B3 /* SectionModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -418,6 +439,62 @@
 				F09F3F322AA96A9200143522 /* NewActionViewController.swift */,
 			);
 			path = ui;
+			sourceTree = "<group>";
+		};
+		F0AC1ABD2B0C4FEF00481C5E /* diapers */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1ABF2B0C500100481C5E /* model */,
+				F0AC1ABE2B0C4FFC00481C5E /* ui */,
+			);
+			path = diapers;
+			sourceTree = "<group>";
+		};
+		F0AC1ABE2B0C4FFC00481C5E /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1AC62B0C51A100481C5E /* header */,
+				F0AC1AC12B0C501600481C5E /* collection */,
+				F0AC1AC02B0C500C00481C5E /* cell */,
+				F0AC1AC42B0C517100481C5E /* DiaperStoryboard.storyboard */,
+				F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		F0AC1ABF2B0C500100481C5E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1AC22B0C502D00481C5E /* Diaper.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F0AC1AC02B0C500C00481C5E /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1AC72B0C51C100481C5E /* DiaperTableViewCell.swift */,
+				F0AC1AC82B0C51C100481C5E /* DiaperTableViewCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		F0AC1AC12B0C501600481C5E /* collection */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1ACB2B0C52AB00481C5E /* DiaperCollectionViewCell.swift */,
+				F0AC1ACC2B0C52AB00481C5E /* DiaperCollectionViewCell.xib */,
+			);
+			path = collection;
+			sourceTree = "<group>";
+		};
+		F0AC1AC62B0C51A100481C5E /* header */ = {
+			isa = PBXGroup;
+			children = (
+				F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */,
+				F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */,
+			);
+			path = header;
 			sourceTree = "<group>";
 		};
 		F0B3105F2ABD2CA100530994 /* utils */ = {
@@ -546,6 +623,7 @@
 				F01A916F2ABE200900139466 /* GoogleSignIn */,
 				F01A91712ABE200900139466 /* GoogleSignInSwift */,
 				F0BB3CC22AC5138E00ED5314 /* moa */,
+				F0AC1ABB2B0C4FDE00481C5E /* KDCircularProgress */,
 			);
 			productName = Nenis;
 			productReference = F01E30402AA75786003AF470 /* Nenis.app */;
@@ -625,6 +703,7 @@
 				F0A5BFBE2AB485C90045AD1C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */,
+				F0AC1ABA2B0C4FDE00481C5E /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
 			);
 			productRefGroup = F01E30412AA75786003AF470 /* Products */;
 			projectDirPath = "";
@@ -647,6 +726,8 @@
 				F01E30532AA75787003AF470 /* LaunchScreen.storyboard in Resources */,
 				F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */,
 				F0CDFE2A2AF90FE60016984A /* ActionHeaderView.xib in Resources */,
+				F0AC1ACE2B0C52AB00481C5E /* DiaperCollectionViewCell.xib in Resources */,
+				F05CBD6A2B0DA47200EBB376 /* DiaperHeaderView.xib in Resources */,
 				F09724162B02C28900F9D249 /* VaccineCollectionHeaderView.xib in Resources */,
 				F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */,
 				F0C170992AF972A700BD6326 /* VaccineHeaderView.xib in Resources */,
@@ -658,9 +739,11 @@
 				F0B6B84C2AFCAFCC008AED04 /* VaccineVerticalViewCell.xib in Resources */,
 				F0B3105C2ABD1F3200530994 /* GoogleService-Info.plist in Resources */,
 				F0A635862AAB567100FC8C62 /* ActivityTableViewCell.xib in Resources */,
+				F0AC1AC52B0C517100481C5E /* DiaperStoryboard.storyboard in Resources */,
 				F01E304B2AA75786003AF470 /* Main.storyboard in Resources */,
 				F0DE1F9B2AFA7314005209AB /* ChildTableViewCell.xib in Resources */,
 				F0DE1FA12AFB5507005209AB /* VaccineStoryboard.storyboard in Resources */,
+				F0AC1ACA2B0C51C100481C5E /* DiaperTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,6 +768,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0AC1AC92B0C51C100481C5E /* DiaperTableViewCell.swift in Sources */,
 				F09D40C02ABFCA930006E4BF /* PopOverViewController.swift in Sources */,
 				F0CBE7982AC5EB2D00AD6185 /* StorageService.swift in Sources */,
 				F0B310612ABD2CB300530994 /* AnimationExtensions.swift in Sources */,
@@ -696,18 +780,22 @@
 				F0A5BFBD2AB484460045AD1C /* SignInViewController.swift in Sources */,
 				F09B42CD2AC30BB4004910F7 /* ViewExtensions.swift in Sources */,
 				F0B6B84A2AFC7FFD008AED04 /* VaccineHelper.swift in Sources */,
+				F0AC1ACD2B0C52AB00481C5E /* DiaperCollectionViewCell.swift in Sources */,
 				F0CA22422AC461D50079C1ED /* Child.swift in Sources */,
 				F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */,
 				F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */,
 				F0DE1F932AFA7104005209AB /* ChildHeaderView.swift in Sources */,
 				F0DE1F9A2AFA7314005209AB /* ChildTableViewCell.swift in Sources */,
 				F0B310632ABD300500530994 /* TextFieldExtension.swift in Sources */,
+				F0AC1AC32B0C502D00481C5E /* Diaper.swift in Sources */,
 				F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */,
 				F0CDFE282AF90FD90016984A /* ActionHeaderView.swift in Sources */,
+				F05CBD682B0DA46800EBB376 /* DiaperHeaderView.swift in Sources */,
 				F0A635852AAB567100FC8C62 /* ActivityTableViewCell.swift in Sources */,
 				F0D2807B2AFC768E00ED800A /* VaccinesViewController.swift in Sources */,
 				F0C170972AF9729B00BD6326 /* VaccineHeaderView.swift in Sources */,
 				F01E307C2AA75BF2003AF470 /* HomeViewController.swift in Sources */,
+				F05CBD6C2B0DAA3400EBB376 /* DiapersViewController.swift in Sources */,
 				F0CA22442AC4628E0079C1ED /* NewChildViewModel.swift in Sources */,
 				F01E30482AA75786003AF470 /* ViewController.swift in Sources */,
 				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
@@ -718,7 +806,7 @@
 				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
 				F026ECBE2AF5587F0004F3B3 /* Vaccine.swift in Sources */,
 				F0B38D382AAAA19E00FBBA64 /* Action.swift in Sources */,
-				F026ECB12AF53DCA0004F3B3 /* HomeSection.swift in Sources */,
+				F026ECB12AF53DCA0004F3B3 /* SectionModel.swift in Sources */,
 				F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */,
@@ -1100,6 +1188,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		F0AC1ABA2B0C4FDE00481C5E /* XCRemoteSwiftPackageReference "KDCircularProgress" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaandedeoglu/KDCircularProgress";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
 		F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/moa";
@@ -1160,6 +1256,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0A5BFBE2AB485C90045AD1C /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		F0AC1ABB2B0C4FDE00481C5E /* KDCircularProgress */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0AC1ABA2B0C4FDE00481C5E /* XCRemoteSwiftPackageReference "KDCircularProgress" */;
+			productName = KDCircularProgress;
 		};
 		F0BB3CC22AC5138E00ED5314 /* moa */ = {
 			isa = XCSwiftPackageProductDependency;

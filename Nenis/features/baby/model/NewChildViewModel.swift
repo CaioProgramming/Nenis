@@ -70,7 +70,7 @@ class NewChildViewModel: DatabaseDelegate {
             storageService?.uploadFile(fileName: name, fileData: photoPath, extension: ".JPEG") { downloadURL in
                 do {
                     let fileURL = try downloadURL.get()
-                    self.babyService?.saveData(data: Child(name: name, birthDate: birthDate, photo: fileURL, gender: gender,tutors: [currentUser.uid], actions: [],vaccines: []))
+                    self.babyService?.saveData(data: Child(name: name, birthDate: birthDate, photo: fileURL, gender: gender,tutors: [currentUser.uid]))
                     
                 } catch {
                     self.sendError(messsage: "Error uploading file.")

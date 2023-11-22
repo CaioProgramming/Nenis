@@ -12,7 +12,6 @@ import os
 //MARK: UI SECTION
 class HomeViewController: UIViewController {
     
-    let vaccineStoryBoard = "VaccineStoryboard"
     let homeViewModel = HomeViewModel()
     var authHandler: AuthStateDidChangeListenerHandle? = nil
     var sections: [any Section] = []
@@ -24,8 +23,8 @@ class HomeViewController: UIViewController {
     
     //@IBOutlet weak var navBar: UINavigationBar!
     var errorClosure: (() -> Void)? = nil
-
-
+    
+    
     
     func setupTableView(){
         registerTableViews()
@@ -33,8 +32,9 @@ class HomeViewController: UIViewController {
         activityTable.delegate = self
     }
     
-    func openVaccines() {
+    func showVaccines() {
         if let currentChild = homeViewModel.child {
+            let vaccineStoryBoard = "VaccineStoryboard"
             let storyBoard = UIStoryboard(name: vaccineStoryBoard, bundle: nil)
             if let controller = storyBoard.instantiateViewController(withIdentifier: VaccinesViewController.identifier) as? VaccinesViewController {
                 controller.delegate = self
@@ -45,8 +45,22 @@ class HomeViewController: UIViewController {
         }
     }
     
+    func showDiapers() {
+        if let currentChild = homeViewModel.child {
+            let storyBoardIdentifier = "DiaperStoryboard"
+            let storyBoard = UIStoryboard(name: storyBoardIdentifier, bundle: nil)
+            if let controller = storyBoard.instantiateViewController(withIdentifier: DiapersViewController.identifier) as? DiapersViewController {
+                controller.delegate = self
+                controller.diapers = currentChild.diapers
+                controller.modalPresentationStyle = .overFullScreen
+                show(controller, sender: self)
+            }
+        }
+    }
+    
     func updateVaccine() {
         if let currentChild = homeViewModel.child {
+            let vaccineStoryBoard = "VaccineStoryboard"
             let storyBoard = UIStoryboard(name: vaccineStoryBoard, bundle: nil)
             if let controller = storyBoard.instantiateViewController(withIdentifier: UpdateVaccineViewController.identifier) as? UpdateVaccineViewController {
                 controller.modalPresentationStyle = .formSheet
@@ -59,11 +73,12 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        
         homeViewModel.homeDelegate = self
+        homeViewModel.sectionDelegate = self
         setupTableView()
         navigationController?.setNavigationBarHidden(true, animated: true)
-
+        
         //activityTable.bounces = false
         //activityTable.isScrollEnabled = false
         
@@ -76,7 +91,7 @@ class HomeViewController: UIViewController {
         errorLabel.text = message
         errorButton.setTitle(buttonMessage, for: .normal)
         toggleViews(views: [activityTable,loadingIndicator], isHidden: true)
-
+        
         
     }
     
@@ -92,9 +107,9 @@ class HomeViewController: UIViewController {
             closure()
         } else {
             Logger.init().warning("Closure not defined!")
-
+            
         }
-         
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -102,7 +117,7 @@ class HomeViewController: UIViewController {
         loadingIndicator.startAnimating()
     }
     
-
+    
     
     func signIn() {
         loadingIndicator.startAnimating()
@@ -114,7 +129,7 @@ class HomeViewController: UIViewController {
     }
     
     
-    @IBAction func createNewActivity(_ sender: UIView) {
+     func createNewActivity() {
         performSegue(withIdentifier: "NewActivitySegue", sender: self)
     }
     
@@ -139,12 +154,39 @@ class HomeViewController: UIViewController {
     }
 }
 
+//MARK: - DiaperProtocols
+extension HomeViewController: DiapersProtocol {
+    
+    func updateDiaper(diaper: Diaper, with index: Int) {
+        
+        homeViewModel.updateDiaper(with: diaper, index: index)
+
+    }
+    
+    
+    func addDiaper(diaper: Diaper) {
+        homeViewModel.addDiaper(with: diaper)
+    }
+    
+    func deleteDiaper(diaperIndex: Int) {
+        homeViewModel.deleteDiaper(with: diaperIndex)
+    }
+    
+    
+   
+    
+    
+ 
+    
+    
+}
+
 //MARK: - VaccineProtocols
 extension HomeViewController: VaccinesProtocol {
     func updateChildVaccine(newVaccine: Vaccination) {
         homeViewModel.updateChildVaccine(vaccinate: newVaccine)
     }
-
+    
     
 }
 
@@ -222,8 +264,8 @@ extension HomeViewController: HomeProtocol {
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     private func registerTableViews() {
-        let cells : [any CustomViewProtocol] = [ ActivityTableViewCell(), VaccineTableViewCell(), ChildTableViewCell()]
-        let headers : [any CustomViewProtocol] = [ActionHeaderView(), VaccineHeaderView(), ChildHeaderView()]
+        let cells : [any CustomViewProtocol] = [ ActivityTableViewCell(), VaccineTableViewCell(), ChildTableViewCell(), DiaperTableViewCell()]
+        let headers : [any CustomViewProtocol] = [ActionHeaderView(), VaccineHeaderView(), ChildHeaderView(), DiaperHeaderView()]
         cells.forEach({ view in
             activityTable.register(view.buildNib(), forCellReuseIdentifier: view.identifier)
         })
@@ -232,34 +274,32 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         })
     }
     
-
+    
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
         let section = sections[indexPath.section]
-        
-        switch section.type {
-        case .actions:
+        if(section is ActionSection) {
             return .delete
-        default:
+        } else {
             return .none
         }
     }
+
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let isChildCell = (cell is ChildTableViewCell)
+        navigationController?.setNavigationBarHidden(isChildCell, animated: true)
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let isChildCell = (cell is ChildTableViewCell)
         navigationController?.setNavigationBarHidden(!isChildCell, animated: true)
-
-         
+        
     }
     
-    func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
-        let section = sections[section]
-        
-        if(section.type == .child){
-            //parent?.title = homeViewModel.child?.name
-        }
-    }
     
     
     
@@ -274,134 +314,51 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return sections[indexPath.section].type.height
+        return sections[indexPath.section].cellHeight
     }
-  
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let section = sections[section]
-        var rows = 1
-        switch section.type {
-         
-        case .child:
-            rows = section.items.count
-        case .actions:
-           rows = section.items.count
-        case .vaccines:
-          rows =  1
-        }
-        return rows
+        return sections[section].numberOfRows()
     }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return sections.count
     }
- 
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let section = sections[section]
-        let headerIdentifier = getHeaderIdentifier(sectionType: section.type)
-        switch section.type {
-            
-        case .actions:
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! ActionHeaderView
-            header.setupHeader(title: section.title)
-            header.buttonAction = { sender in
-                self.createNewActivity(sender)
-            }
-            return header
-        case .vaccines:
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! VaccineHeaderView
-            header.titleLabel.text = section.title
-            header.setButtonAction {
-                self.openVaccines()
-            }
-            return header
-            
-        case .child:
-            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerIdentifier) as! ChildHeaderView
-            if let childSection = section as? ChildSection {
-                header.titleLabel.text = childSection.title
-                header.subtitleLabel.text = childSection.subtitle
-            }
-            return header
-        }
-       
+        let customSection = sections[section]
+        return customSection.dequeueHeader(with: tableView, sectionIndex: section)
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let section = sections[indexPath.section]
-        let cellType = getCellIdentifier(sectionType: section.type)
-        switch(section.type) {
-            
-        case .actions:
-            if let actionSection = section as? ActionSection {
-
-                let cell = tableView.dequeueReusableCell(withIdentifier: cellType, for: indexPath) as! ActivityTableViewCell
-                let activity = actionSection.items[indexPath.row]
-                cell.setupAction(activity: activity, isFirst: indexPath.row == 0, isLast: indexPath.row == (actionSection.items.count - 1))
-                return cell
-            }
-        case .vaccines:
-            if let vaccineSection = section as? VaccineSection {
-                let cell = tableView.dequeueReusableCell(withIdentifier: cellType, for: indexPath) as! VaccineTableViewCell
-                cell.updateVaccines(vaccineList: vaccineSection.items)
-                cell.selectVaccine = { item in
-                    self.homeViewModel.selectVaccine(vaccineItem: item)
-                    self.updateVaccine()
-                }
-                 return cell
-            }
-        case .child:
-            if let childSection = section as? ChildSection {
-                let cell = tableView.dequeueReusableCell(withIdentifier: cellType, for: indexPath) as! ChildTableViewCell
-                let child = childSection.items[indexPath.row]
-                
-                cell.childImage.moa.url = child.photo
-                
-                
-                cell.childImage.moa.onSuccess = { image in
-                    cell.imageLoadingIndicator.stopAnimating()
-                    cell.imageLoadingIndicator.fadeOut()
-                    cell.childImage.fadeIn()
-                    cell.setupChild(child: child)
-                    return image
-                }
-                return cell
-            }
-        }
-        return UITableViewCell.init()
+        return section.dequeueCell(with: tableView, indexPath: indexPath)
+        
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let homeSection = sections[section]
-        if(homeSection.type == .child) {return 0} else {return 60}
+        let section = sections[section]
+        return section.headerHeight
     }
     
-   
     
+}
+
+//MARK: SECTIONS DELEGATES
+extension HomeViewController: SectionsProtocol {
     
-    func getCellIdentifier(sectionType: SectionType) -> String {
-        switch sectionType {
-            
-        case .actions:
-            ActivityTableViewCell().identifier
-        case .vaccines:
-            VaccineTableViewCell().identifier
-        case .child:
-            ChildTableViewCell().identifier
-        }
+    func requestNewAction() {
+        createNewActivity()
     }
     
-    func getHeaderIdentifier(sectionType: SectionType) -> String {
-        switch sectionType {
-        case .actions:
-            ActionHeaderView().identifier
-        case .vaccines:
-            VaccineHeaderView().identifier
-        case .child:
-            ChildHeaderView().identifier
-        }
+    func openVaccines() {
+        showVaccines()
     }
     
+    func openDiapers() {
+        showDiapers()
+    }
 }

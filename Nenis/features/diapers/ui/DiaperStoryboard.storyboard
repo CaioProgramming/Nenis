@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Adicionar fraldas-->
+        <scene sceneID="qBW-a6-jdR">
+            <objects>
+                <viewController title="Adicionar fraldas" id="VsM-Pq-muv" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uXB-Uv-na5">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="100x" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jET-vg-XJD">
+                                <rect key="frame" x="16" y="294" width="361" height="43.666666666666686"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-3m-mAF">
+                                <rect key="frame" x="16" y="775" width="361" height="35"/>
+                                <color key="tintColor" red="1" green="0.5265700483073934" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Excluir"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGA-2L-PFS">
+                                <rect key="frame" x="16" y="724" width="361" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Salvar"/>
+                            </button>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-in-CZZ">
+                                <rect key="frame" x="0.0" y="43" width="393" height="44"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Mw9-vJ-00j"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Adicionar fraldas" id="ohy-mL-LM0" userLabel="Adicionar fralda">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="g4R-Sd-1Sf"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tipo de fralda" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHf-6N-FV6">
+                                <rect key="frame" x="16" y="118.99999999999999" width="361" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJh-TM-aIj">
+                                <rect key="frame" x="170" y="154" width="53" height="55"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="M" cornerStyle="capsule">
+                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
+                                </buttonConfiguration>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantidade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ap2-XS-tzM">
+                                <rect key="frame" x="16" y="241" width="361" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QIl-Oh-mbW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UJh-TM-aIj" firstAttribute="top" secondItem="vHf-6N-FV6" secondAttribute="bottom" constant="14.666666666666686" id="0gG-o0-R2O"/>
+                            <constraint firstItem="yGA-2L-PFS" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="3ZS-Ys-r81"/>
+                            <constraint firstItem="vHf-6N-FV6" firstAttribute="top" secondItem="FCk-in-CZZ" secondAttribute="bottom" constant="32" id="7Ws-YP-89N"/>
+                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="8aF-3m-mAF" secondAttribute="trailing" constant="16" id="Any-cS-8Wk"/>
+                            <constraint firstItem="8aF-3m-mAF" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="BBA-6w-yb5"/>
+                            <constraint firstItem="ap2-XS-tzM" firstAttribute="top" secondItem="UJh-TM-aIj" secondAttribute="bottom" constant="32" id="BuX-1t-i7u"/>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="centerX" secondItem="vHf-6N-FV6" secondAttribute="centerX" id="DMU-Pc-NTt"/>
+                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="jET-vg-XJD" secondAttribute="trailing" constant="16" id="Fgz-GR-mF2"/>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="top" secondItem="QIl-Oh-mbW" secondAttribute="top" constant="43" id="QtJ-zR-icR"/>
+                            <constraint firstItem="ap2-XS-tzM" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="Z93-iP-mou"/>
+                            <constraint firstItem="jET-vg-XJD" firstAttribute="top" secondItem="ap2-XS-tzM" secondAttribute="bottom" constant="32" id="eAy-De-rfI"/>
+                            <constraint firstItem="8aF-3m-mAF" firstAttribute="top" secondItem="yGA-2L-PFS" secondAttribute="bottom" constant="16" id="fhp-UQ-cBy"/>
+                            <constraint firstItem="vHf-6N-FV6" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="gYg-Gw-Oer"/>
+                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="yGA-2L-PFS" secondAttribute="trailing" constant="16" id="hbU-0O-TTX"/>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="kbC-sC-eRZ"/>
+                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="vHf-6N-FV6" secondAttribute="trailing" constant="16" id="kma-If-yBW"/>
+                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="bottom" secondItem="8aF-3m-mAF" secondAttribute="bottom" constant="32" id="knq-m9-g2K"/>
+                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="ap2-XS-tzM" secondAttribute="trailing" constant="16" id="rog-m3-aMN"/>
+                            <constraint firstItem="UJh-TM-aIj" firstAttribute="centerX" secondItem="vHf-6N-FV6" secondAttribute="centerX" id="rty-Qr-qkC"/>
+                            <constraint firstItem="jET-vg-XJD" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="vZn-Fs-IVw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tbf-M6-J5R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1418" y="90"/>
+        </scene>
+        <!--Fraldas-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="DiapersView" title="Fraldas" id="Y6W-OH-hqX" customClass="DiapersViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lEu-Om-MQL">
+                                <rect key="frame" x="16" y="59" width="361" height="759"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4aM-cQ-wkM">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="L3n-1g-tY8">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="cad-FK-1hs">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xv9-OY-77c">
+                                <rect key="frame" x="121" y="442" width="152" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Adicionar fraldas" cornerStyle="medium"/>
+                                <connections>
+                                    <segue destination="VsM-Pq-muv" kind="presentation" id="3of-c3-l5O"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lEu-Om-MQL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="7r5-gS-0V4"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="lEu-Om-MQL" secondAttribute="bottom" id="LmL-Qo-3y3"/>
+                            <constraint firstItem="lEu-Om-MQL" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="c7K-Vs-tRj"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lEu-Om-MQL" secondAttribute="trailing" constant="16" id="sNJ-xB-kNN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="diaperCollectionView" destination="lEu-Om-MQL" id="Pkf-pT-JyA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="-27"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

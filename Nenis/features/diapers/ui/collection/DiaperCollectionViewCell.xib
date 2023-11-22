@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="DiaperCollectionViewCell" customModule="Nenis" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="243" height="247"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="243" height="247"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fO-eQ-feU">
+                        <rect key="frame" x="0.0" y="0.0" width="243" height="247"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trR-R6-Vrk" customClass="KDCircularProgress" customModule="KDCircularProgress">
+                                <rect key="frame" x="8" y="8" width="227" height="208.66666666666666"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
+                                        <real key="value" value="90"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="clockwise" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="roundedCorners" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="lerpColorMode" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                        <color key="value" systemColor="opaqueSeparatorColor"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="glowAmount">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQP-ej-Xye">
+                                <rect key="frame" x="8" y="8" width="227" height="209"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="50 de 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncP-me-kOb">
+                                <rect key="frame" x="16" y="224.66666666666666" width="211" height="14.333333333333343"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ncP-me-kOb" secondAttribute="trailing" constant="16" id="3o1-r3-AFM"/>
+                            <constraint firstItem="trR-R6-Vrk" firstAttribute="leading" secondItem="7fO-eQ-feU" secondAttribute="leading" constant="8" id="7Ur-XC-Hbn"/>
+                            <constraint firstItem="trR-R6-Vrk" firstAttribute="bottom" secondItem="uQP-ej-Xye" secondAttribute="bottom" id="EKH-gs-H7h"/>
+                            <constraint firstItem="uQP-ej-Xye" firstAttribute="top" secondItem="trR-R6-Vrk" secondAttribute="top" id="KkJ-ai-I0B"/>
+                            <constraint firstItem="uQP-ej-Xye" firstAttribute="leading" secondItem="trR-R6-Vrk" secondAttribute="leading" id="NLo-g3-BV7"/>
+                            <constraint firstAttribute="trailing" secondItem="trR-R6-Vrk" secondAttribute="trailing" constant="8" id="TVn-82-2Ng"/>
+                            <constraint firstItem="ncP-me-kOb" firstAttribute="top" secondItem="trR-R6-Vrk" secondAttribute="bottom" constant="8" id="TeU-eP-NSG"/>
+                            <constraint firstItem="ncP-me-kOb" firstAttribute="leading" secondItem="7fO-eQ-feU" secondAttribute="leading" constant="16" id="UhA-1e-scg"/>
+                            <constraint firstAttribute="bottom" secondItem="ncP-me-kOb" secondAttribute="bottom" constant="8" id="X0j-tf-SoI"/>
+                            <constraint firstItem="trR-R6-Vrk" firstAttribute="trailing" secondItem="uQP-ej-Xye" secondAttribute="trailing" id="fcj-oB-Z1M"/>
+                            <constraint firstItem="ncP-me-kOb" firstAttribute="bottom" secondItem="7fO-eQ-feU" secondAttribute="bottom" constant="-8" id="jM2-FB-nFb"/>
+                            <constraint firstItem="trR-R6-Vrk" firstAttribute="top" secondItem="7fO-eQ-feU" secondAttribute="top" constant="8" id="k0N-8S-O3u"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="7fO-eQ-feU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="OJz-DP-AoH"/>
+                <constraint firstItem="7fO-eQ-feU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SLi-AT-IFq"/>
+                <constraint firstAttribute="trailing" secondItem="7fO-eQ-feU" secondAttribute="trailing" id="UNF-AT-JwR"/>
+                <constraint firstAttribute="bottom" secondItem="7fO-eQ-feU" secondAttribute="bottom" id="YLO-KP-Tch"/>
+            </constraints>
+            <size key="customSize" width="243" height="247"/>
+            <connections>
+                <outlet property="diaperLabel" destination="uQP-ej-Xye" id="p0M-O3-yoe"/>
+                <outlet property="progressView" destination="trR-R6-Vrk" id="5Fw-Zz-uZO"/>
+                <outlet property="subtitleLabel" destination="ncP-me-kOb" id="QMy-8u-tMy"/>
+            </connections>
+            <point key="canvasLocation" x="174.80916030534351" y="58.098591549295776"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
