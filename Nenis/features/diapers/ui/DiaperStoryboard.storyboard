@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
@@ -13,55 +13,52 @@
         <!--Adicionar fraldas-->
         <scene sceneID="qBW-a6-jdR">
             <objects>
-                <viewController title="Adicionar fraldas" id="VsM-Pq-muv" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="updateDiaperViewController" autoresizesArchivedViewToFullSize="NO" title="Adicionar fraldas" modalPresentationStyle="pageSheet" id="VsM-Pq-muv" customClass="UpdateDiaperViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uXB-Uv-na5">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="547" height="423"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="100x" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jET-vg-XJD">
-                                <rect key="frame" x="16" y="294" width="361" height="43.666666666666686"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                <textInputTraits key="textInputTraits" keyboardType="numberPad" textContentType="tel"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-3m-mAF">
-                                <rect key="frame" x="16" y="775" width="361" height="35"/>
-                                <color key="tintColor" red="1" green="0.5265700483073934" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Excluir"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yGA-2L-PFS">
-                                <rect key="frame" x="16" y="724" width="361" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Salvar"/>
-                            </button>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-in-CZZ">
-                                <rect key="frame" x="0.0" y="43" width="393" height="44"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Mw9-vJ-00j"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Adicionar fraldas" id="ohy-mL-LM0" userLabel="Adicionar fralda">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="g4R-Sd-1Sf"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tipo de fralda" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vHf-6N-FV6">
-                                <rect key="frame" x="16" y="118.99999999999999" width="361" height="20.333333333333329"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0Q-jb-gM4">
+                                <rect key="frame" x="0.0" y="104" width="547" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJh-TM-aIj">
-                                <rect key="frame" x="170" y="154" width="53" height="55"/>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxL-l5-IAf">
+                                <rect key="frame" x="0.0" y="130" width="547" height="218"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-3m-mAF">
+                                <rect key="frame" x="16" y="356.5" width="515" height="34.5"/>
+                                <color key="tintColor" red="1" green="0.5265700483073934" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="M" cornerStyle="capsule">
-                                    <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
-                                </buttonConfiguration>
+                                <buttonConfiguration key="configuration" style="tinted" title="Excluir"/>
+                                <connections>
+                                    <action selector="deleteDiaper:" destination="VsM-Pq-muv" eventType="touchUpInside" id="43V-f5-Mud"/>
+                                </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quantidade" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ap2-XS-tzM">
-                                <rect key="frame" x="16" y="241" width="361" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-in-CZZ">
+                                <rect key="frame" x="0.0" y="0.0" width="547" height="44"/>
+                                <items>
+                                    <navigationItem title="Adicionar fraldas" id="ohy-mL-LM0" userLabel="Adicionar fralda">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="g4R-Sd-1Sf">
+                                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                            <connections>
+                                                <action selector="dismissButton:" destination="VsM-Pq-muv" id="AQ0-gL-quI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="UDB-ne-Lkf">
+                                            <color key="tintColor" systemColor="linkColor"/>
+                                            <connections>
+                                                <action selector="saveDiaper:" destination="VsM-Pq-muv" id="a2e-3Q-aEQ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <navigationBarAppearance key="compactAppearance"/>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d30-th-456">
+                                <rect key="frame" x="0.0" y="44" width="547" height="60"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -69,43 +66,49 @@
                         <viewLayoutGuide key="safeArea" id="QIl-Oh-mbW"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="UJh-TM-aIj" firstAttribute="top" secondItem="vHf-6N-FV6" secondAttribute="bottom" constant="14.666666666666686" id="0gG-o0-R2O"/>
-                            <constraint firstItem="yGA-2L-PFS" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="3ZS-Ys-r81"/>
-                            <constraint firstItem="vHf-6N-FV6" firstAttribute="top" secondItem="FCk-in-CZZ" secondAttribute="bottom" constant="32" id="7Ws-YP-89N"/>
-                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="8aF-3m-mAF" secondAttribute="trailing" constant="16" id="Any-cS-8Wk"/>
-                            <constraint firstItem="8aF-3m-mAF" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="BBA-6w-yb5"/>
-                            <constraint firstItem="ap2-XS-tzM" firstAttribute="top" secondItem="UJh-TM-aIj" secondAttribute="bottom" constant="32" id="BuX-1t-i7u"/>
-                            <constraint firstItem="FCk-in-CZZ" firstAttribute="centerX" secondItem="vHf-6N-FV6" secondAttribute="centerX" id="DMU-Pc-NTt"/>
-                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="jET-vg-XJD" secondAttribute="trailing" constant="16" id="Fgz-GR-mF2"/>
-                            <constraint firstItem="FCk-in-CZZ" firstAttribute="top" secondItem="QIl-Oh-mbW" secondAttribute="top" constant="43" id="QtJ-zR-icR"/>
-                            <constraint firstItem="ap2-XS-tzM" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="Z93-iP-mou"/>
-                            <constraint firstItem="jET-vg-XJD" firstAttribute="top" secondItem="ap2-XS-tzM" secondAttribute="bottom" constant="32" id="eAy-De-rfI"/>
-                            <constraint firstItem="8aF-3m-mAF" firstAttribute="top" secondItem="yGA-2L-PFS" secondAttribute="bottom" constant="16" id="fhp-UQ-cBy"/>
-                            <constraint firstItem="vHf-6N-FV6" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="gYg-Gw-Oer"/>
-                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="yGA-2L-PFS" secondAttribute="trailing" constant="16" id="hbU-0O-TTX"/>
-                            <constraint firstItem="FCk-in-CZZ" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="kbC-sC-eRZ"/>
-                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="vHf-6N-FV6" secondAttribute="trailing" constant="16" id="kma-If-yBW"/>
-                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="bottom" secondItem="8aF-3m-mAF" secondAttribute="bottom" constant="32" id="knq-m9-g2K"/>
-                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="ap2-XS-tzM" secondAttribute="trailing" constant="16" id="rog-m3-aMN"/>
-                            <constraint firstItem="UJh-TM-aIj" firstAttribute="centerX" secondItem="vHf-6N-FV6" secondAttribute="centerX" id="rty-Qr-qkC"/>
-                            <constraint firstItem="jET-vg-XJD" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="vZn-Fs-IVw"/>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="6AT-Al-jnB"/>
+                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="bottom" secondItem="8aF-3m-mAF" secondAttribute="bottom" constant="32" id="9WS-pN-cQX"/>
+                            <constraint firstItem="d30-th-456" firstAttribute="top" secondItem="FCk-in-CZZ" secondAttribute="bottom" id="DRF-Wp-61I"/>
+                            <constraint firstItem="d30-th-456" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="KrC-ZF-fce"/>
+                            <constraint firstItem="8aF-3m-mAF" firstAttribute="top" secondItem="rxL-l5-IAf" secondAttribute="bottom" constant="8" id="NlV-5W-es4"/>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="top" secondItem="QIl-Oh-mbW" secondAttribute="top" id="Ohq-v4-vtV"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="top" secondItem="M0Q-jb-gM4" secondAttribute="bottom" constant="8" id="Scy-EE-m9P"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="TrT-o7-uPr"/>
+                            <constraint firstItem="M0Q-jb-gM4" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="fvU-PY-8BS"/>
+                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="8aF-3m-mAF" secondAttribute="trailing" constant="16" id="iAY-PV-8eH"/>
+                            <constraint firstItem="M0Q-jb-gM4" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="ive-iJ-rfL"/>
+                            <constraint firstItem="d30-th-456" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="jlu-Bj-Mn1"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="k7S-hc-EWl"/>
+                            <constraint firstItem="M0Q-jb-gM4" firstAttribute="top" secondItem="d30-th-456" secondAttribute="bottom" id="qaX-Ml-iwr"/>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="wLi-jL-5OT"/>
+                            <constraint firstItem="8aF-3m-mAF" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="zA4-xO-Rna"/>
                         </constraints>
                     </view>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="547" height="423"/>
+                    <connections>
+                        <outlet property="amountLabel" destination="d30-th-456" id="KKQ-dx-FHK"/>
+                        <outlet property="containerView" destination="uXB-Uv-na5" id="DvX-wm-YYg"/>
+                        <outlet property="deleteButton" destination="8aF-3m-mAF" id="gvu-4Y-4Hq"/>
+                        <outlet property="diaperPickerView" destination="rxL-l5-IAf" id="WPp-tr-bAS"/>
+                        <outlet property="diaperSizeLabel" destination="M0Q-jb-gM4" id="PhP-Om-eyO"/>
+                        <outlet property="saveButton" destination="UDB-ne-Lkf" id="Qfg-2F-jh0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tbf-M6-J5R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1418" y="90"/>
+            <point key="canvasLocation" x="1416.5625" y="76.58450704225352"/>
         </scene>
         <!--Fraldas-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="DiapersView" title="Fraldas" id="Y6W-OH-hqX" customClass="DiapersViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lEu-Om-MQL">
-                                <rect key="frame" x="16" y="59" width="361" height="759"/>
+                                <rect key="frame" x="16" y="20" width="288" height="548"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4aM-cQ-wkM">
                                     <size key="itemSize" width="128" height="128"/>
@@ -130,7 +133,8 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Adicionar fraldas" cornerStyle="medium"/>
                                 <connections>
-                                    <segue destination="VsM-Pq-muv" kind="presentation" id="3of-c3-l5O"/>
+                                    <action selector="openDiapers:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JeG-MB-DN2"/>
+                                    <segue destination="VsM-Pq-muv" kind="presentation" identifier="updateDiapersSegue" id="3of-c3-l5O"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -153,6 +157,12 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -25,6 +25,7 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
     @IBOutlet weak var childNameLabel: UILabel!
     @IBOutlet weak var childImage: UIImageView!
     
+    @IBOutlet weak var gradientContainer: UIView!
     @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -38,10 +39,13 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
         childNameLabel.text = child.name
         childAgeLabel.text = child.getFullAge()
         childAgeLabel.textColor = color
-        self.inputView?.createGradientBlur()
-        self.contentView.createGradientBlur()
-        self.accessoryView?.createGradientBlur()
-        self.backgroundView?.createGradientBlur()
+
+        
+       let gradient = CAGradientLayer()
+                gradient.frame = gradientContainer.bounds
+        gradient.colors = [UIColor.clear.cgColor, UIColor.systemBackground.withAlphaComponent(0.5).cgColor, UIColor.systemBackground.cgColor]
+                gradient.locations = [0, 0.5, 1]
+               gradientContainer.layer.addSublayer(gradient)
         
     }
     

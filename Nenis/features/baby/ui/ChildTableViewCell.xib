@@ -25,9 +25,12 @@
                                 <rect key="frame" x="400" y="422.66666666666669" width="37" height="37"/>
                             </activityIndicatorView>
                             <imageView hidden="YES" clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" image="bear.fill" translatesAutoresizingMaskIntoConstraints="NO" id="4OT-7B-zE2">
-                                <rect key="frame" x="0.0" y="0.0" width="837" height="882"/>
+                                <rect key="frame" x="0.0" y="-10" width="837" height="892"/>
                                 <color key="tintColor" systemColor="separatorColor"/>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZcH-2T-Wse">
+                                <rect key="frame" x="0.0" y="0.0" width="837" height="882"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ian" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDZ-vv-ZX6">
                                 <rect key="frame" x="0.0" y="806.33333333333337" width="837" height="42"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="36"/>
@@ -42,16 +45,20 @@
                             </label>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="ZcH-2T-Wse" firstAttribute="leading" secondItem="g1g-DP-q8E" secondAttribute="leading" id="0Mm-l5-gyy"/>
                             <constraint firstAttribute="trailing" secondItem="4OT-7B-zE2" secondAttribute="trailing" id="4Rb-DN-U0I"/>
+                            <constraint firstAttribute="trailing" secondItem="ZcH-2T-Wse" secondAttribute="trailing" id="Bv0-xR-Rgq"/>
                             <constraint firstItem="B6g-dE-UyK" firstAttribute="centerY" secondItem="g1g-DP-q8E" secondAttribute="centerY" id="GUW-QZ-fSB"/>
                             <constraint firstItem="RUZ-1c-kmN" firstAttribute="centerX" secondItem="g1g-DP-q8E" secondAttribute="centerX" id="LoC-HC-0T3"/>
-                            <constraint firstItem="4OT-7B-zE2" firstAttribute="top" secondItem="g1g-DP-q8E" secondAttribute="top" id="RWI-8F-4Dk"/>
+                            <constraint firstItem="4OT-7B-zE2" firstAttribute="top" secondItem="g1g-DP-q8E" secondAttribute="top" constant="-10" id="RWI-8F-4Dk"/>
                             <constraint firstItem="wDZ-vv-ZX6" firstAttribute="leading" secondItem="g1g-DP-q8E" secondAttribute="leading" id="WTz-b7-Xyg"/>
                             <constraint firstItem="RUZ-1c-kmN" firstAttribute="top" secondItem="wDZ-vv-ZX6" secondAttribute="bottom" constant="4" id="bti-pS-G8S"/>
                             <constraint firstAttribute="bottom" secondItem="4OT-7B-zE2" secondAttribute="bottom" id="dvb-Mh-ORF"/>
                             <constraint firstAttribute="bottom" secondItem="RUZ-1c-kmN" secondAttribute="bottom" constant="8" id="eTd-wr-AE3"/>
                             <constraint firstItem="B6g-dE-UyK" firstAttribute="centerX" secondItem="g1g-DP-q8E" secondAttribute="centerX" id="fVE-Et-sr9"/>
                             <constraint firstItem="4OT-7B-zE2" firstAttribute="leading" secondItem="g1g-DP-q8E" secondAttribute="leading" id="gdr-O7-xfc"/>
+                            <constraint firstItem="ZcH-2T-Wse" firstAttribute="top" secondItem="g1g-DP-q8E" secondAttribute="top" id="gnn-sj-DCP"/>
+                            <constraint firstAttribute="bottom" secondItem="ZcH-2T-Wse" secondAttribute="bottom" id="sZ9-mn-8Sv"/>
                             <constraint firstAttribute="trailing" secondItem="wDZ-vv-ZX6" secondAttribute="trailing" id="y2E-cO-yXe"/>
                         </constraints>
                     </view>
@@ -69,6 +76,7 @@
                 <outlet property="childAgeLabel" destination="RUZ-1c-kmN" id="Nyq-nF-40e"/>
                 <outlet property="childImage" destination="4OT-7B-zE2" id="Iz9-oy-QEL"/>
                 <outlet property="childNameLabel" destination="wDZ-vv-ZX6" id="1KC-Xp-wPb"/>
+                <outlet property="gradientContainer" destination="ZcH-2T-Wse" id="xar-NM-3Ee"/>
                 <outlet property="imageLoadingIndicator" destination="B6g-dE-UyK" id="LGK-c6-PYH"/>
             </connections>
             <point key="canvasLocation" x="310.46511627906978" y="500.21459227467813"/>

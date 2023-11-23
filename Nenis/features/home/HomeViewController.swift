@@ -285,22 +285,22 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             return .none
         }
     }
-
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let isChildCell = (cell is ChildTableViewCell)
-        navigationController?.setNavigationBarHidden(isChildCell, animated: true)
-    }
-    
     
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let isChildCell = (cell is ChildTableViewCell)
-        navigationController?.setNavigationBarHidden(!isChildCell, animated: true)
-        
+        if(isChildCell) {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        }
     }
     
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let isChildCell = (cell is ChildTableViewCell)
+        if(isChildCell) {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        }
+    }
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

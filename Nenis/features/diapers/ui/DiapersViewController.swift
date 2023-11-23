@@ -35,6 +35,10 @@ class DiapersViewController: UIViewController {
     }
     
 
+    @IBAction func openDiapers(_ sender: UIButton) {
+        performSegue(withIdentifier: "updateDiapersSegue", sender: self)
+
+    }
     /*
     // MARK: - Navigation
 

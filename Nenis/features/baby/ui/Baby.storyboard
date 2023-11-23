@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="11b-9S-gbk">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -9,16 +9,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--New Child View Controller-->
+        <!--Adicionar bebê-->
         <scene sceneID="SXk-Tw-Sa3">
             <objects>
-                <viewController storyboardIdentifier="babyViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="11b-9S-gbk" customClass="NewChildViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="babyViewController" title="Adicionar bebê" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="11b-9S-gbk" customClass="NewChildViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QfO-Om-VcC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSe-1V-xXr">
-                                <rect key="frame" x="0.0" y="101" width="428" height="791"/>
+                                <rect key="frame" x="0.0" y="47" width="428" height="879"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-cz-jdT">
                                         <rect key="frame" x="0.0" y="0.0" width="444" height="838.66666666666663"/>
@@ -134,44 +134,14 @@
                                     <constraint firstItem="9Wt-cz-jdT" firstAttribute="leading" secondItem="BSe-1V-xXr" secondAttribute="leading" id="r3o-UD-Upm"/>
                                 </constraints>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSI-EF-Aol">
-                                <rect key="frame" x="0.0" y="47" width="428" height="44"/>
-                                <items>
-                                    <navigationItem title="Adicionar bebê" largeTitleDisplayMode="always" id="Cb1-I2-qni">
-                                        <barButtonItem key="leftBarButtonItem" style="done" id="3iW-xc-8OV">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="urV-Vd-rH9">
-                                                <rect key="frame" x="20" y="4.6666666666666679" width="85.666666666666671" height="34.666666666666657"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="tintColor" systemColor="linkColor"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system" title="Home">
-                                                    <color key="baseForegroundColor" systemColor="linkColor"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="dismissForm:" destination="11b-9S-gbk" eventType="touchUpInside" id="bzK-Zt-byV"/>
-                                                </connections>
-                                            </button>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="IIi-ej-QLV">
-                                            <connections>
-                                                <action selector="saveChild:" destination="11b-9S-gbk" id="iia-s9-ebh"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                                <navigationBarAppearance key="standardAppearance" backgroundEffect="prominent"/>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wRb-13-9iX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="BSe-1V-xXr" firstAttribute="top" secondItem="lSI-EF-Aol" secondAttribute="bottom" constant="10" id="CGS-I0-We5"/>
                             <constraint firstItem="wRb-13-9iX" firstAttribute="trailing" secondItem="BSe-1V-xXr" secondAttribute="trailing" id="KYE-RS-x1X"/>
                             <constraint firstItem="BSe-1V-xXr" firstAttribute="leading" secondItem="wRb-13-9iX" secondAttribute="leading" id="NLN-hc-OmW"/>
-                            <constraint firstItem="lSI-EF-Aol" firstAttribute="top" secondItem="wRb-13-9iX" secondAttribute="top" id="XSw-Ax-UGG"/>
-                            <constraint firstItem="lSI-EF-Aol" firstAttribute="trailing" secondItem="wRb-13-9iX" secondAttribute="trailing" id="YI5-MB-7VF"/>
-                            <constraint firstItem="lSI-EF-Aol" firstAttribute="leading" secondItem="wRb-13-9iX" secondAttribute="leading" id="hf8-fm-3QY"/>
-                            <constraint firstAttribute="bottom" secondItem="BSe-1V-xXr" secondAttribute="bottom" constant="34" id="op1-oq-80x"/>
+                            <constraint firstItem="BSe-1V-xXr" firstAttribute="top" secondItem="wRb-13-9iX" secondAttribute="top" id="Wis-6d-gMY"/>
+                            <constraint firstAttribute="bottom" secondItem="BSe-1V-xXr" secondAttribute="bottom" id="op1-oq-80x"/>
                         </constraints>
                     </view>
                     <connections>
@@ -180,7 +150,6 @@
                         <outlet property="babyNameTextField" destination="XQ1-qF-9Y0" id="QfM-YX-ZWp"/>
                         <outlet property="imageBackground" destination="dyb-OH-8SI" id="gFZ-dH-LS2"/>
                         <outlet property="imageUploadIndicator" destination="AsA-fP-m2Q" id="hDN-eM-2my"/>
-                        <outlet property="navBar" destination="lSI-EF-Aol" id="94V-Bg-KJX"/>
                         <outlet property="photoPlaceHolder" destination="yM4-oz-Lif" id="urw-yF-Hxg"/>
                     </connections>
                 </viewController>
@@ -295,27 +264,23 @@
     </scenes>
     <resources>
         <image name="bear.fill" width="17" height="16"/>
-        <image name="chevron.backward" catalog="system" width="97" height="128"/>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="separatorColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -66,5 +66,16 @@ extension UIView {
 
        }
     
+    func wrapHeight() -> CGFloat {
+        
+        // calculate height of everything inside that stackview
+        var height: CGFloat = 0.0
+        for v in subviews {
+            height = height + v.frame.size.height
+        }
+        
+        // change size of Viewcontroller's view to that height
+        return height
+    }
 }
  
