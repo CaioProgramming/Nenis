@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Toast
 
 
 protocol DiapersProtocol {
@@ -17,25 +18,41 @@ class DiapersViewController: UIViewController {
 
     static let identifier = "DiapersView"
     var delegate: DiapersProtocol? = nil
-    var diapers: [Diaper] = []
-    
+    var child: Child? = nil
+    private var diapers: [Diaper] = []
+    var diaperViewModel : DiapersViewModel? = nil
+    @IBOutlet weak var emptyView: UIStackView!
     @IBOutlet weak var diaperCollectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        registerCells()
         navigationController?.setNavigationBarHidden(false, animated: true)
-
+        registerCells()
+        diaperViewModel = DiapersViewModel()
+        diaperViewModel?.delegate = self
+        diaperViewModel?.getDiapers(currentChild: child)
         // Do any additional setup after loading the view.
     }
     
+    
     func registerCells() {
+        diaperCollectionView.delegate = self
+        diaperCollectionView.dataSource = self
         let collectionCell = DiaperCollectionViewCell()
-
+        let footerView = DiaperFooterCollectionReusableView()
         diaperCollectionView.register(collectionCell.buildNib(), forCellWithReuseIdentifier: collectionCell.identifier)
+        diaperCollectionView.register(footerView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: footerView.identifier)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.destination is UpdateDiaperViewController) {
+            let destination = segue.destination as! UpdateDiaperViewController
+            destination.delegate = self
+        }
     }
     
 
-    @IBAction func openDiapers(_ sender: UIButton) {
+    func updateDiapers() {
         performSegue(withIdentifier: "updateDiapersSegue", sender: self)
 
     }
@@ -51,11 +68,35 @@ class DiapersViewController: UIViewController {
 
 }
 
+extension DiapersViewController: UpdateDiaperDelegate {
+    
+    func deleteDiaper(diaper: Diaper) {
+        if let index = diapers.firstIndex(where: { childDiaper in
+        
+            childDiaper == diaper
+        }) {
+            diaperViewModel?.deleteDiaper(position: index)
+
+        }
+    }
+    
+    
+    func retrieveNewDiaper(diaper: Diaper) {
+        diaperViewModel?.addDiaper(diaper: diaper)
+    }
+    
+    func retrieveUpdatedDiaper(diaper: Diaper) {
+        diaperViewModel?.updateDiaper(diaper: diaper)
+    }
+    
+    
+}
 
 
 extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         return diapers.count
     }
     
@@ -71,12 +112,28 @@ extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDeleg
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 3
-        let height : CGFloat = 150
-        return CGSize(width: width, height: width)
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: 50)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+           let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: DiaperFooterCollectionReusableView().identifier, for: indexPath) as! DiaperFooterCollectionReusableView
+               
+        footerView.footerClosure = {
+            self.updateDiapers()
+        }
+                   
+           return footerView
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = collectionView.frame.width / 2.5
+        let height : CGFloat = collectionView.frame.height / 3
+        return CGSize(width: width , height: height)
+        
+        }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -84,8 +141,31 @@ extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDeleg
 
         
     }
+
+}
+
+extension DiapersViewController: DiaperProtocol {
     
- 
+    func retrieveDiapers(diapers: [Diaper]) {
+        self.diapers = diapers
+        emptyView.fadeOut()
+        diaperCollectionView.reloadData()
+    }
+    
+    func noDiapersFound() {
+        emptyView.fadeIn()
+    }
+    
+    func diaperUpdated(message: String) {
+        let toast = Toast.text("Fraldas atualizadas com sucesso")
+        toast.show()
+        
+    }
+    
+    func errorUpdating(message: String) {
+        let toast = Toast.text("Ocorreu um erro inesperado ao atualizar. (\(message)")
+        toast.show()
+    }
     
     
 }

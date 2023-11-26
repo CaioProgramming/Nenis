@@ -72,10 +72,10 @@ class HomeViewModel: DatabaseDelegate {
     func buildVaccineSection(with child: Child) -> VaccineSection {
         let vaccineHelper = VaccineHelper()
    
-        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon)
+        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon).prefix(6)
         
         let vaccinesTitle =  String(localized: "NextVaccines", table: "Localizable")
-        return VaccineSection(items: vaccines,title: vaccinesTitle, itemClosure: { vaccine in
+        return VaccineSection(items: Array(vaccines),title: vaccinesTitle, itemClosure: { vaccine in
             self.selectVaccine(vaccineItem: vaccine)
         }, headerClosure: { section in
             self.sectionDelegate?.openVaccines()
@@ -94,7 +94,7 @@ class HomeViewModel: DatabaseDelegate {
             } else {
                 currentChild.vaccines[vaccineIndex!] = vaccinate
             }
-            babyService?.updateData(id: currentChild.id, data: currentChild)
+            babyService?.updateData( data: currentChild)
         }
     }
     
@@ -106,10 +106,22 @@ class HomeViewModel: DatabaseDelegate {
     
     //MARK: - Action Tasks
     
-    func addNewAction(action: Action) {
+    func addNewAction(action: Action, diaperSize: SizeType) {
         if var currentChild = child {
             currentChild.actions.append(action)
-            babyService?.updateData(id: currentChild.id, data: currentChild)
+            if(action.type.getAction() == .bath) {
+               var diapers = currentChild.diapers
+               if var sizeDiaper = diapers.first(where: { diaper in
+                    diaper.type == diaperSize.description
+               }) {
+                   if let index = diapers.firstIndex(of: sizeDiaper) {
+                       sizeDiaper.discarded += 1
+                       diapers[index] = sizeDiaper
+                       currentChild.diapers = diapers
+                   }
+               }
+            }
+            babyService?.updateData(data: currentChild)
         }
     }
     
@@ -117,7 +129,7 @@ class HomeViewModel: DatabaseDelegate {
     func deleteAction(actionIndex: Int) {
         if var currentChild = child {
             currentChild.actions.remove(at: actionIndex)
-            babyService?.updateData(id: currentChild.id, data: currentChild)
+            babyService?.updateData(data: currentChild)
         }
     }
     
@@ -127,7 +139,7 @@ class HomeViewModel: DatabaseDelegate {
     func addDiaper(with diaper: Diaper) {
         if var currentChild = child {
             currentChild.diapers.append(diaper)
-            babyService?.updateData(id: currentChild.id, data: currentChild)
+            babyService?.updateData(data: currentChild)
         }
     }
 
@@ -135,14 +147,14 @@ class HomeViewModel: DatabaseDelegate {
         if var currentChild = child {
              
             currentChild.diapers.remove(at: diaperIndex)
-            babyService?.updateData(id: currentChild.id, data: currentChild)
+            babyService?.updateData(data: currentChild)
         }
     }
     
     func updateDiaper(with diaper: Diaper, index: Int) {
         if var currentChild = child {
             currentChild.diapers[index] = diaper
-            babyService?.updateData(id: currentChild.id, data: currentChild)
+            babyService?.updateData(data: currentChild)
         }
     }
     
@@ -155,7 +167,7 @@ class HomeViewModel: DatabaseDelegate {
 
             return Diaper(type: size.description, quantity: randomQuantity, discarded: randomDiscard)
         })
-        return DiaperSection(title: "Fraldas", items: diapers, headerClosure: { section in
+        return DiaperSection(title: "Fraldas", items: child.diapers, headerClosure: { section in
             self.sectionDelegate?.openDiapers()
         })
     }

@@ -11,7 +11,7 @@ import UIKit
 import os
 
 public struct Child: Codable {
-    @DocumentID var id: String?
+    var id: String?
     let name: String
     let birthDate: Date
     let photo: String
@@ -20,6 +20,7 @@ public struct Child: Codable {
     var actions: [Action] = []
     var vaccines: [Vaccination] = []
     var diapers: [Diaper] = []
+    
     enum CodingKeys: String, CodingKey {
         case name
         case birthDate
@@ -67,6 +68,32 @@ extension String {
 }
 extension Child {
     
+    func getSpacers(year: Int, months: Int, weeks: Int, days: Int) -> (String, String, String, String) {
+        
+        var yearSpace = ""
+        var monthSpace = ""
+        var weekSpace = ""
+        var daySpace = ""
+        
+        if(months > 0) {
+            yearSpace = ", "
+        }
+        
+        if(weeks > 0) {
+            monthSpace = ", "
+        }
+        
+        if(days > 0) {
+            weekSpace = " e "
+            
+        }
+        
+        daySpace = "."
+        
+        return (yearSpace, monthSpace, weekSpace, daySpace)
+        
+    }
+    
     func getFullAge() -> String {
         let calendar = NSCalendar.current
         let birth = self.birthDate
@@ -75,16 +102,17 @@ extension Child {
         
         Logger.init().info("Data diff -> \(components.debugDescription)")
         let year = components.year ?? 0
+        let months = components.month ?? 0
         let weeks = components.weekOfYear ?? 0
         let days = components.day ?? 0
-        let months = components.month ?? 0
         
         var ageFormatted = ""
+        let spaces = getSpacers(year: year, months: months, weeks: weeks, days: days)
         
-        ageFormatted += addField(count: year, description: "ano", withSpace: ", ")
-        ageFormatted += addField(count: months, description: "mes", withSpace: ", ")
-        ageFormatted += addField(count: weeks, description: "semana", withSpace: " e ")
-        ageFormatted += addField(count: days, description: "dia", withSpace: ".")
+        ageFormatted += addField(count: year, description: "ano", withSpace: spaces.0)
+        ageFormatted += addField(count: months, description: "mes", withSpace: spaces.1)
+        ageFormatted += addField(count: weeks, description: "semana", withSpace: spaces.2)
+        ageFormatted += addField(count: days, description: "dia", withSpace: spaces.3)
         
         return ageFormatted
     }

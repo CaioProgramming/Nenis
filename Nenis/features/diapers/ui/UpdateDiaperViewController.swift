@@ -7,6 +7,12 @@
 
 import UIKit
 
+protocol UpdateDiaperDelegate {
+    func retrieveNewDiaper(diaper: Diaper)
+    func retrieveUpdatedDiaper(diaper: Diaper)
+    func deleteDiaper(diaper: Diaper)
+}
+
 class UpdateDiaperViewController: UIViewController {
 
     @IBOutlet weak var saveButton: UIBarButtonItem!
@@ -15,10 +21,11 @@ class UpdateDiaperViewController: UIViewController {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var diaperPickerView: UIPickerView!
     
-    var diaperSize: SizeType = .RN
-    var quantity = 1
-    var multiplier = 1
-    
+    private var selectedDiaper: Diaper? = nil
+   private var diaperSize: SizeType = .RN
+   private var quantity = 1
+   private var multiplier = 1
+    var delegate: UpdateDiaperDelegate? = nil
     @IBOutlet var containerView: UIView!
   
     override func updateViewConstraints() {
@@ -50,8 +57,30 @@ class UpdateDiaperViewController: UIViewController {
         diaperSizeLabel.textColor = diaperSize.color
       
     }
+    
+    func loadSelectedDiaper(diaper: Diaper) {
+        quantity = diaper.quantity - diaper.discarded
+        diaperSize = diaper.type.getDiaperSizeByDescription() ?? SizeType.RN
+        
+        updateSelection()
+        
+        let sizeIndex = SizeType.allCases.firstIndex(where: {size in
+            size.description == diaper.type
+        })
+       
+        if(quantity > 100) {
+            quantity = 100
+        }
+        
+        diaperPickerView.selectRow(quantity - 1, inComponent: DiaperComponents.count.getComponentIndex() ?? 0, animated: true)
+        diaperPickerView.selectRow(sizeIndex ?? 0, inComponent: DiaperComponents.size.getComponentIndex() ?? 0, animated: true)
+        
+        deleteButton.fadeIn()
+    }
 
     @IBAction func deleteDiaper(_ sender: UIButton) {
+        guard selectedDiaper == nil else { return }
+        delegate?.deleteDiaper(diaper: selectedDiaper!)
     }
     
     @IBAction func dismissButton(_ sender: UIBarButtonItem) {
@@ -59,7 +88,9 @@ class UpdateDiaperViewController: UIViewController {
     }
     
     @IBAction func saveDiaper(_ sender: UIBarButtonItem) {
-        //self.dismiss(animated: true)
+        self.dismiss(animated: true, completion: { [self] in
+            delegate?.retrieveNewDiaper(diaper: Diaper(type: diaperSize.description, quantity: (quantity * multiplier)))
+        })
     }
     
     /*
@@ -244,5 +275,9 @@ extension DiaperComponents {
         }
     }
     
-    
+    func getComponentIndex() -> Int? {
+        return DiaperComponents.allCases.firstIndex(where: { component in
+                component == self
+        })
+    }
 }

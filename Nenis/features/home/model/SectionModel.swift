@@ -111,7 +111,7 @@ struct ActionSection: Section {
     var headerHeight: CGFloat = 32
     
     
-    var cellHeight: CGFloat = 75
+    var cellHeight: CGFloat = 90
     
     
     var items: [Action]

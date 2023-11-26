@@ -217,6 +217,16 @@
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
                                         </buttonConfiguration>
                                     </button>
+                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qo4-LQ-mwz">
+                                        <rect key="frame" x="122" y="63.666666666666657" width="131" height="1"/>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="sizeSegmentChange:" destination="1VF-F9-7CU" eventType="valueChanged" id="5ed-OT-UXR"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hoje meu bebê fez muito popô" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9bZ-CW-gPj">
                                         <rect key="frame" x="16" y="77" width="343" height="50"/>
                                         <constraints>
@@ -290,6 +300,7 @@
                     <connections>
                         <outlet property="activityTypeButton" destination="zBJ-Jz-AhS" id="ciq-ju-eZs"/>
                         <outlet property="datePicker" destination="i85-hT-tVK" id="uol-oQ-ieG"/>
+                        <outlet property="diaperSizeSegment" destination="Qo4-LQ-mwz" id="K3j-rU-lKy"/>
                         <outlet property="saveButton" destination="PyY-hD-ILH" id="5Oc-5e-W6A"/>
                         <outlet property="textField" destination="9bZ-CW-gPj" id="4qv-Yg-4hc"/>
                     </connections>

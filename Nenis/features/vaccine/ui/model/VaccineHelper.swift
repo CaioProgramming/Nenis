@@ -60,7 +60,9 @@ class VaccineHelper {
             periodIndex = vaccine.periods.count - 1
         }
         let vaccinePeriod = vaccine.periods[periodIndex]
-        let doseProgress = Float(currentDose)  / Float(vaccine.periods.count)
+        let remainingDoses = vaccinePeriod - currentDose
+        let totalDoses = vaccine.periods.count
+        var doseProgress = Double(remainingDoses)  / Double(totalDoses)
         let vaccineNextDate = birth.addMonth(month: vaccinePeriod) ?? Date()
         var vaccineStatus: Status = .soon
         
@@ -72,8 +74,11 @@ class VaccineHelper {
             vaccineStatus = .soon
         }
         
+        if(vaccineStatus == .done) {
+            doseProgress = 1
+        }
         
-        return VaccineItem(vaccine: vaccine, nextDate: vaccineNextDate, doseProgress: doseProgress, status: vaccineStatus, nextDose: currentDose)
+        return VaccineItem(vaccine: vaccine, nextDate: vaccineNextDate, doseProgress: Float(doseProgress), status: vaccineStatus, nextDose: currentDose)
     }
     
 }

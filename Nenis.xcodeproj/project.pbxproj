@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F00E6CEA2B0FF6AF001A1404 /* DiapersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00E6CE92B0FF6AF001A1404 /* DiapersViewModel.swift */; };
+		F00E6CED2B100000001A1404 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = F00E6CEC2B100000001A1404 /* Toast */; };
+		F01132582B11823400530CA6 /* DiaperFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01132562B11823400530CA6 /* DiaperFooterCollectionReusableView.swift */; };
+		F01132592B11823400530CA6 /* DiaperFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F01132572B11823400530CA6 /* DiaperFooterView.xib */; };
 		F01A916C2ABE189D00139466 /* baby_yoda.json in Resources */ = {isa = PBXBuildFile; fileRef = F01A916B2ABE189D00139466 /* baby_yoda.json */; };
 		F01A91702ABE200900139466 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F01A916F2ABE200900139466 /* GoogleSignIn */; };
 		F01A91722ABE200900139466 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F01A91712ABE200900139466 /* GoogleSignInSwift */; };
@@ -111,6 +115,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F00E6CE92B0FF6AF001A1404 /* DiapersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiapersViewModel.swift; sourceTree = "<group>"; };
+		F01132562B11823400530CA6 /* DiaperFooterCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperFooterCollectionReusableView.swift; sourceTree = "<group>"; };
+		F01132572B11823400530CA6 /* DiaperFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaperFooterView.xib; sourceTree = "<group>"; };
 		F01A916B2ABE189D00139466 /* baby_yoda.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = baby_yoda.json; path = ../../../../../Downloads/baby_yoda.json; sourceTree = "<group>"; };
 		F01E30402AA75786003AF470 /* Nenis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nenis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01E30432AA75786003AF470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +205,7 @@
 			files = (
 				F09EB4AF2AB3E6790058B7AB /* FirebaseMessaging in Frameworks */,
 				F09EB4AD2AB3E6790058B7AB /* FirebaseFirestoreSwift in Frameworks */,
+				F00E6CED2B100000001A1404 /* Toast in Frameworks */,
 				F09EB4A52AB3E6790058B7AB /* FirebaseAnalytics in Frameworks */,
 				F09EB4AB2AB3E6790058B7AB /* FirebaseFirestore in Frameworks */,
 				F09EB4B12AB3E6790058B7AB /* FirebaseStorage in Frameworks */,
@@ -461,6 +469,7 @@
 				F0AC1AC42B0C517100481C5E /* DiaperStoryboard.storyboard */,
 				F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */,
 				F0AF67DF2B0E9098000360E9 /* UpdateDiaperViewController.swift */,
+				F00E6CE92B0FF6AF001A1404 /* DiapersViewModel.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -496,6 +505,8 @@
 			children = (
 				F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */,
 				F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */,
+				F01132562B11823400530CA6 /* DiaperFooterCollectionReusableView.swift */,
+				F01132572B11823400530CA6 /* DiaperFooterView.xib */,
 			);
 			path = header;
 			sourceTree = "<group>";
@@ -627,6 +638,7 @@
 				F01A91712ABE200900139466 /* GoogleSignInSwift */,
 				F0BB3CC22AC5138E00ED5314 /* moa */,
 				F0AC1ABB2B0C4FDE00481C5E /* KDCircularProgress */,
+				F00E6CEC2B100000001A1404 /* Toast */,
 			);
 			productName = Nenis;
 			productReference = F01E30402AA75786003AF470 /* Nenis.app */;
@@ -707,6 +719,7 @@
 				F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */,
 				F0AC1ABA2B0C4FDE00481C5E /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
+				F00E6CEB2B100000001A1404 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = F01E30412AA75786003AF470 /* Products */;
 			projectDirPath = "";
@@ -729,6 +742,7 @@
 				F01E30532AA75787003AF470 /* LaunchScreen.storyboard in Resources */,
 				F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */,
 				F0CDFE2A2AF90FE60016984A /* ActionHeaderView.xib in Resources */,
+				F01132592B11823400530CA6 /* DiaperFooterView.xib in Resources */,
 				F0AC1ACE2B0C52AB00481C5E /* DiaperCollectionViewCell.xib in Resources */,
 				F05CBD6A2B0DA47200EBB376 /* DiaperHeaderView.xib in Resources */,
 				F09724162B02C28900F9D249 /* VaccineCollectionHeaderView.xib in Resources */,
@@ -785,6 +799,7 @@
 				F0B6B84A2AFC7FFD008AED04 /* VaccineHelper.swift in Sources */,
 				F0AC1ACD2B0C52AB00481C5E /* DiaperCollectionViewCell.swift in Sources */,
 				F0CA22422AC461D50079C1ED /* Child.swift in Sources */,
+				F00E6CEA2B0FF6AF001A1404 /* DiapersViewModel.swift in Sources */,
 				F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */,
 				F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */,
 				F0DE1F932AFA7104005209AB /* ChildHeaderView.swift in Sources */,
@@ -803,6 +818,7 @@
 				F01E30482AA75786003AF470 /* ViewController.swift in Sources */,
 				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
 				F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */,
+				F01132582B11823400530CA6 /* DiaperFooterCollectionReusableView.swift in Sources */,
 				F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */,
 				F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */,
 				F0AF67E02B0E9098000360E9 /* UpdateDiaperViewController.swift in Sources */,
@@ -1168,6 +1184,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F00E6CEB2B100000001A1404 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BastiaanJansen/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1211,6 +1235,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F00E6CEC2B100000001A1404 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F00E6CEB2B100000001A1404 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		F01A916F2ABE200900139466 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;

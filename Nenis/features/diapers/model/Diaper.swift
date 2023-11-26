@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-public struct Diaper: Codable {
+public struct Diaper: Codable, Equatable {
     
     let type: String
     var quantity: Int
-    var discarded: Int
+    var discarded: Int = 0
 
 }
 
@@ -52,4 +52,14 @@ enum SizeType: CaseIterable {
         }
     }
 
+}
+
+extension String {
+    func getDiaperSizeByDescription() -> SizeType? {
+        let cases = SizeType.allCases
+        print("querying size => \(self)")
+        return cases.first(where: { element in
+            return element.description.caseInsensitiveCompare(self) == .orderedSame
+      })
+    }
 }

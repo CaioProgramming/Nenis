@@ -92,9 +92,13 @@ class FirebaseDataSource<T : Encodable>: FirestoreImplementation {
 
     
     func updateData(id: String?, data: T, completition: @escaping (T) -> Void) {
-        
+        guard id != nil else {
+            getLogger().error("No id provided")
+            self.sendError(message: "Error executing update ", errorType: .update)
+            return
+        }
         do {
-            try collectionReference().document().setData(from: data, completion: { error in
+            try collectionReference().document(id!).setData(from: data, completion: { error in
                 if let taskError  = error {
                     self.sendError(message: "Error executing update \(taskError.localizedDescription)", errorType: .save)
                 } else {

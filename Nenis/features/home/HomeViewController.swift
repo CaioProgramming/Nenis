@@ -51,7 +51,7 @@ class HomeViewController: UIViewController {
             let storyBoard = UIStoryboard(name: storyBoardIdentifier, bundle: nil)
             if let controller = storyBoard.instantiateViewController(withIdentifier: DiapersViewController.identifier) as? DiapersViewController {
                 controller.delegate = self
-                controller.diapers = currentChild.diapers
+                controller.child = currentChild
                 controller.modalPresentationStyle = .overFullScreen
                 show(controller, sender: self)
             }
@@ -77,13 +77,18 @@ class HomeViewController: UIViewController {
         homeViewModel.homeDelegate = self
         homeViewModel.sectionDelegate = self
         setupTableView()
+        homeViewModel.initialize()
+        loadingIndicator.startAnimating()
         navigationController?.setNavigationBarHidden(true, animated: true)
         
-        //activityTable.bounces = false
-        //activityTable.isScrollEnabled = false
-        
-        // Do any additional setup after loading the view.
     }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        loadingIndicator.startAnimating()
+        sections = []
+        homeViewModel.initialize()
+    }
+    
     
     func showError(message: String, buttonMessage: String) {
         loadingIndicator.stopAnimating()
@@ -112,11 +117,6 @@ class HomeViewController: UIViewController {
         
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        homeViewModel.initialize()
-        loadingIndicator.startAnimating()
-    }
-    
     
     
     func signIn() {
@@ -137,8 +137,12 @@ class HomeViewController: UIViewController {
         if(segue.identifier == "NewActivitySegue") {
             let destination = segue.destination as! NewActionViewController
             destination.activtyProtocol = self
-            if let childDate = homeViewModel.child?.birthDate {
-                destination.birthDate = childDate
+            if let currentChild = homeViewModel.child {
+                destination.birthDate = currentChild.birthDate
+                let validSizes = currentChild.diapers.map({ diaper in
+                    return diaper.type.getDiaperSizeByDescription() ?? SizeType.RN
+                })
+                destination.validSizes = validSizes
             }
         } else if (segue.identifier == VaccinesViewController.identifier) {
             if  let destination = segue.destination as? VaccinesViewController {
@@ -203,8 +207,8 @@ extension HomeViewController: VaccineUpdateDelegate {
 
 extension HomeViewController: ActionProtocol {
     
-    func retrieveActivity(with newAction: Action) {
-        homeViewModel.addNewAction(action: newAction)
+    func retrieveActivity(with newAction: Action, diaperSize: SizeType) {
+        homeViewModel.addNewAction(action: newAction, diaperSize: diaperSize)
     }
     
     
@@ -264,6 +268,8 @@ extension HomeViewController: HomeProtocol {
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     private func registerTableViews() {
+        sections = []
+        activityTable.reloadData()
         let cells : [any CustomViewProtocol] = [ ActivityTableViewCell(), VaccineTableViewCell(), ChildTableViewCell(), DiaperTableViewCell()]
         let headers : [any CustomViewProtocol] = [ActionHeaderView(), VaccineHeaderView(), ChildHeaderView(), DiaperHeaderView()]
         cells.forEach({ view in
@@ -273,6 +279,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
             activityTable.register(item.buildNib(), forHeaderFooterViewReuseIdentifier: item.identifier)
         })
     }
+    
     
     
     
