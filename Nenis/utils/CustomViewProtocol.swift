@@ -7,12 +7,22 @@
 
 import Foundation
 import UIKit
-protocol CustomViewProtocol {
-    var identifier: String { get }
-}
+protocol CustomViewProtocol { }
 
 extension CustomViewProtocol {
-    func buildNib() -> UINib {
-        return UINib(nibName: identifier, bundle: nil)
+    
+    static var identifier : String { get { return "\(self)"} }
+    
+    static func buildNib() -> UINib {
+        return UINib(nibName: Self.identifier, bundle: nil)
+    }
+    
+    func getIdentifier() -> String {
+        return Self.identifier
+
+    }
+    
+    func getNib() -> UINib {
+        return Self.buildNib()
     }
 }

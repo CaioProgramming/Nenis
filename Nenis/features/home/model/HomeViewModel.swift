@@ -18,6 +18,7 @@ protocol HomeProtocol {
     func requireAuth()
     func authSuccess(user: User)
     func requestNewAction()
+    func confirmVaccine()
 }
 
 
@@ -36,7 +37,7 @@ class HomeViewModel: DatabaseDelegate {
     }
     
     func updateSuccess(data: Child) {
-        child = data
+        self.child = data
         buildHomeFromChild(with: data)
     }
     
@@ -100,7 +101,8 @@ class HomeViewModel: DatabaseDelegate {
     
     func selectVaccine(vaccineItem: VaccineItem) {
         if let currentChild = child {
-            vaccineUpdateInfo = (currentChild, vaccineItem.vaccine, vaccineItem.nextDose)
+            vaccineUpdateInfo = (currentChild, vaccineItem.vaccine, vaccineItem.nextDose + 1)
+            homeDelegate?.confirmVaccine()
         }
     }
     
@@ -143,13 +145,31 @@ class HomeViewModel: DatabaseDelegate {
         }
     }
 
-    func deleteDiaper(with diaperIndex: Int) {
+    func deleteDiaper(with diaper: Diaper) {
         if var currentChild = child {
-             
-            currentChild.diapers.remove(at: diaperIndex)
-            babyService?.updateData(data: currentChild)
+            if let diaperIndex = currentChild.diapers.firstIndex(of: diaper) {
+                currentChild.diapers.remove(at: diaperIndex)
+                babyService?.updateData(data: currentChild)
+            }
+            
         }
     }
+    
+    func discardDiaper(with diaper: Diaper) {
+        if var currentChild = child {
+            if let diaperIndex = currentChild.diapers.firstIndex(of: diaper) {
+                var newDiaper = diaper
+                newDiaper.discarded += 1
+                var diapers = currentChild.diapers
+                diapers[diaperIndex] = newDiaper
+                currentChild.diapers = diapers
+                babyService?.updateData(data: currentChild)
+            }
+            
+        }
+    }
+    
+    
     
     func updateDiaper(with diaper: Diaper, index: Int) {
         if var currentChild = child {
@@ -159,15 +179,9 @@ class HomeViewModel: DatabaseDelegate {
     }
     
     func buildChildDiapers(with child: Child) -> DiaperSection {
-        let diapers = SizeType.allCases.map({ size in
-            let randomQuantity = Int.random(in: 50..<100)
-            let randomDiscard = Int.random(in: (randomQuantity/2)..<randomQuantity - 10)
-            let diaper = Diaper(type: size.description, quantity: randomQuantity, discarded: randomDiscard)
-            print("building random diaper => \(String(describing: diaper))")
-
-            return Diaper(type: size.description, quantity: randomQuantity, discarded: randomDiscard)
-        })
         return DiaperSection(title: "Fraldas", items: child.diapers, headerClosure: { section in
+            self.sectionDelegate?.openDiapers()
+        }, footerClosure: { section in
             self.sectionDelegate?.openDiapers()
         })
     }
@@ -180,7 +194,7 @@ class HomeViewModel: DatabaseDelegate {
     typealias T = Child
     var homeDelegate: HomeProtocol?
     var sectionDelegate: SectionsProtocol?
-    var babyService: BabyService?
+    private var babyService: BabyService?
     
     func isUserLogged() -> Bool {
         return Auth.auth().currentUser != nil
@@ -207,6 +221,8 @@ class HomeViewModel: DatabaseDelegate {
             buildChildDiapers(with: child),
             buildVaccineSection(with: child),
             ActionSection(items: child.actions.sortByDate(), title: actionsTitle, headerClosure: { section in
+                self.homeDelegate?.requestNewAction()
+            }, footerClosure: { section in
                 self.homeDelegate?.requestNewAction()
             })
         ]

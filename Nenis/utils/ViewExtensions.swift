@@ -25,6 +25,16 @@ extension UIView {
         self.clipsToBounds = true
     }
     
+    func dropShadow(scale: Bool = true, oppacity: Float = 0.5, radius: CGFloat = 5, color: UIColor?) {
+            layer.masksToBounds = false
+            layer.shadowColor = color?.cgColor ?? UIColor.black.cgColor
+            layer.shadowOpacity = oppacity
+            layer.shadowOffset = .zero
+            layer.shadowRadius = radius
+            layer.shouldRasterize = true
+            layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+        }
+    
     func showPopOver(viewController: UIViewController, message: String, presentationDelegate: UIPopoverPresentationControllerDelegate?) {
             
             let utilsStoryBoard = UIStoryboard(name: "Utils", bundle: nil)
@@ -78,4 +88,23 @@ extension UIView {
         return height
     }
 }
- 
+struct MenuActions {
+    let title: String
+    let image: String
+    let closure: () -> Void
+}
+func getContextualMenu(title: String, actions: [MenuActions]) -> UIContextMenuConfiguration {
+    
+    let uiActions = actions.map({ element in
+        UIAction(title: element.title, image: UIImage(systemName: element.image), identifier: nil, discoverabilityTitle: nil, state: .off) { (_) in
+            element.closure()
+        }
+    })
+    
+    let context = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+        
+        return UIMenu(title: title, image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: uiActions)
+
+    }
+    return context
+}

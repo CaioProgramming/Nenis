@@ -16,7 +16,6 @@ protocol UpdateDiaperDelegate {
 class UpdateDiaperViewController: UIViewController {
 
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var diaperSizeLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var diaperPickerView: UIPickerView!
@@ -32,7 +31,7 @@ class UpdateDiaperViewController: UIViewController {
                 // they're now "cards"
                 let TOP_CARD_DISTANCE: CGFloat = 50
                 
-                var height: CGFloat = containerView.wrapHeight()
+        let height: CGFloat = containerView.wrapHeight()
            
                 view.frame.size.height = height
                 // reposition the view (if not it will be near the top)
@@ -48,7 +47,24 @@ class UpdateDiaperViewController: UIViewController {
         diaperPickerView.delegate = self
         diaperPickerView.dataSource = self
         diaperPickerView.reloadAllComponents()
-        // Do any additional setup after loading the view.
+        if let diaper = selectedDiaper {
+            quantity = diaper.quantity - diaper.discarded
+            diaperSize = diaper.type.getDiaperSizeByDescription() ?? SizeType.RN
+            
+            let sizeIndex = SizeType.allCases.firstIndex(where: {size in
+                size.description == diaper.type
+            })
+           
+            if(quantity > 100) {
+                quantity = 100
+            }
+            
+            diaperPickerView.selectRow(quantity - 1, inComponent: DiaperComponents.count.getComponentIndex() ?? 0, animated: true)
+            diaperPickerView.selectRow(sizeIndex ?? 0, inComponent: DiaperComponents.size.getComponentIndex() ?? 0, animated: true)
+            
+        }
+        updateSelection()
+    
     }
     
     func updateSelection() {
@@ -59,23 +75,8 @@ class UpdateDiaperViewController: UIViewController {
     }
     
     func loadSelectedDiaper(diaper: Diaper) {
-        quantity = diaper.quantity - diaper.discarded
-        diaperSize = diaper.type.getDiaperSizeByDescription() ?? SizeType.RN
-        
-        updateSelection()
-        
-        let sizeIndex = SizeType.allCases.firstIndex(where: {size in
-            size.description == diaper.type
-        })
-       
-        if(quantity > 100) {
-            quantity = 100
-        }
-        
-        diaperPickerView.selectRow(quantity - 1, inComponent: DiaperComponents.count.getComponentIndex() ?? 0, animated: true)
-        diaperPickerView.selectRow(sizeIndex ?? 0, inComponent: DiaperComponents.size.getComponentIndex() ?? 0, animated: true)
-        
-        deleteButton.fadeIn()
+        selectedDiaper = diaper
+    
     }
 
     @IBAction func deleteDiaper(_ sender: UIButton) {

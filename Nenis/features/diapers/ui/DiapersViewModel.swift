@@ -11,8 +11,7 @@ import Foundation
 protocol DiaperProtocol {
     
     func retrieveDiapers(diapers: [Diaper])
-    func noDiapersFound()
-    
+    func updateDiaper()
     func diaperUpdated(message: String)
     func errorUpdating(message: String)
     
@@ -23,7 +22,7 @@ class DiapersViewModel {
     var child: Child? = nil
     private var babyService : BabyService? = nil
     var delegate: DiaperProtocol? = nil
-    
+    var selectedDiaper: Diaper? = nil
     func getDiapers(currentChild: Child?) {
         if let selectedChild = currentChild {
             self.child = selectedChild
@@ -31,6 +30,24 @@ class DiapersViewModel {
             delegate?.retrieveDiapers(diapers: selectedChild.diapers)
         }
      
+    }
+    
+    func selectDiaper(diaper: Diaper) {
+        selectedDiaper = diaper
+        delegate?.updateDiaper()
+    }
+    
+    func discardDiaper(diaper: Diaper) {
+        if var currentChild = child {
+            if let selectedDiaper = currentChild.diapers.firstIndex(of: diaper) {
+                var newDiaper = diaper
+                newDiaper.discarded += 1
+                var diapers = currentChild.diapers
+                diapers[selectedDiaper] = newDiaper
+                currentChild.diapers = diapers
+                updateChild(with: currentChild)
+            }
+        }
     }
     
     func updateDiaper(diaper: Diaper) {
@@ -67,10 +84,13 @@ class DiapersViewModel {
       
         }
     }
-    func deleteDiaper(position: Int) {
+    func deleteDiaper(diaper: Diaper) {
         if var currentChild = child {
-            currentChild.diapers.remove(at: position)
-            updateChild(with: currentChild)
+            if let diaperIndex = currentChild.diapers.firstIndex(of: diaper) {
+                currentChild.diapers.remove(at: diaperIndex)
+                updateChild(with: currentChild)
+            }
+            
         }
     }
     

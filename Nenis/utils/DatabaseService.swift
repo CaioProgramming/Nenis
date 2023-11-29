@@ -243,11 +243,20 @@ extension DatabaseDelegate {
     
     func taskSuccess(message: String) {
         logger().debug("Task success -> \(message)")
-
+        
     }
     
     func saveSuccess(data: T) {}
     func updateSuccess(data: T) {}
+    
+    func retrieveData(data: T) {
+        logger().info("Data retrieved -> \(String(describing: data))")
+    }
+    
+    func retrieveListData(dataList: [T]) {
+        logger().info("Data retrieved -> \(String(describing: dataList))")
+
+    }
 
 }
 

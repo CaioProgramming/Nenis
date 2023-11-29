@@ -7,15 +7,11 @@
 
 import UIKit
 
-class DiaperFooterCollectionReusableView: UICollectionReusableView, CustomViewProtocol {
-    
-    var identifier: String = "DiaperFooterView"
-    
+class CollectionFooterView:  UICollectionReusableView, CustomViewProtocol {
+        
 
-    @IBOutlet weak var footerButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     var footerClosure: (() -> Void)? = nil
     @IBAction func footerAction(_ sender: UIButton) {

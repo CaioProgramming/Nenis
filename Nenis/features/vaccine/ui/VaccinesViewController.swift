@@ -6,12 +6,19 @@
 //
 
 import UIKit
+import Toast
 
 protocol VaccinesProtocol {
-    func updateChildVaccine(newVaccine: Vaccination)
+    func updateChild()
 }
 
 class VaccinesViewController: UIViewController, VaccineProtocol {
+    
+    func updateData() {
+        Toast.default(image: UIImage(systemName: "syringe.fill")!, title: "Vacinas atualizadas com sucesso!").show()
+        getVaccines()
+    }
+    
 
     static let identifier = "VaccinesView"
     @IBOutlet weak var vaccinesCollection: UICollectionView!
@@ -24,30 +31,35 @@ class VaccinesViewController: UIViewController, VaccineProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
      
+        navigationController?.setNavigationBarHidden(false, animated: true)
         vaccinesViewModel.delegate = self
+        vaccinesViewModel.child = child
+
         registerCells()
-        vaccinesCollection.delegate = self
-        vaccinesCollection.dataSource = self
-        if let currentChild = child {
-            vaccinesViewModel.child = currentChild
+  
+        getVaccines()
+    }
+    
+    func getVaccines() {
+        if let currentChild = vaccinesViewModel.child {
             vaccines = vaccinesViewModel.loadVaccines(with: currentChild)
             vaccinesCollection.reloadData()
         }
-        navigationController?.setNavigationBarHidden(false, animated: true)
     }
+    
     
     func confirmVaccine() {
         performSegue(withIdentifier: "ConfirmVaccine", sender: self)
     }
 
-    @IBAction func dismissView(_ sender: Any) {
-        dismiss(animated: true)
-    }
     func registerCells() {
+        vaccinesCollection.delegate = self
+        vaccinesCollection.dataSource = self
+        
         let collectionCell = VaccineCollectionViewCell()
-        let headerView = VaccineCollectionHeaderView()
 
-        vaccinesCollection.register(headerView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerView.identifier)
+        vaccinesCollection.register(VaccineCollectionHeaderView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: VaccineCollectionHeaderView.identifier)
+        vaccinesCollection.register(VaccineFooterView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: VaccineFooterView.identifier)
         vaccinesCollection.register(collectionCell.buildVerticalCell(), forCellWithReuseIdentifier: collectionCell.verticalIdentifier)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,8 +79,10 @@ class VaccinesViewController: UIViewController, VaccineProtocol {
 
 extension VaccinesViewController : VaccineUpdateDelegate {
     
-    func updateVaccine(vaccine: Vaccine, newDose: Int) {
-        delegate?.updateChildVaccine(newVaccine: Vaccination(vaccine: vaccine.description, dose: newDose))
+    func updateVaccine(vaccination: Vaccination) {
+        self.dismiss(animated: true, completion: {
+            self.vaccinesViewModel.updateVaccine(newVaccine: vaccination)
+        })
     }
     
     
@@ -83,14 +97,23 @@ extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDele
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
-        
-     
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: VaccineCollectionHeaderView().identifier, for: indexPath) as! VaccineCollectionHeaderView
+        switch kind {
+          case  UICollectionView.elementKindSectionHeader:
+                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: VaccineCollectionHeaderView.identifier, for: indexPath) as! VaccineCollectionHeaderView
             
-        let key = Array(vaccines.keys)[indexPath.section]
-        headerView.setTitle(with: key.title)
-                
-        return headerView
+            let key = Array(vaccines.keys)[indexPath.section]
+            headerView.setTitle(with: key.title)
+                    
+            return headerView
+            
+        case UICollectionView.elementKindSectionFooter:
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: VaccineFooterView.identifier, for: indexPath) as! VaccineFooterView
+            return footerView
+        default:
+           return UICollectionReusableView()
+        }
+     
+       
         
     }
     
@@ -99,6 +122,15 @@ extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDele
         return CGSize(width: collectionView.contentSize.width, height: 50)
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if(section == collectionView.numberOfSections - 1) {
+            return CGSize(width: collectionView.contentSize.width, height: 150)
+
+        } else {
+            return CGSize(width: 0, height: 0)
+        }
+
+    }
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return vaccines.keys.count
     }
@@ -113,9 +145,9 @@ extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 3
-        let height : CGFloat = 150
-        return CGSize(width: width, height: width)
+        let width = collectionView.frame.width / 2
+        let height : CGFloat = 200
+        return CGSize(width: width, height: height)
     
     }
     

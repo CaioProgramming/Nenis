@@ -19,9 +19,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="E25-Ev-Xg9">
-                        <rect key="frame" x="16" y="16" width="288" height="143"/>
-                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YZh-9B-2P9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YZh-9B-2P9">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -31,10 +31,10 @@
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
-                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="XQ1-sx-TSO"/>
-                    <constraint firstAttribute="bottom" secondItem="E25-Ev-Xg9" secondAttribute="bottom" constant="16" id="dVE-P3-NME"/>
-                    <constraint firstAttribute="trailing" secondItem="E25-Ev-Xg9" secondAttribute="trailing" constant="16" id="fkf-c6-Jfj"/>
-                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="g0a-FG-Wbf"/>
+                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XQ1-sx-TSO"/>
+                    <constraint firstAttribute="bottom" secondItem="E25-Ev-Xg9" secondAttribute="bottom" id="dVE-P3-NME"/>
+                    <constraint firstAttribute="trailing" secondItem="E25-Ev-Xg9" secondAttribute="trailing" id="fkf-c6-Jfj"/>
+                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="g0a-FG-Wbf"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -47,9 +47,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

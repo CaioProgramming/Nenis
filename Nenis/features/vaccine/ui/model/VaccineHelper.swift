@@ -42,41 +42,45 @@ class VaccineHelper {
         let birth = child.birthDate
         let currentDate = Date.now
         let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
-       
-        let year = components.year ?? 0
-        let weeks = components.weekOfYear ?? 0
-        let days = components.day ?? 0
         let months = components.month ?? 0
         
         let childVaccine = child.vaccines.first(where: { vaccination in
              vaccination.vaccine.caseInsensitiveCompare(vaccine.description) == .orderedSame
          })
         
-        let currentDose = (childVaccine?.dose ?? 0)
-        let nextPeriod = currentDose + 1
-        var periodIndex = nextPeriod - 1
+        var currentDose = (childVaccine?.dose ?? 0)
+        var periodIndex = currentDose
         
         if(currentDose == vaccine.periods.count) {
             periodIndex = vaccine.periods.count - 1
         }
-        let vaccinePeriod = vaccine.periods[periodIndex]
-        let remainingDoses = vaccinePeriod - currentDose
+        
+        
+        let vaccineMonth = vaccine.periods[periodIndex]
         let totalDoses = vaccine.periods.count
+
+        
+        
+        let remainingDoses =  totalDoses - (currentDose + 1)
         var doseProgress = Double(remainingDoses)  / Double(totalDoses)
-        let vaccineNextDate = birth.addMonth(month: vaccinePeriod) ?? Date()
+        
+        let vaccineNextDate = birth.addMonth(month: vaccineMonth) ?? Date()
         var vaccineStatus: Status = .soon
         
-        if(currentDose == vaccine.periods.count) {
+        if(currentDose == 0) {
+            doseProgress = 0
+        }
+        
+        if(currentDose >= totalDoses) {
            vaccineStatus = .done
-        } else if(vaccinePeriod < months) {
+            doseProgress = 1
+        } else if(vaccineMonth < months) {
             vaccineStatus = .late
-        } else if(vaccinePeriod == months) {
+        } else {
             vaccineStatus = .soon
         }
         
-        if(vaccineStatus == .done) {
-            doseProgress = 1
-        }
+        print("Vaccine -> \(vaccine.description) progress -> \(doseProgress)")
         
         return VaccineItem(vaccine: vaccine, nextDate: vaccineNextDate, doseProgress: Float(doseProgress), status: vaccineStatus, nextDose: currentDose)
     }

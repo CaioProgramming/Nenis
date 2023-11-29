@@ -9,9 +9,7 @@ import UIKit
 import KDCircularProgress
 
 class DiaperCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
-    
-    var identifier: String = "DiaperCollectionViewCell"
-    
+        
 
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var diaperLabel: UILabel!
@@ -27,6 +25,7 @@ class DiaperCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
         let currentAmount = diaper.quantity - diaper.discarded
         let color = sizeType?.color ?? UIColor.accent
         let progress = Double(currentAmount) / Double(diaper.quantity)
+        self.clipImageToCircle(color: UIColor.clear)
         progressView.progress = progress
         progressView.progressColors = [color]
         diaperLabel.textColor = diaper.getSizeType()?.color

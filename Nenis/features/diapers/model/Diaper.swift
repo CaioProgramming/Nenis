@@ -63,3 +63,14 @@ extension String {
       })
     }
 }
+
+extension Diaper {
+    
+    func buildDiaperActions() {
+        
+    }
+    
+  
+}
+
+

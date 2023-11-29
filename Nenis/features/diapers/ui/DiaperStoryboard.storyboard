@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,17 +24,8 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxL-l5-IAf">
-                                <rect key="frame" x="0.0" y="130" width="547" height="218.66666666666663"/>
+                                <rect key="frame" x="0.0" y="138" width="547" height="293"/>
                             </pickerView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8aF-3m-mAF">
-                                <rect key="frame" x="16" y="356.66666666666669" width="515" height="34.333333333333314"/>
-                                <color key="tintColor" red="1" green="0.5265700483073934" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Excluir"/>
-                                <connections>
-                                    <action selector="deleteDiaper:" destination="VsM-Pq-muv" eventType="touchUpInside" id="43V-f5-Mud"/>
-                                </connections>
-                            </button>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-in-CZZ">
                                 <rect key="frame" x="0.0" y="0.0" width="547" height="44"/>
                                 <items>
@@ -67,21 +57,18 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="FCk-in-CZZ" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="6AT-Al-jnB"/>
-                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="bottom" secondItem="8aF-3m-mAF" secondAttribute="bottom" constant="32" id="9WS-pN-cQX"/>
                             <constraint firstItem="d30-th-456" firstAttribute="top" secondItem="FCk-in-CZZ" secondAttribute="bottom" id="DRF-Wp-61I"/>
                             <constraint firstItem="d30-th-456" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="KrC-ZF-fce"/>
-                            <constraint firstItem="8aF-3m-mAF" firstAttribute="top" secondItem="rxL-l5-IAf" secondAttribute="bottom" constant="8" id="NlV-5W-es4"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="bottom" secondItem="QIl-Oh-mbW" secondAttribute="bottom" constant="8" id="MRe-6d-GDd"/>
                             <constraint firstItem="FCk-in-CZZ" firstAttribute="top" secondItem="QIl-Oh-mbW" secondAttribute="top" id="Ohq-v4-vtV"/>
-                            <constraint firstItem="rxL-l5-IAf" firstAttribute="top" secondItem="M0Q-jb-gM4" secondAttribute="bottom" constant="8" id="Scy-EE-m9P"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="top" secondItem="M0Q-jb-gM4" secondAttribute="bottom" constant="16" id="Scy-EE-m9P"/>
                             <constraint firstItem="rxL-l5-IAf" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="TrT-o7-uPr"/>
                             <constraint firstItem="M0Q-jb-gM4" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="fvU-PY-8BS"/>
-                            <constraint firstItem="QIl-Oh-mbW" firstAttribute="trailing" secondItem="8aF-3m-mAF" secondAttribute="trailing" constant="16" id="iAY-PV-8eH"/>
                             <constraint firstItem="M0Q-jb-gM4" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="ive-iJ-rfL"/>
                             <constraint firstItem="d30-th-456" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="jlu-Bj-Mn1"/>
                             <constraint firstItem="rxL-l5-IAf" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="k7S-hc-EWl"/>
                             <constraint firstItem="M0Q-jb-gM4" firstAttribute="top" secondItem="d30-th-456" secondAttribute="bottom" id="qaX-Ml-iwr"/>
                             <constraint firstItem="FCk-in-CZZ" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="wLi-jL-5OT"/>
-                            <constraint firstItem="8aF-3m-mAF" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" constant="16" id="zA4-xO-Rna"/>
                         </constraints>
                     </view>
                     <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -89,7 +76,6 @@
                     <connections>
                         <outlet property="amountLabel" destination="d30-th-456" id="KKQ-dx-FHK"/>
                         <outlet property="containerView" destination="uXB-Uv-na5" id="DvX-wm-YYg"/>
-                        <outlet property="deleteButton" destination="8aF-3m-mAF" id="gvu-4Y-4Hq"/>
                         <outlet property="diaperPickerView" destination="rxL-l5-IAf" id="WPp-tr-bAS"/>
                         <outlet property="diaperSizeLabel" destination="M0Q-jb-gM4" id="PhP-Om-eyO"/>
                         <outlet property="saveButton" destination="UDB-ne-Lkf" id="Qfg-2F-jh0"/>
@@ -116,53 +102,13 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="XtZ-va-Yig">
-                                        <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="yC4-ra-fLB">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="200"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="AGV-ZR-uPt">
-                                        <rect key="frame" x="180" y="0.0" width="170" height="200.00000000000003"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="DPB-se-UEJ">
-                                            <rect key="frame" x="0.0" y="0.0" width="170" height="200.00000000000003"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </collectionViewCellContentView>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dSh-on-Zyf">
-                                <rect key="frame" x="16" y="379.66666666666669" width="358" height="84.666666666666686"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parece que você nao salvou nenhuma fralda no app, que tal começar agora?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F2I-v6-mh8">
-                                        <rect key="frame" x="0.0" y="0.0" width="358" height="42.333333333333336"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xv9-OY-77c">
-                                        <rect key="frame" x="0.0" y="50.333333333333314" width="358" height="34.333333333333343"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="filled" title="Adicionar fraldas" cornerStyle="medium"/>
-                                        <connections>
-                                            <action selector="openDiapers:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JeG-MB-DN2"/>
-                                            <segue destination="VsM-Pq-muv" kind="presentation" identifier="updateDiapersSegue" id="3of-c3-l5O"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="dSh-on-Zyf" secondAttribute="trailing" constant="16" id="Ghe-oX-QtN"/>
-                            <constraint firstItem="dSh-on-Zyf" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Mrh-ZZ-9Lg"/>
                             <constraint firstItem="lEu-Om-MQL" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="XAn-ei-EFe"/>
-                            <constraint firstItem="dSh-on-Zyf" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Y58-LG-sGS"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="lEu-Om-MQL" secondAttribute="bottom" id="YC2-12-QlX"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lEu-Om-MQL" secondAttribute="trailing" id="exT-5O-jKC"/>
                             <constraint firstItem="lEu-Om-MQL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="uQi-IZ-w23"/>
@@ -170,7 +116,7 @@
                     </view>
                     <connections>
                         <outlet property="diaperCollectionView" destination="lEu-Om-MQL" id="Pkf-pT-JyA"/>
-                        <outlet property="emptyView" destination="dSh-on-Zyf" id="fxu-iY-xIc"/>
+                        <segue destination="VsM-Pq-muv" kind="presentation" identifier="updateDiapersSegue" id="EWb-WA-r0h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -9,7 +9,6 @@ import UIKit
 
 class ActivityTableViewCell: UITableViewCell, CustomViewProtocol {
     
-   let identifier = "ActivityTableViewCell"
 
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var value: UILabel!

@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="243" height="247"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trR-R6-Vrk" customClass="KDCircularProgress" customModule="KDCircularProgress">
-                                <rect key="frame" x="0.0" y="0.0" width="243" height="247"/>
+                                <rect key="frame" x="0.0" y="12" width="243" height="223"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
                                         <real key="value" value="90"/>
@@ -32,6 +32,12 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="lerpColorMode" value="YES"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="glowAmount">
                                         <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
+                                        <color key="value" systemColor="systemBackgroundColor"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -56,11 +62,11 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="7Ia-6v-EIb" firstAttribute="centerX" secondItem="trR-R6-Vrk" secondAttribute="centerX" id="NIE-zw-qpg"/>
-                            <constraint firstAttribute="bottom" secondItem="trR-R6-Vrk" secondAttribute="bottom" id="c0w-eG-AqY"/>
+                            <constraint firstAttribute="bottom" secondItem="trR-R6-Vrk" secondAttribute="bottom" constant="12" id="c0w-eG-AqY"/>
                             <constraint firstItem="trR-R6-Vrk" firstAttribute="leading" secondItem="7fO-eQ-feU" secondAttribute="leading" id="cpL-sj-4sM"/>
                             <constraint firstAttribute="trailing" secondItem="trR-R6-Vrk" secondAttribute="trailing" id="fsx-g6-9sx"/>
                             <constraint firstItem="7Ia-6v-EIb" firstAttribute="centerY" secondItem="trR-R6-Vrk" secondAttribute="centerY" id="jOk-KM-8vz"/>
-                            <constraint firstItem="trR-R6-Vrk" firstAttribute="top" secondItem="7fO-eQ-feU" secondAttribute="top" id="syD-bI-MRG"/>
+                            <constraint firstItem="trR-R6-Vrk" firstAttribute="top" secondItem="7fO-eQ-feU" secondAttribute="top" constant="12" id="syD-bI-MRG"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -84,6 +90,9 @@
     <resources>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

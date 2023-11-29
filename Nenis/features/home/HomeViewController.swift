@@ -27,9 +27,17 @@ class HomeViewController: UIViewController {
     
     
     func setupTableView(){
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(reloadChild), for: .valueChanged)
+
         registerTableViews()
         activityTable.dataSource = self
         activityTable.delegate = self
+        activityTable.refreshControl = refreshControl
+    }
+    
+    @objc func reloadChild() {
+        homeViewModel.initialize()
     }
     
     func showVaccines() {
@@ -50,7 +58,6 @@ class HomeViewController: UIViewController {
             let storyBoardIdentifier = "DiaperStoryboard"
             let storyBoard = UIStoryboard(name: storyBoardIdentifier, bundle: nil)
             if let controller = storyBoard.instantiateViewController(withIdentifier: DiapersViewController.identifier) as? DiapersViewController {
-                controller.delegate = self
                 controller.child = currentChild
                 controller.modalPresentationStyle = .overFullScreen
                 show(controller, sender: self)
@@ -59,7 +66,7 @@ class HomeViewController: UIViewController {
     }
     
     func updateVaccine() {
-        if let currentChild = homeViewModel.child {
+        if homeViewModel.child != nil {
             let vaccineStoryBoard = "VaccineStoryboard"
             let storyBoard = UIStoryboard(name: vaccineStoryBoard, bundle: nil)
             if let controller = storyBoard.instantiateViewController(withIdentifier: UpdateVaccineViewController.identifier) as? UpdateVaccineViewController {
@@ -69,6 +76,10 @@ class HomeViewController: UIViewController {
                 present(controller, animated: true)
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        activityTable.refreshControl?.beginRefreshing()
     }
     
     override func viewDidLoad() {
@@ -158,46 +169,42 @@ class HomeViewController: UIViewController {
     }
 }
 
-//MARK: - DiaperProtocols
-extension HomeViewController: DiapersProtocol {
-    
-    func updateDiaper(diaper: Diaper, with index: Int) {
-        
-        homeViewModel.updateDiaper(with: diaper, index: index)
-
-    }
-    
-    
-    func addDiaper(diaper: Diaper) {
-        homeViewModel.addDiaper(with: diaper)
-    }
-    
-    func deleteDiaper(diaperIndex: Int) {
-        homeViewModel.deleteDiaper(with: diaperIndex)
-    }
-    
-    
-   
-    
-    
  
-    
-    
-}
 
 //MARK: - VaccineProtocols
 extension HomeViewController: VaccinesProtocol {
-    func updateChildVaccine(newVaccine: Vaccination) {
-        homeViewModel.updateChildVaccine(vaccinate: newVaccine)
+    func updateChild() {
+        homeViewModel.initialize()
     }
     
     
 }
 
 extension HomeViewController: VaccineUpdateDelegate {
+    func updateVaccine(vaccination: Vaccination) {
+        homeViewModel.updateChildVaccine(vaccinate: vaccination)
+    }
     
-    func updateVaccine(vaccine: Vaccine, newDose: Int) {
-        updateChildVaccine(newVaccine: Vaccination(vaccine: vaccine.description, dose: newDose))
+    
+
+    
+    
+}
+
+//MARK: - DiaperCell Protcols sections
+extension HomeViewController: DiaperTableProcol {
+    
+    func requestDelete(diaper: Diaper) {
+        self.homeViewModel.deleteDiaper(with: diaper)
+    }
+    
+    func requestDiscard(diaper: Diaper) {
+        self.homeViewModel.discardDiaper(with: diaper)
+
+    }
+    
+    func requestUpdate(diaper: Diaper) {
+        openDiapers()
     }
     
     
@@ -217,11 +224,15 @@ extension HomeViewController: ActionProtocol {
 //MARK: - HomeProtocols section
 extension HomeViewController: HomeProtocol {
     
+    func confirmVaccine() {
+        updateVaccine()
+    }
     
     func retrieveHome(with homeSection: [any Section]) {
         sections = homeSection
         Logger.init().info("Sections updated -> \(homeSection.debugDescription)")
         activityTable.reloadData()
+        activityTable.refreshControl?.endRefreshing()
     }
     
     
@@ -267,16 +278,16 @@ extension HomeViewController: HomeProtocol {
 //MARK: - TableView Delegates
 extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
+    
+    
     private func registerTableViews() {
-        sections = []
-        activityTable.reloadData()
         let cells : [any CustomViewProtocol] = [ ActivityTableViewCell(), VaccineTableViewCell(), ChildTableViewCell(), DiaperTableViewCell()]
-        let headers : [any CustomViewProtocol] = [ActionHeaderView(), VaccineHeaderView(), ChildHeaderView(), DiaperHeaderView()]
+        let headers : [any CustomViewProtocol] = [HorizontalHeaderView(), VaccineHeaderView(), ChildHeaderView(), DiaperHeaderView(), VerticalTableFooterView()]
         cells.forEach({ view in
-            activityTable.register(view.buildNib(), forCellReuseIdentifier: view.identifier)
+            activityTable.register(view.getNib(), forCellReuseIdentifier: (view as CustomViewProtocol).getIdentifier())
         })
         headers.forEach({ item in
-            activityTable.register(item.buildNib(), forHeaderFooterViewReuseIdentifier: item.identifier)
+            activityTable.register(item.getNib(), forHeaderFooterViewReuseIdentifier: (item as CustomViewProtocol).getIdentifier())
         })
     }
     
@@ -338,17 +349,40 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
         return customSection.dequeueHeader(with: tableView, sectionIndex: section)
 
     }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let customSection = sections[section]
+        return customSection.dequeueFooter(with: tableView, sectionIndex: section)
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let section = sections[indexPath.section]
-        return section.dequeueCell(with: tableView, indexPath: indexPath)
+        let cell = section.dequeueCell(with: tableView, indexPath: indexPath)
+        if(cell is DiaperTableViewCell) {
+            if let diaperCell = cell as? DiaperTableViewCell {
+                diaperCell.delegate = self
+            }
+        }
+        if(cell is VaccineTableViewCell) {
+            if let vaccineCell = cell as? VaccineTableViewCell {
+                vaccineCell.selectVaccine = { vaccineItem in
+                    self.homeViewModel.selectVaccine(vaccineItem: vaccineItem)
+                }
+            }
+        }
+        return cell
         
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let section = sections[section]
+        return section.footerHeight()
+    }
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let section = sections[section]
-        return section.headerHeight
+        return section.headerHeight()
     }
     
     
@@ -369,3 +403,5 @@ extension HomeViewController: SectionsProtocol {
         showDiapers()
     }
 }
+
+

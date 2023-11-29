@@ -9,7 +9,6 @@ import UIKit
 
 class DiaperHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     
-    var identifier: String = "DiaperHeaderView"
     
     @IBOutlet weak var titleLabel: UILabel!
     

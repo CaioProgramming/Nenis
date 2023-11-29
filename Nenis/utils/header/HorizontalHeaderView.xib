@@ -11,32 +11,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ActionHeaderView" customModule="Nenis" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="HorizontalHeaderView" customModule="Nenis" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="124"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-7Y-N4N">
-                    <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                    <rect key="frame" x="0.0" y="0.0" width="768" height="124"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oa-3E-a7c">
-                            <rect key="frame" x="369" y="43" width="24" height="14"/>
+                            <rect key="frame" x="744" y="0.0" width="24" height="124"/>
                             <buttonConfiguration key="configuration" style="plain" cornerStyle="medium"/>
                             <connections>
                                 <action selector="newActionTap:" destination="-2" eventType="touchUpInside" id="TZ1-8K-pbf"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiF-Dr-V8Q">
-                            <rect key="frame" x="16.000000000000004" y="40" width="41.333333333333343" height="20.333333333333329"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <rect key="frame" x="16.000000000000004" y="0.0" width="43.333333333333343" height="124"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="SiF-Dr-V8Q" firstAttribute="top" secondItem="Vn7-7Y-N4N" secondAttribute="top" id="63h-Zt-Hfp"/>
+                        <constraint firstAttribute="bottom" secondItem="SiF-Dr-V8Q" secondAttribute="bottom" id="Fod-MR-doE"/>
                         <constraint firstItem="SiF-Dr-V8Q" firstAttribute="leading" secondItem="Vn7-7Y-N4N" secondAttribute="leading" constant="16" id="PBm-EH-z3d"/>
                         <constraint firstItem="4oa-3E-a7c" firstAttribute="centerY" secondItem="Vn7-7Y-N4N" secondAttribute="centerY" id="PYY-zt-vP1"/>
                         <constraint firstItem="SiF-Dr-V8Q" firstAttribute="centerY" secondItem="Vn7-7Y-N4N" secondAttribute="centerY" id="cJj-D9-kz2"/>
                         <constraint firstAttribute="trailing" secondItem="4oa-3E-a7c" secondAttribute="trailing" id="rKK-nM-2E7"/>
+                        <constraint firstAttribute="bottom" secondItem="4oa-3E-a7c" secondAttribute="bottom" id="rb3-Wc-9d0"/>
+                        <constraint firstItem="4oa-3E-a7c" firstAttribute="top" secondItem="Vn7-7Y-N4N" secondAttribute="top" id="sJb-HU-6r6"/>
                     </constraints>
                 </view>
             </subviews>
@@ -52,10 +56,11 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="container" destination="Vn7-7Y-N4N" id="bP8-AC-s67"/>
                 <outlet property="newActionButton" destination="4oa-3E-a7c" id="oI5-Ix-Kgw"/>
                 <outlet property="titleLabel" destination="SiF-Dr-V8Q" id="TlB-Er-RVD"/>
             </connections>
-            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
+            <point key="canvasLocation" x="170.99236641221373" y="-2.8169014084507045"/>
         </view>
     </objects>
     <resources>
