@@ -24,7 +24,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" name="SplashBackground"/>
+                        <color key="backgroundColor" name="AccentColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -34,8 +34,8 @@
     </scenes>
     <resources>
         <image name="bear-svgrepo-com" width="85.333335876464844" height="85.333335876464844"/>
-        <namedColor name="SplashBackground">
-            <color red="0.95588821170000005" green="0.90794646739999996" blue="0.55953973530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <namedColor name="AccentColor">
+            <color red="0.95599997043609619" green="0.90799999237060547" blue="0.56000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

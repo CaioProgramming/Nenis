@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F00E6CEA2B0FF6AF001A1404 /* DiapersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00E6CE92B0FF6AF001A1404 /* DiapersViewModel.swift */; };
+		F00E6CED2B100000001A1404 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = F00E6CEC2B100000001A1404 /* Toast */; };
+		F01132582B11823400530CA6 /* CollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01132562B11823400530CA6 /* CollectionFooterView.swift */; };
+		F01132592B11823400530CA6 /* CollectionFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F01132572B11823400530CA6 /* CollectionFooterView.xib */; };
 		F01A916C2ABE189D00139466 /* baby_yoda.json in Resources */ = {isa = PBXBuildFile; fileRef = F01A916B2ABE189D00139466 /* baby_yoda.json */; };
 		F01A91702ABE200900139466 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = F01A916F2ABE200900139466 /* GoogleSignIn */; };
 		F01A91722ABE200900139466 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F01A91712ABE200900139466 /* GoogleSignInSwift */; };
@@ -23,15 +27,16 @@
 		F01E307C2AA75BF2003AF470 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307B2AA75BF2003AF470 /* HomeViewController.swift */; };
 		F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307D2AA75C04003AF470 /* ProfileViewController.swift */; };
 		F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01E307F2AA75C11003AF470 /* ExploreViewController.swift */; };
-		F026ECB12AF53DCA0004F3B3 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */; };
+		F026ECB12AF53DCA0004F3B3 /* SectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECB02AF53DCA0004F3B3 /* SectionModel.swift */; };
 		F026ECBE2AF5587F0004F3B3 /* Vaccine.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECBD2AF5587F0004F3B3 /* Vaccine.swift */; };
 		F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECC12AF5784C0004F3B3 /* VaccineTableViewCell.swift */; };
 		F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F026ECC22AF5784C0004F3B3 /* VaccineTableViewCell.xib */; };
 		F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */; };
 		F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */; };
 		F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */; };
-		F04CE83F2B17AAFE00C8B905 /* ChildSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04CE83E2B17AAFE00C8B905 /* ChildSettingsViewController.swift */; };
-		F04CE8422B17B30100C8B905 /* ChildSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04CE8412B17B30100C8B905 /* ChildSettingsViewModel.swift */; };
+		F05CBD682B0DA46800EBB376 /* DiaperHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */; };
+		F05CBD6A2B0DA47200EBB376 /* DiaperHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */; };
+		F05CBD6C2B0DAA3400EBB376 /* DiapersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */; };
 		F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0891AE62AC1F37600BC6C6B /* Baby.storyboard */; };
 		F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */; };
 		F09724142B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */; };
@@ -52,6 +57,14 @@
 		F0A5BFC02AB485C90045AD1C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F0A5BFBF2AB485C90045AD1C /* Lottie */; };
 		F0A635852AAB567100FC8C62 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A635832AAB567100FC8C62 /* ActivityTableViewCell.swift */; };
 		F0A635862AAB567100FC8C62 /* ActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A635842AAB567100FC8C62 /* ActivityTableViewCell.xib */; };
+		F0AC1ABC2B0C4FDE00481C5E /* KDCircularProgress in Frameworks */ = {isa = PBXBuildFile; productRef = F0AC1ABB2B0C4FDE00481C5E /* KDCircularProgress */; };
+		F0AC1AC32B0C502D00481C5E /* Diaper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AC1AC22B0C502D00481C5E /* Diaper.swift */; };
+		F0AC1AC52B0C517100481C5E /* DiaperStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0AC1AC42B0C517100481C5E /* DiaperStoryboard.storyboard */; };
+		F0AC1AC92B0C51C100481C5E /* DiaperTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AC1AC72B0C51C100481C5E /* DiaperTableViewCell.swift */; };
+		F0AC1ACA2B0C51C100481C5E /* DiaperTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0AC1AC82B0C51C100481C5E /* DiaperTableViewCell.xib */; };
+		F0AC1ACD2B0C52AB00481C5E /* DiaperCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AC1ACB2B0C52AB00481C5E /* DiaperCollectionViewCell.swift */; };
+		F0AC1ACE2B0C52AB00481C5E /* DiaperCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0AC1ACC2B0C52AB00481C5E /* DiaperCollectionViewCell.xib */; };
+		F0AF67E02B0E9098000360E9 /* UpdateDiaperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0AF67DF2B0E9098000360E9 /* UpdateDiaperViewController.swift */; };
 		F0B3105C2ABD1F3200530994 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0B3105B2ABD1F3200530994 /* GoogleService-Info.plist */; };
 		F0B3105E2ABD2A6C00530994 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B3105D2ABD2A6C00530994 /* AuthViewModel.swift */; };
 		F0B310612ABD2CB300530994 /* AnimationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B310602ABD2CB300530994 /* AnimationExtensions.swift */; };
@@ -60,6 +73,10 @@
 		F0B6B8482AFC7FBE008AED04 /* VaccinesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6B8472AFC7FBE008AED04 /* VaccinesViewModel.swift */; };
 		F0B6B84A2AFC7FFD008AED04 /* VaccineHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6B8492AFC7FFD008AED04 /* VaccineHelper.swift */; };
 		F0B6B84C2AFCAFCC008AED04 /* VaccineVerticalViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B6B84B2AFCAFCC008AED04 /* VaccineVerticalViewCell.xib */; };
+		F0B758812B15242400568D0C /* VaccineFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B7587F2B15242400568D0C /* VaccineFooterView.swift */; };
+		F0B758822B15242400568D0C /* VaccineFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B758802B15242400568D0C /* VaccineFooterView.xib */; };
+		F0B758842B154F7D00568D0C /* VerticalTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B758832B154F7D00568D0C /* VerticalTableFooterView.swift */; };
+		F0B758862B154F9700568D0C /* VerticalTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B758852B154F9700568D0C /* VerticalTableFooterView.xib */; };
 		F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */ = {isa = PBXBuildFile; productRef = F0BB3CC22AC5138E00ED5314 /* moa */; };
 		F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */; };
 		F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C170932AF95E8400BD6326 /* CustomViewProtocol.swift */; };
@@ -72,8 +89,8 @@
 		F0CBE7982AC5EB2D00AD6185 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CBE7972AC5EB2D00AD6185 /* StorageService.swift */; };
 		F0CDB99C2AC9444E00430A96 /* InviteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDB99B2AC9444E00430A96 /* InviteViewController.swift */; };
 		F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */; };
-		F0CDFE282AF90FD90016984A /* ActionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDFE272AF90FD90016984A /* ActionHeaderView.swift */; };
-		F0CDFE2A2AF90FE60016984A /* ActionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0CDFE292AF90FE60016984A /* ActionHeaderView.xib */; };
+		F0CDFE282AF90FD90016984A /* HorizontalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDFE272AF90FD90016984A /* HorizontalHeaderView.swift */; };
+		F0CDFE2A2AF90FE60016984A /* HorizontalHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0CDFE292AF90FE60016984A /* HorizontalHeaderView.xib */; };
 		F0D2807B2AFC768E00ED800A /* VaccinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2807A2AFC768E00ED800A /* VaccinesViewController.swift */; };
 		F0DE1F932AFA7104005209AB /* ChildHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE1F922AFA7104005209AB /* ChildHeaderView.swift */; };
 		F0DE1F952AFA7116005209AB /* ChildHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DE1F942AFA7116005209AB /* ChildHeaderView.xib */; };
@@ -102,6 +119,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F00E6CE92B0FF6AF001A1404 /* DiapersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiapersViewModel.swift; sourceTree = "<group>"; };
+		F01132562B11823400530CA6 /* CollectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFooterView.swift; sourceTree = "<group>"; };
+		F01132572B11823400530CA6 /* CollectionFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionFooterView.xib; sourceTree = "<group>"; };
 		F01A916B2ABE189D00139466 /* baby_yoda.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = baby_yoda.json; path = ../../../../../Downloads/baby_yoda.json; sourceTree = "<group>"; };
 		F01E30402AA75786003AF470 /* Nenis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nenis.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F01E30432AA75786003AF470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,15 +140,16 @@
 		F01E307B2AA75BF2003AF470 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		F01E307D2AA75C04003AF470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F01E307F2AA75C11003AF470 /* ExploreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreViewController.swift; sourceTree = "<group>"; };
-		F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
+		F026ECB02AF53DCA0004F3B3 /* SectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionModel.swift; sourceTree = "<group>"; };
 		F026ECBD2AF5587F0004F3B3 /* Vaccine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vaccine.swift; sourceTree = "<group>"; };
 		F026ECC12AF5784C0004F3B3 /* VaccineTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineTableViewCell.swift; sourceTree = "<group>"; };
 		F026ECC22AF5784C0004F3B3 /* VaccineTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineTableViewCell.xib; sourceTree = "<group>"; };
 		F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionViewCell.swift; sourceTree = "<group>"; };
 		F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCollectionViewCell.xib; sourceTree = "<group>"; };
 		F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		F04CE83E2B17AAFE00C8B905 /* ChildSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSettingsViewController.swift; sourceTree = "<group>"; };
-		F04CE8412B17B30100C8B905 /* ChildSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSettingsViewModel.swift; sourceTree = "<group>"; };
+		F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperHeaderView.swift; sourceTree = "<group>"; };
+		F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaperHeaderView.xib; sourceTree = "<group>"; };
+		F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiapersViewController.swift; sourceTree = "<group>"; };
 		F0891AE62AC1F37600BC6C6B /* Baby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Baby.storyboard; sourceTree = "<group>"; };
 		F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChildViewController.swift; sourceTree = "<group>"; };
 		F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionHeaderView.swift; sourceTree = "<group>"; };
@@ -141,6 +162,13 @@
 		F0A5BFBC2AB484460045AD1C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		F0A635832AAB567100FC8C62 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		F0A635842AAB567100FC8C62 /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
+		F0AC1AC22B0C502D00481C5E /* Diaper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diaper.swift; sourceTree = "<group>"; };
+		F0AC1AC42B0C517100481C5E /* DiaperStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DiaperStoryboard.storyboard; sourceTree = "<group>"; };
+		F0AC1AC72B0C51C100481C5E /* DiaperTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperTableViewCell.swift; sourceTree = "<group>"; };
+		F0AC1AC82B0C51C100481C5E /* DiaperTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaperTableViewCell.xib; sourceTree = "<group>"; };
+		F0AC1ACB2B0C52AB00481C5E /* DiaperCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperCollectionViewCell.swift; sourceTree = "<group>"; };
+		F0AC1ACC2B0C52AB00481C5E /* DiaperCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaperCollectionViewCell.xib; sourceTree = "<group>"; };
+		F0AF67DF2B0E9098000360E9 /* UpdateDiaperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateDiaperViewController.swift; sourceTree = "<group>"; };
 		F0B3105B2ABD1F3200530994 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0B3105D2ABD2A6C00530994 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		F0B310602ABD2CB300530994 /* AnimationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationExtensions.swift; sourceTree = "<group>"; };
@@ -149,6 +177,10 @@
 		F0B6B8472AFC7FBE008AED04 /* VaccinesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesViewModel.swift; sourceTree = "<group>"; };
 		F0B6B8492AFC7FFD008AED04 /* VaccineHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineHelper.swift; sourceTree = "<group>"; };
 		F0B6B84B2AFCAFCC008AED04 /* VaccineVerticalViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineVerticalViewCell.xib; sourceTree = "<group>"; };
+		F0B7587F2B15242400568D0C /* VaccineFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineFooterView.swift; sourceTree = "<group>"; };
+		F0B758802B15242400568D0C /* VaccineFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineFooterView.xib; sourceTree = "<group>"; };
+		F0B758832B154F7D00568D0C /* VerticalTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalTableFooterView.swift; sourceTree = "<group>"; };
+		F0B758852B154F9700568D0C /* VerticalTableFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalTableFooterView.xib; sourceTree = "<group>"; };
 		F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		F0C170932AF95E8400BD6326 /* CustomViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewProtocol.swift; sourceTree = "<group>"; };
 		F0C170962AF9729B00BD6326 /* VaccineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineHeaderView.swift; sourceTree = "<group>"; };
@@ -160,8 +192,8 @@
 		F0CBE7972AC5EB2D00AD6185 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		F0CDB99B2AC9444E00430A96 /* InviteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewController.swift; sourceTree = "<group>"; };
 		F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewModel.swift; sourceTree = "<group>"; };
-		F0CDFE272AF90FD90016984A /* ActionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionHeaderView.swift; sourceTree = "<group>"; };
-		F0CDFE292AF90FE60016984A /* ActionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionHeaderView.xib; sourceTree = "<group>"; };
+		F0CDFE272AF90FD90016984A /* HorizontalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderView.swift; sourceTree = "<group>"; };
+		F0CDFE292AF90FE60016984A /* HorizontalHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalHeaderView.xib; sourceTree = "<group>"; };
 		F0D2807A2AFC768E00ED800A /* VaccinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesViewController.swift; sourceTree = "<group>"; };
 		F0DE1F922AFA7104005209AB /* ChildHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildHeaderView.swift; sourceTree = "<group>"; };
 		F0DE1F942AFA7116005209AB /* ChildHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildHeaderView.xib; sourceTree = "<group>"; };
@@ -181,11 +213,13 @@
 			files = (
 				F09EB4AF2AB3E6790058B7AB /* FirebaseMessaging in Frameworks */,
 				F09EB4AD2AB3E6790058B7AB /* FirebaseFirestoreSwift in Frameworks */,
+				F00E6CED2B100000001A1404 /* Toast in Frameworks */,
 				F09EB4A52AB3E6790058B7AB /* FirebaseAnalytics in Frameworks */,
 				F09EB4AB2AB3E6790058B7AB /* FirebaseFirestore in Frameworks */,
 				F09EB4B12AB3E6790058B7AB /* FirebaseStorage in Frameworks */,
 				F01A91722ABE200900139466 /* GoogleSignInSwift in Frameworks */,
 				F09EB4A92AB3E6790058B7AB /* FirebaseAuthCombine-Community in Frameworks */,
+				F0AC1ABC2B0C4FDE00481C5E /* KDCircularProgress in Frameworks */,
 				F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */,
 				F09EB4A72AB3E6790058B7AB /* FirebaseAuth in Frameworks */,
 				F0A5BFC02AB485C90045AD1C /* Lottie in Frameworks */,
@@ -279,6 +313,7 @@
 		F01E30762AA75BB3003AF470 /* features */ = {
 			isa = PBXGroup;
 			children = (
+				F0AC1ABD2B0C4FEF00481C5E /* diapers */,
 				F03ED7D52AF449020025E8BF /* vaccine */,
 				F0891AE52AC1F2FA00BC6C6B /* baby */,
 				F09D40BD2ABFCA730006E4BF /* popover */,
@@ -362,7 +397,7 @@
 			isa = PBXGroup;
 			children = (
 				F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */,
-				F026ECB02AF53DCA0004F3B3 /* HomeSection.swift */,
+				F026ECB02AF53DCA0004F3B3 /* SectionModel.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -376,19 +411,9 @@
 			path = vaccine;
 			sourceTree = "<group>";
 		};
-		F04CE8402B17B2EE00C8B905 /* settings */ = {
-			isa = PBXGroup;
-			children = (
-				F04CE83E2B17AAFE00C8B905 /* ChildSettingsViewController.swift */,
-				F04CE8412B17B30100C8B905 /* ChildSettingsViewModel.swift */,
-			);
-			path = settings;
-			sourceTree = "<group>";
-		};
 		F0891AE52AC1F2FA00BC6C6B /* baby */ = {
 			isa = PBXGroup;
 			children = (
-				F04CE8402B17B2EE00C8B905 /* settings */,
 				F0DE1F912AFA707E005209AB /* ui */,
 				F0CDB99D2AC9446100430A96 /* invite */,
 				F0BB3CC42AC51AD800ED5314 /* service */,
@@ -396,6 +421,26 @@
 				F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */,
 			);
 			path = baby;
+			sourceTree = "<group>";
+		};
+		F09D23C72B16323C0010A5F2 /* header */ = {
+			isa = PBXGroup;
+			children = (
+				F0CDFE272AF90FD90016984A /* HorizontalHeaderView.swift */,
+				F0CDFE292AF90FE60016984A /* HorizontalHeaderView.xib */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
+		F09D23C82B1632410010A5F2 /* footer */ = {
+			isa = PBXGroup;
+			children = (
+				F01132562B11823400530CA6 /* CollectionFooterView.swift */,
+				F01132572B11823400530CA6 /* CollectionFooterView.xib */,
+				F0B758832B154F7D00568D0C /* VerticalTableFooterView.swift */,
+				F0B758852B154F9700568D0C /* VerticalTableFooterView.xib */,
+			);
+			path = footer;
 			sourceTree = "<group>";
 		};
 		F09D40BD2ABFCA730006E4BF /* popover */ = {
@@ -427,16 +472,75 @@
 		F0A635802AAB563800FC8C62 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				F0CDFE262AF90F5E0016984A /* header */,
 				F0CDFE252AF90F530016984A /* cell */,
 				F09F3F322AA96A9200143522 /* NewActionViewController.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
 		};
+		F0AC1ABD2B0C4FEF00481C5E /* diapers */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1ABF2B0C500100481C5E /* model */,
+				F0AC1ABE2B0C4FFC00481C5E /* ui */,
+			);
+			path = diapers;
+			sourceTree = "<group>";
+		};
+		F0AC1ABE2B0C4FFC00481C5E /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1AC62B0C51A100481C5E /* header */,
+				F0AC1AC12B0C501600481C5E /* collection */,
+				F0AC1AC02B0C500C00481C5E /* cell */,
+				F0AC1AC42B0C517100481C5E /* DiaperStoryboard.storyboard */,
+				F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */,
+				F0AF67DF2B0E9098000360E9 /* UpdateDiaperViewController.swift */,
+				F00E6CE92B0FF6AF001A1404 /* DiapersViewModel.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		F0AC1ABF2B0C500100481C5E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1AC22B0C502D00481C5E /* Diaper.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F0AC1AC02B0C500C00481C5E /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1AC72B0C51C100481C5E /* DiaperTableViewCell.swift */,
+				F0AC1AC82B0C51C100481C5E /* DiaperTableViewCell.xib */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		F0AC1AC12B0C501600481C5E /* collection */ = {
+			isa = PBXGroup;
+			children = (
+				F0AC1ACB2B0C52AB00481C5E /* DiaperCollectionViewCell.swift */,
+				F0AC1ACC2B0C52AB00481C5E /* DiaperCollectionViewCell.xib */,
+			);
+			path = collection;
+			sourceTree = "<group>";
+		};
+		F0AC1AC62B0C51A100481C5E /* header */ = {
+			isa = PBXGroup;
+			children = (
+				F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */,
+				F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
 		F0B3105F2ABD2CA100530994 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				F09D23C82B1632410010A5F2 /* footer */,
+				F09D23C72B16323C0010A5F2 /* header */,
 				F0B310602ABD2CB300530994 /* AnimationExtensions.swift */,
 				F0B310622ABD300500530994 /* TextFieldExtension.swift */,
 				F09B42CC2AC30BB4004910F7 /* ViewExtensions.swift */,
@@ -480,6 +584,8 @@
 				F0C170982AF972A700BD6326 /* VaccineHeaderView.xib */,
 				F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */,
 				F09724152B02C28900F9D249 /* VaccineCollectionHeaderView.xib */,
+				F0B7587F2B15242400568D0C /* VaccineFooterView.swift */,
+				F0B758802B15242400568D0C /* VaccineFooterView.xib */,
 			);
 			path = header;
 			sourceTree = "<group>";
@@ -509,15 +615,6 @@
 				F0A635832AAB567100FC8C62 /* ActivityTableViewCell.swift */,
 			);
 			path = cell;
-			sourceTree = "<group>";
-		};
-		F0CDFE262AF90F5E0016984A /* header */ = {
-			isa = PBXGroup;
-			children = (
-				F0CDFE272AF90FD90016984A /* ActionHeaderView.swift */,
-				F0CDFE292AF90FE60016984A /* ActionHeaderView.xib */,
-			);
-			path = header;
 			sourceTree = "<group>";
 		};
 		F0DE1F912AFA707E005209AB /* ui */ = {
@@ -560,6 +657,8 @@
 				F01A916F2ABE200900139466 /* GoogleSignIn */,
 				F01A91712ABE200900139466 /* GoogleSignInSwift */,
 				F0BB3CC22AC5138E00ED5314 /* moa */,
+				F0AC1ABB2B0C4FDE00481C5E /* KDCircularProgress */,
+				F00E6CEC2B100000001A1404 /* Toast */,
 			);
 			productName = Nenis;
 			productReference = F01E30402AA75786003AF470 /* Nenis.app */;
@@ -639,6 +738,8 @@
 				F0A5BFBE2AB485C90045AD1C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */,
+				F0AC1ABA2B0C4FDE00481C5E /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
+				F00E6CEB2B100000001A1404 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 			);
 			productRefGroup = F01E30412AA75786003AF470 /* Products */;
 			projectDirPath = "";
@@ -660,21 +761,28 @@
 				F0DE1FA32AFB5C44005209AB /* Localizable.xcstrings in Resources */,
 				F01E30532AA75787003AF470 /* LaunchScreen.storyboard in Resources */,
 				F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */,
-				F0CDFE2A2AF90FE60016984A /* ActionHeaderView.xib in Resources */,
+				F0CDFE2A2AF90FE60016984A /* HorizontalHeaderView.xib in Resources */,
+				F01132592B11823400530CA6 /* CollectionFooterView.xib in Resources */,
+				F0AC1ACE2B0C52AB00481C5E /* DiaperCollectionViewCell.xib in Resources */,
+				F05CBD6A2B0DA47200EBB376 /* DiaperHeaderView.xib in Resources */,
 				F09724162B02C28900F9D249 /* VaccineCollectionHeaderView.xib in Resources */,
 				F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */,
 				F0C170992AF972A700BD6326 /* VaccineHeaderView.xib in Resources */,
 				F09B42CF2AC3229D004910F7 /* Utils.storyboard in Resources */,
 				F01E30502AA75787003AF470 /* Assets.xcassets in Resources */,
 				F0DE1F952AFA7116005209AB /* ChildHeaderView.xib in Resources */,
+				F0B758822B15242400568D0C /* VaccineFooterView.xib in Resources */,
 				F09D40BC2ABFAFDD0006E4BF /* baby_sleep.json in Resources */,
 				F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */,
 				F0B6B84C2AFCAFCC008AED04 /* VaccineVerticalViewCell.xib in Resources */,
+				F0B758862B154F9700568D0C /* VerticalTableFooterView.xib in Resources */,
 				F0B3105C2ABD1F3200530994 /* GoogleService-Info.plist in Resources */,
 				F0A635862AAB567100FC8C62 /* ActivityTableViewCell.xib in Resources */,
+				F0AC1AC52B0C517100481C5E /* DiaperStoryboard.storyboard in Resources */,
 				F01E304B2AA75786003AF470 /* Main.storyboard in Resources */,
 				F0DE1F9B2AFA7314005209AB /* ChildTableViewCell.xib in Resources */,
 				F0DE1FA12AFB5507005209AB /* VaccineStoryboard.storyboard in Resources */,
+				F0AC1ACA2B0C51C100481C5E /* DiaperTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,6 +807,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0AC1AC92B0C51C100481C5E /* DiaperTableViewCell.swift in Sources */,
 				F09D40C02ABFCA930006E4BF /* PopOverViewController.swift in Sources */,
 				F0CBE7982AC5EB2D00AD6185 /* StorageService.swift in Sources */,
 				F0B310612ABD2CB300530994 /* AnimationExtensions.swift in Sources */,
@@ -710,31 +819,38 @@
 				F0A5BFBD2AB484460045AD1C /* SignInViewController.swift in Sources */,
 				F09B42CD2AC30BB4004910F7 /* ViewExtensions.swift in Sources */,
 				F0B6B84A2AFC7FFD008AED04 /* VaccineHelper.swift in Sources */,
+				F0AC1ACD2B0C52AB00481C5E /* DiaperCollectionViewCell.swift in Sources */,
 				F0CA22422AC461D50079C1ED /* Child.swift in Sources */,
+				F00E6CEA2B0FF6AF001A1404 /* DiapersViewModel.swift in Sources */,
 				F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */,
 				F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */,
-				F04CE83F2B17AAFE00C8B905 /* ChildSettingsViewController.swift in Sources */,
 				F0DE1F932AFA7104005209AB /* ChildHeaderView.swift in Sources */,
-				F04CE8422B17B30100C8B905 /* ChildSettingsViewModel.swift in Sources */,
 				F0DE1F9A2AFA7314005209AB /* ChildTableViewCell.swift in Sources */,
 				F0B310632ABD300500530994 /* TextFieldExtension.swift in Sources */,
+				F0AC1AC32B0C502D00481C5E /* Diaper.swift in Sources */,
 				F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */,
-				F0CDFE282AF90FD90016984A /* ActionHeaderView.swift in Sources */,
+				F0CDFE282AF90FD90016984A /* HorizontalHeaderView.swift in Sources */,
+				F05CBD682B0DA46800EBB376 /* DiaperHeaderView.swift in Sources */,
 				F0A635852AAB567100FC8C62 /* ActivityTableViewCell.swift in Sources */,
 				F0D2807B2AFC768E00ED800A /* VaccinesViewController.swift in Sources */,
 				F0C170972AF9729B00BD6326 /* VaccineHeaderView.swift in Sources */,
 				F01E307C2AA75BF2003AF470 /* HomeViewController.swift in Sources */,
+				F05CBD6C2B0DAA3400EBB376 /* DiapersViewController.swift in Sources */,
 				F0CA22442AC4628E0079C1ED /* NewChildViewModel.swift in Sources */,
 				F01E30482AA75786003AF470 /* ViewController.swift in Sources */,
+				F0B758842B154F7D00568D0C /* VerticalTableFooterView.swift in Sources */,
 				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
 				F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */,
+				F0B758812B15242400568D0C /* VaccineFooterView.swift in Sources */,
+				F01132582B11823400530CA6 /* CollectionFooterView.swift in Sources */,
 				F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */,
 				F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */,
+				F0AF67E02B0E9098000360E9 /* UpdateDiaperViewController.swift in Sources */,
 				F0B6B8482AFC7FBE008AED04 /* VaccinesViewModel.swift in Sources */,
 				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
 				F026ECBE2AF5587F0004F3B3 /* Vaccine.swift in Sources */,
 				F0B38D382AAAA19E00FBBA64 /* Action.swift in Sources */,
-				F026ECB12AF53DCA0004F3B3 /* HomeSection.swift in Sources */,
+				F026ECB12AF53DCA0004F3B3 /* SectionModel.swift in Sources */,
 				F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */,
@@ -1092,6 +1208,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F00E6CEB2B100000001A1404 /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BastiaanJansen/Toast-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
@@ -1116,6 +1240,14 @@
 				minimumVersion = 4.0.0;
 			};
 		};
+		F0AC1ABA2B0C4FDE00481C5E /* XCRemoteSwiftPackageReference "KDCircularProgress" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kaandedeoglu/KDCircularProgress";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
 		F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/evgenyneu/moa";
@@ -1127,6 +1259,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F00E6CEC2B100000001A1404 /* Toast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F00E6CEB2B100000001A1404 /* XCRemoteSwiftPackageReference "Toast-Swift" */;
+			productName = Toast;
+		};
 		F01A916F2ABE200900139466 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F01A916D2ABE1F2A00139466 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
@@ -1176,6 +1313,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0A5BFBE2AB485C90045AD1C /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		F0AC1ABB2B0C4FDE00481C5E /* KDCircularProgress */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0AC1ABA2B0C4FDE00481C5E /* XCRemoteSwiftPackageReference "KDCircularProgress" */;
+			productName = KDCircularProgress;
 		};
 		F0BB3CC22AC5138E00ED5314 /* moa */ = {
 			isa = XCSwiftPackageProductDependency;

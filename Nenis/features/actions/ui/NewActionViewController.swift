@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ActionProtocol: AnyObject {
-    func retrieveActivity(with newAction: Action)
+    func retrieveActivity(with newAction: Action, diaperSize: SizeType)
 }
 
 class NewActionViewController: UIViewController, UIPopoverPresentationControllerDelegate {
@@ -16,8 +16,11 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
     var activtyProtocol: ActionProtocol?
     var activityType = ActionType.bath
     var birthDate: Date?
+    var validSizes : [SizeType] = []
+    var selectedSize = SizeType.RN
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet weak var diaperSizeSegment: UISegmentedControl!
     @IBAction func dismissButton(_ sender: UIBarButtonItem) {
         self.dismiss(animated: true)
     }
@@ -39,9 +42,28 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
             datePicker.minimumDate = childDate
         }
         updateActivityType()
+        getSegmentsForDiapers()
         // Do any additional setup after loading the view.
     }
     
+    func getSegmentsForDiapers() {
+   
+        diaperSizeSegment.removeAllSegments()
+        if(!validSizes.isEmpty) {
+            validSizes.forEach({ size in
+                let index = validSizes.firstIndex(of: size)
+                diaperSizeSegment.insertSegment(withTitle: size.description, at: index ?? 0, animated: true)
+            })
+            diaperSizeSegment.selectedSegmentIndex = validSizes.startIndex
+            selectedSize = validSizes.first ?? SizeType.RN
+        }
+      
+    }
+    
+    @IBAction func sizeSegmentChange(_ sender: UISegmentedControl) {
+        let sizes = SizeType.allCases
+        selectedSize = sizes[sender.selectedSegmentIndex]
+    }
     
     func getMenuForTypes() -> [UIAction] {
         let activityClosure = {(action: UIAction) in
@@ -61,6 +83,12 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
     func updateActivityType() {
         activityTypeButton.setTitle("\(activityType.emoji) \(activityType.title)", for: .normal)
         activityTypeButton.tintColor = activityType.imageTint
+        
+        if(activityType == .bath) {
+            diaperSizeSegment.fadeIn()
+        } else {
+            diaperSizeSegment.fadeOut()
+        }
     }
     
     
@@ -68,7 +96,7 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
     @IBAction func saveActivityTap(_ sender: UIButton) {
         let text = textField.text
         if(textField.hasText) {
-            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType.description, time: datePicker.date))
+            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType.description, time: datePicker.date), diaperSize: selectedSize)
             self.dismiss(animated: true)
         } else {
             textField.showPopOver(viewController: self, message: "Fill the information", presentationDelegate: self)

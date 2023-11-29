@@ -9,7 +9,7 @@ import UIKit
 import os
 
 protocol VaccineUpdateDelegate {
-    func updateVaccine(vaccine: Vaccine, newDose: Int)
+    func updateVaccine(vaccination: Vaccination)
 }
 
 class UpdateVaccineViewController: UIViewController {
@@ -32,6 +32,7 @@ class UpdateVaccineViewController: UIViewController {
         Logger.init().debug("Info -> \(self.info.debugDescription)")
         // Do any additional setup after loading the view.
     }
+    
      
     func updateInfo(newInfo: (Child,  Vaccine, Int)) {
         info = newInfo
@@ -40,8 +41,10 @@ class UpdateVaccineViewController: UIViewController {
 
     @IBAction func confirmVaccineTap(_ sender: Any) {
         if let confirmInfo = info {
-            delegate?.updateVaccine(vaccine: confirmInfo.1, newDose: confirmInfo.2)
-            self.dismiss(animated: true)
+            self.dismiss(animated: true, completion: {
+                self.delegate?.updateVaccine(vaccination: Vaccination(vaccine: confirmInfo.1.description, dose: confirmInfo.2))
+            })
+
         }
     }
     /*

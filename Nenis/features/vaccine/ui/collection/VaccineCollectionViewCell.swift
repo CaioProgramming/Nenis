@@ -10,10 +10,7 @@ import UIKit
 class VaccineCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
     
     let verticalIdentifier = "VaccineVerticalViewCell"
-    static let horizontalIdentifier = "VaccineCollectionViewCell"
-    
-     var identifier = "VaccineCollectionViewCell"
-     
+         
 
     @IBOutlet weak var iconBackground: UIView!
     @IBOutlet weak var dateLabel: UILabel!
@@ -35,7 +32,7 @@ class VaccineCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
         iconBackground.clipImageToCircle(color: color.withAlphaComponent(0.3))
         progressView.setProgress(progress, animated: true)
         progressView.progressTintColor = color
-        
+        self.roundedCorner(radius: 15)
     }
     
     func buildVerticalCell() -> UINib {

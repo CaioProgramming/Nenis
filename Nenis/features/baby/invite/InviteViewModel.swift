@@ -69,7 +69,7 @@ class InviteViewModel: DatabaseDelegate {
         if let user = currentUser() {
             var updatedChild = child
             updatedChild.tutors.append(user.uid)
-            babyService?.updateData(id: child.id, data: updatedChild)
+            babyService?.updateData( data: updatedChild)
         }
     }
     

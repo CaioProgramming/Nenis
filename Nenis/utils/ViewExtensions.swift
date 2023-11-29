@@ -7,7 +7,7 @@
 
 import Foundation
 import UIKit
-
+import os
 
 extension UIView {
     
@@ -25,11 +25,15 @@ extension UIView {
         self.clipsToBounds = true
     }
     
-  
-    
-}
-
-extension UIView {
+    func dropShadow(scale: Bool = true, oppacity: Float = 0.5, radius: CGFloat = 5, color: UIColor?) {
+            layer.masksToBounds = false
+            layer.shadowColor = color?.cgColor ?? UIColor.black.cgColor
+            layer.shadowOpacity = oppacity
+            layer.shadowOffset = .zero
+            layer.shadowRadius = radius
+            layer.shouldRasterize = true
+            layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+        }
     
     func showPopOver(viewController: UIViewController, message: String, presentationDelegate: UIPopoverPresentationControllerDelegate?) {
             
@@ -53,4 +57,54 @@ extension UIView {
                 }
         }
     }
+    
+    func createGradientBlur() {
+           let gradientLayer = CAGradientLayer()
+           gradientLayer.colors = [
+           UIColor.white.withAlphaComponent(0).cgColor,
+           UIColor.white.withAlphaComponent(1).cgColor]
+           let viewEffect = UIBlurEffect(style: .light)
+           let effectView = UIVisualEffectView(effect: viewEffect)
+           effectView.frame = CGRect(x: self.bounds.origin.x, y: self.bounds.size.height, width: self.bounds.width, height: self.bounds.size.height)
+           gradientLayer.frame = effectView.bounds
+           gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+           gradientLayer.endPoint = CGPoint(x: 0.0 , y: 0.8)
+           effectView.autoresizingMask = [.flexibleHeight]
+           effectView.layer.mask = gradientLayer
+           effectView.isUserInteractionEnabled = false //Use this to pass touches under this blur effect
+           addSubview(effectView)
+
+       }
+    
+    func wrapHeight() -> CGFloat {
+        
+        // calculate height of everything inside that stackview
+        var height: CGFloat = 0.0
+        for v in subviews {
+            height = height + v.frame.size.height
+        }
+        
+        // change size of Viewcontroller's view to that height
+        return height
+    }
+}
+struct MenuActions {
+    let title: String
+    let image: String
+    let closure: () -> Void
+}
+func getContextualMenu(title: String, actions: [MenuActions]) -> UIContextMenuConfiguration {
+    
+    let uiActions = actions.map({ element in
+        UIAction(title: element.title, image: UIImage(systemName: element.image), identifier: nil, discoverabilityTitle: nil, state: .off) { (_) in
+            element.closure()
+        }
+    })
+    
+    let context = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+        
+        return UIMenu(title: title, image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: uiActions)
+
+    }
+    return context
 }

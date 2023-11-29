@@ -10,12 +10,14 @@ import os
 
 protocol VaccineProtocol {
     func confirmVaccine()
+    func updateData()
 }
 class VaccinesViewModel {
     
     var child: Child? = nil
     var selectedInfo: (Child, Vaccine,Int)? = nil
     var delegate: VaccineProtocol? = nil
+    var babyService : BabyService? = nil
     
     func selectVaccine(vaccineItem: VaccineItem) {
         if let currentChild = child {
@@ -29,8 +31,34 @@ class VaccinesViewModel {
     }
     
     func loadVaccines(with child: Child) -> [Status : [VaccineItem]] {
+        babyService = BabyService(delegate: self)
         let logger = Logger.init()
         let vaccineHelper = VaccineHelper()
         return vaccineHelper.groupVaccines(with: child)
+    }
+    
+    func updateVaccine(newVaccine: Vaccination) {
+        if var currentChild = child {
+            let vaccineIndex = currentChild.vaccines.firstIndex(where: { item in
+                
+                item.vaccine.caseInsensitiveCompare(newVaccine.vaccine.description) == .orderedSame
+            })
+            if(vaccineIndex == nil){
+                currentChild.vaccines.append(newVaccine)
+            } else {
+                currentChild.vaccines[vaccineIndex!] = newVaccine
+            }
+            babyService?.updateData( data: currentChild)
+        }
+    }
+}
+
+extension VaccinesViewModel: DatabaseDelegate {
+    
+    typealias T = Child
+    
+    func updateSuccess(data: Child) {
+        self.child = data
+        delegate?.updateData()
     }
 }

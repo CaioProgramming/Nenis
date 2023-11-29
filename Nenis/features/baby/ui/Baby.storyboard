@@ -9,16 +9,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--New Child View Controller-->
+        <!--Adicionar bebê-->
         <scene sceneID="SXk-Tw-Sa3">
             <objects>
-                <viewController storyboardIdentifier="babyViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="11b-9S-gbk" customClass="NewChildViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="babyViewController" title="Adicionar bebê" modalTransitionStyle="crossDissolve" modalPresentationStyle="fullScreen" id="11b-9S-gbk" customClass="NewChildViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QfO-Om-VcC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BSe-1V-xXr">
+<<<<<<< HEAD
                                 <rect key="frame" x="0.0" y="47" width="428" height="845"/>
+=======
+                                <rect key="frame" x="0.0" y="47" width="428" height="879"/>
+>>>>>>> 9740f9b4633268b8274d8840f38caf1be9627783
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-cz-jdT">
                                         <rect key="frame" x="0.0" y="0.0" width="444" height="838.66666666666663"/>
@@ -140,8 +144,13 @@
                         <constraints>
                             <constraint firstItem="wRb-13-9iX" firstAttribute="trailing" secondItem="BSe-1V-xXr" secondAttribute="trailing" id="KYE-RS-x1X"/>
                             <constraint firstItem="BSe-1V-xXr" firstAttribute="leading" secondItem="wRb-13-9iX" secondAttribute="leading" id="NLN-hc-OmW"/>
+<<<<<<< HEAD
                             <constraint firstItem="BSe-1V-xXr" firstAttribute="top" secondItem="wRb-13-9iX" secondAttribute="top" id="Ut5-gw-IsW"/>
                             <constraint firstItem="wRb-13-9iX" firstAttribute="bottom" secondItem="BSe-1V-xXr" secondAttribute="bottom" id="op1-oq-80x"/>
+=======
+                            <constraint firstItem="BSe-1V-xXr" firstAttribute="top" secondItem="wRb-13-9iX" secondAttribute="top" id="Wis-6d-gMY"/>
+                            <constraint firstAttribute="bottom" secondItem="BSe-1V-xXr" secondAttribute="bottom" id="op1-oq-80x"/>
+>>>>>>> 9740f9b4633268b8274d8840f38caf1be9627783
                         </constraints>
                     </view>
                     <connections>

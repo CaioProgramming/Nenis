@@ -16,57 +16,51 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oqe-m4-RWp">
-                    <rect key="frame" x="0.0" y="21.666666666666671" width="393" height="64"/>
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="107"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Nxa-E9-Q25">
-                            <rect key="frame" x="16" y="0.0" width="377" height="64"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Fw-Ox-saU">
-                                    <rect key="frame" x="0.0" y="0.0" width="377" height="36"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bem-vindo..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKh-be-YME">
-                                    <rect key="frame" x="0.0" y="40" width="377" height="24"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="24" id="47o-7M-bgf"/>
-                                    </constraints>
-                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                    <color key="textColor" systemColor="placeholderTextColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                        </stackView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bem-vindo..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YKh-be-YME">
+                            <rect key="frame" x="16" y="4" width="361" height="18"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                            <color key="textColor" systemColor="placeholderTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgX-ok-TVl">
+                            <rect key="frame" x="16" y="26" width="361" height="36"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="Nxa-E9-Q25" secondAttribute="bottom" id="Lyu-26-jOf"/>
-                        <constraint firstAttribute="trailing" secondItem="Nxa-E9-Q25" secondAttribute="trailing" id="gX0-xH-Qn5"/>
-                        <constraint firstItem="Nxa-E9-Q25" firstAttribute="leading" secondItem="oqe-m4-RWp" secondAttribute="leading" constant="16" id="jFJ-Oh-NCd"/>
-                        <constraint firstAttribute="height" constant="64" id="sOK-wF-vIw"/>
-                        <constraint firstItem="Nxa-E9-Q25" firstAttribute="top" secondItem="oqe-m4-RWp" secondAttribute="top" id="vNX-cG-lyS"/>
+                        <constraint firstItem="qgX-ok-TVl" firstAttribute="leading" secondItem="YKh-be-YME" secondAttribute="leading" id="3wb-0D-QEv"/>
+                        <constraint firstItem="qgX-ok-TVl" firstAttribute="top" secondItem="YKh-be-YME" secondAttribute="bottom" constant="4" id="Af0-3A-t0P"/>
+                        <constraint firstItem="YKh-be-YME" firstAttribute="top" secondItem="oqe-m4-RWp" secondAttribute="top" constant="4" id="POo-Zc-8g3"/>
+                        <constraint firstItem="YKh-be-YME" firstAttribute="leading" secondItem="oqe-m4-RWp" secondAttribute="leading" constant="16" id="Yw3-Td-cdy"/>
+                        <constraint firstItem="YKh-be-YME" firstAttribute="trailing" secondItem="qgX-ok-TVl" secondAttribute="trailing" id="Z50-ZQ-gTv"/>
+                        <constraint firstAttribute="trailing" secondItem="YKh-be-YME" secondAttribute="trailing" constant="16" id="fSK-G1-G86"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oqe-m4-RWp" secondAttribute="trailing" id="IFO-JB-GMr"/>
-                <constraint firstItem="oqe-m4-RWp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="bkH-LY-10F"/>
-                <constraint firstItem="oqe-m4-RWp" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="ilC-xK-JEh"/>
+                <constraint firstAttribute="bottom" secondItem="oqe-m4-RWp" secondAttribute="bottom" id="1xS-KL-ksh"/>
+                <constraint firstItem="oqe-m4-RWp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="HTe-CT-wY0"/>
+                <constraint firstItem="oqe-m4-RWp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="INg-13-Olc"/>
+                <constraint firstItem="oqe-m4-RWp" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Rd4-Fz-41g"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="subtitleLabel" destination="YKh-be-YME" id="dIK-0O-kvh"/>
-                <outlet property="titleLabel" destination="8Fw-Ox-saU" id="9bE-XD-D9L"/>
+                <outlet property="titleLabel" destination="qgX-ok-TVl" id="uYM-ch-3fc"/>
             </connections>
             <point key="canvasLocation" x="130.53435114503816" y="-273.59154929577466"/>
         </view>
     </objects>
     <resources>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

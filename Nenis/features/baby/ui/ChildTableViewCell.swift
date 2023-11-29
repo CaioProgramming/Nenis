@@ -8,7 +8,6 @@
 import UIKit
 
 class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
-    var identifier: String = "ChildTableViewCell"
     var imageUrl: String? = nil
 
     override func awakeFromNib() {
@@ -20,10 +19,12 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
         imageUrl = nil
     }
 
+
     @IBOutlet weak var childAgeLabel: UILabel!
     @IBOutlet weak var childNameLabel: UILabel!
     @IBOutlet weak var childImage: UIImageView!
-    @IBOutlet weak var imageLoadingIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var imageContainer: UIView!
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -33,10 +34,12 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
     func setupChild(child: Child) {
         let color = child.gender.getGender()?.color ?? UIColor.accent
         childNameLabel.text = child.name
-        childAgeLabel.text = child.getAge()
+        childAgeLabel.text = child.getFullAge()
         childAgeLabel.textColor = color
-        childImage.clipImageToCircle(color: color)
-       
+        imageContainer.clipImageToCircle(color: UIColor.systemGroupedBackground)
+        childImage.clipImageToCircle(color: UIColor.label)
+        imageContainer.dropShadow(oppacity: 0.8, color: color)
+        
     }
     
 }
