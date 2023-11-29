@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Suh-mE-rye">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bQb-tl-HGA">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -12,9 +12,9 @@
         <!--Nenis-->
         <scene sceneID="6ng-hL-iJE">
             <objects>
-                <tabBarController storyboardIdentifier="tabBarController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Suh-mE-rye" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBarController" title="Nenis" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Suh-mE-rye" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Nenis" largeTitleDisplayMode="always" id="Fvo-Ij-unC"/>
+                    <navigationItem key="navigationItem" id="Q8Q-9W-eO2"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gcs-Fh-nFL">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -33,7 +33,23 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9rj-9r-vsL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="293.89312977099235" y="-709.85915492957747"/>
+            <point key="canvasLocation" x="-871" y="-734"/>
+        </scene>
+        <!--Nenis-->
+        <scene sceneID="eHS-50-CbC">
+            <objects>
+                <navigationController title="Nenis" id="bQb-tl-HGA" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="UAk-Fp-HYF">
+                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Suh-mE-rye" kind="relationship" relationship="rootViewController" id="ElV-5T-rPJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uXn-2x-GsQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2542" y="-734"/>
         </scene>
         <!--UtilsScene-->
         <scene sceneID="bYM-iG-GTs">
@@ -51,6 +67,14 @@
             </objects>
             <point key="canvasLocation" x="-1453" y="-328"/>
         </scene>
+        <!--DiaperScene-->
+        <scene sceneID="wrl-rv-z3X">
+            <objects>
+                <viewControllerPlaceholder storyboardName="DiaperStoryboard" referencedIdentifier="DiaperScene" id="1xv-H3-Y0q" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XGL-pz-ftX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1396" y="-232"/>
+        </scene>
         <!--Explorar-->
         <scene sceneID="Fdr-L3-Pjn">
             <objects>
@@ -60,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Aprenda mais com seu bebê" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fy3-4a-TaM">
-                                <rect key="frame" x="79" y="407" width="217" height="20.666666666666686"/>
+                                <rect key="frame" x="79" y="451" width="217" height="20.666666666666686"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -84,12 +108,12 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EYl-BE-XOg">
-                                <rect key="frame" x="0.0" y="74" width="375" height="655"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" allowsSelection="NO" rowHeight="75" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EYl-BE-XOg">
+                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
@@ -143,14 +167,6 @@
                                 <rect key="frame" x="0.0" y="384" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrT-OZ-aXm">
-                                <rect key="frame" x="0.0" y="50" width="375" height="44"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
-                                <items>
-                                    <navigationItem title="Nenis" id="sE5-Z4-gug"/>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -158,13 +174,10 @@
                             <constraint firstItem="EYl-BE-XOg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0pV-lU-yah"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EYl-BE-XOg" secondAttribute="trailing" id="M2d-E0-chF"/>
                             <constraint firstAttribute="trailing" secondItem="5Jv-wY-Anf" secondAttribute="trailing" constant="16" id="TFi-jF-aHv"/>
-                            <constraint firstItem="EYl-BE-XOg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="Yk7-JZ-6Wd"/>
+                            <constraint firstItem="EYl-BE-XOg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Yk7-JZ-6Wd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EYl-BE-XOg" secondAttribute="bottom" id="djE-tD-zeB"/>
-                            <constraint firstItem="GrT-OZ-aXm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="nWw-Pm-8Nr"/>
                             <constraint firstItem="5Jv-wY-Anf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="oBp-BE-lK1"/>
                             <constraint firstItem="5Jv-wY-Anf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="x4a-S3-Meb"/>
-                            <constraint firstItem="GrT-OZ-aXm" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xOj-3y-At8"/>
-                            <constraint firstItem="GrT-OZ-aXm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="yfD-nc-cw9"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Meu bebê" image="face.smiling.inverse" catalog="system" id="ItM-jL-7kL"/>
@@ -174,7 +187,6 @@
                         <outlet property="errorButton" destination="7U2-wt-PEV" id="Pu4-k1-ttE"/>
                         <outlet property="errorLabel" destination="MwK-WE-efn" id="Vow-XE-CrF"/>
                         <outlet property="loadingIndicator" destination="1oR-N8-hYU" id="Stf-bi-6lt"/>
-                        <outlet property="navBar" destination="GrT-OZ-aXm" id="kcc-wQ-Jba"/>
                         <segue destination="1VF-F9-7CU" kind="presentation" identifier="NewActivitySegue" id="ouB-nq-R9l"/>
                         <segue destination="t6o-99-X6j" kind="presentation" identifier="SignUpSegue" id="sCn-NF-SAV"/>
                     </connections>
@@ -205,6 +217,16 @@
                                             <fontDescription key="titleFontDescription" style="UICTFontTextStyleTitle0"/>
                                         </buttonConfiguration>
                                     </button>
+                                    <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Qo4-LQ-mwz">
+                                        <rect key="frame" x="122" y="63.666666666666657" width="131" height="1"/>
+                                        <segments>
+                                            <segment title="First"/>
+                                            <segment title="Second"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="sizeSegmentChange:" destination="1VF-F9-7CU" eventType="valueChanged" id="5ed-OT-UXR"/>
+                                        </connections>
+                                    </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Hoje meu bebê fez muito popô" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="9bZ-CW-gPj">
                                         <rect key="frame" x="16" y="77" width="343" height="50"/>
                                         <constraints>
@@ -278,6 +300,7 @@
                     <connections>
                         <outlet property="activityTypeButton" destination="zBJ-Jz-AhS" id="ciq-ju-eZs"/>
                         <outlet property="datePicker" destination="i85-hT-tVK" id="uol-oQ-ieG"/>
+                        <outlet property="diaperSizeSegment" destination="Qo4-LQ-mwz" id="K3j-rU-lKy"/>
                         <outlet property="saveButton" destination="PyY-hD-ILH" id="5Oc-5e-W6A"/>
                         <outlet property="textField" destination="9bZ-CW-gPj" id="4qv-Yg-4hc"/>
                     </connections>

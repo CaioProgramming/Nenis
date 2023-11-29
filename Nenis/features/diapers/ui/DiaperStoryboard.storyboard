@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Adicionar fraldas-->
+        <scene sceneID="qBW-a6-jdR">
+            <objects>
+                <viewController storyboardIdentifier="updateDiaperViewController" autoresizesArchivedViewToFullSize="NO" title="Adicionar fraldas" modalPresentationStyle="pageSheet" id="VsM-Pq-muv" customClass="UpdateDiaperViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uXB-Uv-na5">
+                        <rect key="frame" x="0.0" y="0.0" width="547" height="423"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M0Q-jb-gM4">
+                                <rect key="frame" x="0.0" y="104" width="547" height="18"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rxL-l5-IAf">
+                                <rect key="frame" x="0.0" y="138" width="547" height="293"/>
+                            </pickerView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCk-in-CZZ">
+                                <rect key="frame" x="0.0" y="0.0" width="547" height="44"/>
+                                <items>
+                                    <navigationItem title="Adicionar fraldas" id="ohy-mL-LM0" userLabel="Adicionar fralda">
+                                        <barButtonItem key="leftBarButtonItem" title="Cancelar" id="g4R-Sd-1Sf">
+                                            <color key="tintColor" systemColor="secondaryLabelColor"/>
+                                            <connections>
+                                                <action selector="dismissButton:" destination="VsM-Pq-muv" id="AQ0-gL-quI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Salvar" id="UDB-ne-Lkf">
+                                            <color key="tintColor" systemColor="linkColor"/>
+                                            <connections>
+                                                <action selector="saveDiaper:" destination="VsM-Pq-muv" id="a2e-3Q-aEQ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                                <navigationBarAppearance key="compactAppearance"/>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d30-th-456">
+                                <rect key="frame" x="0.0" y="44" width="547" height="60"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QIl-Oh-mbW"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="6AT-Al-jnB"/>
+                            <constraint firstItem="d30-th-456" firstAttribute="top" secondItem="FCk-in-CZZ" secondAttribute="bottom" id="DRF-Wp-61I"/>
+                            <constraint firstItem="d30-th-456" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="KrC-ZF-fce"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="bottom" secondItem="QIl-Oh-mbW" secondAttribute="bottom" constant="8" id="MRe-6d-GDd"/>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="top" secondItem="QIl-Oh-mbW" secondAttribute="top" id="Ohq-v4-vtV"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="top" secondItem="M0Q-jb-gM4" secondAttribute="bottom" constant="16" id="Scy-EE-m9P"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="TrT-o7-uPr"/>
+                            <constraint firstItem="M0Q-jb-gM4" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="fvU-PY-8BS"/>
+                            <constraint firstItem="M0Q-jb-gM4" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="ive-iJ-rfL"/>
+                            <constraint firstItem="d30-th-456" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="jlu-Bj-Mn1"/>
+                            <constraint firstItem="rxL-l5-IAf" firstAttribute="trailing" secondItem="QIl-Oh-mbW" secondAttribute="trailing" id="k7S-hc-EWl"/>
+                            <constraint firstItem="M0Q-jb-gM4" firstAttribute="top" secondItem="d30-th-456" secondAttribute="bottom" id="qaX-Ml-iwr"/>
+                            <constraint firstItem="FCk-in-CZZ" firstAttribute="leading" secondItem="QIl-Oh-mbW" secondAttribute="leading" id="wLi-jL-5OT"/>
+                        </constraints>
+                    </view>
+                    <modalFormSheetSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="547" height="423"/>
+                    <connections>
+                        <outlet property="amountLabel" destination="d30-th-456" id="KKQ-dx-FHK"/>
+                        <outlet property="containerView" destination="uXB-Uv-na5" id="DvX-wm-YYg"/>
+                        <outlet property="diaperPickerView" destination="rxL-l5-IAf" id="WPp-tr-bAS"/>
+                        <outlet property="diaperSizeLabel" destination="M0Q-jb-gM4" id="PhP-Om-eyO"/>
+                        <outlet property="saveButton" destination="UDB-ne-Lkf" id="Qfg-2F-jh0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tbf-M6-J5R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1416.5625" y="76.58450704225352"/>
+        </scene>
+        <!--Fraldas-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="DiapersView" title="Fraldas" id="Y6W-OH-hqX" customClass="DiapersViewController" customModule="Nenis" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lEu-Om-MQL">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="810"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4aM-cQ-wkM">
+                                    <size key="itemSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="lEu-Om-MQL" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="XAn-ei-EFe"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="lEu-Om-MQL" secondAttribute="bottom" id="YC2-12-QlX"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="lEu-Om-MQL" secondAttribute="trailing" id="exT-5O-jKC"/>
+                            <constraint firstItem="lEu-Om-MQL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="uQi-IZ-w23"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="diaperCollectionView" destination="lEu-Om-MQL" id="Pkf-pT-JyA"/>
+                        <segue destination="VsM-Pq-muv" kind="presentation" identifier="updateDiapersSegue" id="EWb-WA-r0h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="-27"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondaryLabelColor">
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -11,14 +11,16 @@ import UIKit
 import os
 
 public struct Child: Codable {
-    @DocumentID var id: String?
+    var id: String?
     let name: String
     let birthDate: Date
     let photo: String
-    var gender: String
+    let gender: String
     var tutors: [String]
-    var actions: [Action]
-    var vaccines: [Vaccination]
+    var actions: [Action] = []
+    var vaccines: [Vaccination] = []
+    var diapers: [Diaper] = []
+    
     enum CodingKeys: String, CodingKey {
         case name
         case birthDate
@@ -27,6 +29,7 @@ public struct Child: Codable {
         case tutors
         case actions
         case vaccines
+        case diapers
     }
 }
 
@@ -40,7 +43,7 @@ enum Gender : Codable, CaseIterable {
     case boy, girl
     
     var description: String { get { return "\(self)".uppercased() } }
-
+    
     
     var color: UIColor {
         get {
@@ -60,12 +63,61 @@ extension String {
         let cases = Gender.allCases
         return cases.first(where: { element in
             return element.description.caseInsensitiveCompare(self) == .orderedSame
-      })
+        })
     }
 }
 extension Child {
     
-    func getAge() -> String {
+    func getSpacers(year: Int, months: Int, weeks: Int, days: Int) -> (String, String, String, String) {
+        
+        var yearSpace = ""
+        var monthSpace = ""
+        var weekSpace = ""
+        var daySpace = ""
+        
+        if(months > 0) {
+            yearSpace = ", "
+        }
+        
+        if(weeks > 0) {
+            monthSpace = ", "
+        }
+        
+        if(days > 0) {
+            weekSpace = " e "
+            
+        }
+        
+        daySpace = "."
+        
+        return (yearSpace, monthSpace, weekSpace, daySpace)
+        
+    }
+    
+    func getFullAge() -> String {
+        let calendar = NSCalendar.current
+        let birth = self.birthDate
+        let currentDate = Date.now
+        let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
+        
+        Logger.init().info("Data diff -> \(components.debugDescription)")
+        let year = components.year ?? 0
+        let months = components.month ?? 0
+        let weeks = components.weekOfYear ?? 0
+        let days = components.day ?? 0
+        
+        var ageFormatted = ""
+        let spaces = getSpacers(year: year, months: months, weeks: weeks, days: days)
+        
+        ageFormatted += addField(count: year, description: "ano", withSpace: spaces.0)
+        ageFormatted += addField(count: months, description: "mes", withSpace: spaces.1)
+        ageFormatted += addField(count: weeks, description: "semana", withSpace: spaces.2)
+        ageFormatted += addField(count: days, description: "dia", withSpace: spaces.3)
+        
+        return ageFormatted
+    }
+    
+    func getAge() -> (String, String) {
         let calendar = NSCalendar.current
         let birth = self.birthDate
         let currentDate = Date.now
@@ -75,32 +127,50 @@ extension Child {
         let year = components.year ?? 0
         let weeks = components.weekOfYear ?? 0
         let days = components.day ?? 0
-        
+        let months = components.month ?? 0
         var ageFormatted = ""
+        var mainAgeInfo = ""
         
         if(year > 0) {
-            ageFormatted += "\(year) ano"
-            if(year > 1) {
-                ageFormatted += "s"
-            }
+            mainAgeInfo = String(year)
+            ageFormatted += addField(count: year, description: "ano")
+        } else if(months > 0) {
+            mainAgeInfo = String(months)
+            ageFormatted += addField(count: months, description: "mes", withSpace: ",")
+        } else if(weeks > 0) {
+            mainAgeInfo = String(weeks)
+            ageFormatted += addField(count: weeks, description: "semana", withSpace: ",")
+        } else if(days > 0) {
+            mainAgeInfo = String(days)
+            ageFormatted += addField(count: days, description: "dia", withSpace: "e")
         }
+        ageFormatted += "."
         
-        if(weeks > 0) {
-            ageFormatted += " \(weeks) semana"
-            if(weeks > 1) {
-                ageFormatted += "s"
-            }
-        }
         
-        if(days > 0) {
-            ageFormatted += " \(days) dia"
-            if(days > 1) {
-                ageFormatted += "s"
-            }
-        }
+        return (mainAgeInfo, ageFormatted)
+    }
+    
+    func addField(count: Int, description: String, withSpace: String? = nil) -> String {
+        var text = ""
+        
+        if(count > 0) {
             
-        
-        return ageFormatted
+            text += " \(count) \(description)"
+            text += addFieldPlural(count: count)
+            if let spacer = withSpace {
+                text += spacer
+            }
+            
+        }
+        Logger().debug("appending text => \(text)")
+        return text
+    }
+    
+    func addFieldPlural(count: Int) -> String {
+        if(count > 1) {
+            return "s"
+        }
+        return ""
     }
     
 }

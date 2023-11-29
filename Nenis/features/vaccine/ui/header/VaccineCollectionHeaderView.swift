@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class VaccineCollectionHeaderView: UICollectionReusableView, CustomViewProtocol {
-    var identifier: String = "VaccineCollectionHeaderView"
     
 
     @IBOutlet weak var headerLabel: UILabel!

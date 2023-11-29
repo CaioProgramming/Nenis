@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DiaperHeaderView" customModule="Nenis" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="633" height="311"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fraldas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GrQ-HQ-x37">
+                    <rect key="frame" x="16" y="59" width="56" height="218"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55t-7M-uRH">
+                    <rect key="frame" x="442.33333333333331" y="59" width="174.66666666666669" height="218"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Ver todas as fraldas"/>
+                    <connections>
+                        <action selector="headerButtonTap:" destination="-2" eventType="touchDown" id="CSp-JL-SwV"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="GrQ-HQ-x37" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="BgJ-Zu-iEy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="55t-7M-uRH" secondAttribute="bottom" id="Mat-dD-dp1"/>
+                <constraint firstItem="55t-7M-uRH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Xrq-Qx-0JP"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="GrQ-HQ-x37" secondAttribute="bottom" id="hzG-Yu-icf"/>
+                <constraint firstItem="55t-7M-uRH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="GrQ-HQ-x37" secondAttribute="trailing" constant="8" id="kRJ-UP-oqz"/>
+                <constraint firstItem="GrQ-HQ-x37" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="l2I-l5-gOh"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="55t-7M-uRH" secondAttribute="trailing" constant="16" id="nZZ-4V-ukq"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="headerActionButton" destination="55t-7M-uRH" id="e4B-aM-EcO"/>
+                <outlet property="titleLabel" destination="GrQ-HQ-x37" id="JhM-QJ-weP"/>
+            </connections>
+            <point key="canvasLocation" x="171.75572519083968" y="-201.7605633802817"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -207,6 +207,23 @@
           }
         }
       }
+    },
+    "vaccineFooterDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Childhood vaccination is a right supported by legal regulations in many countries, serving as an essential practice for the prevention of infectious diseases. In addition to legal backing, the recommendation for vaccination is grounded in robust scientific evidence affirming the effectiveness and safety of available vaccines."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "A vacinação infantil é um direito respaldado por normativas legais em muitos países, sendo uma prática essencial para a prevenção de doenças infecciosas. Além do respaldo legal, a recomendação da vacinação é fundamentada em robustas evidências científicas que atestam a eficácia e segurança das vacinas disponíveis. "
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

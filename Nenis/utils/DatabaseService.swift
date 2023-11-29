@@ -92,9 +92,13 @@ class FirebaseDataSource<T : Encodable>: FirestoreImplementation {
 
     
     func updateData(id: String?, data: T, completition: @escaping (T) -> Void) {
-        
+        guard id != nil else {
+            getLogger().error("No id provided")
+            self.sendError(message: "Error executing update ", errorType: .update)
+            return
+        }
         do {
-            try collectionReference().document().setData(from: data, completion: { error in
+            try collectionReference().document(id!).setData(from: data, completion: { error in
                 if let taskError  = error {
                     self.sendError(message: "Error executing update \(taskError.localizedDescription)", errorType: .save)
                 } else {
@@ -115,7 +119,7 @@ class FirebaseDataSource<T : Encodable>: FirestoreImplementation {
                 if let taskError = error {
                     self.databaseProtocol.sendError(message: taskError.localizedDescription, errorType: .delete)
                 } else {
-                    self.databaseProtocol.sendError(message: "Delete error, no ID provided!", errorType: .delete)
+                    self.databaseProtocol.delegate.taskSuccess(message: "Delete success!")
                 }
             }
         } else {
@@ -228,6 +232,32 @@ protocol DatabaseDelegate<T> {
     func updateSuccess(data: T)
     func taskFailure(databaseError: ErrorType)
     func taskSuccess(message: String)
+}
+
+extension DatabaseDelegate {
+    func logger() -> Logger { return Logger() }
+    
+    func taskFailure(databaseError: ErrorType) {
+        logger().error("Task failed -> \(databaseError.description)")
+    }
+    
+    func taskSuccess(message: String) {
+        logger().debug("Task success -> \(message)")
+        
+    }
+    
+    func saveSuccess(data: T) {}
+    func updateSuccess(data: T) {}
+    
+    func retrieveData(data: T) {
+        logger().info("Data retrieved -> \(String(describing: data))")
+    }
+    
+    func retrieveListData(dataList: [T]) {
+        logger().info("Data retrieved -> \(String(describing: dataList))")
+
+    }
+
 }
 
 enum ErrorType {
