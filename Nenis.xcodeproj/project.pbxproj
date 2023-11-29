@@ -30,6 +30,8 @@
 		F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */; };
 		F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */; };
 		F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */; };
+		F04CE83F2B17AAFE00C8B905 /* ChildSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04CE83E2B17AAFE00C8B905 /* ChildSettingsViewController.swift */; };
+		F04CE8422B17B30100C8B905 /* ChildSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04CE8412B17B30100C8B905 /* ChildSettingsViewModel.swift */; };
 		F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0891AE62AC1F37600BC6C6B /* Baby.storyboard */; };
 		F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */; };
 		F09724142B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */; };
@@ -125,6 +127,8 @@
 		F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionViewCell.swift; sourceTree = "<group>"; };
 		F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCollectionViewCell.xib; sourceTree = "<group>"; };
 		F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F04CE83E2B17AAFE00C8B905 /* ChildSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSettingsViewController.swift; sourceTree = "<group>"; };
+		F04CE8412B17B30100C8B905 /* ChildSettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSettingsViewModel.swift; sourceTree = "<group>"; };
 		F0891AE62AC1F37600BC6C6B /* Baby.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Baby.storyboard; sourceTree = "<group>"; };
 		F0891AE82AC1F3A700BC6C6B /* NewChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChildViewController.swift; sourceTree = "<group>"; };
 		F09724132B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionHeaderView.swift; sourceTree = "<group>"; };
@@ -372,9 +376,19 @@
 			path = vaccine;
 			sourceTree = "<group>";
 		};
+		F04CE8402B17B2EE00C8B905 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				F04CE83E2B17AAFE00C8B905 /* ChildSettingsViewController.swift */,
+				F04CE8412B17B30100C8B905 /* ChildSettingsViewModel.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
 		F0891AE52AC1F2FA00BC6C6B /* baby */ = {
 			isa = PBXGroup;
 			children = (
+				F04CE8402B17B2EE00C8B905 /* settings */,
 				F0DE1F912AFA707E005209AB /* ui */,
 				F0CDB99D2AC9446100430A96 /* invite */,
 				F0BB3CC42AC51AD800ED5314 /* service */,
@@ -699,7 +713,9 @@
 				F0CA22422AC461D50079C1ED /* Child.swift in Sources */,
 				F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */,
 				F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */,
+				F04CE83F2B17AAFE00C8B905 /* ChildSettingsViewController.swift in Sources */,
 				F0DE1F932AFA7104005209AB /* ChildHeaderView.swift in Sources */,
+				F04CE8422B17B30100C8B905 /* ChildSettingsViewModel.swift in Sources */,
 				F0DE1F9A2AFA7314005209AB /* ChildTableViewCell.swift in Sources */,
 				F0B310632ABD300500530994 /* TextFieldExtension.swift in Sources */,
 				F01E307E2AA75C04003AF470 /* ProfileViewController.swift in Sources */,

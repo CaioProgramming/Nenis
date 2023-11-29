@@ -230,6 +230,15 @@ protocol DatabaseDelegate<T> {
     func taskSuccess(message: String)
 }
 
+extension DatabaseDelegate {
+    func retrieveListData(dataList: [T]) { }
+    func saveSuccess(data: T) { }
+    func updateSuccess(data: T) { }
+    func retrieveData(data: T) { }
+    func taskFailure(databaseError: ErrorType) { }
+    func taskSuccess(message: String) { }
+}
+
 enum ErrorType {
     case update, query, fetch, delete, save, parse
     var description: String {

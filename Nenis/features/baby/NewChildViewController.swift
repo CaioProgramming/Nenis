@@ -11,7 +11,6 @@ import UniformTypeIdentifiers
 
 class NewChildViewController: UIViewController {
 
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var babyBirthDatePicker: UIDatePicker!
     @IBOutlet weak var babyImage: UIImageView!
     @IBOutlet weak var imageBackground: UIView!
@@ -49,9 +48,7 @@ class NewChildViewController: UIViewController {
         imageBackground.clipImageToCircle(color: currentGender.color)
  
     }
-    @IBAction func saveChild(_ sender: UIBarButtonItem) {
-        saveChild(sender: nil)
-    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "InviteSegue") {
             let viewController = segue.destination as! InviteViewController
@@ -106,15 +103,7 @@ class NewChildViewController: UIViewController {
     @IBAction func saveBabyTouch(_ sender: UIButton) {
      saveChild(sender: sender)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
