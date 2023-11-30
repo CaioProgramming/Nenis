@@ -54,7 +54,7 @@ extension DatabaseProtocol {
 
 protocol FirestoreImplementation {
     associatedtype T: Encodable
-    func saveData(data: T,  completition: @escaping (T) -> Void)
+    func saveData(data: T,  completition: @escaping (T, String) -> Void)
     func updateData(id: String?, data: T,  completition: @escaping (T) -> Void)
     func getAllData()
     func queryData(field: String, value: String, isArray: Bool)
@@ -72,14 +72,16 @@ class FirebaseDataSource<T : Encodable>: FirestoreImplementation {
     }
     
     
-    func saveData(data: T, completition: @escaping (T) -> Void) {
+    func saveData(data: T, completition: @escaping (T, String) -> Void) {
         //databaseProtocol.executeSave(documentReference: collectionReference().document(), data: data)
         do {
-            try collectionReference().document().setData(from: data, completion: { error in
+            let reference = collectionReference().document()
+            try reference.setData(from: data, completion: { error in
                 if let taskError  = error {
                     self.sendError(message: "Error executing save \(taskError.localizedDescription)", errorType: .save)
                 } else {
-                    completition(data)
+                    
+                    completition(data, reference.documentID)
                 }
                 
             })

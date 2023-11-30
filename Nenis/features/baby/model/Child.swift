@@ -14,12 +14,13 @@ public struct Child: Codable {
     var id: String?
     let name: String
     let birthDate: Date
-    let photo: String
+    var photo: String
     let gender: String
     var tutors: [String]
     var actions: [Action] = []
     var vaccines: [Vaccination] = []
     var diapers: [Diaper] = []
+    var extraInfo: [ExtraData] = []
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -30,7 +31,13 @@ public struct Child: Codable {
         case actions
         case vaccines
         case diapers
+        case extraInfo
     }
+}
+
+struct ExtraData: Codable {
+    let title: String
+    let infos: [DetailModel]
 }
 
 struct Vaccination: Codable {

@@ -60,7 +60,7 @@ class VaccinesViewController: UIViewController, VaccineProtocol {
 
         vaccinesCollection.register(VaccineCollectionHeaderView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: VaccineCollectionHeaderView.identifier)
         vaccinesCollection.register(VaccineFooterView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: VaccineFooterView.identifier)
-        vaccinesCollection.register(collectionCell.buildVerticalCell(), forCellWithReuseIdentifier: collectionCell.verticalIdentifier)
+        vaccinesCollection.register(VaccineVerticalViewCell.buildNib(), forCellWithReuseIdentifier: VaccineVerticalViewCell.identifier)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == UpdateVaccineViewController.identifier) {
@@ -99,7 +99,7 @@ extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDele
 
         switch kind {
           case  UICollectionView.elementKindSectionHeader:
-                 let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: VaccineCollectionHeaderView.identifier, for: indexPath) as! VaccineCollectionHeaderView
+            let headerView =  VaccineCollectionHeaderView.dequeueReusableSupplementaryView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
             
             let key = Array(vaccines.keys)[indexPath.section]
             headerView.setTitle(with: key.title)
@@ -107,7 +107,7 @@ extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDele
             return headerView
             
         case UICollectionView.elementKindSectionFooter:
-            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: VaccineFooterView.identifier, for: indexPath) as! VaccineFooterView
+            let footerView = VaccineFooterView.dequeueReusableSupplementaryView(collectionView, viewForSupplementaryElementOfKind: kind, at: indexPath)
             return footerView
         default:
            return UICollectionReusableView()
@@ -136,7 +136,7 @@ extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VaccineCollectionViewCell().verticalIdentifier, for: indexPath) as! VaccineCollectionViewCell
+        let cell = VaccineVerticalViewCell.dequeueCollectionCell(collectionView, cellForItemAt: indexPath)
         let vaccineGroup = Array(vaccines.keys)[indexPath.section]
         if let vaccine = vaccines[vaccineGroup]?[indexPath.row] {
             cell.setupVaccine(vaccine: vaccine.vaccine.title, progress: vaccine.doseProgress  , nextDate: vaccine.formatDate(), status: vaccine.status)

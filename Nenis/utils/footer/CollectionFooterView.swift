@@ -9,6 +9,7 @@ import UIKit
 
 class CollectionFooterView:  UICollectionReusableView, CustomViewProtocol {
         
+    static var viewType: ViewType = .footer
 
     override func awakeFromNib() {
         super.awakeFromNib()

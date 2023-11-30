@@ -9,6 +9,8 @@ import UIKit
 import KDCircularProgress
 
 class DiaperCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
+    static var viewType: ViewType = .cell
+    
         
 
     @IBOutlet weak var subtitleLabel: UILabel!

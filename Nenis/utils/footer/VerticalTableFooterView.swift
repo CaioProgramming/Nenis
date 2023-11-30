@@ -10,16 +10,25 @@ import UIKit
 class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
     
 
+    static var viewType: ViewType = .footer
     @IBOutlet weak var footerLabel: UILabel!
     @IBOutlet weak var footerButton: UIButton!
     var footerClosure: (() -> Void)? = nil
-
-    @IBOutlet weak var footerContainer: UIView!
-    func setupView(info: (String, String), closure: @escaping (() -> Void)) {
-        footerLabel.text = info.0
-        footerButton.setTitle(info.1, for: .normal)
-        self.footerClosure = closure
-        self.footerContainer.isHidden = false
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.isHidden = true
+        self.backgroundColor = UIColor.clear
+    }
+    
+    func setupView(info: (message: String,actionTitle: String, closure: () -> Void)?) {
+        if let footerInfo = info {
+            footerLabel.text = footerInfo.message
+            footerButton.setTitle(footerInfo.actionTitle, for: .normal)
+            self.footerClosure = footerInfo.closure
+            self.fadeIn()
+        }
+       
     }
 
     @IBAction func buttonTap(_ sender: UIButton) {

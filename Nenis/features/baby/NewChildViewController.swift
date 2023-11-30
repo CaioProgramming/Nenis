@@ -7,6 +7,7 @@
 
 import UIKit
 import UniformTypeIdentifiers
+import Toast
 
 
 class NewChildViewController: UIViewController {
@@ -33,7 +34,7 @@ class NewChildViewController: UIViewController {
         imageBackground.clipImageToCircle(color: UIColor.systemGray4)
         babyImage.clipImageToCircle(color: Gender.boy.color)
         babyNameTextField.delegate = self
-        newBabyViewModel.newChildDelegate = self
+        newBabyViewModel.delegate = self
         setupDatePicker()
         babyImage.fadeOut()
     }
@@ -164,13 +165,11 @@ extension NewChildViewController:  UIImagePickerControllerDelegate, UINavigation
 
 extension NewChildViewController: NewChildProtocol {
     func saveSuccess(child: Child) {
-        let alert = UIAlertController(title: "Success!", message: "Saved new child as \(child.name)", preferredStyle: .alert)
-         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in
-             alert.dismiss(animated: true)
-             self.dismiss(animated: true)
-             self.saveSuccess(child: child)
-         }))
-         self.present(alert, animated: true)
+        Toast.text("Criança salva com sucesso!").show()
+        delay(with: 3.0, closure: {
+            self.dismiss(animated: true)
+        })
+       
     }
     
     func errorSaving(errorMessage: String) {

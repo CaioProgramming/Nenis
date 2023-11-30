@@ -10,6 +10,9 @@ import UIKit
 
 class VaccineCollectionHeaderView: UICollectionReusableView, CustomViewProtocol {
     
+    static var viewType: ViewType = .reusableView
+    
+    
 
     @IBOutlet weak var headerLabel: UILabel!
     

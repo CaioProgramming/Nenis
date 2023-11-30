@@ -13,6 +13,8 @@ protocol DiaperTableProcol {
     func requestUpdate(diaper: Diaper)
 }
 class DiaperTableViewCell: UITableViewCell, CustomViewProtocol {
+    static var viewType: ViewType = .cell
+    
     
     
     

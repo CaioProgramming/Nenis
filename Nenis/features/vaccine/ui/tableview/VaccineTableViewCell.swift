@@ -8,6 +8,8 @@
 import UIKit
 
 class VaccineTableViewCell: UITableViewCell, CustomViewProtocol {
+    static var viewType: ViewType = ViewType.cell
+    
     
     
     @IBOutlet var collectionView: UICollectionView!

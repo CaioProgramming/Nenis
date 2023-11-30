@@ -10,28 +10,29 @@ import UIKit
 class HorizontalHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
         
 
+    static var viewType: ViewType = .header
     @IBOutlet weak var newActionButton: UIButton!
     private var buttonAction: (() -> Void)? = nil
     @IBOutlet weak var titleLabel: UILabel!
-  
     
-    @IBOutlet weak var container: UIView!
-    func setupHeader(title:String, buttonInfo: (text: String, image: String?, buttonClosure: (() -> Void))?) {
+    
+    
+    func setupHeader(info: (title: String,actionTitle: String, uiIcon: UIImage?, closure: () -> Void)?) {
         
-        if let buttonExtras = buttonInfo {
-            newActionButton.setTitle(buttonExtras.text, for: .normal)
-            if let icon = buttonExtras.image {
-                newActionButton.setImage(UIImage(systemName: icon), for: .normal)
-                newActionButton.semanticContentAttribute = .forceRightToLeft
+        if let headerExtras = info {
+            newActionButton.setTitle(headerExtras.actionTitle, for: .normal)
+            newActionButton.setImage(headerExtras.uiIcon, for: .normal)
+            newActionButton.semanticContentAttribute = .forceRightToLeft
 
-            }
-            self.buttonAction = buttonExtras.buttonClosure
+            self.buttonAction = headerExtras.closure
+            titleLabel.text = headerExtras.title
+            self.fadeIn()
         }
-        titleLabel.text = title
     }
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
+        self.isHidden = true
     }
     
     

@@ -9,6 +9,7 @@ import UIKit
 
 class DiaperHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     
+    static var viewType: ViewType = .header
     
     @IBOutlet weak var titleLabel: UILabel!
     

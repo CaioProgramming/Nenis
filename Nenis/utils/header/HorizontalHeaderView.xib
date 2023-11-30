@@ -56,7 +56,6 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="container" destination="Vn7-7Y-N4N" id="bP8-AC-s67"/>
                 <outlet property="newActionButton" destination="4oa-3E-a7c" id="oI5-Ix-Kgw"/>
                 <outlet property="titleLabel" destination="SiF-Dr-V8Q" id="TlB-Er-RVD"/>
             </connections>

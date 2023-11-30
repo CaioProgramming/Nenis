@@ -34,6 +34,8 @@
 		F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */; };
 		F026ECCA2AF5788E0004F3B3 /* VaccineCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */; };
 		F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */; };
+		F04CE8482B17D7D400C8B905 /* ChildSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04CE8462B17D7D400C8B905 /* ChildSettingsViewController.swift */; };
+		F04CE8492B17D7D400C8B905 /* ChildSettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04CE8472B17D7D400C8B905 /* ChildSettingsViewModel.swift */; };
 		F05CBD682B0DA46800EBB376 /* DiaperHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */; };
 		F05CBD6A2B0DA47200EBB376 /* DiaperHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */; };
 		F05CBD6C2B0DAA3400EBB376 /* DiapersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */; };
@@ -53,6 +55,8 @@
 		F09EB4AF2AB3E6790058B7AB /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F09EB4AE2AB3E6790058B7AB /* FirebaseMessaging */; };
 		F09EB4B12AB3E6790058B7AB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = F09EB4B02AB3E6790058B7AB /* FirebaseStorage */; };
 		F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F3F322AA96A9200143522 /* NewActionViewController.swift */; };
+		F0A0D87B2B17E3360034E6AB /* OptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A0D8792B17E3360034E6AB /* OptionTableViewCell.swift */; };
+		F0A0D87C2B17E3360034E6AB /* OptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A0D87A2B17E3360034E6AB /* OptionTableViewCell.xib */; };
 		F0A5BFBD2AB484460045AD1C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A5BFBC2AB484460045AD1C /* SignInViewController.swift */; };
 		F0A5BFC02AB485C90045AD1C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F0A5BFBF2AB485C90045AD1C /* Lottie */; };
 		F0A635852AAB567100FC8C62 /* ActivityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A635832AAB567100FC8C62 /* ActivityTableViewCell.swift */; };
@@ -79,6 +83,12 @@
 		F0B758862B154F9700568D0C /* VerticalTableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B758852B154F9700568D0C /* VerticalTableFooterView.xib */; };
 		F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */ = {isa = PBXBuildFile; productRef = F0BB3CC22AC5138E00ED5314 /* moa */; };
 		F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */; };
+		F0C1339A2B18BBBA00A7E8C1 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C133992B18BBBA00A7E8C1 /* CommonExtensions.swift */; };
+		F0C1339C2B1903B700A7E8C1 /* SettingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C1339B2B1903B700A7E8C1 /* SettingDetailViewController.swift */; };
+		F0C1339F2B190F9800A7E8C1 /* SettingDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C1339E2B190F9800A7E8C1 /* SettingDetailViewModel.swift */; };
+		F0C133A22B19128D00A7E8C1 /* DetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C133A12B19128D00A7E8C1 /* DetailModel.swift */; };
+		F0C133A72B1935C500A7E8C1 /* HorizontalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C133A52B1935C500A7E8C1 /* HorizontalTableViewCell.swift */; };
+		F0C133A82B1935C500A7E8C1 /* HorizontalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C133A62B1935C500A7E8C1 /* HorizontalTableViewCell.xib */; };
 		F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C170932AF95E8400BD6326 /* CustomViewProtocol.swift */; };
 		F0C170972AF9729B00BD6326 /* VaccineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C170962AF9729B00BD6326 /* VaccineHeaderView.swift */; };
 		F0C170992AF972A700BD6326 /* VaccineHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0C170982AF972A700BD6326 /* VaccineHeaderView.xib */; };
@@ -147,6 +157,8 @@
 		F026ECC72AF5788E0004F3B3 /* VaccineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineCollectionViewCell.swift; sourceTree = "<group>"; };
 		F026ECC82AF5788E0004F3B3 /* VaccineCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineCollectionViewCell.xib; sourceTree = "<group>"; };
 		F02F8E512ABA8EF80008E560 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		F04CE8462B17D7D400C8B905 /* ChildSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChildSettingsViewController.swift; path = Nenis/features/baby/ChildSettingsViewController.swift; sourceTree = SOURCE_ROOT; };
+		F04CE8472B17D7D400C8B905 /* ChildSettingsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChildSettingsViewModel.swift; path = Nenis/features/baby/ChildSettingsViewModel.swift; sourceTree = SOURCE_ROOT; };
 		F05CBD672B0DA46800EBB376 /* DiaperHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperHeaderView.swift; sourceTree = "<group>"; };
 		F05CBD692B0DA47200EBB376 /* DiaperHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiaperHeaderView.xib; sourceTree = "<group>"; };
 		F05CBD6B2B0DAA3400EBB376 /* DiapersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiapersViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +171,8 @@
 		F09D40BB2ABFAFDD0006E4BF /* baby_sleep.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = baby_sleep.json; path = ../../../../../Downloads/baby_sleep.json; sourceTree = "<group>"; };
 		F09D40BE2ABFCA930006E4BF /* PopOverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopOverViewController.swift; sourceTree = "<group>"; };
 		F09F3F322AA96A9200143522 /* NewActionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewActionViewController.swift; sourceTree = "<group>"; };
+		F0A0D8792B17E3360034E6AB /* OptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionTableViewCell.swift; sourceTree = "<group>"; };
+		F0A0D87A2B17E3360034E6AB /* OptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionTableViewCell.xib; sourceTree = "<group>"; };
 		F0A5BFBC2AB484460045AD1C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		F0A635832AAB567100FC8C62 /* ActivityTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityTableViewCell.swift; sourceTree = "<group>"; };
 		F0A635842AAB567100FC8C62 /* ActivityTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityTableViewCell.xib; sourceTree = "<group>"; };
@@ -182,6 +196,12 @@
 		F0B758832B154F7D00568D0C /* VerticalTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalTableFooterView.swift; sourceTree = "<group>"; };
 		F0B758852B154F9700568D0C /* VerticalTableFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VerticalTableFooterView.xib; sourceTree = "<group>"; };
 		F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		F0C133992B18BBBA00A7E8C1 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
+		F0C1339B2B1903B700A7E8C1 /* SettingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailViewController.swift; sourceTree = "<group>"; };
+		F0C1339E2B190F9800A7E8C1 /* SettingDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailViewModel.swift; sourceTree = "<group>"; };
+		F0C133A12B19128D00A7E8C1 /* DetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModel.swift; sourceTree = "<group>"; };
+		F0C133A52B1935C500A7E8C1 /* HorizontalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalTableViewCell.swift; sourceTree = "<group>"; };
+		F0C133A62B1935C500A7E8C1 /* HorizontalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalTableViewCell.xib; sourceTree = "<group>"; };
 		F0C170932AF95E8400BD6326 /* CustomViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewProtocol.swift; sourceTree = "<group>"; };
 		F0C170962AF9729B00BD6326 /* VaccineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineHeaderView.swift; sourceTree = "<group>"; };
 		F0C170982AF972A700BD6326 /* VaccineHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineHeaderView.xib; sourceTree = "<group>"; };
@@ -411,9 +431,21 @@
 			path = vaccine;
 			sourceTree = "<group>";
 		};
+		F04CE8452B17D7C100C8B905 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				F04CE8462B17D7D400C8B905 /* ChildSettingsViewController.swift */,
+				F04CE8472B17D7D400C8B905 /* ChildSettingsViewModel.swift */,
+				F0A0D87D2B1811960034E6AB /* cell */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
 		F0891AE52AC1F2FA00BC6C6B /* baby */ = {
 			isa = PBXGroup;
 			children = (
+				F0C1339D2B190F7200A7E8C1 /* details */,
+				F04CE8452B17D7C100C8B905 /* settings */,
 				F0DE1F912AFA707E005209AB /* ui */,
 				F0CDB99D2AC9446100430A96 /* invite */,
 				F0BB3CC42AC51AD800ED5314 /* service */,
@@ -458,6 +490,15 @@
 				F0B38D362AAAA18A00FBBA64 /* model */,
 			);
 			path = actions;
+			sourceTree = "<group>";
+		};
+		F0A0D87D2B1811960034E6AB /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F0A0D8792B17E3360034E6AB /* OptionTableViewCell.swift */,
+				F0A0D87A2B17E3360034E6AB /* OptionTableViewCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		F0A5BFBB2AB484280045AD1C /* Auth */ = {
@@ -539,6 +580,7 @@
 		F0B3105F2ABD2CA100530994 /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				F0C133A42B19359E00A7E8C1 /* cell */,
 				F09D23C82B1632410010A5F2 /* footer */,
 				F09D23C72B16323C0010A5F2 /* header */,
 				F0B310602ABD2CB300530994 /* AnimationExtensions.swift */,
@@ -548,6 +590,7 @@
 				F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */,
 				F0CBE7972AC5EB2D00AD6185 /* StorageService.swift */,
 				F0C170932AF95E8400BD6326 /* CustomViewProtocol.swift */,
+				F0C133992B18BBBA00A7E8C1 /* CommonExtensions.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -575,6 +618,41 @@
 				F0CBE7952AC5A42400AD6185 /* BabyService.swift */,
 			);
 			path = service;
+			sourceTree = "<group>";
+		};
+		F0C1339D2B190F7200A7E8C1 /* details */ = {
+			isa = PBXGroup;
+			children = (
+				F0C133A32B19150D00A7E8C1 /* cell */,
+				F0C133A02B19128300A7E8C1 /* model */,
+				F0C1339B2B1903B700A7E8C1 /* SettingDetailViewController.swift */,
+				F0C1339E2B190F9800A7E8C1 /* SettingDetailViewModel.swift */,
+			);
+			path = details;
+			sourceTree = "<group>";
+		};
+		F0C133A02B19128300A7E8C1 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				F0C133A12B19128D00A7E8C1 /* DetailModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		F0C133A32B19150D00A7E8C1 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		F0C133A42B19359E00A7E8C1 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				F0C133A52B1935C500A7E8C1 /* HorizontalTableViewCell.swift */,
+				F0C133A62B1935C500A7E8C1 /* HorizontalTableViewCell.xib */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		F0C170952AF9723200BD6326 /* header */ = {
@@ -776,6 +854,7 @@
 				F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */,
 				F0B6B84C2AFCAFCC008AED04 /* VaccineVerticalViewCell.xib in Resources */,
 				F0B758862B154F9700568D0C /* VerticalTableFooterView.xib in Resources */,
+				F0A0D87C2B17E3360034E6AB /* OptionTableViewCell.xib in Resources */,
 				F0B3105C2ABD1F3200530994 /* GoogleService-Info.plist in Resources */,
 				F0A635862AAB567100FC8C62 /* ActivityTableViewCell.xib in Resources */,
 				F0AC1AC52B0C517100481C5E /* DiaperStoryboard.storyboard in Resources */,
@@ -783,6 +862,7 @@
 				F0DE1F9B2AFA7314005209AB /* ChildTableViewCell.xib in Resources */,
 				F0DE1FA12AFB5507005209AB /* VaccineStoryboard.storyboard in Resources */,
 				F0AC1ACA2B0C51C100481C5E /* DiaperTableViewCell.xib in Resources */,
+				F0C133A82B1935C500A7E8C1 /* HorizontalTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -807,11 +887,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F04CE8492B17D7D400C8B905 /* ChildSettingsViewModel.swift in Sources */,
 				F0AC1AC92B0C51C100481C5E /* DiaperTableViewCell.swift in Sources */,
 				F09D40C02ABFCA930006E4BF /* PopOverViewController.swift in Sources */,
 				F0CBE7982AC5EB2D00AD6185 /* StorageService.swift in Sources */,
 				F0B310612ABD2CB300530994 /* AnimationExtensions.swift in Sources */,
 				F0CDB99C2AC9444E00430A96 /* InviteViewController.swift in Sources */,
+				F0C133A22B19128D00A7E8C1 /* DetailModel.swift in Sources */,
 				F0C1709B2AF996A500BD6326 /* VaccineItem.swift in Sources */,
 				F0DE1F9E2AFB5323005209AB /* UpdateVaccineViewController.swift in Sources */,
 				F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */,
@@ -821,6 +903,7 @@
 				F0B6B84A2AFC7FFD008AED04 /* VaccineHelper.swift in Sources */,
 				F0AC1ACD2B0C52AB00481C5E /* DiaperCollectionViewCell.swift in Sources */,
 				F0CA22422AC461D50079C1ED /* Child.swift in Sources */,
+				F0A0D87B2B17E3360034E6AB /* OptionTableViewCell.swift in Sources */,
 				F00E6CEA2B0FF6AF001A1404 /* DiapersViewModel.swift in Sources */,
 				F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */,
 				F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */,
@@ -839,13 +922,17 @@
 				F0CA22442AC4628E0079C1ED /* NewChildViewModel.swift in Sources */,
 				F01E30482AA75786003AF470 /* ViewController.swift in Sources */,
 				F0B758842B154F7D00568D0C /* VerticalTableFooterView.swift in Sources */,
+				F0C1339A2B18BBBA00A7E8C1 /* CommonExtensions.swift in Sources */,
 				F01E30442AA75786003AF470 /* AppDelegate.swift in Sources */,
 				F02F8E522ABA8EF80008E560 /* HomeViewModel.swift in Sources */,
 				F0B758812B15242400568D0C /* VaccineFooterView.swift in Sources */,
 				F01132582B11823400530CA6 /* CollectionFooterView.swift in Sources */,
 				F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */,
+				F0C1339C2B1903B700A7E8C1 /* SettingDetailViewController.swift in Sources */,
 				F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */,
+				F04CE8482B17D7D400C8B905 /* ChildSettingsViewController.swift in Sources */,
 				F0AF67E02B0E9098000360E9 /* UpdateDiaperViewController.swift in Sources */,
+				F0C133A72B1935C500A7E8C1 /* HorizontalTableViewCell.swift in Sources */,
 				F0B6B8482AFC7FBE008AED04 /* VaccinesViewModel.swift in Sources */,
 				F01E30462AA75786003AF470 /* SceneDelegate.swift in Sources */,
 				F026ECBE2AF5587F0004F3B3 /* Vaccine.swift in Sources */,
@@ -854,6 +941,7 @@
 				F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */,
+				F0C1339F2B190F9800A7E8C1 /* SettingDetailViewModel.swift in Sources */,
 				F0B3105E2ABD2A6C00530994 /* AuthViewModel.swift in Sources */,
 				F01E304E2AA75786003AF470 /* Nenis.xcdatamodeld in Sources */,
 				F09724142B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift in Sources */,

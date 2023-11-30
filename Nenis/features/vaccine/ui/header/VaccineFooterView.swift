@@ -8,6 +8,8 @@
 import UIKit
 
 class VaccineFooterView: UICollectionReusableView, CustomViewProtocol {
+    static var viewType: ViewType = .footer
+    
     
 
     override func awakeFromNib() {

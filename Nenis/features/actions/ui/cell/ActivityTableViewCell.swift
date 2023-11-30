@@ -10,6 +10,7 @@ import UIKit
 class ActivityTableViewCell: UITableViewCell, CustomViewProtocol {
     
 
+    static var viewType: ViewType = .cell
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var value: UILabel!
     @IBOutlet weak var caption: UILabel!

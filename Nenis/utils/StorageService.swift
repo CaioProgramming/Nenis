@@ -45,10 +45,22 @@ class StorageService: StorageProtocol {
         }
     }
     
+    func deleteFile(fileName: String, taskResult: @escaping (Result<String, StorageError>) -> Void) {
+        let reference = getStoragePath().child(fileName.replacingOccurrences(of: " ", with: ""))
+        reference.delete(completion: { error in
+            
+            if(error != nil) {
+                taskResult(.failure(error! as! StorageError))
+            } else {
+                taskResult(.success("File deleted" ))
+            }
+        })
+
+    }
+    
     func uploadFile(fileName: String, fileData: Data, extension: String, taskResult: @escaping (Result<String,StorageError>) -> Void) {
         print("Uploading file to storage...")
-        let longDate = Date.now.timeIntervalSince1970
-        let reference = getStoragePath().child("\(fileName.replacingOccurrences(of: " ", with: ""))_\(longDate)")
+        let reference = getStoragePath().child(fileName.replacingOccurrences(of: " ", with: ""))
         reference.putData(fileData) { metaData, error in
                 
             do {

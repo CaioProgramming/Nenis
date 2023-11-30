@@ -9,11 +9,13 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestoreSwift
 import os
+import UIKit
 
 protocol HomeProtocol {
     
     func retrieveHome(with homeSection: [any Section])
     func childRetrieved(with child: Child)
+    func openChild(child: Child)
     func childNotFound()
     func requireAuth()
     func authSuccess(user: User)
@@ -50,7 +52,14 @@ class HomeViewModel: DatabaseDelegate {
     }
     
     func buildChildSection(with child: Child, userName: String) -> ChildSection {
-        return ChildSection(items: [child], title: "Olá, \(userName)!", subtitle: Date.now.formatted(date: .complete, time: .omitted))
+        
+        
+        return ChildSection(title: "Olá, \(userName)!", subtitle: Date.now.formatted(date: .complete, time: .omitted), items: [child], itemClosure: { child in
+            
+            self.homeDelegate?.openChild(child: child)
+            
+            
+        }, footerData: nil)
     }
     
     
@@ -76,11 +85,12 @@ class HomeViewModel: DatabaseDelegate {
         let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon).prefix(6)
         
         let vaccinesTitle =  String(localized: "NextVaccines", table: "Localizable")
-        return VaccineSection(items: Array(vaccines),title: vaccinesTitle, itemClosure: { vaccine in
-            self.selectVaccine(vaccineItem: vaccine)
-        }, headerClosure: { section in
+        let headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: () -> Void)? = ("Próximas vacinas", "Ver mais", nil, {
             self.sectionDelegate?.openVaccines()
         })
+        return VaccineSection(items: Array(vaccines), itemClosure: { vaccine in
+            self.selectVaccine(vaccineItem: vaccine)
+        }, headerData: headerData)
         
     }
     
@@ -107,6 +117,23 @@ class HomeViewModel: DatabaseDelegate {
     }
     
     //MARK: - Action Tasks
+    
+    func buildActionSection(with child: Child) -> ActionSection {
+        let actionsTitle = String.localizedStringWithFormat(NSLocalizedString("ActivitiesTitle", comment: ""), child.name)
+
+        var footerData: (message:String, actionTitle: String, closure: () -> Void)? = if(child.actions.isEmpty) {
+            ("\(child.name) nao possui atividades, adicione algumas para acompanha-lo.", "Adicionar atividades", {
+                self.homeDelegate?.requestNewAction()
+            })
+        } else { nil }
+        var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: () -> Void)? = if(child.actions.isEmpty) {  nil } else {
+
+            (actionsTitle, "", UIImage(systemName: "plus.circle.fill"), {
+                self.homeDelegate?.requestNewAction()
+            })
+        }
+        return ActionSection(items: child.actions.sortByDate(), itemClosure: { action in }, headerData: headerData, footerData: footerData)
+    }
     
     func addNewAction(action: Action, diaperSize: SizeType) {
         if var currentChild = child {
@@ -179,11 +206,17 @@ class HomeViewModel: DatabaseDelegate {
     }
     
     func buildChildDiapers(with child: Child) -> DiaperSection {
-        return DiaperSection(title: "Fraldas", items: child.diapers, headerClosure: { section in
-            self.sectionDelegate?.openDiapers()
-        }, footerClosure: { section in
+        let headerData : (String, String, UIImage?, () -> Void)? = ("Fraldas", "Ver todas", UIImage(systemName: "chevron.right"), {
             self.sectionDelegate?.openDiapers()
         })
+        let footerData: (String, String, () -> Void)? = if(!child.diapers.isEmpty) { nil } else {
+            ("\(child.name) nao possui fraldas salvas, adicione algumas para acompanhar.", "Adicionar Fraldas", {
+                self.sectionDelegate?.openDiapers()
+            })
+        }
+        return DiaperSection(items: child.diapers, itemClosure: { diaper in
+            self.sectionDelegate?.openDiapers()
+        }, headerData: headerData, footerData: footerData)
     }
     
     
@@ -214,17 +247,12 @@ class HomeViewModel: DatabaseDelegate {
     
     func buildHomeFromChild(with child: Child) {
         
-        let actionsTitle = String.localizedStringWithFormat(NSLocalizedString("ActivitiesTitle", comment: ""), child.name)
         let userName = babyService?.currentUser()?.displayName ?? ""
         let sections: [any Section] = [
             buildChildSection(with: child, userName: userName),
             buildChildDiapers(with: child),
             buildVaccineSection(with: child),
-            ActionSection(items: child.actions.sortByDate(), title: actionsTitle, headerClosure: { section in
-                self.homeDelegate?.requestNewAction()
-            }, footerClosure: { section in
-                self.homeDelegate?.requestNewAction()
-            })
+            buildActionSection(with: child)
         ]
         Logger().info("Home sections -> \(sections.debugDescription)")
         homeDelegate?.retrieveHome(with: sections)

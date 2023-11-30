@@ -25,17 +25,34 @@ struct UploadTask {
 
 class NewChildViewModel: DatabaseDelegate {
     
+   private var photo: Data? = nil
+    
     func updateSuccess(data: Child) {
-        
+        delegate?.saveSuccess(child: data)
     }
     
     
     func saveSuccess(data: Child) {
-        newChildDelegate?.saveSuccess(child: data)
+        guard let newPhoto = photo else {
+            delegate?.errorSaving(errorMessage: "Image not uploaded")
+            return
+        }
+        storageService?.uploadFile(fileName: data.id ?? data.name.addTimeInterval(), fileData: newPhoto, extension: ".JPEG") { downloadURL in
+            do {
+                let fileURL = try downloadURL.get()
+                var childUpdate = data
+                childUpdate.photo = fileURL
+                self.babyService?.updateData(data: childUpdate)
+                
+            } catch {
+                self.sendError(messsage: "Error uploading file.")
+            }
+        }
+        
     }
     
     func taskFailure(databaseError: ErrorType) {
-        newChildDelegate?.errorSaving(errorMessage: databaseError.description)
+        delegate?.errorSaving(errorMessage: databaseError.description)
     }
     
     
@@ -62,11 +79,13 @@ class NewChildViewModel: DatabaseDelegate {
         
     }
     
-    var newChildDelegate: NewChildProtocol? = nil
+    var delegate: NewChildProtocol? = nil
     
     
     func saveChild(name: String, birthDate: Date, photoPath: Data, gender: String) {
         if let currentUser = Auth.auth().currentUser {
+            self.babyService?.saveData(data: Child(name: name, birthDate: birthDate, photo: "", gender: gender,tutors: [currentUser.uid]))
+            self.photo = photoPath
             storageService?.uploadFile(fileName: name, fileData: photoPath, extension: ".JPEG") { downloadURL in
                 do {
                     let fileURL = try downloadURL.get()
@@ -77,12 +96,12 @@ class NewChildViewModel: DatabaseDelegate {
                 }
             }
         } else {
-            newChildDelegate?.errorSaving(errorMessage: "User not authenticated")
+            delegate?.errorSaving(errorMessage: "User not authenticated")
         }
     }
     
     
     private func sendError(messsage: String) {
-        newChildDelegate?.errorSaving(errorMessage: messsage)
+        delegate?.errorSaving(errorMessage: messsage)
     }
 }

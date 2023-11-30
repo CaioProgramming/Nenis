@@ -91,9 +91,11 @@ class BabyService: DatabaseProtocol {
     }
     
     func saveData(data: Child) {
-        firebaseDataSource?.saveData(data: data, completition: { newData in
+        firebaseDataSource?.saveData(data: data, completition: { (newData, docId) in
             self.delegate.taskSuccess(message: "Data saved sucessfully.")
-            self.delegate.saveSuccess(data: data)
+            var savedData = data
+            savedData.id = docId
+            self.delegate.saveSuccess(data: savedData)
         })
 
     }

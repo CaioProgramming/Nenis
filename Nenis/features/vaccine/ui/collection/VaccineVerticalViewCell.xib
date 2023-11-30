@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VaccineCollectionViewCell" customModule="Nenis" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VaccineVerticalViewCell" customModule="Nenis" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="170" height="170"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -74,11 +74,11 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="dateLabel" destination="QfH-U3-89b" id="pQQ-W5-qkT"/>
-                <outlet property="iconBackground" destination="rCC-MU-l70" id="aRf-7P-LgP"/>
-                <outlet property="nameLabel" destination="v1D-LI-W0b" id="rs0-vr-TYV"/>
-                <outlet property="progressView" destination="DwT-NN-8kj" id="ekA-m2-MR1"/>
-                <outlet property="vaccineIcon" destination="YG4-wu-w4f" id="SA2-9Z-bht"/>
+                <outlet property="dateLabel" destination="QfH-U3-89b" id="c5B-tr-x4M"/>
+                <outlet property="iconBackground" destination="rCC-MU-l70" id="5Xs-jx-zOK"/>
+                <outlet property="nameLabel" destination="v1D-LI-W0b" id="Rg4-s6-hw5"/>
+                <outlet property="progressView" destination="DwT-NN-8kj" id="RVN-9x-WfN"/>
+                <outlet property="vaccineIcon" destination="YG4-wu-w4f" id="Z59-nT-eBb"/>
             </connections>
             <point key="canvasLocation" x="97.70992366412213" y="-186.61971830985917"/>
         </view>
@@ -86,10 +86,10 @@
     <resources>
         <image name="syringe.fill" catalog="system" width="128" height="115"/>
         <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

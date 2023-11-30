@@ -106,14 +106,12 @@ extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        UIView.animate(withDuration: 1.7, animations: { () -> Void in
-            cell.alpha = 1
-        })
+        cell.fadeIn()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let diaper = diapers[indexPath.row]
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaperCollectionViewCell.identifier, for: indexPath) as! DiaperCollectionViewCell
+        let cell = DiaperCollectionViewCell.dequeueCollectionCell(collectionView, cellForItemAt: indexPath)
         cell.setupDiaper(diaper: diaper)
         return cell
     }

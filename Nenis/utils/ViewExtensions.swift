@@ -25,6 +25,20 @@ extension UIView {
         self.clipsToBounds = true
     }
     
+    func roundTopCorners(radius: CGFloat) {
+        clipsToBounds = true
+        layer.cornerRadius = radius
+        layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+    }
+    
+    func roundBottomCorners(radius: CGFloat) {
+        clipsToBounds = true
+        layer.cornerRadius = radius
+        layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+    }
+    
+    
+    
     func dropShadow(scale: Bool = true, oppacity: Float = 0.5, radius: CGFloat = 5, color: UIColor?) {
             layer.masksToBounds = false
             layer.shadowColor = color?.cgColor ?? UIColor.black.cgColor
@@ -76,6 +90,18 @@ extension UIView {
 
        }
     
+    func setGradientBackground(colors: [UIColor]) {
+                    
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = colors.map({ color in
+            color.cgColor
+        })
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.bounds
+                
+        self.layer.insertSublayer(gradientLayer, at:0)
+    }
+    
     func wrapHeight() -> CGFloat {
         
         // calculate height of everything inside that stackview
@@ -108,3 +134,6 @@ func getContextualMenu(title: String, actions: [MenuActions]) -> UIContextMenuCo
     }
     return context
 }
+
+
+

@@ -9,6 +9,9 @@ import UIKit
 
 class VaccineHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     
+    static var viewType: ViewType = .header
+    
+    
     
     @IBOutlet weak var titleLabel: UILabel!
     var buttonAction: (() -> Void)? = nil
