@@ -49,28 +49,7 @@ extension UIView {
             layer.rasterizationScale = scale ? UIScreen.main.scale : 1
         }
     
-    func showPopOver(viewController: UIViewController, message: String, presentationDelegate: UIPopoverPresentationControllerDelegate?) {
-            
-            let utilsStoryBoard = UIStoryboard(name: "Utils", bundle: nil)
-             
-        
-            let sourceView = self
-            let controller = utilsStoryBoard.instantiateViewController(withIdentifier: "ErrorPopOver") as? PopOverViewController
-            controller?.modalPresentationStyle = .popover
-            controller?.message = message
-            if let popoverPresentationController = controller?.popoverPresentationController {
-                
-                controller?.preferredContentSize = CGSize(width: 300, height: 50)
-
-                popoverPresentationController.permittedArrowDirections = .up
-                popoverPresentationController.sourceView = sourceView
-                popoverPresentationController.sourceRect = self.bounds
-                popoverPresentationController.delegate = presentationDelegate
-                if let popOverController = controller {
-                    viewController.present(popOverController, animated: true)
-                }
-        }
-    }
+   
     
     func createGradientBlur() {
            let gradientLayer = CAGradientLayer()
@@ -113,16 +92,18 @@ extension UIView {
         // change size of Viewcontroller's view to that height
         return height
     }
+    
+
 }
 struct MenuActions {
     let title: String
-    let image: String
+    let image: String?
     let closure: () -> Void
 }
 func getContextualMenu(title: String, actions: [MenuActions]) -> UIContextMenuConfiguration {
     
     let uiActions = actions.map({ element in
-        UIAction(title: element.title, image: UIImage(systemName: element.image), identifier: nil, discoverabilityTitle: nil, state: .off) { (_) in
+        UIAction(title: element.title, image: UIImage(systemName: element.image ?? ""), identifier: nil, discoverabilityTitle: nil, state: .off) { (_) in
             element.closure()
         }
     })
@@ -134,6 +115,7 @@ func getContextualMenu(title: String, actions: [MenuActions]) -> UIContextMenuCo
     }
     return context
 }
+
 
 
 

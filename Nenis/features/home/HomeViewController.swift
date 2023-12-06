@@ -21,15 +21,16 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var errorButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var loadingIcon: UIImageView!
+    @IBOutlet weak var loadingView: UIView!
     //@IBOutlet weak var navBar: UINavigationBar!
     var errorClosure: (() -> Void)? = nil
-    
+    var iconsCount = 0
     
     
     func setupTableView(){
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadChild), for: .valueChanged)
-
         activityTable.dataSource = self
         activityTable.delegate = self
         activityTable.refreshControl = refreshControl
@@ -78,20 +79,51 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        activityTable.refreshControl?.beginRefreshing()
+        homeViewModel.initialize()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        homeViewModel.homeDelegate = self
-        homeViewModel.sectionDelegate = self
+        homeViewModel.delegate = self
         setupTableView()
-        homeViewModel.initialize()
-        loadingIndicator.startAnimating()
+        if #available(iOS 17.0, *) {
+            performIconAnimation()
+        } else {
+            loadingIndicator.startAnimating()
+            
+        }
+        
+        
         navigationController?.setNavigationBarHidden(true, animated: true)
         
     }
+    
+    @available(iOS 17.0, *)
+    func performIconAnimation() {
+        loadingView.fadeIn()
+        
+        delay { [self] in
+            if(iconsCount < Option.allCases.count) {
+                let option = Option.allCases[iconsCount]
+                let icon = option.icon ?? UIImage(named: "bear_color")
+                loadingIcon.setSymbolImage(icon!, contentTransition: .replace)
+                iconsCount += 1
+                performIconAnimation()
+            } else {
+                loadingIcon.setSymbolImage(UIImage(named: "bear_color")!, contentTransition: .replace)
+
+                loadingIcon.scaleAnimation(xScale: 0, yScale: 0, onCompletion: {
+                    self.loadingView.fadeOut()
+
+                })
+            }
+        }
+        
+        
+    }
+    
+    
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         loadingIndicator.startAnimating()
@@ -139,7 +171,7 @@ class HomeViewController: UIViewController {
     }
     
     
-     func createNewActivity() {
+    func createNewActivity() {
         performSegue(withIdentifier: "NewActivitySegue", sender: self)
     }
     
@@ -168,7 +200,7 @@ class HomeViewController: UIViewController {
     }
 }
 
- 
+
 
 //MARK: - VaccineProtocols
 extension HomeViewController: VaccinesProtocol {
@@ -185,7 +217,7 @@ extension HomeViewController: VaccineUpdateDelegate {
     }
     
     
-
+    
     
     
 }
@@ -199,7 +231,7 @@ extension HomeViewController: DiaperTableProcol {
     
     func requestDiscard(diaper: Diaper) {
         self.homeViewModel.discardDiaper(with: diaper)
-
+        
     }
     
     func requestUpdate(diaper: Diaper) {
@@ -213,8 +245,8 @@ extension HomeViewController: DiaperTableProcol {
 
 extension HomeViewController: ActionProtocol {
     
-    func retrieveActivity(with newAction: Action, diaperSize: SizeType) {
-        homeViewModel.addNewAction(action: newAction, diaperSize: diaperSize)
+    func retrieveActivity(with newAction: Action) {
+        homeViewModel.addNewAction(action: newAction, diaperSize: SizeType.G)
     }
     
     
@@ -280,6 +312,18 @@ extension HomeViewController: HomeProtocol {
         emptyBabyView.fadeOut()
     }
     
+    func requestNewAction() {
+        createNewActivity()
+    }
+    
+    func openVaccines() {
+        showVaccines()
+    }
+    
+    func openDiapers() {
+        showDiapers()
+    }
+    
     
 }
 
@@ -288,7 +332,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     
-   
+    
     
     
     
@@ -346,7 +390,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let customSection = sections[section]
         return customSection.dequeueHeader(with: tableView, sectionIndex: section) as? UIView
-
+        
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let customSection = sections[section]
@@ -362,7 +406,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 diaperCell.delegate = self
             }
         }
-
+        
         return cell as! UITableViewCell
         
     }
@@ -380,21 +424,4 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     
 }
-
-//MARK: SECTIONS DELEGATES
-extension HomeViewController: SectionsProtocol {
-    
-    func requestNewAction() {
-        createNewActivity()
-    }
-    
-    func openVaccines() {
-        showVaccines()
-    }
-    
-    func openDiapers() {
-        showDiapers()
-    }
-}
-
 

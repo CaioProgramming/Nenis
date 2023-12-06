@@ -14,7 +14,7 @@ class VaccineTableViewCell: UITableViewCell, CustomViewProtocol {
     
     @IBOutlet var collectionView: UICollectionView!
     var vaccines = [VaccineItem]()
-    var selectVaccine: ((VaccineItem) -> Void)? = nil
+    var selectVaccine: ((VaccineItem, UIView?) -> Void)? = nil
     
     
     func updateVaccines(vaccineList : [VaccineItem]) {
@@ -46,7 +46,7 @@ extension VaccineTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
             actions: [
                 MenuActions(title: "Confirmar vaccina",image: "checkmark.circle.fill",
                             closure: {
-                                if let vaccineClosure = self.selectVaccine { vaccineClosure(vaccineItem) }
+                                if let vaccineClosure = self.selectVaccine { vaccineClosure(vaccineItem, collectionView.cellForItem(at: indexPath)) }
                             }
                            )
             ]
@@ -78,7 +78,7 @@ extension VaccineTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
         let vaccineItem = vaccines[indexPath.row]
         if(vaccineItem.status != .done) {
             if let vaccineClosure = selectVaccine {
-                vaccineClosure(vaccineItem)
+                vaccineClosure(vaccineItem, collectionView.cellForItem(at: indexPath))
             }
             
         }

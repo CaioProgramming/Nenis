@@ -58,23 +58,28 @@ class ChildSettingsViewModel {
         if(service == nil) {
             service = BabyService(delegate: self)
         }
-        self.currentChild = child
-        buildSections(with: child)
+        service?.getSingleData(id: child.id!)
+       
+       
+    }
+    
+    func retrieveData(data: Child) {
+        self.currentChild = data
+        buildSections(with: data)
     }
     
     
     func buildSections(with child: Child) {
-        let childSection = ChildSection( title: "", subtitle: "", items: [child], itemClosure: { child in
+        let childSection = ChildSection( title: "", subtitle: "", items: [child], itemClosure: { child, view in
             self.delegate?.requestUpdatePicture()
         })
         
         let optionsSection = OptionSection( items: Option.allCases, 
-                                            itemClosure: { option in
+                                            itemClosure: { option, view in
             
             self.selectedOption = option
             self.delegate?.selectOption(option: option)
-        }, footerData: ("Suas informaçoes sao protegidas.","Excluir", {
-            print("confirm delete")
+        }, footerData: ("Suas informaçoes sao protegidas.","Excluir", { view in
         }))
         
         delegate?.retrieveSections(sections: [childSection, optionsSection])
@@ -102,7 +107,7 @@ enum Option: CaseIterable {
     var title: String { get {
         switch self {
         case .info:
-            "Informaçoes"
+            "Informações"
         case .tutors:
             "Responsáveis"
         case .vaccines:

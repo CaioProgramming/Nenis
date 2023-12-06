@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SimpleInputViewController" customModule="Nenis" customModuleProvider="target">
+            <connections>
+                <outlet property="containerView" destination="yWU-aA-v7C" id="ENc-D2-iTf"/>
+                <outlet property="fieldTextField" destination="32Z-N9-abE" id="L7j-kP-1L5"/>
+                <outlet property="valueTextField" destination="I7F-gu-aHw" id="RHk-oc-2Si"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="788" height="167"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="yWU-aA-v7C">
+                    <rect key="frame" x="8" y="85" width="772" height="22"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sangue, alergias, etc." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="32Z-N9-abE">
+                            <rect key="frame" x="0.0" y="0.0" width="386" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="A+, Castanhas..." textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I7F-gu-aHw">
+                            <rect key="frame" x="386" y="0.0" width="386" height="22"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="I7F-gu-aHw" firstAttribute="centerY" secondItem="yWU-aA-v7C" secondAttribute="centerY" id="E11-vj-KzN"/>
+                        <constraint firstItem="32Z-N9-abE" firstAttribute="centerY" secondItem="yWU-aA-v7C" secondAttribute="centerY" id="wJH-Ql-DJ3"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="tintColor" name="AccentColor"/>
+            <constraints>
+                <constraint firstItem="yWU-aA-v7C" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="0R9-51-vCG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="yWU-aA-v7C" secondAttribute="trailing" constant="8" id="0rh-xN-4ka"/>
+                <constraint firstItem="yWU-aA-v7C" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="bfS-O8-xg2"/>
+                <constraint firstItem="yWU-aA-v7C" firstAttribute="centerY" secondItem="fnl-2z-Ty3" secondAttribute="centerY" id="s11-xz-lcI"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="432.06106870229007" y="-252.46478873239437"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.80000001192092896" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

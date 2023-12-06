@@ -10,6 +10,7 @@ import CoreData
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
+import IQKeyboardManagerSwift
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
         FirebaseApp.configure()
-       
+        //IQKeyboardManager.shared.enable = true
+
         return true
     }
     

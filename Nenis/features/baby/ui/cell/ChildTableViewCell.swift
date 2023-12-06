@@ -30,7 +30,7 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
     
     @IBOutlet weak var imageContainer: UIView!
     
-    var childClosure: (() -> Void)? = nil
+    var childClosure: ((UIView?) -> Void)? = nil
  
   
     func setupChild(child: Child) {
@@ -46,8 +46,14 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
     }
     
     @objc func imageTap(_ sender:UITapGestureRecognizer) {
+        
         if let closure = childClosure {
-            closure()
+            childImage.scaleAnimation(xScale: 0.9, yScale: 0.9, onCompletion: {
+                self.childImage.scaleAnimation(xScale: 1.0, yScale: 1.0, onCompletion: {
+                    closure(self.childImage)
+
+                })
+            })
         }
     }
     

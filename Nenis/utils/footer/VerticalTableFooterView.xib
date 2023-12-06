@@ -10,34 +10,36 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VerticalTableFooterView" customModule="Nenis" customModuleProvider="target">
+        <view hidden="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="VerticalTableFooterView" customModule="Nenis" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="517" height="129"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AdA-8H-Dvx">
-                    <rect key="frame" x="16" y="9.9999999999999982" width="485" height="20.333333333333329"/>
+                    <rect key="frame" x="16" y="7.9999999999999982" width="485" height="20.333333333333329"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PiA-sn-WLr">
-                    <rect key="frame" x="16" y="38.333333333333329" width="485" height="34.333333333333329"/>
+                    <rect key="frame" x="16" y="36.333333333333343" width="485" height="42.666666666666657"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="tinted" title="Adicionar fraldas" cornerStyle="medium"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Adicionar fraldas" cornerStyle="medium"/>
                     <connections>
                         <action selector="buttonTap:" destination="-2" eventType="touchUpInside" id="k7T-pT-afG"/>
                     </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="AdA-8H-Dvx" secondAttribute="trailing" constant="16" id="CXy-PK-m10"/>
-                <constraint firstItem="AdA-8H-Dvx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Gd6-D1-bBO"/>
+                <constraint firstItem="AdA-8H-Dvx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Gd6-D1-bBO"/>
                 <constraint firstItem="AdA-8H-Dvx" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="dLe-8e-bcs"/>
                 <constraint firstItem="PiA-sn-WLr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="gpd-4r-Eh2"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PiA-sn-WLr" secondAttribute="trailing" constant="16" id="iP7-aN-OLQ"/>
                 <constraint firstItem="PiA-sn-WLr" firstAttribute="top" secondItem="AdA-8H-Dvx" secondAttribute="bottom" constant="8" id="ifg-Vb-lE5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PiA-sn-WLr" secondAttribute="bottom" constant="16" id="peh-dh-xHe"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>

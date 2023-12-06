@@ -139,6 +139,9 @@
         }
       }
     },
+    "Masculino" : {
+
+    },
     "NapAction" : {
       "comment" : "Nap action description",
       "extractionState" : "manual",

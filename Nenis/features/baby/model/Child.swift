@@ -12,10 +12,10 @@ import os
 
 public struct Child: Codable {
     var id: String?
-    let name: String
-    let birthDate: Date
+    var name: String
+    var birthDate: Date
     var photo: String
-    let gender: String
+    var gender: String
     var tutors: [String]
     var actions: [Action] = []
     var vaccines: [Vaccination] = []
@@ -35,9 +35,9 @@ public struct Child: Codable {
     }
 }
 
-struct ExtraData: Codable {
-    let title: String
-    let infos: [DetailModel]
+struct ExtraData: Codable, Equatable {
+    var title: String
+    var infos: [DetailModel]
 }
 
 struct Vaccination: Codable {
@@ -51,6 +51,16 @@ enum Gender : Codable, CaseIterable {
     
     var description: String { get { return "\(self)".uppercased() } }
     
+    var info: String {
+        get {
+            switch self {
+            case .boy:
+                NSLocalizedString("Masculino", comment: "")
+            case .girl:
+                "Feminino"
+            }
+        }
+    }
     
     var color: UIColor {
         get {

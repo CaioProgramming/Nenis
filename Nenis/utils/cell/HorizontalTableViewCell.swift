@@ -13,13 +13,15 @@ class HorizontalTableViewCell: UITableViewCell, CustomViewProtocol {
     @IBOutlet weak var fieldLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
     
-    @IBOutlet weak var containerStack: UIStackView!
+    @IBOutlet weak var containerStack: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.isHidden = true
+        self.selectionStyle = .none
+        containerStack.roundedCorner(radius: 15)
         // Initialization code
     }
-
+    
     func setupData(field: String, value: String) {
         fieldLabel.text = field
         valueLabel.text = value

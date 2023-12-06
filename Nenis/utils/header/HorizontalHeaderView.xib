@@ -19,28 +19,26 @@
                     <rect key="frame" x="0.0" y="0.0" width="768" height="124"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oa-3E-a7c">
-                            <rect key="frame" x="744" y="0.0" width="24" height="124"/>
-                            <buttonConfiguration key="configuration" style="plain" cornerStyle="medium"/>
+                            <rect key="frame" x="635.66666666666663" y="45" width="132.33333333333337" height="34.333333333333343"/>
+                            <buttonConfiguration key="configuration" style="plain" title="header Button" cornerStyle="medium"/>
                             <connections>
                                 <action selector="newActionTap:" destination="-2" eventType="touchUpInside" id="TZ1-8K-pbf"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiF-Dr-V8Q">
-                            <rect key="frame" x="16.000000000000004" y="0.0" width="43.333333333333343" height="124"/>
+                            <rect key="frame" x="16.000000000000004" y="4" width="43.333333333333343" height="116"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="SiF-Dr-V8Q" firstAttribute="top" secondItem="Vn7-7Y-N4N" secondAttribute="top" id="63h-Zt-Hfp"/>
-                        <constraint firstAttribute="bottom" secondItem="SiF-Dr-V8Q" secondAttribute="bottom" id="Fod-MR-doE"/>
+                        <constraint firstAttribute="bottom" secondItem="SiF-Dr-V8Q" secondAttribute="bottom" constant="4" id="0Zp-bP-gaw"/>
+                        <constraint firstItem="SiF-Dr-V8Q" firstAttribute="top" secondItem="Vn7-7Y-N4N" secondAttribute="top" constant="4" id="5c0-1h-bz0"/>
                         <constraint firstItem="SiF-Dr-V8Q" firstAttribute="leading" secondItem="Vn7-7Y-N4N" secondAttribute="leading" constant="16" id="PBm-EH-z3d"/>
-                        <constraint firstItem="4oa-3E-a7c" firstAttribute="centerY" secondItem="Vn7-7Y-N4N" secondAttribute="centerY" id="PYY-zt-vP1"/>
-                        <constraint firstItem="SiF-Dr-V8Q" firstAttribute="centerY" secondItem="Vn7-7Y-N4N" secondAttribute="centerY" id="cJj-D9-kz2"/>
+                        <constraint firstItem="4oa-3E-a7c" firstAttribute="centerY" secondItem="SiF-Dr-V8Q" secondAttribute="centerY" id="PYY-zt-vP1"/>
                         <constraint firstAttribute="trailing" secondItem="4oa-3E-a7c" secondAttribute="trailing" id="rKK-nM-2E7"/>
-                        <constraint firstAttribute="bottom" secondItem="4oa-3E-a7c" secondAttribute="bottom" id="rb3-Wc-9d0"/>
-                        <constraint firstItem="4oa-3E-a7c" firstAttribute="top" secondItem="Vn7-7Y-N4N" secondAttribute="top" id="sJb-HU-6r6"/>
+                        <constraint firstAttribute="bottom" secondItem="SiF-Dr-V8Q" secondAttribute="bottom" constant="4" id="sJT-UV-WU4"/>
                     </constraints>
                 </view>
             </subviews>
@@ -56,7 +54,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="newActionButton" destination="4oa-3E-a7c" id="oI5-Ix-Kgw"/>
+                <outlet property="headerButton" destination="4oa-3E-a7c" id="oI5-Ix-Kgw"/>
                 <outlet property="titleLabel" destination="SiF-Dr-V8Q" id="TlB-Er-RVD"/>
             </connections>
             <point key="canvasLocation" x="170.99236641221373" y="-2.8169014084507045"/>

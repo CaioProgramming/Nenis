@@ -95,7 +95,12 @@ extension ChildSettingsViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        sections[indexPath.section].performItemClosure(index: indexPath.row)
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.fadeOut(onCompletion: {
+            cell?.fadeIn(onCompletion: {
+                self.sections[indexPath.section].performItemClosure(index: indexPath.row)
+            })
+        })
     }
     
 }
@@ -111,6 +116,8 @@ extension ChildSettingsViewController: SettingsDelegate {
     }
     
     func retrieveSections(sections: [any Section]) {
+        self.sections = []
+        childTables.reloadData()
         sections.registerAllSectionsToTableView(childTables)
         childTables.delegate = self
         childTables.dataSource = self

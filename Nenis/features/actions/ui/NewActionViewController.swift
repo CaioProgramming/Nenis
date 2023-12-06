@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ActionProtocol: AnyObject {
-    func retrieveActivity(with newAction: Action, diaperSize: SizeType)
+    func retrieveActivity(with newAction: Action)
 }
 
 class NewActionViewController: UIViewController, UIPopoverPresentationControllerDelegate {
@@ -17,7 +17,7 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
     var activityType = ActionType.bath
     var birthDate: Date?
     var validSizes : [SizeType] = []
-    var selectedSize = SizeType.RN
+    var selectedSize: SizeType? = nil
     @IBOutlet weak var textField: UITextField!
     
     @IBOutlet weak var diaperSizeSegment: UISegmentedControl!
@@ -55,7 +55,7 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
                 diaperSizeSegment.insertSegment(withTitle: size.description, at: index ?? 0, animated: true)
             })
             diaperSizeSegment.selectedSegmentIndex = validSizes.startIndex
-            selectedSize = validSizes.first ?? SizeType.RN
+            selectedSize = validSizes.first
         }
       
     }
@@ -96,7 +96,7 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
     @IBAction func saveActivityTap(_ sender: UIButton) {
         let text = textField.text
         if(textField.hasText) {
-            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType.description, time: datePicker.date), diaperSize: selectedSize)
+            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType.description, time: datePicker.date, usedDiaper: selectedSize?.description))
             self.dismiss(animated: true)
         } else {
             textField.showPopOver(viewController: self, message: "Fill the information", presentationDelegate: self)

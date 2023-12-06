@@ -13,15 +13,15 @@ class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
     static var viewType: ViewType = .footer
     @IBOutlet weak var footerLabel: UILabel!
     @IBOutlet weak var footerButton: UIButton!
-    var footerClosure: (() -> Void)? = nil
+    var footerClosure: ((UIView?) -> Void)? = nil
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.isHidden = true
-        self.backgroundColor = UIColor.clear
     }
     
-    func setupView(info: (message: String,actionTitle: String, closure: () -> Void)?) {
+    func setupView(info: (message: String,actionTitle: String, closure: (UIView?) -> Void)?) {
+        contentView.isHidden = true
         if let footerInfo = info {
             footerLabel.text = footerInfo.message
             footerButton.setTitle(footerInfo.actionTitle, for: .normal)
@@ -33,7 +33,7 @@ class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
 
     @IBAction func buttonTap(_ sender: UIButton) {
         if let closure = footerClosure {
-            closure()
+            closure(sender)
         }
     }
 }

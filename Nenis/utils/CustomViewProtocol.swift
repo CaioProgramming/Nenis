@@ -17,11 +17,18 @@ enum ViewType {
 
 extension CustomViewProtocol {
     
-    
     static var identifier : String { get { return "\(self)"} }
     
     static func buildNib() -> UINib {
         return UINib(nibName: Self.identifier, bundle: nil)
+    }
+    
+    static func registerTableViewCell(with tableView: UITableView) {
+        if(viewType == .cell) {
+            tableView.register(buildNib(), forCellReuseIdentifier: identifier)
+        } else {
+            tableView.register(buildNib(), forHeaderFooterViewReuseIdentifier: identifier)
+        }
     }
     
     static func dequeueTableViewCell(with tableView: UITableView, indexPath: IndexPath) -> Self {

@@ -11,35 +11,42 @@ class HorizontalHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
         
 
     static var viewType: ViewType = .header
-    @IBOutlet weak var newActionButton: UIButton!
-    private var buttonAction: (() -> Void)? = nil
+    @IBOutlet weak var headerButton: UIButton!
+    private var buttonAction: ((UIView?) -> Void)? = nil
     @IBOutlet weak var titleLabel: UILabel!
     
     
     
-    func setupHeader(info: (title: String,actionTitle: String, uiIcon: UIImage?, closure: () -> Void)?) {
-        
+    func setupHeader(info: (title: String,actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?) {
+        headerButton.isHidden = true
         if let headerExtras = info {
-            newActionButton.setTitle(headerExtras.actionTitle, for: .normal)
-            newActionButton.setImage(headerExtras.uiIcon, for: .normal)
-            newActionButton.semanticContentAttribute = .forceRightToLeft
+            headerButton.setTitle(headerExtras.actionTitle, for: .normal)
+            headerButton.setImage(headerExtras.uiIcon, for: .normal)
+            headerButton.semanticContentAttribute = .forceRightToLeft
 
             self.buttonAction = headerExtras.closure
             titleLabel.text = headerExtras.title
             self.fadeIn()
+            headerButton.isHidden = false
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.isHidden = true
+        
     }
     
     
     @IBAction func newActionTap(_ sender: UIButton) {
         
         if let closure = buttonAction {
-            closure()
+        
+            sender.scaleAnimation(xScale: 0.9, yScale: 0.9, onCompletion: {
+                sender.scaleAnimation(xScale: 1, yScale: 1, onCompletion: {
+                    closure(sender)
+                })
+            })
         }
     }
     
