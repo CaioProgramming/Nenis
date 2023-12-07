@@ -20,7 +20,7 @@ class DiaperTableViewCell: UITableViewCell, CustomViewProtocol {
     
     var diaperSelectClosure: ((Diaper) -> Void)?
     @IBOutlet weak var diapersCollection: UICollectionView!
-    var diapers: [Diaper] = []
+    var diapers: [DiaperItem] = []
     var delegate: DiaperTableProcol? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,7 +32,7 @@ class DiaperTableViewCell: UITableViewCell, CustomViewProtocol {
     }
     
     
-    func setupDiapers(diapers: [Diaper]) {
+    func setupDiapers(diapers: [DiaperItem]) {
         diapersCollection.roundedCorner(radius: 15)
         self.diapers = diapers
         diapersCollection.reloadData()
@@ -48,7 +48,7 @@ extension DiaperTableViewCell : UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let diaper = diapers[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaperCollectionViewCell.identifier, for: indexPath) as! DiaperCollectionViewCell
-        cell.setupDiaper(diaper: diaper)
+        cell.setupDiaper(diaper: diaper.diaper, discarded: diaper.linkedActions.count)
         return cell
     }
     
@@ -61,7 +61,7 @@ extension DiaperTableViewCell : UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let diaper = diapers[indexPath.row]
+        let diaper = diapers[indexPath.row].diaper
         return getContextualMenu(title: "Opçoes",
                                  actions: [
                                     MenuActions(title: "Adicionar fraldas", image: "plus.diamond.fill", closure: {
@@ -78,7 +78,7 @@ extension DiaperTableViewCell : UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let diaperItem = diapers[indexPath.row]
+        let diaperItem = diapers[indexPath.row].diaper
         if let diaperClosure = diaperSelectClosure {
             diaperClosure(diaperItem)
         }

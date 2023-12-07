@@ -804,7 +804,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
             endingLineNumber = "28"
-            landmarkName = "setupDiaper(diaper:)"
+            landmarkName = "setupDiaper(diaper:discarded:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -820,7 +820,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "setupDiaper(diaper:)"
+            landmarkName = "setupDiaper(diaper:discarded:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -882,8 +882,8 @@
             filePath = "Nenis/features/diapers/ui/DiapersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "getDiapers(currentChild:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -914,9 +914,9 @@
             filePath = "Nenis/features/diapers/ui/DiapersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
-            landmarkName = "diaperUpdated(message:)"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "retrieveDiapers(diaperItems:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -930,9 +930,9 @@
             filePath = "Nenis/features/diapers/ui/DiapersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
-            landmarkName = "updateChild(with:)"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "updateDiaper(diaper:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1136,10 +1136,10 @@
             filePath = "Nenis/features/diapers/ui/DiapersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "retrieveDiapers(diapers:)"
-            landmarkType = "7">
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "unknown"
+            landmarkType = "0">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1152,9 +1152,9 @@
             filePath = "Nenis/features/diapers/ui/DiapersViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "retrieveDiapers(diapers:)"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
+            landmarkName = "requestActivity()"
             landmarkType = "7">
             <Locations>
                <Location
@@ -1193,22 +1193,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CE723AEB-F45C-44CC-B611-C2C5D3239DEF"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Nenis/features/diapers/ui/DiapersViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "109"
-            endingLineNumber = "109"
-            landmarkName = "updateSuccess(data:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "8AA8B678-ACAD-4F80-9E30-7A1F568F33F8"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -1216,10 +1200,10 @@
             filePath = "Nenis/features/diapers/ui/DiapersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
-            landmarkName = "addDiaper(diaper:)"
-            landmarkType = "7">
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "DiapersViewModel"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1232,73 +1216,10 @@
             filePath = "Nenis/features/diapers/ui/DiapersViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "updateSuccess(data:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6E7A03C8-83B0-43C4-9CEC-E4E16331DC2D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Nenis/features/diapers/ui/DiapersViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "discardDiaper(diaper:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6E7A03C8-83B0-43C4-9CEC-E4E16331DC2D - 15f162c7e48df2c0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Nenis.DiapersViewModel.discardDiaper(diaper: Nenis.Diaper) -&gt; ()"
-                  moduleName = "Nenis"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/diapers/ui/DiapersViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "996">
-               </Location>
-               <Location
-                  uuid = "6E7A03C8-83B0-43C4-9CEC-E4E16331DC2D - 15f162c7e48df2c0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Nenis.DiapersViewModel.discardDiaper(diaper: Nenis.Diaper) -&gt; ()"
-                  moduleName = "Nenis"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/diapers/ui/DiapersViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "1068">
-               </Location>
-               <Location
-                  uuid = "6E7A03C8-83B0-43C4-9CEC-E4E16331DC2D - 15f162c7e48df2c0"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Nenis.DiapersViewModel.discardDiaper(diaper: Nenis.Diaper) -&gt; ()"
-                  moduleName = "Nenis"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/diapers/ui/DiapersViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "1116">
-               </Location>
-            </Locations>
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "DiapersViewModel"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2107,8 +2028,8 @@
             filePath = "Nenis/features/baby/settings/details/ui/SettingDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "editName(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2123,8 +2044,8 @@
             filePath = "Nenis/features/baby/settings/details/ui/SettingDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
             landmarkName = "editName(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2237,6 +2158,166 @@
                   startingLineNumber = "107"
                   endingLineNumber = "107"
                   offsetFromSymbolStart = "132">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "617C367A-0C2A-4479-92BC-3C53228CB1E7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nenis/features/diapers/ui/DiapersViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "requestActivity()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "617C367A-0C2A-4479-92BC-3C53228CB1E7 - ddeb9698f6547181"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.DiapersViewController.diaperUpdated(message: Swift.String) -&gt; ()"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/diapers/ui/DiapersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "118"
+                  endingLineNumber = "118"
+                  offsetFromSymbolStart = "48">
+               </Location>
+               <Location
+                  uuid = "617C367A-0C2A-4479-92BC-3C53228CB1E7 - 2a954ce5916d5946"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.DiapersViewController.retrieveDiapers(diaperItems: Swift.Array&lt;Nenis.DiaperDetailSection&gt;) -&gt; ()"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/diapers/ui/DiapersViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "118"
+                  endingLineNumber = "118"
+                  offsetFromSymbolStart = "408">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9F810737-881E-481C-83DC-CBA5187EA270"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nenis/features/actions/ui/NewActionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "saveActivityTap(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9F810737-881E-481C-83DC-CBA5187EA270 - 5d103cd05a407eb3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.NewActionViewController.saveActivityTap(__C.UIButton) -&gt; ()"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/actions/ui/NewActionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "572">
+               </Location>
+               <Location
+                  uuid = "9F810737-881E-481C-83DC-CBA5187EA270 - 5d103cd05a407eb3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.NewActionViewController.saveActivityTap(__C.UIButton) -&gt; ()"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/actions/ui/NewActionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "804">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4E92630-3674-4580-9AD2-6469AE31FCA2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nenis/features/home/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "retrieveActivity(with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DCC20D35-7B25-4D1E-A446-F2DF2047B38E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Nenis/features/actions/ui/NewActionViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "sizeSegmentChange(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "DCC20D35-7B25-4D1E-A446-F2DF2047B38E - 4da5a1fd74c950cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.NewActionViewController.sizeSegmentChange(__C.UISegmentedControl) -&gt; ()"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/actions/ui/NewActionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "DCC20D35-7B25-4D1E-A446-F2DF2047B38E - 4da5a1fd74c950cd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Nenis.NewActionViewController.sizeSegmentChange(__C.UISegmentedControl) -&gt; ()"
+                  moduleName = "Nenis"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/caioferreira/Documents/Develop/Apps/Nenis/Nenis/features/actions/ui/NewActionViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "64"
+                  endingLineNumber = "64"
+                  offsetFromSymbolStart = "64">
                </Location>
             </Locations>
          </BreakpointContent>

@@ -64,7 +64,7 @@
 		F0A83A4B2B1F5918009A23D6 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = F0A83A4A2B1F5918009A23D6 /* IQKeyboardManagerSwift */; };
 		F0A83A4E2B1F6B72009A23D6 /* SettingsDetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A83A4D2B1F6B72009A23D6 /* SettingsDetailsSection.swift */; };
 		F0A83A522B1F6BD3009A23D6 /* OptionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A83A512B1F6BD3009A23D6 /* OptionSection.swift */; };
-		F0A83A552B1F6C4C009A23D6 /* DiaperSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A83A542B1F6C4C009A23D6 /* DiaperSection.swift */; };
+		F0A83A552B1F6C4C009A23D6 /* DiaperHomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A83A542B1F6C4C009A23D6 /* DiaperHomeSection.swift */; };
 		F0A83A5E2B1F6CE4009A23D6 /* ChildSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A83A5D2B1F6CE4009A23D6 /* ChildSection.swift */; };
 		F0A83A612B1FA227009A23D6 /* VaccineSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A83A602B1FA227009A23D6 /* VaccineSection.swift */; };
 		F0A83A642B1FA28A009A23D6 /* ActionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A83A632B1FA28A009A23D6 /* ActionSection.swift */; };
@@ -95,6 +95,9 @@
 		F0B982522B2105FE00E923AD /* GenderMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B982502B2105FE00E923AD /* GenderMenuViewController.xib */; };
 		F0B982552B2110E300E923AD /* VaccineHorizontalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B982532B2110E300E923AD /* VaccineHorizontalTableViewCell.swift */; };
 		F0B982562B2110E300E923AD /* VaccineHorizontalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B982542B2110E300E923AD /* VaccineHorizontalTableViewCell.xib */; };
+		F0B9C7592B21FE86001AEADF /* DiaperMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9C7582B21FE86001AEADF /* DiaperMapper.swift */; };
+		F0B9C75C2B226702001AEADF /* ActionsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B9C75A2B226702001AEADF /* ActionsListViewController.swift */; };
+		F0B9C75D2B226702001AEADF /* ActionsListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0B9C75B2B226702001AEADF /* ActionsListViewController.xib */; };
 		F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */ = {isa = PBXBuildFile; productRef = F0BB3CC22AC5138E00ED5314 /* moa */; };
 		F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */; };
 		F0C1339A2B18BBBA00A7E8C1 /* CommonExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C133992B18BBBA00A7E8C1 /* CommonExtensions.swift */; };
@@ -196,7 +199,7 @@
 		F0A8325F2B1A829300ACF8FE /* NewInfoGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInfoGroupViewController.swift; sourceTree = "<group>"; };
 		F0A83A4D2B1F6B72009A23D6 /* SettingsDetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsDetailsSection.swift; sourceTree = "<group>"; };
 		F0A83A512B1F6BD3009A23D6 /* OptionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionSection.swift; sourceTree = "<group>"; };
-		F0A83A542B1F6C4C009A23D6 /* DiaperSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperSection.swift; sourceTree = "<group>"; };
+		F0A83A542B1F6C4C009A23D6 /* DiaperHomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperHomeSection.swift; sourceTree = "<group>"; };
 		F0A83A5D2B1F6CE4009A23D6 /* ChildSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildSection.swift; sourceTree = "<group>"; };
 		F0A83A602B1FA227009A23D6 /* VaccineSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineSection.swift; sourceTree = "<group>"; };
 		F0A83A632B1FA28A009A23D6 /* ActionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionSection.swift; sourceTree = "<group>"; };
@@ -226,6 +229,9 @@
 		F0B982502B2105FE00E923AD /* GenderMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenderMenuViewController.xib; sourceTree = "<group>"; };
 		F0B982532B2110E300E923AD /* VaccineHorizontalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccineHorizontalTableViewCell.swift; sourceTree = "<group>"; };
 		F0B982542B2110E300E923AD /* VaccineHorizontalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VaccineHorizontalTableViewCell.xib; sourceTree = "<group>"; };
+		F0B9C7582B21FE86001AEADF /* DiaperMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaperMapper.swift; sourceTree = "<group>"; };
+		F0B9C75A2B226702001AEADF /* ActionsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsListViewController.swift; sourceTree = "<group>"; };
+		F0B9C75B2B226702001AEADF /* ActionsListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionsListViewController.xib; sourceTree = "<group>"; };
 		F0BB3CC52AC51AFA00ED5314 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		F0C133992B18BBBA00A7E8C1 /* CommonExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtensions.swift; sourceTree = "<group>"; };
 		F0C1339B2B1903B700A7E8C1 /* SettingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDetailViewController.swift; sourceTree = "<group>"; };
@@ -552,6 +558,8 @@
 				F0A83A622B1FA279009A23D6 /* section */,
 				F0CDFE252AF90F530016984A /* cell */,
 				F09F3F322AA96A9200143522 /* NewActionViewController.swift */,
+				F0B9C75A2B226702001AEADF /* ActionsListViewController.swift */,
+				F0B9C75B2B226702001AEADF /* ActionsListViewController.xib */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -597,7 +605,7 @@
 		F0A83A532B1F6C2F009A23D6 /* section */ = {
 			isa = PBXGroup;
 			children = (
-				F0A83A542B1F6C4C009A23D6 /* DiaperSection.swift */,
+				F0A83A542B1F6C4C009A23D6 /* DiaperHomeSection.swift */,
 			);
 			path = section;
 			sourceTree = "<group>";
@@ -687,6 +695,7 @@
 			isa = PBXGroup;
 			children = (
 				F0AC1AC22B0C502D00481C5E /* Diaper.swift */,
+				F0B9C7582B21FE86001AEADF /* DiaperMapper.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -990,6 +999,7 @@
 				F09724162B02C28900F9D249 /* VaccineCollectionHeaderView.xib in Resources */,
 				F0B982522B2105FE00E923AD /* GenderMenuViewController.xib in Resources */,
 				F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */,
+				F0B9C75D2B226702001AEADF /* ActionsListViewController.xib in Resources */,
 				F0C170992AF972A700BD6326 /* VaccineHeaderView.xib in Resources */,
 				F0CBA9B02B1E92BC000F53A5 /* SimpleInputViewController.xib in Resources */,
 				F01E30502AA75787003AF470 /* Assets.xcassets in Resources */,
@@ -1059,7 +1069,7 @@
 				F09F3F332AA96A9200143522 /* NewActionViewController.swift in Sources */,
 				F026ECC32AF5784C0004F3B3 /* VaccineTableViewCell.swift in Sources */,
 				F0DE1F932AFA7104005209AB /* ChildHeaderView.swift in Sources */,
-				F0A83A552B1F6C4C009A23D6 /* DiaperSection.swift in Sources */,
+				F0A83A552B1F6C4C009A23D6 /* DiaperHomeSection.swift in Sources */,
 				F0A83A612B1FA227009A23D6 /* VaccineSection.swift in Sources */,
 				F0DE1F9A2AFA7314005209AB /* ChildTableViewCell.swift in Sources */,
 				F0B310632ABD300500530994 /* TextFieldExtension.swift in Sources */,
@@ -1089,6 +1099,7 @@
 				F0BB3CC62AC51AFA00ED5314 /* DatabaseService.swift in Sources */,
 				F0C1339C2B1903B700A7E8C1 /* SettingDetailViewController.swift in Sources */,
 				F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */,
+				F0B9C7592B21FE86001AEADF /* DiaperMapper.swift in Sources */,
 				F04CE8482B17D7D400C8B905 /* ChildSettingsViewController.swift in Sources */,
 				F0AF67E02B0E9098000360E9 /* UpdateDiaperViewController.swift in Sources */,
 				F0C133A72B1935C500A7E8C1 /* HorizontalTableViewCell.swift in Sources */,
@@ -1099,6 +1110,7 @@
 				F0B38D382AAAA19E00FBBA64 /* Action.swift in Sources */,
 				F026ECB12AF53DCA0004F3B3 /* SectionModel.swift in Sources */,
 				F026ECC92AF5788E0004F3B3 /* VaccineCollectionViewCell.swift in Sources */,
+				F0B9C75C2B226702001AEADF /* ActionsListViewController.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */,
 				F0C1339F2B190F9800A7E8C1 /* SettingDetailViewModel.swift in Sources */,

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Action : Codable {
+struct Action : Codable, Equatable {
     let description: String
     let type: String
     let time: Date

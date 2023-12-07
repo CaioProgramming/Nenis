@@ -60,7 +60,7 @@ enum Status {
             case .done:
                 UIImage(systemName: "checkmark.shield.fill")
             case .soon:
-                UIImage(systemName: "clock.fill")
+                UIImage(systemName: "clock.circle")
             case .late:
                 UIImage(systemName: "exclamationmark.triangle.fill")
             }

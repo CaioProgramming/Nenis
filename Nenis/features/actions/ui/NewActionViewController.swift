@@ -61,8 +61,7 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
     }
     
     @IBAction func sizeSegmentChange(_ sender: UISegmentedControl) {
-        let sizes = SizeType.allCases
-        selectedSize = sizes[sender.selectedSegmentIndex]
+        selectedSize = validSizes[sender.selectedSegmentIndex]
     }
     
     func getMenuForTypes() -> [UIAction] {

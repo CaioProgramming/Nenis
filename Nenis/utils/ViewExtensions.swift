@@ -100,7 +100,7 @@ struct MenuActions {
     let image: String?
     let closure: () -> Void
 }
-func getContextualMenu(title: String, actions: [MenuActions]) -> UIContextMenuConfiguration {
+func getContextualMenu(title: String, actions: [MenuActions], preview: UIViewController? = nil) -> UIContextMenuConfiguration {
     
     let uiActions = actions.map({ element in
         UIAction(title: element.title, image: UIImage(systemName: element.image ?? ""), identifier: nil, discoverabilityTitle: nil, state: .off) { (_) in
@@ -108,7 +108,9 @@ func getContextualMenu(title: String, actions: [MenuActions]) -> UIContextMenuCo
         }
     })
     
-    let context = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { (action) -> UIMenu? in
+    let context = UIContextMenuConfiguration(identifier: nil, previewProvider: {
+        return preview
+    }) { (action) -> UIMenu? in
         
         return UIMenu(title: title, image: nil, identifier: nil, options: UIMenu.Options.displayInline, children: uiActions)
 

@@ -4,6 +4,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,11 +20,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="90"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.shield" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="WcN-YQ-EDA">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WcN-YQ-EDA">
                         <rect key="frame" x="16" y="25.333333333333332" width="32" height="40.333333333333343"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="32" id="KMx-dT-LQC"/>
                         </constraints>
+                        <imageReference key="image" image="checkmark.shield" catalog="system" renderingMode="hierarchical">
+                            <hierarchicalColors>
+                                <color systemColor="linkColor"/>
+                                <color systemColor="labelColor"/>
+                                <color name="AccentColor"/>
+                            </hierarchicalColors>
+                        </imageReference>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="GQ8-sI-7GE">
                         <rect key="frame" x="56" y="24.333333333333332" width="264" height="41.666666666666671"/>
@@ -63,8 +72,17 @@
     </objects>
     <resources>
         <image name="checkmark.shield" catalog="system" width="128" height="119"/>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="quaternaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

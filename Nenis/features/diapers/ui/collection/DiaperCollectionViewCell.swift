@@ -21,10 +21,10 @@ class DiaperCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
         // Initialization code
     }
 
-    func setupDiaper(diaper: Diaper) {
+    func setupDiaper(diaper: Diaper, discarded: Int) {
         
         let sizeType = diaper.getSizeType()
-        let currentAmount = diaper.quantity - diaper.discarded
+        let currentAmount = diaper.quantity - discarded
         let color = sizeType?.color ?? UIColor.accent
         let progress = Double(currentAmount) / Double(diaper.quantity)
         self.clipImageToCircle(color: UIColor.clear)

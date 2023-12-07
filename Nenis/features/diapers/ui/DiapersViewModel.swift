@@ -6,15 +6,16 @@
 //
 
 import Foundation
+import UIKit
 
 
 protocol DiaperProtocol {
     
-    func retrieveDiapers(diapers: [Diaper])
+    func retrieveDiapers(diaperItems: [DiaperItem])
     func updateDiaper()
     func diaperUpdated(message: String)
     func errorUpdating(message: String)
-    
+    func requestActivity()
 }
 
 class DiapersViewModel {
@@ -22,33 +23,25 @@ class DiapersViewModel {
     var child: Child? = nil
     private var babyService : BabyService? = nil
     var delegate: DiaperProtocol? = nil
-    var selectedDiaper: Diaper? = nil
+    var selectedDiaper: DiaperItem? = nil
+    
     func getDiapers(currentChild: Child?) {
+        
         if let selectedChild = currentChild {
             self.child = selectedChild
             babyService = BabyService(delegate: self)
-            delegate?.retrieveDiapers(diapers: selectedChild.diapers)
+            let mapper = DiaperMapper()
+            let diapers = mapper.mapDiapers(child: selectedChild)
+            delegate?.retrieveDiapers(diaperItems: diapers)
         }
      
     }
     
-    func selectDiaper(diaper: Diaper) {
+    func selectDiaper(diaper: DiaperItem) {
         selectedDiaper = diaper
         delegate?.updateDiaper()
     }
     
-    func discardDiaper(diaper: Diaper) {
-        if var currentChild = child {
-            if let selectedDiaper = currentChild.diapers.firstIndex(of: diaper) {
-                var newDiaper = diaper
-                newDiaper.discarded += 1
-                var diapers = currentChild.diapers
-                diapers[selectedDiaper] = newDiaper
-                currentChild.diapers = diapers
-                updateChild(with: currentChild)
-            }
-        }
-    }
     
     func updateDiaper(diaper: Diaper) {
         if var currentChild = child {
@@ -105,9 +98,8 @@ extension DiapersViewModel: DatabaseDelegate {
     typealias T = Child
     
     func updateSuccess(data: Child) {
-        self.child = data
         delegate?.diaperUpdated(message: "Fraldas atualizadas com sucesso.")
-        delegate?.retrieveDiapers(diapers: data.diapers)
+        getDiapers(currentChild: data)
     }
     
  

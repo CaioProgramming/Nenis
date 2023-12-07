@@ -137,21 +137,9 @@ class HomeViewModel: DatabaseDelegate {
         return ActionSection(items: child.actions.sortByDate(), itemClosure: { action, view in }, headerData: headerData, footerData: footerData)
     }
     
-    func addNewAction(action: Action, diaperSize: SizeType) {
+    func addNewAction(action: Action) {
         if var currentChild = child {
             currentChild.actions.append(action)
-            if(action.type.getAction() == .bath) {
-               var diapers = currentChild.diapers
-               if var sizeDiaper = diapers.first(where: { diaper in
-                    diaper.type == diaperSize.description
-               }) {
-                   if let index = diapers.firstIndex(of: sizeDiaper) {
-                       sizeDiaper.discarded += 1
-                       diapers[index] = sizeDiaper
-                       currentChild.diapers = diapers
-                   }
-               }
-            }
             babyService?.updateData(data: currentChild)
         }
     }
@@ -184,22 +172,7 @@ class HomeViewModel: DatabaseDelegate {
         }
     }
     
-    func discardDiaper(with diaper: Diaper) {
-        if var currentChild = child {
-            if let diaperIndex = currentChild.diapers.firstIndex(of: diaper) {
-                var newDiaper = diaper
-                newDiaper.discarded += 1
-                var diapers = currentChild.diapers
-                diapers[diaperIndex] = newDiaper
-                currentChild.diapers = diapers
-                babyService?.updateData(data: currentChild)
-            }
-            
-        }
-    }
-    
-    
-    
+
     func updateDiaper(with diaper: Diaper, index: Int) {
         if var currentChild = child {
             currentChild.diapers[index] = diaper
@@ -207,7 +180,7 @@ class HomeViewModel: DatabaseDelegate {
         }
     }
     
-    func buildChildDiapers(with child: Child) -> DiaperSection {
+    func buildChildDiapers(with child: Child) -> DiaperHomeSection {
         let headerData : (String, String, UIImage?, (UIView?) -> Void)? = ("Fraldas", "Ver todas", UIImage(systemName: "chevron.right"), { view in
             self.delegate?.openDiapers()
         })
@@ -216,7 +189,9 @@ class HomeViewModel: DatabaseDelegate {
                 self.delegate?.openDiapers()
             })
         }
-        return DiaperSection(items: child.diapers, itemClosure: { diaper, view in
+        let diaperHelper = DiaperMapper()
+        let diaperItems = diaperHelper.mapDiapers(child: child)
+        return DiaperHomeSection(items: diaperItems, itemClosure: { diaper, view in
             self.delegate?.openDiapers()
         }, headerData: headerData, footerData: footerData)
     }

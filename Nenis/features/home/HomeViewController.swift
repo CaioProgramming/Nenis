@@ -229,9 +229,7 @@ extension HomeViewController: DiaperTableProcol {
         self.homeViewModel.deleteDiaper(with: diaper)
     }
     
-    func requestDiscard(diaper: Diaper) {
-        self.homeViewModel.discardDiaper(with: diaper)
-        
+    func requestDiscard(diaper: Diaper) {        
     }
     
     func requestUpdate(diaper: Diaper) {
@@ -246,7 +244,7 @@ extension HomeViewController: DiaperTableProcol {
 extension HomeViewController: ActionProtocol {
     
     func retrieveActivity(with newAction: Action) {
-        homeViewModel.addNewAction(action: newAction, diaperSize: SizeType.G)
+        homeViewModel.addNewAction(action: newAction)
     }
     
     

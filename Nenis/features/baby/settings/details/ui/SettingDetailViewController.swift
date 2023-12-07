@@ -21,21 +21,7 @@ class SettingDetailViewController: UIViewController {
         super.viewDidLoad()
         viewModel.delegate = self
         viewModel.setupDetail(with: child, option: option)
-        if let selectedOption = option {
-            parent?.title = selectedOption.title
-            navigationController?.setNavigationBarHidden(false, animated: true)
-            navigationItem.title = selectedOption.title
-            
-             
-            navbarButton = UIButton(type: .system)
-            navbarButton?.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
-            navbarButton?.addTarget(self, action: #selector(menuButtonTapped), for: .touchUpInside)
-            if let barButton = navbarButton {
-                self.navigationItem.setRightBarButton(UIBarButtonItem(customView: barButton), animated: true)
-            }
-            
-
-        }
+         
         // Do any additional setup after loading the view.
     }
     
@@ -119,6 +105,23 @@ extension SettingDetailViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 extension SettingDetailViewController : DetailProtocol {
+    func setupNavItem(option: Option) {
+        parent?.title = option.title
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationItem.title = option.title
+        
+        if(option == .info) {
+            navbarButton = UIButton(type: .system)
+            navbarButton?.setImage(UIImage(systemName: "plus.circle.fill"), for: .normal)
+            navbarButton?.addTarget(self, action: #selector(menuButtonTapped), for: .touchUpInside)
+            if let barButton = navbarButton {
+                self.navigationItem.setRightBarButton(UIBarButtonItem(customView: barButton), animated: true)
+            }
+        }
+         
+        
+    }
+    
     
     func showEditGender(view: UIView?) {
         

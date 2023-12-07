@@ -95,9 +95,9 @@ struct VaccineSettingsSection: Section {
     
     func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> VerticalTableFooterView {
         let footer = VerticalTableFooterView.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
-        footer.contentView.isHidden = true
         footer.setupView(info: footerData)
         footer.footerButton.tintColor = UIColor.red.withAlphaComponent(0.6)
+        footer.footerButton.isHidden = sectionIndex == 0
         return footer
     }
     

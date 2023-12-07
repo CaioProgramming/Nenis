@@ -16,14 +16,16 @@ class VaccineHorizontalTableViewCell: UITableViewCell, CustomViewProtocol {
     @IBOutlet weak var itemTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.isHidden = true
         // Initialization code
     }
 
     func setupItem(title: String, subtitle: String, icon: UIImage?, iconColor: UIColor = UIColor.link) {
         itemTitle.text = title
         itemSubtitle.text = subtitle
+        itemIcon.preferredSymbolConfiguration = UIImage.SymbolConfiguration.init(paletteColors: [iconColor, UIColor.secondaryLabel, UIColor.systemGroupedBackground])
         itemIcon.image = icon
-        itemIcon.tintColor = iconColor
+        self.fadeIn(1.5)
     }
     
 }

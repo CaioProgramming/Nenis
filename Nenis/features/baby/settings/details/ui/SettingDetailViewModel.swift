@@ -10,6 +10,7 @@ import UIKit
 
 protocol DetailProtocol {
     func retrieveSections(_ sections :[any Section])
+    func setupNavItem(option: Option)
     func requestNewGroupInfo()
     func requestNewInfo(group: Int, sender: UIView?)
     func showEditForDetail(groupIndex: Int, itemIndex: Int, item: DetailModel, view: UIView?)
@@ -54,6 +55,10 @@ class SettingDetailViewModel {
         case .vaccines:
             delegate?.retrieveSections(buildSectionsForVaccine())
         default: break
+        }
+        if let currentOption = selectedOption {
+            delegate?.setupNavItem(option: currentOption)
+
         }
     }
     
@@ -251,11 +256,8 @@ extension SettingDetailViewModel: VaccineDetailProtocol {
             let vaccineHelper = VaccineHelper()
             let vaccines = vaccineHelper.groupVaccines(with: currentChild).sorted(by: { firstItem, lastItem in
             
-                if(firstItem.key == .done) {
-                    return true
-                }
+                return firstItem.key == .done
                 
-                return firstItem.key != lastItem.key
             })
             let vaccineSections = vaccines.map({ item in
                let footerData : (message: String, actionTitle: String, closure: (UIView?) -> Void)? = if(item.key == .done) {
