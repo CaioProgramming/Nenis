@@ -137,6 +137,11 @@ extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDeleg
         let diaperItem = diapers[indexPath.row]
         let viewController = ActionsListViewController()
         viewController.setActions(newActions: diaperItem.linkedActions)
+        if(diaperItem.linkedActions.isEmpty) {
+            viewController.showMessage("Não foram encontradas atividades relacionadas a fralda \(diaperItem.diaper.type)")
+        }
+        viewController.preferredContentSize = CGSize(width: collectionView.contentSize.width, height: 200)
+        viewController.view.backgroundColor = UIColor.clear
         return getContextualMenu(title: "Opções", actions: [
             
             MenuActions(title: "Adicionar fraldas", image: "plus.diamond.fill", closure: {

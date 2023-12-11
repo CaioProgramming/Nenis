@@ -29,15 +29,11 @@ struct VaccineSection: Section {
         return footer
     }
     
-    
-    
 
-    
-    
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: H.identifier) as! H
         header.setupHeader(info: headerData)
-        //header.headerButton.setImage(UIImage(systemName: "chevron.right"), for: .normal)
+        header.mainContainerView.backgroundColor = UIColor.clear
         return header
     }
     
@@ -60,7 +56,7 @@ struct VaccineSection: Section {
     }
     
     
-    let cellHeight: CGFloat = 250
+    let cellHeight: CGFloat = 200
     
     
     func footerHeight() -> CGFloat {

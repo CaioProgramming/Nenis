@@ -57,24 +57,12 @@ extension Section {
     }
     
     func footerHeight() -> CGFloat {
-        var size: CGFloat = 0
-        
-        if(footerData != nil) {
-            size = 80
-        }
-        print("Footer for \(String(describing: type(of: self))) height will be -> \(size)")
-        
-        return size
+        return if(footerData == nil) { 0.0 } else { 100.0 }
+       
     }
     
     func headerHeight() -> CGFloat {
-        var size: CGFloat = 80
-        
-        if(headerData == nil) {
-            size = 0
-        }
-        print("Header for \(String(describing: type(of: self))) height will be -> \(size)")
-        return size
+        return if(headerData == nil) { 0.0 } else { 100.0 }
     }
     
     

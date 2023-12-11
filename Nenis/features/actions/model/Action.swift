@@ -12,7 +12,7 @@ struct Action : Codable, Equatable {
     let description: String
     let type: String
     let time: Date
-    let usedDiaper: String?
+    var usedDiaper: String?
 }
 
 enum ActionType: Codable, CaseIterable {

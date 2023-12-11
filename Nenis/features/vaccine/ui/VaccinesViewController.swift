@@ -56,7 +56,6 @@ class VaccinesViewController: UIViewController, VaccineProtocol {
         vaccinesCollection.delegate = self
         vaccinesCollection.dataSource = self
         
-        let collectionCell = VaccineCollectionViewCell()
 
         vaccinesCollection.register(VaccineCollectionHeaderView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: VaccineCollectionHeaderView.identifier)
         vaccinesCollection.register(VaccineFooterView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: VaccineFooterView.identifier)

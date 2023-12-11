@@ -15,6 +15,8 @@ class HorizontalHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     private var buttonAction: ((UIView?) -> Void)? = nil
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var dividerView: UIView!
+    @IBOutlet weak var mainContainerView: UIView!
     
     
     func setupHeader(info: (title: String,actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?) {

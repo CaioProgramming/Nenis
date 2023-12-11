@@ -70,7 +70,7 @@ extension NewInfoGroupViewController: UITableViewDelegate, UITableViewDataSource
         
         let info = infos[indexPath.row]
         let cell = HorizontalTableViewCell.dequeueTableViewCell(with: tableView, indexPath: indexPath)
-        cell.setupData(field: info.name, value: info.value)
+        cell.setupData(field: info.name, value: info.value, subtitle: nil, isFirst: info == infos.first, isLast: info == infos.last)
         return cell
     }
     

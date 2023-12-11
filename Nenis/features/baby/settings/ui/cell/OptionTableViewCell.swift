@@ -34,6 +34,7 @@ class OptionTableViewCell: UITableViewCell, CustomViewProtocol {
         iconContainer.backgroundColor = option.color
         iconContainer.roundedCorner(radius: 10)
         dividerView.isHidden = positionType == .last
+        
         switch positionType {
         case .first:
             optionContainer.roundTopCorners(radius: 10)

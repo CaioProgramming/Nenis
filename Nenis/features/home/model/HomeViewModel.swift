@@ -42,14 +42,13 @@ class HomeViewModel: DatabaseDelegate {
     
     func updateSuccess(data: Child) {
         self.child = data
-        buildHomeFromChild(with: data)
+        delegate?.childRetrieved(with: data)
     }
     
     func retrieveListData(dataList: [Child]) {
         if let child = dataList.first {
-            delegate?.childRetrieved(with: child)
             self.child = child
-            buildHomeFromChild(with: child)
+            delegate?.childRetrieved(with: child)
         }
     }
     
@@ -70,8 +69,6 @@ class HomeViewModel: DatabaseDelegate {
         print(data)
         child = data
         delegate?.childRetrieved(with: data)
-        buildHomeFromChild(with: data)
-    
     }
     
     
@@ -84,10 +81,10 @@ class HomeViewModel: DatabaseDelegate {
     func buildVaccineSection(with child: Child) -> VaccineSection {
         let vaccineHelper = VaccineHelper()
    
-        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon).prefix(6)
+        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon).prefix(4)
         
         let vaccinesTitle =  String(localized: "NextVaccines", table: "Localizable")
-        let headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)? = ("Próximas vacinas", "Ver mais", UIImage(systemName: "chevron.right"), { view in
+        let headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)? = (vaccinesTitle, "Ver mais", UIImage(systemName: "chevron.right"), { view in
             self.delegate?.openVaccines()
         })
         return VaccineSection(items: Array(vaccines), itemClosure: { vaccine, view in
@@ -123,12 +120,12 @@ class HomeViewModel: DatabaseDelegate {
     func buildActionSection(with child: Child) -> ActionSection {
         let actionsTitle = String.localizedStringWithFormat(NSLocalizedString("ActivitiesTitle", comment: ""), child.name)
 
-        var footerData: (message:String, actionTitle: String, closure: (UIView?) -> Void)? = if(child.actions.isEmpty) {
+        let footerData: (message:String, actionTitle: String, closure: (UIView?) -> Void)? = if(child.actions.isEmpty) {
             ("\(child.name) nao possui atividades, adicione algumas para acompanha-lo.", "Adicionar atividades", { view in
                 self.delegate?.requestNewAction()
             })
         } else { nil }
-        var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)? = if(child.actions.isEmpty) {  nil } else {
+        let headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)? = if(child.actions.isEmpty) {  nil } else {
 
             (actionsTitle, "", UIImage(systemName: "plus.circle.fill"), { view in
                 self.delegate?.requestNewAction()
@@ -139,16 +136,21 @@ class HomeViewModel: DatabaseDelegate {
     
     func addNewAction(action: Action) {
         if var currentChild = child {
-            currentChild.actions.append(action)
+            var newAction = action
+            if(action.type.getAction() != .bath) {
+                newAction.usedDiaper = nil
+            }
+            currentChild.actions.append(newAction)
             babyService?.updateData(data: currentChild)
         }
     }
     
     
     func deleteAction(actionIndex: Int) {
-        if var currentChild = child {
-            currentChild.actions.remove(at: actionIndex)
-            babyService?.updateData(data: currentChild)
+        if let currentChild = child {
+            var newChild = currentChild
+            newChild.actions.remove(at: actionIndex)
+            babyService?.updateData(data: newChild)
         }
     }
     
@@ -220,6 +222,7 @@ class HomeViewModel: DatabaseDelegate {
             delegate?.requireAuth()
         }
     }
+    
     
     func buildHomeFromChild(with child: Child) {
         

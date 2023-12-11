@@ -267,8 +267,10 @@ extension HomeViewController: HomeProtocol {
     }
     
     func retrieveHome(with homeSection: [any Section]) {
-        sections = homeSection
         sections.registerAllSectionsToTableView(activityTable)
+        sections = []
+        activityTable.reloadData()
+        sections = homeSection
         activityTable.reloadData()
         activityTable.refreshControl?.endRefreshing()
     }
@@ -287,6 +289,7 @@ extension HomeViewController: HomeProtocol {
     func childRetrieved(with child: Child) {
         loadingIndicator.stopAnimating()
         parent?.title = child.name
+        homeViewModel.buildHomeFromChild(with: child)
     }
     
     

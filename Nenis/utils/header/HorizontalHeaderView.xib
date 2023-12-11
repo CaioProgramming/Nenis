@@ -16,45 +16,56 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vn7-7Y-N4N">
-                    <rect key="frame" x="0.0" y="0.0" width="768" height="124"/>
+                    <rect key="frame" x="16" y="0.0" width="736" height="124"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4oa-3E-a7c">
-                            <rect key="frame" x="635.66666666666663" y="45" width="132.33333333333337" height="34.333333333333343"/>
+                            <rect key="frame" x="603.66666666666663" y="45" width="132.33333333333337" height="34.333333333333343"/>
                             <buttonConfiguration key="configuration" style="plain" title="header Button" cornerStyle="medium"/>
                             <connections>
                                 <action selector="newActionTap:" destination="-2" eventType="touchUpInside" id="TZ1-8K-pbf"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiF-Dr-V8Q">
-                            <rect key="frame" x="16.000000000000004" y="4" width="43.333333333333343" height="116"/>
-                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiF-Dr-V8Q">
+                            <rect key="frame" x="16.000000000000004" y="4" width="51.333333333333343" height="116"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68e-Al-s1V">
+                            <rect key="frame" x="0.0" y="121" width="736" height="3"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="3" id="Yms-oV-zzL"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="SiF-Dr-V8Q" secondAttribute="bottom" constant="4" id="0Zp-bP-gaw"/>
                         <constraint firstItem="SiF-Dr-V8Q" firstAttribute="top" secondItem="Vn7-7Y-N4N" secondAttribute="top" constant="4" id="5c0-1h-bz0"/>
+                        <constraint firstAttribute="trailing" secondItem="68e-Al-s1V" secondAttribute="trailing" id="E3V-2x-kN3"/>
+                        <constraint firstAttribute="bottom" secondItem="68e-Al-s1V" secondAttribute="bottom" id="Jsg-kv-6EO"/>
                         <constraint firstItem="SiF-Dr-V8Q" firstAttribute="leading" secondItem="Vn7-7Y-N4N" secondAttribute="leading" constant="16" id="PBm-EH-z3d"/>
                         <constraint firstItem="4oa-3E-a7c" firstAttribute="centerY" secondItem="SiF-Dr-V8Q" secondAttribute="centerY" id="PYY-zt-vP1"/>
+                        <constraint firstItem="68e-Al-s1V" firstAttribute="leading" secondItem="Vn7-7Y-N4N" secondAttribute="leading" id="ncP-60-bXQ"/>
                         <constraint firstAttribute="trailing" secondItem="4oa-3E-a7c" secondAttribute="trailing" id="rKK-nM-2E7"/>
                         <constraint firstAttribute="bottom" secondItem="SiF-Dr-V8Q" secondAttribute="bottom" constant="4" id="sJT-UV-WU4"/>
                     </constraints>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Vn7-7Y-N4N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="UPf-08-IQL"/>
+                <constraint firstItem="Vn7-7Y-N4N" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="UPf-08-IQL"/>
                 <constraint firstAttribute="bottom" secondItem="Vn7-7Y-N4N" secondAttribute="bottom" id="WKd-Xi-3pv"/>
                 <constraint firstItem="Vn7-7Y-N4N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="X93-Js-mbj"/>
                 <constraint firstItem="Vn7-7Y-N4N" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="iN7-pc-nir"/>
-                <constraint firstAttribute="trailing" secondItem="Vn7-7Y-N4N" secondAttribute="trailing" id="mXd-mW-eYN"/>
-                <constraint firstItem="Vn7-7Y-N4N" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="qnf-6s-guJ"/>
+                <constraint firstAttribute="trailing" secondItem="Vn7-7Y-N4N" secondAttribute="trailing" constant="16" id="mXd-mW-eYN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="dividerView" destination="68e-Al-s1V" id="ELa-PM-E3l"/>
                 <outlet property="headerButton" destination="4oa-3E-a7c" id="oI5-Ix-Kgw"/>
+                <outlet property="mainContainerView" destination="Vn7-7Y-N4N" id="hpt-Z0-XLB"/>
                 <outlet property="titleLabel" destination="SiF-Dr-V8Q" id="TlB-Er-RVD"/>
             </connections>
             <point key="canvasLocation" x="170.99236641221373" y="-2.8169014084507045"/>

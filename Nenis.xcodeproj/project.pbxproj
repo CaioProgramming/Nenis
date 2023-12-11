@@ -378,7 +378,6 @@
 				F0AC1ABD2B0C4FEF00481C5E /* diapers */,
 				F03ED7D52AF449020025E8BF /* vaccine */,
 				F0891AE52AC1F2FA00BC6C6B /* baby */,
-				F09D40BD2ABFCA730006E4BF /* popover */,
 				F0A5BFBB2AB484280045AD1C /* Auth */,
 				F09F3F312AA96A6C00143522 /* actions */,
 				F01E307A2AA75BD8003AF470 /* explore */,
@@ -516,13 +515,6 @@
 				F0B758852B154F9700568D0C /* VerticalTableFooterView.xib */,
 			);
 			path = footer;
-			sourceTree = "<group>";
-		};
-		F09D40BD2ABFCA730006E4BF /* popover */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = popover;
 			sourceTree = "<group>";
 		};
 		F09F3F312AA96A6C00143522 /* actions */ = {

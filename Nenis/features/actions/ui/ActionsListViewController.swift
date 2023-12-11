@@ -9,8 +9,10 @@ import UIKit
 
 class ActionsListViewController: UIViewController {
 
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var actionstableView: UITableView!
     var actions: [Action] = []
+    var message: String? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         actionstableView.delegate = self
@@ -23,8 +25,13 @@ class ActionsListViewController: UIViewController {
         actions = newActions
     }
     
+    func showMessage(_ text: String) {
+        self.message = text
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         actionstableView.reloadData()
+        messageLabel.text = message
     }
 
 }

@@ -35,13 +35,18 @@ struct DiaperHomeSection : Section {
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> C {
         let cell = C.dequeueTableViewCell(with: tableView, indexPath: indexPath)
         cell.setupDiapers(diapers: items)
-        
+        cell.diaperSelectClosure = { diaper in
+            itemClosure(items[indexPath.row], cell)
+        }
         return cell
     }
     
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
         let header = H.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
         header.setupHeader(info: headerData)
+        header.mainContainerView.backgroundColor = UIColor(named: "CardBackColor")
+        header.mainContainerView.roundTopCorners(radius: 15)
+        header.dividerView.isHidden = false
         return header
     }
     
@@ -51,7 +56,11 @@ struct DiaperHomeSection : Section {
     }
     
     
-    var cellHeight: CGFloat = 225
+    var cellHeight: CGFloat = 150
+    
+    func headerHeight() -> CGFloat {
+        return 50
+    }
     
     
     typealias T = DiaperItem
@@ -60,19 +69,37 @@ struct DiaperHomeSection : Section {
 
 
 struct DiaperDetailSection: Section {
-    var items: [Action]
+    var items: [DetailModel]
     var color: UIColor
+    var menuClosure: ((Int) -> Void)
+     
     
-    func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> ActivityTableViewCell {
-        let action = items[indexPath.row]
+    func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> HorizontalTableViewCell {
+        let item = items[indexPath.row]
         let cell = C.dequeueTableViewCell(with: tableView, indexPath: indexPath)
-        cell.setupAction(activity: action, isFirst: action == items.first, isLast: action == items.last)
+        cell.setupData(field: item.name, value: nil, subtitle: item.value, isFirst: false, isLast: item == items.last)
         return cell
     }
     
-    func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> DiaperHeaderView {
+    func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> HorizontalHeaderView {
         let header = H.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
-        header.setupHeader(with: headerData?.title ?? "", color: color)
+        header.setupHeader(info: headerData)
+        header.mainContainerView.backgroundColor = UIColor.systemBackground
+        header.mainContainerView.roundTopCorners(radius: 15)
+        header.headerButton.tintColor = color
+        let closure = { (action: UIAction) in
+            menuClosure(sectionIndex)
+        }
+        let action = UIAction(handler: closure)
+        action.title = "Excluir"
+        action.image = UIImage(systemName: "trash.circle.fill")?.withTintColor(UIColor.red.withAlphaComponent(0.7))
+        
+        header.headerButton.menu = UIMenu(
+            title: "",
+            identifier: UIMenu.Identifier(rawValue: "headerMenu"),
+            children: [action]
+        )
+        header.headerButton.showsMenuAsPrimaryAction = true
         return header
     }
     
@@ -82,13 +109,13 @@ struct DiaperDetailSection: Section {
         return footer
     }
     
-    var itemClosure: ((Action, UIView?) -> Void)
+    var itemClosure: ((DetailModel, UIView?) -> Void)
     
-    typealias T = Action
+    typealias T = DetailModel
     
-    typealias H = DiaperHeaderView
+    typealias H = HorizontalHeaderView
     
-    typealias C = ActivityTableViewCell
+    typealias C = HorizontalTableViewCell
     
     typealias F = VerticalTableFooterView
     
@@ -96,13 +123,15 @@ struct DiaperDetailSection: Section {
     
     var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
     
-    var cellHeight: CGFloat = 90
+    var cellHeight: CGFloat = 75
     
     func headerHeight() -> CGFloat {
-        return 100
+        return cellHeight
     }
     
-
+    func numberOfRows() -> Int {
+        return items.count
+    }
     
     
 }

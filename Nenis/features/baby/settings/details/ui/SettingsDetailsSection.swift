@@ -13,7 +13,7 @@ struct SettingsDetailsSection: Section {
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> HorizontalTableViewCell {
         let item = items[indexPath.row]
         let cell = HorizontalTableViewCell.dequeueTableViewCell(with: tableView, indexPath: indexPath)
-        cell.setupData(field: item.name, value: item.value)
+        cell.setupData(field: item.name, value: item.value, subtitle: nil, isFirst: item == items.first, isLast: item == items.last)
         return cell
     }
     
@@ -53,6 +53,7 @@ struct SettingsDetailsSection: Section {
 
         return size
     }
+    
     
     var itemClosure: ((DetailModel, UIView?) -> Void)
     

@@ -115,7 +115,7 @@ enum Option: CaseIterable {
         case .diapers:
             "Fraldas"
         case .actions:
-            "Atividade"
+            "Atividades"
         }
     }
     }

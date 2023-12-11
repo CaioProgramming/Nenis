@@ -31,8 +31,17 @@ protocol InfoProtocol {
 }
 
 protocol VaccineDetailProtocol {
-    func buildSectionsForVaccine() -> [any Section]
+    func buildSectionsForVaccine() -> [VaccineSettingsSection]
     func clearVaccineData()
+}
+
+protocol DiaperDetailProtocol {
+    func buildSectionsForDiapers() -> [DiaperDetailSection]
+    func deleteDiaper(diaper: Diaper)
+}
+
+protocol ActionDetailProtocol {
+    func buildSectionsForActions() -> [ActionSettingSection]
 }
 
 class SettingDetailViewModel {
@@ -54,6 +63,10 @@ class SettingDetailViewModel {
             delegate?.retrieveSections(buildSectionsForInfo())
         case .vaccines:
             delegate?.retrieveSections(buildSectionsForVaccine())
+        case .diapers:
+            delegate?.retrieveSections(buildSectionsForDiapers())
+        case .actions:
+            delegate?.retrieveSections(buildSectionsForActions())
         default: break
         }
         if let currentOption = selectedOption {
@@ -250,8 +263,8 @@ extension SettingDetailViewModel: InfoProtocol {
 
 extension SettingDetailViewModel: VaccineDetailProtocol {
     
-    func buildSectionsForVaccine() -> [any Section] {
-        var sections : [any Section] = []
+    func buildSectionsForVaccine() -> [VaccineSettingsSection] {
+        var sections : [VaccineSettingsSection] = []
         if let currentChild = child {
             let vaccineHelper = VaccineHelper()
             let vaccines = vaccineHelper.groupVaccines(with: currentChild).sorted(by: { firstItem, lastItem in
@@ -283,6 +296,95 @@ extension SettingDetailViewModel: VaccineDetailProtocol {
             newChild.vaccines = []
             babyService?.updateData(data: newChild)
         }
+    }
+    
+    
+}
+
+extension SettingDetailViewModel : DiaperDetailProtocol {
+    
+    func deleteDiaper(diaper: Diaper) {
+        if let currentChild = child {
+            if let selectedDiaper = currentChild.diapers.firstIndex(where: { childDiaper in
+            
+                childDiaper.type == diaper.type
+                
+            }) {
+                var newChild = currentChild
+                newChild.diapers.remove(at: selectedDiaper)
+                babyService?.updateData(data: newChild)
+            }
+        }
+    }
+    
+    func buildSectionsForDiapers() -> [DiaperDetailSection] {
+        var sections: [DiaperDetailSection] = []
+        if let currentChild = child {
+            let diaperMapper = DiaperMapper()
+            
+         let diaperSections = diaperMapper.mapDiapers(child: currentChild).map({ item in
+            
+                let size = item.diaper.getSizeType()
+                let details = item.linkedActions.map({ action in
+                    DetailModel(name: action.description, value: action.formatDate())
+                })
+             let headerData : (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void) = ("Fraldas \(size?.description ?? "")", "", UIImage(systemName: "ellipsis"), { view in
+             
+                 
+                 
+             })
+             return  DiaperDetailSection(
+                items: details,
+                color: item.diaper.getSizeType()?.color ?? UIColor.accent,
+                menuClosure: { index in
+                 
+                 self.deleteDiaper(diaper: item.diaper)
+                 
+             },
+                itemClosure: { detail, view in },
+                headerData: headerData)
+            })
+            sections = diaperSections
+        }
+        return sections
+    }
+    
+    
+}
+
+extension SettingDetailViewModel: ActionDetailProtocol {
+    
+    func deleteActionGroup(actionType: ActionType) {
+        
+    }
+    
+    func deleteAction(action: Action) {
+        
+    }
+    
+    func buildSectionsForActions() -> [ActionSettingSection] {
+        var sections : [ActionSettingSection] = []
+        
+        if let currentChild = child {
+           let actionSections = ActionType.allCases.map({ action in
+               let filteredActions = currentChild.actions.filter({ act in
+                    act.type.caseInsensitiveCompare(action.description) == .orderedSame
+                })
+                let headerData : (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void) = (title: action.title, actionTitle: "", uiIcon: UIImage(systemName: "ellipsis"), closure: { view in })
+                return  ActionSettingSection(
+                    items: filteredActions,
+                    actionType: action,
+                    itemClosure: { _, _ in },
+                    headerData: headerData,
+                    menuClosure: { _ in self.deleteActionGroup(actionType: action) }
+                )
+            })
+            sections = actionSections.filter({ section in
+                !section.items.isEmpty
+            })
+        }
+        
+        return sections
     }
     
     

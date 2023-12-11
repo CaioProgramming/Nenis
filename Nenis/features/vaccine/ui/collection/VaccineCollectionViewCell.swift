@@ -19,8 +19,10 @@ class VaccineCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var vaccineIcon: UIImageView!
     
+    @IBOutlet weak var mainContentView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.mainContentView.roundedCorner(radius: 15)
         // Initialization code
     }
     
