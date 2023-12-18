@@ -7,17 +7,28 @@
 
 import UIKit
 
-class TutorTableViewCell: UITableViewCell {
-
+class TutorTableViewCell: UITableViewCell, CustomViewProtocol {
+    static var viewType: ViewType = .cell
+    
+    @IBOutlet weak var containerView: UIView!
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var iconImage: UIImageView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        containerView.roundedCorner(radius: 15)
+        containerView.isHidden = true
+        iconImage.clipImageToCircle(color: UIColor.accent)
+
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    func setupInfo(name: String?) {
+        nameLabel.text = name
     }
+    
+
+   
     
 }

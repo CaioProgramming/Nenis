@@ -10,67 +10,13 @@ import FirebaseFirestore
 import FirebaseAuth
 import os
 
+
+
 protocol DatabaseProtocol {
-    associatedtype T : Codable
+    associatedtype T : DocumentProtocol
     var path: String { get }
-    var delegate: any DatabaseDelegate<T> { get }
-    var firebaseDataSource: FirebaseDataSource<T>? { get }
-    func mapSnapshot(querySnapshot: DocumentSnapshot) -> T?
+    var dataSource: FirebaseDataSource<T>? { get }
     
-}
-
-
-extension DatabaseProtocol {
-    
-    
-    func mapSnapshot(querySnapshot: DocumentSnapshot) -> T? {
-        do  {
-            var data = try querySnapshot.data(as: T.self) as T
-            return  data
-        } catch {
-            sendError(message: "Error mapping snapshot \(error.localizedDescription)", errorType: .delete)
-            return nil
-        }
-    }
-    
-    
-    func handleSnapshotArray(querySnapshot: [QueryDocumentSnapshot], isQuery: Bool) {
-        
-        let childArray = querySnapshot.compactMap( { doc in
-            
-            let data = mapSnapshot(querySnapshot: doc)
-            return data
-            
-        })
-        print("Data => \(childArray)")
-        if (!childArray.isEmpty) {
-            delegate.retrieveListData(dataList: childArray)
-        } else {
-            if(isQuery) {
-                self.delegate.taskFailure(databaseError: .query)
-            } else {
-                self.delegate.taskFailure(databaseError: .fetch)
-            }
-        }
-    }
-    
-    func handleDocSnapshot(docSnapshot: DocumentSnapshot) {
-            if let dataModel = mapSnapshot(querySnapshot: docSnapshot) {
-                self.delegate.retrieveData(data: dataModel)
-            }
-    }
-}
-
-
-
-protocol FirestoreImplementation {
-    associatedtype T: Encodable
-    func saveData(data: T,  completition: @escaping (T, String) -> Void)
-    func updateData(id: String?, data: T,  completition: @escaping (T) -> Void)
-    func getAllData()
-    func queryData(field: String, value: String, isArray: Bool)
-    func getSingleData(id: String)
-    func deleteData(id: String?)
 }
 
 
@@ -88,51 +34,72 @@ extension DatabaseProtocol {
         return Logger.init()
     }
     
-    func sendError(message: String?, errorType: ErrorType) {
-        getLogger().error("\(message ?? "Error on executing function")")
-        delegate.taskFailure(databaseError: errorType)
+    func saveData(data: T, onSuccess: (T, String) -> Void, onFailure: (Error) -> Void) async {
+        do {
+            if let task = try await dataSource?.saveData(data: data).get() {
+                onSuccess(task.0, task.1)
+            }
+        } catch {
+            onFailure(error)
+        }
     }
     
+    func updateData(data: T, onSuccess: (T) -> Void, onFailure: (Error) -> Void) async {
+        do {
+            if let task = try await dataSource?.updateData(data: data).get() {
+                onSuccess(task)
+            }
+
+        } catch {
+            onFailure(error)
+        }
+    }
     
+    func deleteData(id: String?, onSuccess: () -> Void, onFailure: (Error) -> Void) async {
+        do {
+            try await dataSource?.deleteData(id: id).get()
+            onSuccess()
+        } catch {
+            onFailure(error)
+        }
+    }
+    
+    func getAllData(onSuccess: (([T]) -> Void), onFailure: (Error) -> Void) async {
+        do {
+            if let task = try await dataSource?.getAllData().get() {
+                onSuccess(task)
+            }
+        } catch {
+            onFailure(error)
+        }
+    }
+    
+    func getSingleData(id: String, onSuccess: (T) -> Void, onFailure: (Error) -> Void) async {
+        do {
+            if let task = try await dataSource?.getSingleData(id: id).get() {
+                onSuccess(task)
+            }
+
+        } catch {
+            onFailure(error)
+        }
+    }
+    
+    func queryData(field: String, value: String, isArray: Bool, onSuccess: (([T]) -> Void), onFailure: (Error) -> Void) async {
+        do {
+            if let task = try await dataSource?.queryData(field: field, value: value, isArray: isArray).get() {
+                onSuccess(task)
+            }
+            
+        } catch {
+            onFailure(error)
+        }
+       
+    }
     
 }
 
 
-protocol DatabaseDelegate<T> {
-    associatedtype T
-    func retrieveListData(dataList: [T])
-    func retrieveData(data: T)
-    func saveSuccess(data: T)
-    func updateSuccess(data: T)
-    func taskFailure(databaseError: ErrorType)
-    func taskSuccess(message: String)
-}
-
-extension DatabaseDelegate {
-    func logger() -> Logger { return Logger() }
-    
-    func taskFailure(databaseError: ErrorType) {
-        logger().error("Task failed -> \(databaseError.description)")
-    }
-    
-    func taskSuccess(message: String) {
-        logger().debug("Task success -> \(message)")
-        
-    }
-    
-    func saveSuccess(data: T) {}
-    func updateSuccess(data: T) {}
-    
-    func retrieveData(data: T) {
-        logger().info("Data retrieved -> \(String(describing: data))")
-    }
-    
-    func retrieveListData(dataList: [T]) {
-        logger().info("Data retrieved -> \(String(describing: dataList))")
-
-    }
-
-}
 
 enum ErrorType {
     case update, query, fetch, delete, save, parse

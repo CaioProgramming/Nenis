@@ -44,18 +44,19 @@ protocol ActionDetailProtocol {
     func buildSectionsForActions() -> [ActionSettingSection]
 }
 
+protocol TutorDetailProtocol {
+    func buildSectionsForTutor(tutors: [Tutor]) -> [TutorSection]
+    func deleteTutor(index: Int)
+}
+
 class SettingDetailViewModel {
     typealias T = Child
     
-    var babyService: BabyService? = nil
+    var babyService = BabyService()
     var child: Child? = nil
     var selectedOption: Option? = nil
     var delegate: DetailProtocol? = nil
-    
     func setupDetail(with selectedChild: Child?, option: Option?) {
-        if(babyService == nil) {
-            babyService = BabyService(delegate: self)
-        }
         child = selectedChild
         selectedOption = option
         switch option {
@@ -67,40 +68,37 @@ class SettingDetailViewModel {
             delegate?.retrieveSections(buildSectionsForDiapers())
         case .actions:
             delegate?.retrieveSections(buildSectionsForActions())
+        case .tutors:
+            getTutors()
         default: break
         }
         if let currentOption = selectedOption {
             delegate?.setupNavItem(option: currentOption)
-
+            
         }
     }
     
     
     
-    func buildSectionsForTutors() {
-        
-    }
-    
-    func buildSectionsForVaccines() {
-        
-    }
-    
-    func buildSectionsForDiapers() {
-        
-    }
-    
-    func buildSectionsForActions() {
-        
-    }
-    
-}
-
-extension SettingDetailViewModel: DatabaseDelegate {
-    
     func updateSuccess(data: Child) {
-        self.delegate?.retrieveSections([])
-        setupDetail(with: data, option: self.selectedOption)
+        DispatchQueue.main.async {
+            self.delegate?.retrieveSections([])
+            self.setupDetail(with: data, option: self.selectedOption)
+        }
+        
     }
+    
+    private func updateChild(newChild: Child) {
+        Task {
+            await babyService
+                .updateData(
+                    data:newChild,
+                    onSuccess: updateSuccess,
+                    onFailure: { _ in }
+                )
+        }
+    }
+    
 }
 
 
@@ -110,7 +108,7 @@ extension SettingDetailViewModel: InfoProtocol {
         if let currentChild = child {
             var newChild = currentChild
             newChild.gender = gender.description
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -119,7 +117,7 @@ extension SettingDetailViewModel: InfoProtocol {
         if let currentChild = child {
             var newChild = currentChild
             newChild.name = name
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -127,7 +125,7 @@ extension SettingDetailViewModel: InfoProtocol {
         if let currentChild = child {
             var newChild = currentChild
             newChild.birthDate = date
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -139,7 +137,7 @@ extension SettingDetailViewModel: InfoProtocol {
             var infos = currentChild.extraInfo
             infos.append(extraData)
             newChild.extraInfo = infos
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -149,7 +147,7 @@ extension SettingDetailViewModel: InfoProtocol {
             var infos = currentChild.extraInfo
             infos.remove(at: index)
             newChild.extraInfo = infos
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -163,7 +161,7 @@ extension SettingDetailViewModel: InfoProtocol {
             selectedInfo.infos = currentInfos
             infos[groupIndex] = selectedInfo
             newChild.extraInfo = infos
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -177,7 +175,7 @@ extension SettingDetailViewModel: InfoProtocol {
             selectedInfo.infos = currentInfos
             infos[groupIndex] = selectedInfo
             newChild.extraInfo = infos
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -191,7 +189,7 @@ extension SettingDetailViewModel: InfoProtocol {
             selectedInfo.infos = currentInfos
             infos[groupIndex] = selectedInfo
             newChild.extraInfo = infos
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -209,15 +207,18 @@ extension SettingDetailViewModel: InfoProtocol {
                     DetailModel(name: "Sexo", value: currentChild.gender.getGender()?.info ?? "-")
                 ])
             
-            let footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)? = if(currentChild.extraInfo.isEmpty) {
-                ("Adicione informações úteis para cuidar de \(currentChild.name).", "Adicionar informações", { view in  self.delegate?.requestNewGroupInfo() })
+            let footerData: FooterComponent? = if(currentChild.extraInfo.isEmpty) {
+                FooterComponent(
+                    message: "Adicione informações úteis para cuidar de \(currentChild.name)",
+                    actionLabel: "Adicionar informações",
+                    messageIcon: nil,
+                    actionClosure: { _ in self.delegate?.requestNewGroupInfo() })
             } else {
                 nil
             }
             
             let firstDetailSection = SettingsDetailsSection(
                 items: basicDetails.infos,
-                headerMenuClosure: { position in },
                 itemClosure: { detail, view in
                     
                     if(detail == basicDetails.infos.first) {
@@ -230,25 +231,39 @@ extension SettingDetailViewModel: InfoProtocol {
                     }
                     
                 },
-                headerData: (basicDetails.title, "", nil, { view in }),
-                footerData: footerData)
+                
+                headerData: HeaderComponent(title: basicDetails.title, actionLabel: nil, actionIcon: nil, trailingIcon: nil, actionClosure: nil),
+                footerData: footerData,
+                headerMenuClosure: { position in })
+            
             sections.append(firstDetailSection)
             
             currentChild.extraInfo.map({ data in
                 
                 SettingsDetailsSection(items: data.infos,
-                                       headerMenuClosure: { position in self.deleteGroupInfo(index: position - 1) },
                                        itemClosure: { detail, view in
+                    
                     if let groupIndex = currentChild.extraInfo.firstIndex(of: data), let itemIndex = data.infos.firstIndex(of: detail) {
                         self.delegate?.showEditForDetail(groupIndex: groupIndex, itemIndex: itemIndex, item: detail, view: view)
                     }
                 },
-                                       headerData: (data.title, "", UIImage(systemName: "ellipsis.circle"), { view in }),
-                                       footerData: ("", "Adicionar mais itens", { view in
-                    if let groupIndex = currentChild.extraInfo.firstIndex(of: data) {
-                        self.delegate?.requestNewInfo(group: groupIndex, sender: view)
-                    }
-                })
+                                       headerData: HeaderComponent(
+                                        title: data.title,
+                                        actionLabel: "",
+                                        actionIcon: UIImage(systemName: "ellipsis.circle"),
+                                        trailingIcon: nil,
+                                        actionClosure: nil
+                                       ),
+                                       footerData: FooterComponent(
+                                        message: "",
+                                        actionLabel: "Adicionar mais itens",
+                                        messageIcon: nil,
+                                        actionClosure: { view in
+                                            if let groupIndex = currentChild.extraInfo.firstIndex(of: data) {
+                                                self.delegate?.requestNewInfo(group: groupIndex, sender: view)
+                                            }
+                                        }),
+                                       headerMenuClosure: { position in self.deleteGroupInfo(index: position - 1) }
                 )
                 
             }).forEach({ section in
@@ -268,20 +283,20 @@ extension SettingDetailViewModel: VaccineDetailProtocol {
         if let currentChild = child {
             let vaccineHelper = VaccineHelper()
             let vaccines = vaccineHelper.groupVaccines(with: currentChild).sorted(by: { firstItem, lastItem in
-            
+                
                 return firstItem.key == .done
                 
             })
             let vaccineSections = vaccines.map({ item in
-               let footerData : (message: String, actionTitle: String, closure: (UIView?) -> Void)? = if(item.key == .done) {
-                   nil
-               } else {
-                   ("", "Excluir dados", { view in self.clearVaccineData() })
-               }
-              return  VaccineSettingsSection(
+                let footerData : FooterComponent? = if(item.key == .done) {
+                    nil
+                } else {
+                    FooterComponent(message: "", actionLabel: "Excluir dados", messageIcon: nil, actionClosure: {  _ in self.clearVaccineData() })
+                }
+                return  VaccineSettingsSection(
                     items: item.value,
                     itemClosure: { vaccine, view in },
-                    headerData: (item.key.title, "", nil, { view in }),
+                    headerData: HeaderComponent(title: item.key.title, actionLabel: nil, actionIcon: nil, trailingIcon: nil, actionClosure: nil),
                     footerData: footerData)
                 
             })
@@ -294,7 +309,7 @@ extension SettingDetailViewModel: VaccineDetailProtocol {
         if let currentChild = child {
             var newChild = currentChild
             newChild.vaccines = []
-            babyService?.updateData(data: newChild)
+            updateChild(newChild: newChild)
         }
     }
     
@@ -306,13 +321,13 @@ extension SettingDetailViewModel : DiaperDetailProtocol {
     func deleteDiaper(diaper: Diaper) {
         if let currentChild = child {
             if let selectedDiaper = currentChild.diapers.firstIndex(where: { childDiaper in
-            
+                
                 childDiaper.type == diaper.type
                 
             }) {
                 var newChild = currentChild
                 newChild.diapers.remove(at: selectedDiaper)
-                babyService?.updateData(data: newChild)
+                updateChild(newChild: newChild)
             }
         }
     }
@@ -322,27 +337,25 @@ extension SettingDetailViewModel : DiaperDetailProtocol {
         if let currentChild = child {
             let diaperMapper = DiaperMapper()
             
-         let diaperSections = diaperMapper.mapDiapers(child: currentChild).map({ item in
-            
+            let diaperSections = diaperMapper.mapDiapers(child: currentChild).map({ item in
+                
                 let size = item.diaper.getSizeType()
                 let details = item.linkedActions.map({ action in
                     DetailModel(name: action.description, value: action.formatDate())
                 })
-             let headerData : (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void) = ("Fraldas \(size?.description ?? "")", "", UIImage(systemName: "ellipsis"), { view in
-             
-                 
-                 
-             })
-             return  DiaperDetailSection(
-                items: details,
-                color: item.diaper.getSizeType()?.color ?? UIColor.accent,
-                menuClosure: { index in
-                 
-                 self.deleteDiaper(diaper: item.diaper)
-                 
-             },
-                itemClosure: { detail, view in },
-                headerData: headerData)
+                let headerData = HeaderComponent(
+                    title: "Fraldas \(size?.description ?? "")",
+                    actionLabel: nil, actionIcon: UIImage(systemName: "ellipsis"),
+                    trailingIcon: nil,
+                    actionClosure: nil
+                )
+                
+                return  DiaperDetailSection(
+                    color: item.diaper.getSizeType()?.color ?? UIColor.accent,
+                    items: details,
+                    itemClosure: { detail, view in },
+                    menuClosure: { index in self.deleteDiaper(diaper: item.diaper) },
+                    headerData: headerData)
             })
             sections = diaperSections
         }
@@ -366,18 +379,27 @@ extension SettingDetailViewModel: ActionDetailProtocol {
         var sections : [ActionSettingSection] = []
         
         if let currentChild = child {
-           let actionSections = ActionType.allCases.map({ action in
-               let filteredActions = currentChild.actions.filter({ act in
+            let actionSections = ActionType.allCases.map({ action in
+                let filteredActions = currentChild.actions.filter({ act in
                     act.type.caseInsensitiveCompare(action.description) == .orderedSame
                 })
-                let headerData : (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void) = (title: action.title, actionTitle: "", uiIcon: UIImage(systemName: "ellipsis"), closure: { view in })
+                let headerData = HeaderComponent(
+                    title: action.title,
+                    actionLabel: nil,
+                    actionIcon: UIImage(systemName: "ellipsis"),
+                    trailingIcon: action.cellImage,
+                    actionClosure: nil
+                )
+                
                 return  ActionSettingSection(
                     items: filteredActions,
                     actionType: action,
                     itemClosure: { _, _ in },
                     headerData: headerData,
+                    editingStyle: .delete,
                     menuClosure: { _ in self.deleteActionGroup(actionType: action) }
                 )
+                
             })
             sections = actionSections.filter({ section in
                 !section.items.isEmpty
@@ -385,6 +407,43 @@ extension SettingDetailViewModel: ActionDetailProtocol {
         }
         
         return sections
+    }
+    
+    
+}
+
+extension SettingDetailViewModel: TutorDetailProtocol {
+    
+    func deleteTutor(index: Int) {
+        if let currentChild = child {
+            var newChild = currentChild
+            newChild.tutors.remove(at: index)
+            updateChild(newChild: newChild)
+        }
+    }
+    
+    func getTutors() {
+        if let currentChild = child {
+            let userHelper = UserHelper()
+            var tutors: [Tutor?] = []
+            for(i, uid) in currentChild.tutors.enumerated() {
+                userHelper.queryUserID(id: uid, with: { [self] tutor in
+                    DispatchQueue.main.async {
+                        tutors.append(tutor)
+                        if(uid == currentChild.tutors.last) {
+                          self.delegate?.retrieveSections(self.buildSectionsForTutor(tutors: tutors.compactMap({ $0 })))
+                        }
+                    }
+                    
+                    
+                })
+            }
+        }
+    }
+    
+    
+    func buildSectionsForTutor(tutors: [Tutor]) -> [TutorSection] {
+        return [TutorSection(items: tutors, itemClosure: { item, view in })]
     }
     
     

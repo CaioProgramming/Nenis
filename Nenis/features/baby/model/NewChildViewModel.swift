@@ -18,85 +18,61 @@ protocol NewChildProtocol {
     func errorSaving(errorMessage: String)
 }
 
-struct UploadTask {
-    let error: String?
-    let sucess: String?
-}
 
-class NewChildViewModel: DatabaseDelegate {
+class NewChildViewModel {
     
    private var photo: Data? = nil
-    
-    func updateSuccess(data: Child) {
-        delegate?.saveSuccess(child: data)
-    }
-    
-    
-    func saveSuccess(data: Child) {
-        guard let newPhoto = photo else {
-            delegate?.errorSaving(errorMessage: "Image not uploaded")
-            return
-        }
-        storageService?.uploadFile(fileName: data.id ?? data.name.addTimeInterval(), fileData: newPhoto, extension: ".JPEG") { downloadURL in
-            do {
-                let fileURL = try downloadURL.get()
-                var childUpdate = data
-                childUpdate.photo = fileURL
-                self.babyService?.updateData(data: childUpdate)
-                
-            } catch {
-                self.sendError(messsage: "Error uploading file.")
-            }
-        }
-        
-    }
-    
-    func taskFailure(databaseError: ErrorType) {
-        delegate?.errorSaving(errorMessage: databaseError.description)
-    }
-    
-    
-    func retrieveListData(dataList: [Child]) {
-        
-    }
-    
-    func retrieveData(data: Child) {
-        
-    }
-    
-    func taskSuccess(message: String) {
-        
-    }
-    
-    typealias T = Child
-    
-    
-    var babyService : BabyService? = nil
-    var storageService: StorageService? = nil
-    init() {
-        self.babyService = BabyService(delegate: self)
-        self.storageService = StorageService(path:"Childs")
-        
-    }
-    
+
+    var babyService = BabyService()
+    var storageService: StorageSource = StorageSource(path: "Childs")
+
     var delegate: NewChildProtocol? = nil
     
+    private func uploadPic(id: String, child: Child, file: Data) {
+        Task {
+            await storageService
+                .uploadFile(
+                    fileName: id,
+                    fileData: file,
+                    extension:".JPEG",
+                    onSuccess: { downloadURL in
+                        self.updateChildPic(with: child, url: downloadURL)
+                    },
+                    onError: {_ in
+                        sendError(messsage: "Erro ao salvar foto da criança.")
+                    })
+        }
+    }
+    
+    func updateChildPic(with child: Child, url: String) {
+        
+        Task {
+            var newChild = child
+            newChild.photo = url
+            
+           await babyService.updateData(data: newChild, onSuccess: { updatedChild in
+                delegate?.saveSuccess(child: updatedChild)
+            }, onFailure: { error in
+            
+                sendError(messsage: "Erro ao concluir informações da criança.")
+            })
+        }
+    }
     
     func saveChild(name: String, birthDate: Date, photoPath: Data, gender: String) {
         if let currentUser = Auth.auth().currentUser {
-            self.babyService?.saveData(data: Child(name: name, birthDate: birthDate, photo: "", gender: gender,tutors: [currentUser.uid]))
-            self.photo = photoPath
-            storageService?.uploadFile(fileName: name, fileData: photoPath, extension: ".JPEG") { downloadURL in
-                do {
-                    let fileURL = try downloadURL.get()
-                    self.babyService?.saveData(data: Child(name: name, birthDate: birthDate, photo: fileURL, gender: gender,tutors: [currentUser.uid]))
-                    
-                } catch {
-                    self.sendError(messsage: "Error uploading file.")
-                }
+            Task {
+                let child = Child(name: name, birthDate: birthDate, photo: "", gender: gender,tutors: [currentUser.uid])
+                await babyService.saveData(
+                    data: child,
+                    onSuccess: { savedChild, id in
+                        self.uploadPic(id: id, child: savedChild, file: photoPath)
+                    },
+                    onFailure: { error in
+                        sendError(messsage: "Erro ao salvar dados.")
+                    }
+                )
             }
-        } else {
-            delegate?.errorSaving(errorMessage: "User not authenticated")
         }
     }
     

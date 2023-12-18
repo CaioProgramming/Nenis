@@ -9,13 +9,18 @@ import Foundation
 import UIKit
 struct VaccineSection: Section {
     
+  
+    
+    
     typealias T = VaccineItem
     
     var items: [VaccineItem]
 
     var itemClosure: ((VaccineItem, UIView?) -> Void)
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
+    
+    var headerData: HeaderComponent?
+    var footerData: FooterComponent?
+    var editingStyle: UITableViewCell.EditingStyle = .none
 
     typealias H = HorizontalHeaderView
     
@@ -74,8 +79,14 @@ struct VaccineSection: Section {
 }
 
 struct VaccineSettingsSection: Section {
-    var items: [VaccineItem]
+
     
+    var items: [VaccineItem]
+    var itemClosure: ((VaccineItem, UIView?) -> Void)
+    var headerData: HeaderComponent?
+    var footerData: FooterComponent?
+    var editingStyle: UITableViewCell.EditingStyle = .none
+
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> VaccineHorizontalTableViewCell {
         let vaccine = items[indexPath.row]
         let cell = VaccineHorizontalTableViewCell.dequeueTableViewCell(with: tableView, indexPath: indexPath)
@@ -97,7 +108,6 @@ struct VaccineSettingsSection: Section {
         return footer
     }
     
-    var itemClosure: ((VaccineItem, UIView?) -> Void)
     
     typealias T = VaccineItem
     
@@ -106,10 +116,6 @@ struct VaccineSettingsSection: Section {
     typealias C = VaccineHorizontalTableViewCell
     
     typealias F = VerticalTableFooterView
-    
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
     
     var cellHeight: CGFloat = 75
     

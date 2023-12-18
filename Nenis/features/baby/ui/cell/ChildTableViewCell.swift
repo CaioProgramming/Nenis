@@ -38,9 +38,9 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
         childNameLabel.text = child.name
         childAgeLabel.text = child.getFullAge()
         childAgeLabel.textColor = color
-        imageContainer.clipImageToCircle(color: UIColor.systemGroupedBackground)
-        childImage.clipImageToCircle(color: UIColor.label)
-        imageContainer.dropShadow(oppacity: 0.8, color: color)
+        imageContainer.clipImageToCircle(color: UIColor.systemBackground)
+        childImage.clipImageToCircle(color: UIColor.systemGray.withAlphaComponent(0.4))
+        imageContainer.dropShadow(oppacity: 1, radius: 15, color: color)
         childImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imageTap)))
         self.fadeIn()
     }
@@ -48,11 +48,9 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
     @objc func imageTap(_ sender:UITapGestureRecognizer) {
         
         if let closure = childClosure {
-            childImage.scaleAnimation(xScale: 0.9, yScale: 0.9, onCompletion: {
-                self.childImage.scaleAnimation(xScale: 1.0, yScale: 1.0, onCompletion: {
-                    closure(self.childImage)
-
-                })
+            childImage.fadeOut(0.5,onCompletion: {
+                closure(self.childImage)
+                self.childImage.fadeIn()
             })
         }
     }

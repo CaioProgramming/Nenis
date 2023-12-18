@@ -8,11 +8,19 @@
 import Foundation
 import UIKit
 struct SettingsDetailsSection: Section {
+
+    
     var items: [DetailModel]
+    var itemClosure: ((DetailModel, UIView?) -> Void)
+    var headerData: HeaderComponent?
+    var footerData: FooterComponent?
     var headerMenuClosure: ((Int) -> Void)
+    var editingStyle: UITableViewCell.EditingStyle = .delete
+
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> HorizontalTableViewCell {
         let item = items[indexPath.row]
         let cell = HorizontalTableViewCell.dequeueTableViewCell(with: tableView, indexPath: indexPath)
+        cell.containerStack.backgroundColor = UIColor(named: "CardBackColor")
         cell.setupData(field: item.name, value: item.value, subtitle: nil, isFirst: item == items.first, isLast: item == items.last)
         return cell
     }
@@ -55,7 +63,6 @@ struct SettingsDetailsSection: Section {
     }
     
     
-    var itemClosure: ((DetailModel, UIView?) -> Void)
     
     typealias T = DetailModel
     
@@ -66,8 +73,7 @@ struct SettingsDetailsSection: Section {
     typealias F = VerticalTableFooterView
     
  
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
+
     let cellHeight: CGFloat = 75
     
     

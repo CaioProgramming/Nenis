@@ -20,12 +20,12 @@ class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
         self.isHidden = true
     }
     
-    func setupView(info: (message: String,actionTitle: String, closure: (UIView?) -> Void)?) {
+    func setupView(info: FooterComponent?) {
         contentView.isHidden = true
         if let footerInfo = info {
             footerLabel.text = footerInfo.message
-            footerButton.setTitle(footerInfo.actionTitle, for: .normal)
-            self.footerClosure = footerInfo.closure
+            footerButton.setTitle(footerInfo.actionLabel, for: .normal)
+            self.footerClosure = footerInfo.actionClosure
             self.fadeIn()
         }
        

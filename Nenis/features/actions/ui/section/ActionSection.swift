@@ -9,6 +9,9 @@ import Foundation
 import UIKit
 struct ActionSection: Section {
     
+    
+    
+    
     let cellHeight: CGFloat = 90
     typealias T = Action
     typealias H = HorizontalHeaderView
@@ -17,8 +20,10 @@ struct ActionSection: Section {
     
     var items: [Action]
     var itemClosure: ((Action, UIView?) -> Void)
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
+    var headerData: HeaderComponent?
+    var footerData: FooterComponent?
+    var editingStyle: UITableViewCell.EditingStyle
+
 
     func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> F {
         let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: F.identifier) as! F
@@ -55,12 +60,21 @@ struct ActionSection: Section {
 }
 
 struct ActionSettingSection : Section {
+    
+
+    
     var items: [Action]
     var actionType: ActionType
+    var itemClosure: ((Action, UIView?) -> Void)
+    var headerData: HeaderComponent?
+    var footerData: FooterComponent?
+    var editingStyle: UITableViewCell.EditingStyle
+
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> HorizontalTableViewCell {
         let item = items[indexPath.row]
         let cell = C.dequeueTableViewCell(with: tableView, indexPath: indexPath)
-        cell.setupData(field: item.description, value: nil, subtitle: item.time.formatted(), isFirst: false, isLast: item == items.last)
+        cell.containerStack.backgroundColor = UIColor(named: "CardBackColor")
+        cell.setupData(field: item.description, value: nil, subtitle: item.time.formatted(), isFirst: item == items.first, isLast: item == items.last)
         return cell
     }
     
@@ -76,7 +90,7 @@ struct ActionSettingSection : Section {
         let action = UIAction(handler: closure)
         action.title = "Excluir"
         action.image = UIImage(systemName: "trash.circle.fill")?.withTintColor(UIColor.red.withAlphaComponent(0.7))
-        
+        header.iconImage.tintColor = actionType.imageTint
         header.headerButton.menu = UIMenu(
             title: "",
             identifier: UIMenu.Identifier(rawValue: "headerMenu"),
@@ -92,7 +106,6 @@ struct ActionSettingSection : Section {
         return footer
     }
     
-    var itemClosure: ((Action, UIView?) -> Void)
     
     typealias T = Action
     
@@ -101,11 +114,6 @@ struct ActionSettingSection : Section {
     typealias C = HorizontalTableViewCell
     
     typealias F = VerticalTableFooterView
-    
-    
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
     
     var menuClosure: ((ActionType) -> Void)
 

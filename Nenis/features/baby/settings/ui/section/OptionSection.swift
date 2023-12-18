@@ -8,12 +8,15 @@
 import Foundation
 import UIKit
 struct OptionSection : Section {
+
+    
     
     
     var items: [Option]
     var itemClosure: ((Option,UIView?) -> Void)
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
+    var headerData: HeaderComponent?
+    var footerData: FooterComponent?
+    var editingStyle: UITableViewCell.EditingStyle = .none
 
     typealias T = Option
     

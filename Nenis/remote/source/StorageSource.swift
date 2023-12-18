@@ -10,7 +10,8 @@ import FirebaseStorage
 import os
 
 protocol StorageProtocol {
-    func uploadFile(fileName: String, fileData: Data, extension: String, taskResult: @escaping (Result<String,StorageError>) -> Void)
+    func uploadFile(fileName: String, fileData: Data, extension: String, onSuccess: (String) -> Void, onError: (Error) -> Void) async
+    func deleteFile(fileName: String, onSuccess: () -> Void, onError: (Error) -> Void) async
 }
 enum StorageError: Error {
     case upload, url
@@ -45,47 +46,28 @@ class StorageSource: StorageProtocol {
         }
     }
     
-    func deleteFile(fileName: String, taskResult: @escaping (Result<String, StorageError>) -> Void) {
-        let reference = getStoragePath().child(fileName.replacingOccurrences(of: " ", with: ""))
-        reference.delete(completion: { error in
-            
-            if(error != nil) {
-                taskResult(.failure(error! as! StorageError))
-            } else {
-                taskResult(.success("File deleted" ))
-            }
-        })
+    func deleteFile(fileName: String, onSuccess: () -> Void, onError: (Error) -> Void)  async {
+        
+        let reference = getStoragePath().child(fileName.removingBlankSpaces())
+        do {
+            try await reference.delete()
+            onSuccess()
+        } catch {
+            onError(error)
+        }
 
     }
     
-    func uploadFile(fileName: String, fileData: Data, extension: String, taskResult: @escaping (Result<String,StorageError>) -> Void) {
+    func uploadFile(fileName: String, fileData: Data, extension: String, onSuccess: (String) -> Void, onError: (Error) -> Void) async {
         print("Uploading file to storage...")
-        let reference = getStoragePath().child(fileName.replacingOccurrences(of: " ", with: ""))
-        reference.putData(fileData) { metaData, error in
-                
-            do {
-                let result = try self.handleCompletition(metadaData: metaData, error: error).get()
-
-                if(result) {
-                    do {
-                        
-                    }
-                    reference.downloadURL { fileUrl, error in
-                        if let downloadURL = self.handleDownloadURL(url: fileUrl, error: error) {
-                            taskResult(.success(downloadURL))
-                        }
-                    }
-                }
+        do {
+            let reference = getStoragePath().child(fileName.removingBlankSpaces())
+            let task = try await reference.putDataAsync(fileData)
+            let downloadURL = try await reference.downloadURL()
+            onSuccess(downloadURL.absoluteString)
             
-            } catch {
-                Logger.init().error("Error uploading file \(error)")
-                taskResult(.failure(.upload))
-                
-            }
-            
-            
-            
-            
+        } catch {
+            onError(error)
         }
     }
     

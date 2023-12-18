@@ -18,4 +18,8 @@ extension String {
         let longDate = Date.now.timeIntervalSince1970
         return self + String(describing: longDate)
     }
+    
+    func removingBlankSpaces() -> String {
+        return self.replacingOccurrences(of: " ", with: "")
+    }
 }

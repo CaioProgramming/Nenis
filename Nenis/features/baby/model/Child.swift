@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 import UIKit
 import os
 
-public struct Child: Codable {
+public struct Child: DocumentProtocol {
     var id: String?
     var name: String
     var birthDate: Date

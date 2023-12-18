@@ -17,7 +17,7 @@ class VaccinesViewModel {
     var child: Child? = nil
     var selectedInfo: (Child, Vaccine,Int)? = nil
     var delegate: VaccineProtocol? = nil
-    var babyService : BabyService? = nil
+    var babyService : BabyService = BabyService()
     
     func selectVaccine(vaccineItem: VaccineItem) {
         if let currentChild = child {
@@ -31,7 +31,6 @@ class VaccinesViewModel {
     }
     
     func loadVaccines(with child: Child) -> [Status : [VaccineItem]] {
-        babyService = BabyService(delegate: self)
         let logger = Logger.init()
         let vaccineHelper = VaccineHelper()
         return vaccineHelper.groupVaccines(with: child)
@@ -48,17 +47,22 @@ class VaccinesViewModel {
             } else {
                 currentChild.vaccines[vaccineIndex!] = newVaccine
             }
-            babyService?.updateData( data: currentChild)
+            updateChild(newChild: currentChild)
         }
     }
-}
-
-extension VaccinesViewModel: DatabaseDelegate {
     
-    typealias T = Child
+    func updateChild(newChild: Child) {
+        Task {
+          await  babyService.updateData(data: newChild,
+                                   onSuccess: updateSuccess,
+                                   onFailure: { _ in }
+            )
+        }
+    }
     
     func updateSuccess(data: Child) {
         self.child = data
         delegate?.updateData()
     }
 }
+

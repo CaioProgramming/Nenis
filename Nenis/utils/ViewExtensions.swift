@@ -93,13 +93,32 @@ extension UIView {
         return height
     }
     
+    var heightConstraint: NSLayoutConstraint? {
+        get {
+            return constraints.first(where: {
+                $0.firstAttribute == .height && $0.relation == .equal
+            })
+        }
+        set { setNeedsLayout() }
+    }
+
+    var widthConstraint: NSLayoutConstraint? {
+        get {
+            return constraints.first(where: {
+                $0.firstAttribute == .width && $0.relation == .equal
+            })
+        }
+        set { setNeedsLayout() }
+    }
 
 }
+
 struct MenuActions {
     let title: String
     let image: String?
     let closure: () -> Void
 }
+
 func getContextualMenu(title: String, actions: [MenuActions], preview: UIViewController? = nil) -> UIContextMenuConfiguration {
     
     let uiActions = actions.map({ element in
@@ -118,6 +137,27 @@ func getContextualMenu(title: String, actions: [MenuActions], preview: UIViewCon
     return context
 }
 
-
+extension UITableView {
+    func registerSectionsViews(sections: [any Section]) {
+        
+        
+        
+        sections.map({ section in
+            section.getUIComponents()
+        }).forEach({ components in
+        
+            components.forEach({ component in
+            
+                switch component.viewType {
+                    
+                case .cell, .reusableView:
+                    self.register(component.nib, forCellReuseIdentifier: component.identifier)
+                case .header, .footer:
+                    self.register(component.nib, forHeaderFooterViewReuseIdentifier: component.identifier)
+                }
+            })
+        })
+    }
+}
 
 

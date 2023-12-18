@@ -55,17 +55,11 @@ extension SettingDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        if(indexPath.section != 0) {
-            return .delete
-        } else {
-            return .none
-        }
+       return sections[indexPath.section].editingStyle
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if(editingStyle == .delete) {
-            viewModel.deleteGroupInfoData(groupIndex: (indexPath.section - 1), itemIndex: indexPath.row)
-        }
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

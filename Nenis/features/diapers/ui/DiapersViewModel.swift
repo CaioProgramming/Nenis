@@ -21,7 +21,7 @@ protocol DiaperProtocol {
 class DiapersViewModel {
     
     var child: Child? = nil
-    private var babyService : BabyService? = nil
+    private let babyService = BabyService()
     var delegate: DiaperProtocol? = nil
     var selectedDiaper: DiaperItem? = nil
     
@@ -29,7 +29,6 @@ class DiapersViewModel {
         
         if let selectedChild = currentChild {
             self.child = selectedChild
-            babyService = BabyService(delegate: self)
             let mapper = DiaperMapper()
             let diapers = mapper.mapDiapers(child: selectedChild)
             delegate?.retrieveDiapers(diaperItems: diapers)
@@ -59,7 +58,11 @@ class DiapersViewModel {
     }
     
    private func updateChild(with newChild: Child) {
-        babyService?.updateData(data: newChild)
+       Task {
+          await babyService.updateData(data: newChild,
+                                  onSuccess: updateSuccess,
+                                  onFailure: { _ in })
+       }
     }
     
     func addDiaper(diaper: Diaper) {
@@ -87,22 +90,9 @@ class DiapersViewModel {
         }
     }
     
-}
-
-extension DiapersViewModel: DatabaseDelegate {
-    
-    func retrieveListData(dataList: [Child]) { }
-    
-    func retrieveData(data: Child) { }
-    
-    typealias T = Child
-    
     func updateSuccess(data: Child) {
         delegate?.diaperUpdated(message: "Fraldas atualizadas com sucesso.")
         getDiapers(currentChild: data)
     }
-    
- 
-    
-    
 }
+

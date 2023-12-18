@@ -30,7 +30,7 @@ class DiaperTableViewCell: UITableViewCell, CustomViewProtocol {
         layout.minimumLineSpacing = 0
         diapersCollection.collectionViewLayout = layout
         self.diapersCollection.backgroundColor = UIColor(named: "CardBackColor")
-        self.diapersCollection.roundBottomCorners(radius: 15)
+        self.diapersCollection.roundedCorner(radius: 15)
         diapersCollection.register(DiaperCollectionViewCell.buildNib(), forCellWithReuseIdentifier: DiaperCollectionViewCell.identifier)
         diapersCollection.delegate = self
         diapersCollection.dataSource = self
@@ -59,8 +59,8 @@ extension DiaperTableViewCell : UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let visibleSize = collectionView.visibleSize
-        let width = visibleSize.width / 2.7
-        let height = visibleSize.height
+        let width = visibleSize.width / 2.75
+        let height = visibleSize.height * 0.90
         return CGSize(width: width, height: height)
         
     }

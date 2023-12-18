@@ -8,13 +8,17 @@
 import Foundation
 import UIKit
 struct DiaperHomeSection : Section {
+
+    
     
     var items: [DiaperItem]
     
     var itemClosure: ((DiaperItem, UIView?) -> Void)
-        
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
+    var headerData: HeaderComponent?
+    
+    var footerData: FooterComponent?
+    var editingStyle: UITableViewCell.EditingStyle = .none
+
 
     func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> F {
         let footer = F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
@@ -46,7 +50,7 @@ struct DiaperHomeSection : Section {
         header.setupHeader(info: headerData)
         header.mainContainerView.backgroundColor = UIColor(named: "CardBackColor")
         header.mainContainerView.roundTopCorners(radius: 15)
-        header.dividerView.isHidden = false
+        header.dividerView.isHidden = true
         return header
     }
     
@@ -59,7 +63,7 @@ struct DiaperHomeSection : Section {
     var cellHeight: CGFloat = 150
     
     func headerHeight() -> CGFloat {
-        return 50
+        return 0
     }
     
     
@@ -69,11 +73,15 @@ struct DiaperHomeSection : Section {
 
 
 struct DiaperDetailSection: Section {
-    var items: [DetailModel]
+
     var color: UIColor
+    var items: [DetailModel]
+    var itemClosure: ((DetailModel, UIView?) -> Void)
     var menuClosure: ((Int) -> Void)
-     
-    
+    var headerData: HeaderComponent?
+    var footerData: FooterComponent?
+    var editingStyle: UITableViewCell.EditingStyle = .none
+
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> HorizontalTableViewCell {
         let item = items[indexPath.row]
         let cell = C.dequeueTableViewCell(with: tableView, indexPath: indexPath)
@@ -109,7 +117,6 @@ struct DiaperDetailSection: Section {
         return footer
     }
     
-    var itemClosure: ((DetailModel, UIView?) -> Void)
     
     typealias T = DetailModel
     
@@ -118,10 +125,7 @@ struct DiaperDetailSection: Section {
     typealias C = HorizontalTableViewCell
     
     typealias F = VerticalTableFooterView
-    
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
+
     
     var cellHeight: CGFloat = 75
     

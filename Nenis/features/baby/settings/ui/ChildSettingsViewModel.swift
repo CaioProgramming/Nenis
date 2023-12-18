@@ -20,52 +20,71 @@ class ChildSettingsViewModel {
     var selectedOption: Option? = nil
     var delegate: SettingsDelegate? = nil
     var currentChild: Child? = nil
-    var storageService: StorageService = StorageService(path: "Childs")
-    var service: BabyService? = nil
+    private let storageService: StorageSource = StorageSource(path: "Childs")
+    private let service = BabyService()
+    
+    private func deletePhoto(child: Child,_ onComplete: @escaping () -> Void) {
+        Task {
+            await storageService.deleteFile(fileName: child.id!,
+                                            onSuccess: onComplete,
+                                            onError: { _ in })
+        }
+    }
+    
+    func updateChild(newChild: Child) {
+        Task {
+            await service
+                .updateData(
+                    data: newChild,
+                    onSuccess: retrieveData,
+                    onFailure: { _ in }
+                )
+        }
+    }
+    
+    private func changePhotoURL(url: String, with child: Child) {
+        var newChild = child
+        newChild.photo = url
+        updateChild(newChild: newChild)
+    }
     
     func updatePhoto(with photo: UIImage) {
-        guard let child = currentChild, let childPic = photo.jpegData(compressionQuality: 1) else {
+        guard let child = currentChild, let childPic = photo.jpegData(compressionQuality: 1), let id = child.id else {
             print("No child selected")
             return
         }
-        storageService.deleteFile(fileName: child.id ?? child.name, taskResult: { result in
-            
-            switch result {
-            case .success(_):
-                self.storageService.uploadFile(fileName: child.id ?? child.name, fileData: childPic, extension: ".JPEG", taskResult: { result in
-                    
-                    do {
-                        var newChild = child
-                        newChild.photo = try result.get()
-                        self.service?.updateData(data: newChild)
-                    } catch {
-                        print("Upload error")
-                    }
-                })
-            case .failure(_):
-                self.delegate?.taskError(message: "Ocorreu um erro ao atualizar a foto")
+        deletePhoto(child: child) {
+            Task {
+                await self
+                    .storageService
+                    .uploadFile(fileName: id,
+                                fileData: childPic,
+                                extension: ".JPEG",
+                                onSuccess: { url in self.changePhotoURL(url: url, with: child) },
+                                onError: { _ in })
             }
-            
-        })
-        
-        
+        }
     }
+    
     
     
     
     
     func setupChild(child: Child) {
-        if(service == nil) {
-            service = BabyService(delegate: self)
+        Task {
+            await service.getSingleData(id: child.id!, onSuccess: retrieveData, onFailure: { _ in })
         }
-        service?.getSingleData(id: child.id!)
-       
-       
     }
     
     func retrieveData(data: Child) {
-        self.currentChild = data
-        buildSections(with: data)
+        DispatchQueue.main.async {
+            self.currentChild = data
+            self.buildSections(with: data)
+        }
+    }
+    
+    func deleteChild(with child: Child) {
+        
     }
     
     
@@ -74,13 +93,20 @@ class ChildSettingsViewModel {
             self.delegate?.requestUpdatePicture()
         })
         
-        let optionsSection = OptionSection( items: Option.allCases, 
+        let optionsSection = OptionSection( items: Option.allCases,
                                             itemClosure: { option, view in
             
             self.selectedOption = option
             self.delegate?.selectOption(option: option)
-        }, footerData: ("Suas informaçoes sao protegidas.","Excluir", { view in
-        }))
+        }, 
+                                            footerData: FooterComponent(
+                                                message: "Suas informações estão sempre protegidas.",
+                                                actionLabel: "Excluir",
+                                                messageIcon: UIImage(systemName: "lock.circle.dotted"),
+                                                actionClosure: { _ in
+                                                    self.deleteChild(with: child)
+                                                })
+        )
         
         delegate?.retrieveSections(sections: [childSection, optionsSection])
     }
@@ -90,7 +116,7 @@ class ChildSettingsViewModel {
     
 }
 
-extension ChildSettingsViewModel: DatabaseDelegate {
+extension ChildSettingsViewModel {
     
     typealias T = Child
     
@@ -133,7 +159,7 @@ enum Option: CaseIterable {
                 UIImage(named: "poop.fill")
             case .actions:
                 UIImage(named: "baby.walk")
-            
+                
             }
         }
     }

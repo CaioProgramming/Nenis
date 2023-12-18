@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol DocumentProtocol {
+protocol DocumentProtocol: Codable {
     var id: String? { get set }
 }

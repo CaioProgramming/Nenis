@@ -7,13 +7,14 @@
 
 import UIKit
 
-class NewInfoGroupViewController: ViewController {
+class NewInfoGroupViewController: UIViewController {
     
     var newInfoClosure: ((ExtraData) -> Void)?
     
     @IBOutlet weak var infosTableView: UITableView!
     @IBOutlet weak var dataTitle: UITextField!
     private var infos: [DetailModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCells()

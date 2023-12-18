@@ -15,21 +15,32 @@ class HorizontalHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     private var buttonAction: ((UIView?) -> Void)? = nil
     @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var iconImage: UIImageView!
     @IBOutlet weak var dividerView: UIView!
     @IBOutlet weak var mainContainerView: UIView!
     
     
-    func setupHeader(info: (title: String,actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?) {
-        headerButton.isHidden = true
+    func setupHeader(info: HeaderComponent?) {
+        
+        headerButton.setTitle("", for: .normal)
+        mainContainerView.isHidden = true
         if let headerExtras = info {
-            headerButton.setTitle(headerExtras.actionTitle, for: .normal)
-            headerButton.setImage(headerExtras.uiIcon, for: .normal)
+            headerButton.setTitle(headerExtras.actionLabel, for: .normal)
+            headerButton.setImage(headerExtras.actionIcon, for: .normal)
             headerButton.semanticContentAttribute = .forceRightToLeft
 
-            self.buttonAction = headerExtras.closure
+            self.buttonAction = headerExtras.actionClosure
             titleLabel.text = headerExtras.title
             self.fadeIn()
-            headerButton.isHidden = false
+            if let titleIcon = headerExtras.trailingIcon {
+                iconImage.isHidden = false
+                iconImage.image = titleIcon
+                
+            } else {
+                iconImage.heightConstraint?.constant = 0.0
+                iconImage.widthConstraint?.constant = 0.0
+            }
+            mainContainerView.fadeIn()
         }
     }
     

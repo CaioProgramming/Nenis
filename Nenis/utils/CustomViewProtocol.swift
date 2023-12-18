@@ -17,6 +17,10 @@ enum ViewType {
 
 extension CustomViewProtocol {
     
+    static func getComponent() -> Component {
+        return Component(nib: buildNib(), identifier: identifier, viewType: viewType)
+    }
+    
     static var identifier : String { get { return "\(self)"} }
     
     static func buildNib() -> UINib {

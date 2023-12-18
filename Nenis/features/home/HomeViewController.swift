@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     let homeViewModel = HomeViewModel()
     var authHandler: AuthStateDidChangeListenerHandle? = nil
     var sections: [any Section] = []
+    var isViewsRegistered: Bool = false
     @IBOutlet weak var emptyBabyView: UIStackView!
     @IBOutlet weak var activityTable: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
@@ -267,12 +268,15 @@ extension HomeViewController: HomeProtocol {
     }
     
     func retrieveHome(with homeSection: [any Section]) {
-        sections.registerAllSectionsToTableView(activityTable)
-        sections = []
-        activityTable.reloadData()
-        sections = homeSection
-        activityTable.reloadData()
-        activityTable.refreshControl?.endRefreshing()
+            
+        if(!isViewsRegistered) {
+            activityTable.registerSectionsViews(sections: homeSection)
+            isViewsRegistered = true
+        }
+            sections = homeSection
+            activityTable.refreshControl?.endRefreshing()
+            activityTable.reloadData()
+            loadingIndicator.stopAnimating()
     }
     
     
@@ -287,18 +291,24 @@ extension HomeViewController: HomeProtocol {
     }
     
     func childRetrieved(with child: Child) {
-        loadingIndicator.stopAnimating()
-        parent?.title = child.name
-        homeViewModel.buildHomeFromChild(with: child)
+        DispatchQueue.main.async { [self] in
+            loadingIndicator.stopAnimating()
+            parent?.title = child.name
+            homeViewModel.buildHomeFromChild(with: child)
+        }
+        
     }
     
     
     func childNotFound() {
-        loadingIndicator.stopAnimating()
-        showError(message: "Você não é responsável por nenhuma criança, adicione uma para começar.", buttonMessage: "Adicionar criança")
-        self.errorClosure = {
-            self.createNewBaby()
+        DispatchQueue.main.async { [self] in
+            loadingIndicator.stopAnimating()
+            showError(message: "Você não é responsável por nenhuma criança, adicione uma para começar.", buttonMessage: "Adicionar criança")
+            errorClosure = {
+                self.createNewBaby()
+            }
         }
+      
     }
     
     func requireAuth() {
@@ -341,11 +351,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
         let section = sections[indexPath.section]
-        if(section is ActionSection) {
-            return .delete
-        } else {
-            return .none
-        }
+        return section.editingStyle
     }
     
     

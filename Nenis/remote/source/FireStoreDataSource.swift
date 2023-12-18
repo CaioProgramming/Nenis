@@ -10,7 +10,26 @@ import FirebaseAuth
 import FirebaseFirestore
 import os
 
+struct TaskError {
+    let message: String
+    let type: ErrorType
+}
+
+
+protocol FirestoreImplementation {
+    associatedtype T: DocumentProtocol
+    func saveData(data: T) async -> Result<(T,String), Error>
+    func updateData(data: T) async -> Result<T, Error>
+    func getAllData() async -> Result<[T], Error>
+    func queryData(field: String, value: String, isArray: Bool) async -> Result<[T], Error>
+    func getSingleData(id: String) async -> Result<T, Error>
+    func deleteData(id: String?) async -> Result<Void, Error>
+}
+
+
 class FirebaseDataSource<T : DocumentProtocol>: FirestoreImplementation {
+  
+    
     
     typealias T = T
     let databaseProtocol: any DatabaseProtocol
@@ -20,64 +39,39 @@ class FirebaseDataSource<T : DocumentProtocol>: FirestoreImplementation {
     }
     
     
-    func saveData(data: T, completition: @escaping (T, String) -> Void) {
+    func saveData(data: T) async -> Result<(T,String), Error> {
         do {
             let reference = collectionReference().document()
-            try reference.setData(from: data, completion: { error in
-                if let taskError  = error {
-                    self.sendError(message: "Error executing save \(taskError.localizedDescription)", errorType: .save)
-                } else {
-                    completition(data, reference.documentID)
-                }
-                
-            })
+            try reference.setData(from: data)
+            return Result.success((data, reference.documentID))
+    
         } catch {
-            self.databaseProtocol.sendError(message: "Error executing save \(error.localizedDescription)", errorType: .update)
-
+            return Result.failure(error)
         }
      
     }
 
     
-    func updateData(id: String?, data: T, completition: @escaping (T) -> Void) {
-        guard id != nil else {
-            getLogger().error("No id provided")
-            self.sendError(message: "Error executing update ", errorType: .update)
-            return
-        }
+    func updateData(data: T) async -> Result<T,Error> {
+      
         do {
-            try collectionReference().document(id!).setData(from: data, completion: { error in
-                if let taskError  = error {
-                    self.sendError(message: "Error executing update \(taskError.localizedDescription)", errorType: .save)
-                } else {
-                    completition(data)
-                }
-            })
+            try collectionReference().document(data.id!).setData(from: data)
+            return Result.success(data)
         } catch {
-            self.databaseProtocol.sendError(message: "Error executing update \(error.localizedDescription)", errorType: .update)
+            return Result.failure(error)
+        }
+    }
+    
 
+    func deleteData(id: String?) async -> Result<Void,Error> {
+        do  {
+            try await collectionReference().document(id!).delete()
+            return .success(())
+        } catch {
+            return Result.failure(error)
         }
-            
-        
     }
     
-    func deleteData(id: String?) {
-        if let docID = id {
-            collectionReference().document(docID).delete(){ error in
-                if let taskError = error {
-                    self.databaseProtocol.sendError(message: taskError.localizedDescription, errorType: .delete)
-                } else {
-                    self.databaseProtocol.delegate.taskSuccess(message: "Delete success!")
-                }
-            }
-        } else {
-            databaseProtocol.sendError(message: "Delete error, no ID provided!", errorType: .update)
-        }
-       
-    }
-    
-    
-  
     
     func collectionReference() -> CollectionReference {
         Firestore.firestore().collection(databaseProtocol.path)
@@ -90,60 +84,88 @@ class FirebaseDataSource<T : DocumentProtocol>: FirestoreImplementation {
     func getLogger() -> Logger {
         return Logger.init()
     }
+
     
-    func sendError(message: String, errorType: ErrorType) {
-        getLogger().error("\(message)")
-        databaseProtocol.delegate.taskFailure(databaseError: errorType)
-    }
-    
-    
-    
-    func validateQueryCompletition(querySnapshot: QuerySnapshot?, error: Error?, isQuery: Bool) {
-        guard let queryError = error else {
-            if let documents =  querySnapshot?.documents {
-                self.databaseProtocol.handleSnapshotArray(querySnapshot: documents, isQuery: isQuery)
-            }
-            return
+    func mapSnapshot(querySnapshot: DocumentSnapshot) -> T? {
+        do  {
+            var data = try querySnapshot.data(as: T.self) as T
+            data.id = querySnapshot.documentID
+            return  data
+        } catch {
+            getLogger().error("\(error.localizedDescription)")
+            return nil
         }
-        let errorType: ErrorType = (isQuery) ? .query : .fetch
-        getLogger().error("Error getting documents \(queryError.localizedDescription)")
-        self.databaseProtocol.delegate.taskFailure(databaseError: errorType)
     }
-    
-    
-    
-    func getAllData() {
-        getLogger().info("Fetching all data from \(self.databaseProtocol.path)")
-        collectionReference().getDocuments() { snapshot, error in
-            self.validateQueryCompletition(querySnapshot: snapshot, error: error, isQuery: false)
+    func mapSnapshot(querySnapshot: QueryDocumentSnapshot) -> T? {
+        do  {
+            var data = try querySnapshot.data(as: T.self) as T
+            data.id = querySnapshot.documentID
+            return  data
+        } catch {
+            getLogger().error("\(error.localizedDescription)")
+            return nil
         }
     }
     
-    func queryData(field: String, value: String, isArray: Bool) {
-        Logger.init().info("Querying data from \(self.databaseProtocol.path) \(field) = \(value)")
-        
-        if(!isArray) {
-            collectionReference().whereField(field, isEqualTo: value).getDocuments() { snapshot, error in
-                self.validateQueryCompletition(querySnapshot: snapshot, error: error, isQuery: true)
-            }
-        } else {
-            collectionReference().whereField(field, arrayContainsAny: [value]).getDocuments() { snapshot, error in
-                self.validateQueryCompletition(querySnapshot: snapshot, error: error, isQuery: true)
-            }
-        }
-    }
-    
-    func getSingleData(id: String) {
-        getLogger().info("Querying child from \(self.databaseProtocol.path) with key \(id)")
-        collectionReference().document(id).getDocument(completion: { snapshot, error in
-            if let dataError = error {
-                self.databaseProtocol.sendError(message: dataError.localizedDescription, errorType: .query)
-            } else {
-                if let docSnapshot = snapshot {
-                    self.databaseProtocol.handleDocSnapshot(docSnapshot: docSnapshot)
-                }
-            }
+    func handleSnapshotArray(querySnapshot: [QueryDocumentSnapshot]) -> [T]  {
+        return querySnapshot.compactMap({ document in
+            mapSnapshot(querySnapshot: document)
         })
+    }
+    func handleSnapshotArray(querySnapshot: QuerySnapshot) -> [T]  {
+        return querySnapshot.documents.compactMap({ document in
+            mapSnapshot(querySnapshot: document)
+        })
+    }
+
+    
+    func returnError(error: Error) -> Result<Any, Error> {
+        return .failure(error)
+    }
+    
+
+    func getAllData() async -> Result<[T], Error> {
+        getLogger().info("Fetching all data from \(self.databaseProtocol.path)")
+        do {
+            let docs =  try await collectionReference().getDocuments()
+            let mappedDocs = handleSnapshotArray(querySnapshot: docs.documents)
+            return .success(mappedDocs)
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func queryData(field: String, value: String, isArray: Bool) async -> Result<[T], Error> {
+        Logger.init().info("Querying data from \(self.databaseProtocol.path) \(field) = \(value)")
+        do {
+            let query = if(isArray) {
+                collectionReference().whereField(field, arrayContains: value)
+            } else {
+                collectionReference().whereField(field, isEqualTo: value)
+            }
+            let docs = try await query.getDocuments()
+            let mappedDocs = handleSnapshotArray(querySnapshot: docs)
+            return .success(mappedDocs)
+          
+        } catch {
+            return .failure(error)
+        }
+    }
+    
+    func getSingleData(id: String) async -> Result<T, Error> {
+        getLogger().info("Querying data from \(self.databaseProtocol.path) with key \(id)")
+        do {
+            let document = try await collectionReference().document(id).getDocument()
+            if(document.exists) {
+                return .success(mapSnapshot(querySnapshot: document)!)
+            } else {
+                throw NSError(domain: "Nenis/\(self.databaseProtocol.path)", code: 404, userInfo: ["id":id] )
+            }
+        } catch {
+            getLogger().error("Error fetching data from \(self.databaseProtocol.path) with key \(id)")
+
+            return .failure(error)
+        }
     }
     
 }

@@ -15,7 +15,7 @@ protocol InviteProtcol {
     func childUpdated(child: Child)
 }
 
-class InviteViewModel: DatabaseDelegate {
+class InviteViewModel {
     var delegate: InviteProtcol? = nil
 
     func saveSuccess(data: Child) {
@@ -55,21 +55,34 @@ class InviteViewModel: DatabaseDelegate {
     typealias T = Child
     
     
-    var babyService : BabyService? = nil
+    var babyService = BabyService()
     
-    init() {
-        self.babyService = BabyService(delegate: self)
-    }
+
     
     func useInvite(inviteID: String) {
-        babyService?.getSingleData(id: inviteID)
+        Task {
+            await babyService.getSingleData(id: inviteID, onSuccess: { data in
+            
+                delegate?.childRetrieved(child: data)
+                
+            }, onFailure: { _ in delegate?.childNotFound() } )
+
+        }
     }
     
     func addTutorToChild(with child: Child) {
         if let user = currentUser() {
-            var updatedChild = child
-            updatedChild.tutors.append(user.uid)
-            babyService?.updateData( data: updatedChild)
+           
+            Task {
+                var updatedChild = child
+                updatedChild.tutors.append(user.uid)
+                await babyService
+                    .updateData(data: updatedChild,
+                                onSuccess: updateSuccess,
+                                onFailure: { _ in }
+                    )
+
+            }
         }
     }
     

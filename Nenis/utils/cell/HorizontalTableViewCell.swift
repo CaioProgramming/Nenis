@@ -27,10 +27,14 @@ class HorizontalTableViewCell: UITableViewCell, CustomViewProtocol {
         fieldLabel.text = field
         valueLabel.text = value
         subtitleLabel.text = subtitle
-        if(isFirst) {
+        if (isFirst && isLast) {
+            containerStack.roundedCorner(radius: 15)
+        } else if(isFirst) {
             containerStack.roundTopCorners(radius: 15)
         } else if(isLast) {
             containerStack.roundBottomCorners(radius: 15)
+        } else {
+            containerStack.roundedCorner(radius: 0)
         }
         self.fadeIn()
     }

@@ -43,10 +43,10 @@ enum ActionType: Codable, CaseIterable {
     var cellImage: UIImage?  {
         get {
             switch self {
-            case .sleep: return UIImage(systemName: "powersleep")
-            case .bath: return UIImage(systemName:  "bathtub.fill")
-            case .exercise: return UIImage(systemName: "figure.run")
-            case .feed: return UIImage(systemName: "carrot.fill")
+            case .sleep: return UIImage(systemName: "powersleep")?.withTintColor(imageTint)
+            case .bath: return UIImage(systemName:  "bathtub.fill")?.withTintColor(imageTint)
+            case .exercise: return UIImage(named: "baby.walk")?.withTintColor(imageTint)
+            case .feed: return UIImage(systemName: "carrot.fill")?.withTintColor(imageTint)
             }
         }
     }

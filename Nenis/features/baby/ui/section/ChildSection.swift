@@ -8,6 +8,9 @@
 import Foundation
 import UIKit
 struct ChildSection : Section {
+    
+ 
+    
 
     
     var title: String
@@ -15,8 +18,10 @@ struct ChildSection : Section {
     var items: [Child]
     var itemClosure: ((Child, UIView?) -> Void)
     
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage?, closure: (UIView?) -> Void)?
-    var footerData: (message: String, actionTitle: String, closure: (UIView?) -> Void)?
+    var headerData: HeaderComponent?
+    
+    var footerData: FooterComponent?
+    var editingStyle: UITableViewCell.EditingStyle = .none
 
  
     
@@ -37,6 +42,8 @@ struct ChildSection : Section {
     
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
         let header = H.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
+        header.titleLabel.font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .largeTitle).pointSize)
+
         header.titleLabel.text = title
         header.subtitleLabel.text = subtitle.capitalized
         
@@ -52,11 +59,16 @@ struct ChildSection : Section {
          }
         cell.childImage.moa.url = child.photo
         cell.childImage.moa.onSuccess = { image in
-            cell.childImage.fadeIn()
-            cell.setupChild(child: child)
-            
+            cell.childImage.contentMode = .scaleAspectFill
             return image
         }
+        cell.childImage.moa.onError = { _ , _ in
+            cell.childImage.image = UIImage(named: "smile.out")
+            cell.childImage.tintColor = UIColor.systemBackground
+            cell.childImage.contentMode = .scaleAspectFit
+        }
+        cell.setupChild(child: child)
+        cell.childImage.fadeIn()
         return cell
     }
     

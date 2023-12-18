@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct TutorUser: Codable, Equatable {
-    let uid: String
-    let displayName: String
-    let photoURL: String
+struct Tutor: DocumentProtocol, Codable {
+    var id: String?
+    let name: String?
+    let photoURL: String?
     
     enum CodingKeys: String, CodingKey {
-        case uid
-        case displayName
+        case id
+        case name
         case photoURL
     }
 }

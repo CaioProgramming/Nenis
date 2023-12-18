@@ -15,9 +15,10 @@ protocol Section<T, H, C, F> {
     associatedtype C where C: CustomViewProtocol
     associatedtype F where F: CustomViewProtocol
     var items: [T] { get }
-    var headerData: (title: String, actionTitle: String, uiIcon: UIImage? , closure: (UIView?) -> Void)? { get }
-    var footerData: (message: String,actionTitle: String, closure: (UIView?) -> Void)? { get }
+    var headerData: HeaderComponent? { get }
+    var footerData: FooterComponent? { get }
     var cellHeight: CGFloat { get }
+    var editingStyle: UITableViewCell.EditingStyle { get }
     func numberOfRows() -> Int
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> C
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H
@@ -37,17 +38,48 @@ extension [any Section] {
     }
 }
 
+struct Component {
+    let nib: UINib
+    let identifier: String
+    let viewType: ViewType
+    
+}
+
+struct HeaderComponent {
+    let title: String
+    let actionLabel: String?
+    let actionIcon: UIImage?
+    let trailingIcon: UIImage?
+    let actionClosure: ((UIView?) -> Void)?
+}
+
+struct FooterComponent {
+    let message: String
+    let actionLabel: String
+    let messageIcon: UIImage?
+    let actionClosure: ((UIView?) -> Void)?
+}
+
 extension Section {
     
-    func getUINibs() -> [(nib: UINib, identifier: String, type: ViewType)] {
-        
-        return [(C.buildNib(), C.identifier, C.viewType),(H.buildNib(), H.identifier, H.viewType), (F.buildNib(), F.identifier, H.viewType) ]
-    }
     
+    
+    func getUIComponents() -> [Component] {
+        
+        return [ C.getComponent(),H.getComponent(), F.getComponent() ]
+    }
+
+    
+    func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
+        return H.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
+    }
+    func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> F {
+        return F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
+    }
 
   func registerTableViewCells(_  tableView: UITableView) {
-        self.getUINibs().forEach({ nibData in
-            switch nibData.type {
+        self.getUIComponents().forEach({ nibData in
+            switch nibData.viewType {
             case  .cell, .reusableView:
                 tableView.register(nibData.nib, forCellReuseIdentifier: nibData.identifier)
             case .header, .footer:
@@ -57,12 +89,12 @@ extension Section {
     }
     
     func footerHeight() -> CGFloat {
-        return if(footerData == nil) { 0.0 } else { 100.0 }
+        return if(footerData == nil) { 0.0 } else { 100 }
        
     }
     
     func headerHeight() -> CGFloat {
-        return if(headerData == nil) { 0.0 } else { 100.0 }
+        return if(headerData == nil) { 0.0 } else { 75 }
     }
     
     
