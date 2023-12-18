@@ -16,7 +16,7 @@ enum StorageError: Error {
     case upload, url
 }
 
-class StorageService: StorageProtocol {
+class StorageSource: StorageProtocol {
     
     
         private func getStoragePath() -> StorageReference {

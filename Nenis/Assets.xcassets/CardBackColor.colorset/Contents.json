@@ -3,7 +3,7 @@
     {
       "color" : {
         "platform" : "ios",
-        "reference" : "systemGroupedBackgroundColor"
+        "reference" : "systemBackgroundColor"
       },
       "idiom" : "universal"
     },
