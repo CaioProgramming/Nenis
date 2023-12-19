@@ -28,15 +28,7 @@ struct OptionSection : Section {
     
         
     let cellHeight: CGFloat = 50
- 
     
-    func headerHeight() -> CGFloat {
-        return 0
-    }
-    
-    func footerHeight() -> CGFloat {
-        return 90
-    }
     
     func numberOfRows() -> Int {
         return items.count
@@ -50,21 +42,15 @@ struct OptionSection : Section {
         return cell
     }
     
-    func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
-        let header = H.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
-        return header
-    }
-    
-    func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> F {
+    func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> VerticalTableFooterView {
         let footer = F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
-        footer.setupView(info: self.footerData)
-        footer.footerButton.tintColor = UIColor.red
-        footer.footerLabel.font = footer.footerLabel.font.withSize(UIFont.smallSystemFontSize)
-        footer.footerButton.configuration = UIButton.Configuration.gray()
+        footer.isHidden = true
         return footer
     }
     
- 
-    
-    
+    func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> HorizontalHeaderView {
+        let header = H.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
+        header.isHidden = true
+        return header
+    }
 }

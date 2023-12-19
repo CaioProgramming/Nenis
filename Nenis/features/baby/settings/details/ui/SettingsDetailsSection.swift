@@ -16,6 +16,7 @@ struct SettingsDetailsSection: Section {
     var footerData: FooterComponent?
     var headerMenuClosure: ((Int) -> Void)
     var editingStyle: UITableViewCell.EditingStyle = .delete
+    var isSettings: Bool = false
 
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> HorizontalTableViewCell {
         let item = items[indexPath.row]
@@ -49,19 +50,13 @@ struct SettingsDetailsSection: Section {
         let footer = VerticalTableFooterView.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
         footer.isHidden = true
         footer.setupView(info: footerData)
+        if(isSettings) {
+            footer.footerButton.tintColor = UIColor.red
+            footer.footerButton.configuration = UIButton.Configuration.tinted()
+        }
+        footer.contentView.isHidden = footerData == nil
         return footer
     }
-    
-    func footerHeight() -> CGFloat {
-        let size: CGFloat = if(footerData != nil) {
-            100
-        } else {
-            0
-        }
-
-        return size
-    }
-    
     
     
     typealias T = DetailModel

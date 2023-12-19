@@ -110,6 +110,14 @@ extension UIView {
         }
         set { setNeedsLayout() }
     }
+    
+    func getPositionConstraint(attribute: NSLayoutConstraint.Attribute) -> Int? {
+        let constraint = constraints.firstIndex(where: { constraint in
+        
+            constraint.firstAttribute == attribute && constraint.relation == .equal
+        })
+        return constraint
+    }
 
 }
 
@@ -161,3 +169,18 @@ extension UITableView {
 }
 
 
+
+extension UIImageView {
+    
+    func loadImage(url: String?, placeHolder: UIImage?, onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
+        sd_setImage(with: URL(string: url ?? ""),placeholderImage: placeHolder, completed: { image, error ,_,_ in
+        
+            guard let failure = image else {
+                onFailure()
+                return
+            }
+            onSuccess()
+        })
+    }
+    
+}

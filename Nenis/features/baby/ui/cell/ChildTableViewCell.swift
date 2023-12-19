@@ -48,9 +48,9 @@ class ChildTableViewCell: UITableViewCell, CustomViewProtocol {
     @objc func imageTap(_ sender:UITapGestureRecognizer) {
         
         if let closure = childClosure {
-            childImage.fadeOut(0.5,onCompletion: {
+            imageContainer.scaleAnimation(xScale: 0.8, yScale: 0.8, onCompletion: {
                 closure(self.childImage)
-                self.childImage.fadeIn()
+                self.imageContainer.scaleAnimation(xScale: 1, yScale: 1)
             })
         }
     }

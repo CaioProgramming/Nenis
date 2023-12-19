@@ -7,28 +7,30 @@
 
 import Foundation
 import UIKit
-struct ChildSection : Section {
-    
- 
-    
+import SDWebImage
 
+struct ChildSection : Section {
     
     var title: String
     var subtitle: String
     var items: [Child]
+    var tutors: [Tutor] = []
     var itemClosure: ((Child, UIView?) -> Void)
-    
     var headerData: HeaderComponent?
-    
     var footerData: FooterComponent?
+    
     var editingStyle: UITableViewCell.EditingStyle = .none
 
  
     
     func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> F {
         let footer = F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
-        footer.setupView(info: footerData)
-        footer.fadeOut()
+        footer.setupData(tutors: tutors, closure: {
+            if let closure = footerData?.actionClosure {
+                closure(footer)
+            }
+        })
+        footer.fadeIn()
         return footer
     }
     
@@ -37,7 +39,7 @@ struct ChildSection : Section {
     
     typealias C = ChildTableViewCell
     
-    typealias F = VerticalTableFooterView
+    typealias F = TutorsFooterView
     
     
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
@@ -57,16 +59,20 @@ struct ChildSection : Section {
         cell.childClosure = { view in
             self.itemClosure(child, view)
          }
-        cell.childImage.moa.url = child.photo
-        cell.childImage.moa.onSuccess = { image in
+        cell.childImage.sd_setImage(with: URL(string: child.photo), placeholderImage: UIImage(named: "smile.out"), completed: { image, error ,_,_ in
+        
+            guard let failure = image else {
+                cell.childImage.image = UIImage(named: "smile.out")
+                cell.childImage.tintColor = child.gender.getGender()?.color.withAlphaComponent(0.4)
+                cell.childImage.contentMode = .scaleAspectFit
+                return
+            }
+            
+            cell.childImage.image = image
             cell.childImage.contentMode = .scaleAspectFill
-            return image
-        }
-        cell.childImage.moa.onError = { _ , _ in
-            cell.childImage.image = UIImage(named: "smile.out")
-            cell.childImage.tintColor = UIColor.systemBackground
-            cell.childImage.contentMode = .scaleAspectFit
-        }
+
+            
+        })
         cell.setupChild(child: child)
         cell.childImage.fadeIn()
         return cell
@@ -84,7 +90,7 @@ struct ChildSection : Section {
     }
     
     func footerHeight() -> CGFloat {
-        return 0
+        return if(tutors.isEmpty) { 0 } else { 70 }
     }
     
     

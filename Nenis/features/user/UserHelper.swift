@@ -23,6 +23,19 @@ class UserHelper  {
         self.userService = UserService()
     }
     
+    func getUsers(ids: [String], with onComplete: @escaping ([Tutor]) -> ()) {
+        Task { 
+            await userService
+                .queryMultipleData(
+                    field: "id",
+                    values: ids,
+                    onSuccess: onComplete,
+                    onFailure: { _ in
+                            onComplete([])
+                    }
+                )
+        }
+    }
     
     func queryUserID(id: String, with userClosure: @escaping (Tutor?) -> ()) {
         Task {

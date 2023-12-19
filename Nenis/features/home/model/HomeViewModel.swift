@@ -225,7 +225,7 @@ class HomeViewModel {
         let diaperItems = diaperHelper.mapDiapers(child: child)
         return DiaperHomeSection(items: diaperItems, itemClosure: { diaper, view in
             self.delegate?.openDiapers()
-        }, headerData: nil, footerData: footerData)
+        }, headerData: headerData, footerData: footerData)
     }
     
     

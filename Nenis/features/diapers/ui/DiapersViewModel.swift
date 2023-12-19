@@ -91,8 +91,11 @@ class DiapersViewModel {
     }
     
     func updateSuccess(data: Child) {
-        delegate?.diaperUpdated(message: "Fraldas atualizadas com sucesso.")
-        getDiapers(currentChild: data)
+        DispatchQueue.main.async { [self] in
+            delegate?.diaperUpdated(message: "Fraldas atualizadas com sucesso.")
+            getDiapers(currentChild: data)
+
+        }
     }
 }
 

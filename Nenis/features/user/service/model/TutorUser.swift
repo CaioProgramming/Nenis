@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Tutor: DocumentProtocol, Codable {
+struct Tutor: DocumentProtocol, Codable, Equatable {
     var id: String?
     let name: String?
     let photoURL: String?

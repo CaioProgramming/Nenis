@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YIH-8o-gDn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YIH-8o-gDn">
     <device id="retina6_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="47" width="428" height="879"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="center" axis="vertical" distribution="equalSpacing" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9Wt-cz-jdT">
-                                        <rect key="frame" x="0.0" y="8" width="444" height="838.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="8" width="444" height="856"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dyb-OH-8SI">
                                                 <rect key="frame" x="122" y="0.0" width="200" height="200"/>
@@ -91,10 +92,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="3JT-UV-YhD">
-                                                <rect key="frame" x="24" y="373" width="396" height="357.33333333333326"/>
+                                                <rect key="frame" x="24" y="373" width="396" height="374.66666666666674"/>
                                             </datePicker>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1Y-iI-qtz">
-                                                <rect key="frame" x="24" y="742.33333333333337" width="396" height="50"/>
+                                                <rect key="frame" x="24" y="759.66666666666663" width="396" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="hr1-yq-OD6"/>
                                                 </constraints>
@@ -105,7 +106,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SR-PM-Vpv">
-                                                <rect key="frame" x="153.66666666666669" y="804.33333333333337" width="136.66666666666669" height="34.333333333333371"/>
+                                                <rect key="frame" x="153.66666666666669" y="821.66666666666663" width="136.66666666666669" height="34.333333333333371"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Utilizar convite"/>
                                                 <connections>
@@ -335,12 +336,6 @@
                                     <navigationItem title="Informações adicionais" id="AMd-Ey-Pac"/>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Alergias, medicacoes, etc..." textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MwN-Um-Uf8">
-                                <rect key="frame" x="16" y="64" width="396" height="22"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4u7-YZ-6MT">
                                 <rect key="frame" x="16" y="840" width="396" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -354,28 +349,46 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="0Pa-9X-noA">
-                                <rect key="frame" x="0.0" y="94" width="428" height="738"/>
+                                <rect key="frame" x="0.0" y="166" width="428" height="666"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <sections/>
                             </tableView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Alergias, medicacoes, etc..." textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MwN-Um-Uf8">
+                                <rect key="frame" x="16" y="136" width="396" height="22"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="USD-Nf-MsF">
+                                <rect key="frame" x="182" y="64" width="64" height="64"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="leG-QU-LzO"/>
+                                    <constraint firstAttribute="height" constant="64" id="re7-5X-Ma8"/>
+                                </constraints>
+                                <imageReference key="image" image="bear.fill" symbolScale="medium"/>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="medium"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="PVa-Vs-dft"/>
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ci8-in-Nwn" firstAttribute="top" secondItem="PVa-Vs-dft" secondAttribute="top" id="1pp-y2-u9M"/>
+                            <constraint firstItem="MwN-Um-Uf8" firstAttribute="top" secondItem="USD-Nf-MsF" secondAttribute="bottom" constant="8" id="385-ZP-jYX"/>
                             <constraint firstItem="PVa-Vs-dft" firstAttribute="trailing" secondItem="0Pa-9X-noA" secondAttribute="trailing" id="79Z-rb-pOK"/>
                             <constraint firstItem="ci8-in-Nwn" firstAttribute="leading" secondItem="PVa-Vs-dft" secondAttribute="leading" id="F5P-cf-Gcd"/>
-                            <constraint firstItem="MwN-Um-Uf8" firstAttribute="top" secondItem="ci8-in-Nwn" secondAttribute="bottom" constant="8" id="HaQ-rq-cu7"/>
-                            <constraint firstItem="MwN-Um-Uf8" firstAttribute="leading" secondItem="PVa-Vs-dft" secondAttribute="leading" constant="16" id="N3J-gS-t3T"/>
                             <constraint firstItem="0Pa-9X-noA" firstAttribute="leading" secondItem="PVa-Vs-dft" secondAttribute="leading" id="RxL-eq-N8I"/>
+                            <constraint firstItem="USD-Nf-MsF" firstAttribute="centerX" secondItem="Nc0-tx-N3w" secondAttribute="centerX" id="Sm1-ad-fzs"/>
                             <constraint firstItem="PVa-Vs-dft" firstAttribute="trailing" secondItem="4u7-YZ-6MT" secondAttribute="trailing" constant="16" id="UYv-OI-Nde"/>
                             <constraint firstItem="PVa-Vs-dft" firstAttribute="bottom" secondItem="4u7-YZ-6MT" secondAttribute="bottom" constant="16" id="Y0W-Jr-0sh"/>
                             <constraint firstItem="0Pa-9X-noA" firstAttribute="top" secondItem="MwN-Um-Uf8" secondAttribute="bottom" constant="8" id="Y2n-Ax-3Vi"/>
                             <constraint firstItem="PVa-Vs-dft" firstAttribute="trailing" secondItem="MwN-Um-Uf8" secondAttribute="trailing" constant="16" id="ZZ9-og-Xm4"/>
                             <constraint firstItem="4u7-YZ-6MT" firstAttribute="top" secondItem="0Pa-9X-noA" secondAttribute="bottom" constant="8" id="c7L-hg-Ido"/>
+                            <constraint firstItem="USD-Nf-MsF" firstAttribute="top" secondItem="ci8-in-Nwn" secondAttribute="bottom" constant="8" id="cLh-1h-F2p"/>
                             <constraint firstItem="ci8-in-Nwn" firstAttribute="trailing" secondItem="PVa-Vs-dft" secondAttribute="trailing" id="f0Z-3F-Lnk"/>
+                            <constraint firstItem="MwN-Um-Uf8" firstAttribute="leading" secondItem="PVa-Vs-dft" secondAttribute="leading" constant="16" id="oKm-vY-x3e"/>
                             <constraint firstItem="4u7-YZ-6MT" firstAttribute="leading" secondItem="PVa-Vs-dft" secondAttribute="leading" constant="16" id="vmf-zu-6Ag"/>
                         </constraints>
                     </view>

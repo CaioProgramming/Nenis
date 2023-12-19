@@ -97,6 +97,17 @@ extension DatabaseProtocol {
        
     }
     
+    func queryMultipleData(field: String, values: [String], onSuccess: (([T]) -> ()), onFailure: (Error) -> ()) async {
+        do {
+            if let task = try await dataSource?.queryMultipleData(field: field, values: values).get() {
+                onSuccess(task)
+            }
+            
+        } catch {
+            onFailure(error)
+        }
+    }
+    
 }
 
 

@@ -60,21 +60,20 @@ struct ActionSection: Section {
 }
 
 struct ActionSettingSection : Section {
-    
 
-    
     var items: [Action]
     var actionType: ActionType
     var itemClosure: ((Action, UIView?) -> Void)
     var headerData: HeaderComponent?
     var footerData: FooterComponent?
     var editingStyle: UITableViewCell.EditingStyle
-
+    var menuClosure: ((ActionType) -> Void)
+    
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> HorizontalTableViewCell {
         let item = items[indexPath.row]
         let cell = C.dequeueTableViewCell(with: tableView, indexPath: indexPath)
         cell.containerStack.backgroundColor = UIColor(named: "CardBackColor")
-        cell.setupData(field: item.description, value: nil, subtitle: item.time.formatted(), isFirst: item == items.first, isLast: item == items.last)
+        cell.setupData(field: item.description, value: nil, subtitle: item.time.formatted(), isFirst: false, isLast: item == items.last)
         return cell
     }
     
@@ -101,8 +100,10 @@ struct ActionSettingSection : Section {
     }
     
     func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> VerticalTableFooterView {
-       let footer = F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
+        
+        let footer = F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
         footer.setupView(info: footerData)
+        footer.footerButton.tintColor = UIColor.red
         return footer
     }
     
@@ -115,7 +116,6 @@ struct ActionSettingSection : Section {
     
     typealias F = VerticalTableFooterView
     
-    var menuClosure: ((ActionType) -> Void)
 
     
     var cellHeight: CGFloat = 75
@@ -124,6 +124,5 @@ struct ActionSettingSection : Section {
         return cellHeight
     }
     
-    
-    
+
 }

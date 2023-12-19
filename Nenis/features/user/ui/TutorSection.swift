@@ -21,11 +21,22 @@ struct TutorSection: Section {
         let tutor = items[indexPath.row]
         let cell = C.dequeueTableViewCell(with: tableView, indexPath: indexPath)
         cell.setupInfo(name: tutor.name)
-        cell.iconImage.moa.url = tutor.photoURL
-        cell.iconImage.moa.onSuccess = { image in
-            cell.iconImage.image = image
-            return image
-        }
+        let placeHolder = UIImage(named: "smile.out")
+        cell.iconImage.loadImage(
+                                url: tutor.photoURL,
+                                 placeHolder: placeHolder,
+                                 onSuccess: {
+                                    cell.iconImage.contentMode = .scaleAspectFill
+                                    cell.iconImage.clipImageToCircle(color: UIColor.systemGray5)
+                                 },
+                                 onFailure: {
+                                    cell.iconImage.clipImageToCircle(color: UIColor.link.withAlphaComponent(0.4))
+                                    cell.iconImage.backgroundColor = UIColor.systemGray5
+                                    cell.iconImage.image = placeHolder
+                                    cell.iconImage.contentMode = .scaleAspectFit
+                                    
+                                 }
+        )
         cell.containerView.fadeIn()
         return cell
     }

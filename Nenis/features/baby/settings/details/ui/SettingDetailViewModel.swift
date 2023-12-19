@@ -379,7 +379,9 @@ extension SettingDetailViewModel: ActionDetailProtocol {
         var sections : [ActionSettingSection] = []
         
         if let currentChild = child {
-            let actionSections = ActionType.allCases.map({ action in
+            let actions = ActionType.allCases
+            let actionSections = actions.map({ action in
+                
                 let filteredActions = currentChild.actions.filter({ act in
                     act.type.caseInsensitiveCompare(action.description) == .orderedSame
                 })
@@ -391,11 +393,21 @@ extension SettingDetailViewModel: ActionDetailProtocol {
                     actionClosure: nil
                 )
                 
+                let footerData = FooterComponent(message: "", actionLabel: "Excluir atividades", messageIcon: nil, actionClosure: {_ in 
+                    
+                    if var newChild = self.child {
+                        newChild.actions = []
+                        self.updateChild(newChild: newChild)
+                    }
+                    
+                } )
+                let footer: FooterComponent? = if(action == actions.last) { footerData } else { nil }
                 return  ActionSettingSection(
                     items: filteredActions,
                     actionType: action,
                     itemClosure: { _, _ in },
                     headerData: headerData,
+                    footerData: footer,
                     editingStyle: .delete,
                     menuClosure: { _ in self.deleteActionGroup(actionType: action) }
                 )
@@ -425,19 +437,11 @@ extension SettingDetailViewModel: TutorDetailProtocol {
     func getTutors() {
         if let currentChild = child {
             let userHelper = UserHelper()
-            var tutors: [Tutor?] = []
-            for(i, uid) in currentChild.tutors.enumerated() {
-                userHelper.queryUserID(id: uid, with: { [self] tutor in
-                    DispatchQueue.main.async {
-                        tutors.append(tutor)
-                        if(uid == currentChild.tutors.last) {
-                          self.delegate?.retrieveSections(self.buildSectionsForTutor(tutors: tutors.compactMap({ $0 })))
-                        }
-                    }
-                    
-                    
-                })
-            }
+            userHelper.getUsers(ids: currentChild.tutors, with: { tutors in
+                DispatchQueue.main.async {
+                    self.delegate?.retrieveSections(self.buildSectionsForTutor(tutors: tutors.compactMap({ $0 })))
+                }
+            } )
         }
     }
     

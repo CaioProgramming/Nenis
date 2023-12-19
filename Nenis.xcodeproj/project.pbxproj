@@ -133,6 +133,12 @@
 		F0DE1F9E2AFB5323005209AB /* UpdateVaccineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE1F9C2AFB5323005209AB /* UpdateVaccineViewController.swift */; };
 		F0DE1FA12AFB5507005209AB /* VaccineStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F0DE1FA02AFB5507005209AB /* VaccineStoryboard.storyboard */; };
 		F0DE1FA32AFB5C44005209AB /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F0DE1FA22AFB5C44005209AB /* Localizable.xcstrings */; };
+		F0E8B3892B31BF3A00C3A10D /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = F0E8B3882B31BF3A00C3A10D /* SDWebImage */; };
+		F0E8B38B2B31BF3A00C3A10D /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = F0E8B38A2B31BF3A00C3A10D /* SDWebImageMapKit */; };
+		F0E8B38E2B3220ED00C3A10D /* TutorsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8B38D2B3220ED00C3A10D /* TutorsFooterView.swift */; };
+		F0E8B3902B3220FE00C3A10D /* TutorsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E8B38F2B3220FE00C3A10D /* TutorsFooterView.xib */; };
+		F0E8B3942B32215A00C3A10D /* TutorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E8B3922B32215A00C3A10D /* TutorCollectionViewCell.swift */; };
+		F0E8B3952B32215A00C3A10D /* TutorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0E8B3932B32215A00C3A10D /* TutorCollectionViewCell.xib */; };
 		F0E931D82B2779F00047D165 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E931D72B2779EF0047D165 /* UserService.swift */; };
 		F0E931DB2B277A180047D165 /* TutorUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E931DA2B277A180047D165 /* TutorUser.swift */; };
 		F0EF9E092B2B313600701A61 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF9E082B2B313600701A61 /* UserHelper.swift */; };
@@ -275,6 +281,10 @@
 		F0DE1FA22AFB5C44005209AB /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		F0DE1FA42AFB5D38005209AB /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/Main.strings"; sourceTree = "<group>"; };
 		F0DE1FA52AFB5D38005209AB /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		F0E8B38D2B3220ED00C3A10D /* TutorsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorsFooterView.swift; sourceTree = "<group>"; };
+		F0E8B38F2B3220FE00C3A10D /* TutorsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorsFooterView.xib; sourceTree = "<group>"; };
+		F0E8B3922B32215A00C3A10D /* TutorCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorCollectionViewCell.swift; sourceTree = "<group>"; };
+		F0E8B3932B32215A00C3A10D /* TutorCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorCollectionViewCell.xib; sourceTree = "<group>"; };
 		F0E931D72B2779EF0047D165 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F0E931DA2B277A180047D165 /* TutorUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorUser.swift; sourceTree = "<group>"; };
 		F0EF9E082B2B313600701A61 /* UserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
@@ -295,10 +305,12 @@
 				F01A91722ABE200900139466 /* GoogleSignInSwift in Frameworks */,
 				F0A83A4B2B1F5918009A23D6 /* IQKeyboardManagerSwift in Frameworks */,
 				F09EB4A92AB3E6790058B7AB /* FirebaseAuthCombine-Community in Frameworks */,
+				F0E8B3892B31BF3A00C3A10D /* SDWebImage in Frameworks */,
 				F0AC1ABC2B0C4FDE00481C5E /* KDCircularProgress in Frameworks */,
 				F0BB3CC32AC5138E00ED5314 /* moa in Frameworks */,
 				F09EB4A72AB3E6790058B7AB /* FirebaseAuth in Frameworks */,
 				F0A5BFC02AB485C90045AD1C /* Lottie in Frameworks */,
+				F0E8B38B2B31BF3A00C3A10D /* SDWebImageMapKit in Frameworks */,
 				F01A91702ABE200900139466 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -897,12 +909,32 @@
 		F0DE1F912AFA707E005209AB /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				F0E8B3912B32213F00C3A10D /* collection */,
+				F0E8B38C2B32208800C3A10D /* footer */,
 				F0A83A5C2B1F6CCE009A23D6 /* section */,
 				F0A83A5B2B1F6CC8009A23D6 /* cell */,
 				F0A83A5A2B1F6CBC009A23D6 /* header */,
 				F0891AE62AC1F37600BC6C6B /* Baby.storyboard */,
 			);
 			path = ui;
+			sourceTree = "<group>";
+		};
+		F0E8B38C2B32208800C3A10D /* footer */ = {
+			isa = PBXGroup;
+			children = (
+				F0E8B38D2B3220ED00C3A10D /* TutorsFooterView.swift */,
+				F0E8B38F2B3220FE00C3A10D /* TutorsFooterView.xib */,
+			);
+			path = footer;
+			sourceTree = "<group>";
+		};
+		F0E8B3912B32213F00C3A10D /* collection */ = {
+			isa = PBXGroup;
+			children = (
+				F0E8B3922B32215A00C3A10D /* TutorCollectionViewCell.swift */,
+				F0E8B3932B32215A00C3A10D /* TutorCollectionViewCell.xib */,
+			);
+			path = collection;
 			sourceTree = "<group>";
 		};
 		F0E931D52B2779D70047D165 /* user */ = {
@@ -973,6 +1005,8 @@
 				F0AC1ABB2B0C4FDE00481C5E /* KDCircularProgress */,
 				F00E6CEC2B100000001A1404 /* Toast */,
 				F0A83A4A2B1F5918009A23D6 /* IQKeyboardManagerSwift */,
+				F0E8B3882B31BF3A00C3A10D /* SDWebImage */,
+				F0E8B38A2B31BF3A00C3A10D /* SDWebImageMapKit */,
 			);
 			productName = Nenis;
 			productReference = F01E30402AA75786003AF470 /* Nenis.app */;
@@ -1055,6 +1089,7 @@
 				F0AC1ABA2B0C4FDE00481C5E /* XCRemoteSwiftPackageReference "KDCircularProgress" */,
 				F00E6CEB2B100000001A1404 /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				F0A83A492B1F5918009A23D6 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				F0E8B3872B31BF3A00C3A10D /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = F01E30412AA75786003AF470 /* Products */;
 			projectDirPath = "";
@@ -1085,12 +1120,14 @@
 				F0B982522B2105FE00E923AD /* GenderMenuViewController.xib in Resources */,
 				F026ECC42AF5784C0004F3B3 /* VaccineTableViewCell.xib in Resources */,
 				F077EC902B2C9B1800559608 /* TutorTableViewCell.xib in Resources */,
+				F0E8B3952B32215A00C3A10D /* TutorCollectionViewCell.xib in Resources */,
 				F0B9C75D2B226702001AEADF /* ActionsListViewController.xib in Resources */,
 				F0C170992AF972A700BD6326 /* VaccineHeaderView.xib in Resources */,
 				F0CBA9B02B1E92BC000F53A5 /* SimpleInputViewController.xib in Resources */,
 				F01E30502AA75787003AF470 /* Assets.xcassets in Resources */,
 				F0DE1F952AFA7116005209AB /* ChildHeaderView.xib in Resources */,
 				F0B758822B15242400568D0C /* VaccineFooterView.xib in Resources */,
+				F0E8B3902B3220FE00C3A10D /* TutorsFooterView.xib in Resources */,
 				F09D40BC2ABFAFDD0006E4BF /* baby_sleep.json in Resources */,
 				F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */,
 				F0B6B84C2AFCAFCC008AED04 /* VaccineVerticalViewCell.xib in Resources */,
@@ -1206,6 +1243,8 @@
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */,
 				F0C1339F2B190F9800A7E8C1 /* SettingDetailViewModel.swift in Sources */,
+				F0E8B3942B32215A00C3A10D /* TutorCollectionViewCell.swift in Sources */,
+				F0E8B38E2B3220ED00C3A10D /* TutorsFooterView.swift in Sources */,
 				F0B3105E2ABD2A6C00530994 /* AuthViewModel.swift in Sources */,
 				F01E304E2AA75786003AF470 /* Nenis.xcdatamodeld in Sources */,
 				F09724142B02BF6C00F9D249 /* VaccineCollectionHeaderView.swift in Sources */,
@@ -1616,6 +1655,14 @@
 				minimumVersion = 12.0.0;
 			};
 		};
+		F0E8B3872B31BF3A00C3A10D /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.18.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1688,6 +1735,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0BB3CC12AC5138E00ED5314 /* XCRemoteSwiftPackageReference "moa" */;
 			productName = moa;
+		};
+		F0E8B3882B31BF3A00C3A10D /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0E8B3872B31BF3A00C3A10D /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		F0E8B38A2B31BF3A00C3A10D /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0E8B3872B31BF3A00C3A10D /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 

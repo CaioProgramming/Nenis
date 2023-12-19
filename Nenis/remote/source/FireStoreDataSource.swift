@@ -22,6 +22,7 @@ protocol FirestoreImplementation {
     func updateData(data: T) async -> Result<T, Error>
     func getAllData() async -> Result<[T], Error>
     func queryData(field: String, value: String, isArray: Bool) async -> Result<[T], Error>
+    func queryMultipleData(field: String, values: [String]) async -> Result<[T], Error>
     func getSingleData(id: String) async -> Result<T, Error>
     func deleteData(id: String?) async -> Result<Void, Error>
 }
@@ -136,7 +137,7 @@ class FirebaseDataSource<T : DocumentProtocol>: FirestoreImplementation {
     }
     
     func queryData(field: String, value: String, isArray: Bool) async -> Result<[T], Error> {
-        Logger.init().info("Querying data from \(self.databaseProtocol.path) \(field) = \(value)")
+        Logger.init().info("Querying data on \(self.databaseProtocol.path) \(field) = \(value)")
         do {
             let query = if(isArray) {
                 collectionReference().whereField(field, arrayContains: value)
@@ -150,6 +151,19 @@ class FirebaseDataSource<T : DocumentProtocol>: FirestoreImplementation {
         } catch {
             return .failure(error)
         }
+    }
+    
+    func queryMultipleData(field: String, values: [String]) async -> Result<[T], Error> {
+        Logger.init().info("Querying data on \(self.databaseProtocol.path) \(field) = \(values)")
+        do {
+            let query = collectionReference().whereField(field, in: values)
+            let docs = try await query.getDocuments()
+            let mappedDocs = handleSnapshotArray(querySnapshot: docs)
+            return .success(mappedDocs)
+        } catch {
+            return .failure(error)
+        }
+
     }
     
     func getSingleData(id: String) async -> Result<T, Error> {

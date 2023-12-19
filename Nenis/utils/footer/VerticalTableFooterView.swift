@@ -13,6 +13,7 @@ class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
     static var viewType: ViewType = .footer
     @IBOutlet weak var footerLabel: UILabel!
     @IBOutlet weak var footerButton: UIButton!
+    @IBOutlet weak var footerIcon: UIImageView!
     var footerClosure: ((UIView?) -> Void)? = nil
     
     override func awakeFromNib() {
@@ -21,10 +22,11 @@ class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
     }
     
     func setupView(info: FooterComponent?) {
-        contentView.isHidden = true
-        if let footerInfo = info {
+         if let footerInfo = info {
             footerLabel.text = footerInfo.message
             footerButton.setTitle(footerInfo.actionLabel, for: .normal)
+            footerIcon.image = footerInfo.messageIcon
+            footerIcon.isHidden = footerInfo.messageIcon == nil
             self.footerClosure = footerInfo.actionClosure
             self.fadeIn()
         }

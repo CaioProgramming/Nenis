@@ -88,27 +88,63 @@ class ChildSettingsViewModel {
     }
     
     
+    private func selectOption(option: Option) {
+        self.selectedOption = option
+        self.delegate?.selectOption(option: option)
+    }
+    
     func buildSections(with child: Child) {
-        let childSection = ChildSection( title: "", subtitle: "", items: [child], itemClosure: { child, view in
-            self.delegate?.requestUpdatePicture()
+        let userHelper = UserHelper()
+        userHelper.getUsers(ids: child.tutors, with: { tutors in
+        
+            DispatchQueue.main.async { [self] in
+                let childFooter = FooterComponent(message: "", actionLabel: "", messageIcon: nil, actionClosure: { view in
+                
+                    view?.fadeOut(onCompletion: {
+                        self.selectOption(option: Option.tutors)
+                        view?.fadeIn()
+                    })
+
+                    
+                })
+                let childSection = ChildSection( title: "",
+                                                 subtitle: "",
+                                                 items: [child],
+                                                 tutors: tutors,
+                                                 itemClosure: { child, view in self.delegate?.requestUpdatePicture() },
+                                                 footerData: childFooter
+                )
+                
+                let optionsSection = OptionSection( items: Option.allCases,
+                                                    itemClosure: { option, view in
+                    self.selectOption(option: option)
+                }
+                )
+                var sections: [any Section] = [childSection, optionsSection]
+                child.extraInfo.forEach({ data in
+                    
+                    let header = HeaderComponent(title: data.title, actionLabel: nil, actionIcon: nil, trailingIcon: nil, actionClosure: nil)
+                    let footer: FooterComponent? = if(data != child.extraInfo.last) { nil } else { FooterComponent(message: "Suas informações estão sempre protegidas.", actionLabel: "Excluir", messageIcon: UIImage(systemName: "lock.circle.dotted"), actionClosure: { _ in
+                        
+                        self.deleteChild(with: child)
+                        
+                    })
+                    }
+                    let section = SettingsDetailsSection(items: data.infos, itemClosure: { _ ,_ in
+                        
+                        self.selectOption(option: .info)
+                        
+                    },
+                                                         headerData: header,
+                                                         footerData: footer,
+                                                         headerMenuClosure: { _ in}, editingStyle: .none, isSettings: true)
+                    sections.append(section)
+                })
+                
+                delegate?.retrieveSections(sections: sections)
+            }
         })
-        
-        let optionsSection = OptionSection( items: Option.allCases,
-                                            itemClosure: { option, view in
-            
-            self.selectedOption = option
-            self.delegate?.selectOption(option: option)
-        }, 
-                                            footerData: FooterComponent(
-                                                message: "Suas informações estão sempre protegidas.",
-                                                actionLabel: "Excluir",
-                                                messageIcon: UIImage(systemName: "lock.circle.dotted"),
-                                                actionClosure: { _ in
-                                                    self.deleteChild(with: child)
-                                                })
-        )
-        
-        delegate?.retrieveSections(sections: [childSection, optionsSection])
+    
     }
     
     

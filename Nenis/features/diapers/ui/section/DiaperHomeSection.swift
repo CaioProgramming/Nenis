@@ -63,7 +63,7 @@ struct DiaperHomeSection : Section {
     var cellHeight: CGFloat = 150
     
     func headerHeight() -> CGFloat {
-        return 0
+        return 50
     }
     
     

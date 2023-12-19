@@ -17,9 +17,8 @@ class TutorTableViewCell: UITableViewCell, CustomViewProtocol {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        containerView.roundedCorner(radius: 15)
-        containerView.isHidden = true
-        iconImage.clipImageToCircle(color: UIColor.accent)
+         containerView.roundedCorner(radius: 15)
+         containerView.isHidden = true
 
         // Initialization code
     }
