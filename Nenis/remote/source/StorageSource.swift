@@ -27,7 +27,7 @@ class StorageSource: StorageProtocol {
     
     private func handleCompletition(metadaData: StorageMetadata?, error: Error?) -> Result<Bool, StorageError> {
         
-        if let taskError = error {
+        if error != nil {
             return .failure(.upload)
         } else {
             return .success(metadaData != nil)
@@ -36,7 +36,7 @@ class StorageSource: StorageProtocol {
     }
     
     func handleDownloadURL(url: URL?, error: Error?) -> String? {
-        if let taskError = error {
+        if error != nil {
             return nil
         }
         if let downloadURL = url {
@@ -62,7 +62,7 @@ class StorageSource: StorageProtocol {
         print("Uploading file to storage...")
         do {
             let reference = getStoragePath().child(fileName.removingBlankSpaces())
-            let task = try await reference.putDataAsync(fileData)
+            try await reference.putDataAsync(fileData)
             let downloadURL = try await reference.downloadURL()
             onSuccess(downloadURL.absoluteString)
             

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bQb-tl-HGA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bQb-tl-HGA">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -95,7 +95,11 @@
                                 <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                                 <sections/>
                             </tableView>
-                            <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="5Jv-wY-Anf">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="1oR-N8-hYU">
+                                <rect key="frame" x="0.0" y="384" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="5Jv-wY-Anf">
                                 <rect key="frame" x="16" y="359.66666666666669" width="343" height="93"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Você ainda nao vinculou nenhum bebê a sua conta" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MwK-WE-efn">
@@ -114,10 +118,6 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="1oR-N8-hYU">
-                                <rect key="frame" x="0.0" y="384" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDq-oB-bpE">
                                 <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                                 <subviews>
@@ -145,11 +145,12 @@
                             <constraint firstItem="tDq-oB-bpE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AVf-y5-lOM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EYl-BE-XOg" secondAttribute="trailing" id="M2d-E0-chF"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tDq-oB-bpE" secondAttribute="bottom" id="N7Y-VU-lCJ"/>
-                            <constraint firstAttribute="trailing" secondItem="5Jv-wY-Anf" secondAttribute="trailing" constant="16" id="TFi-jF-aHv"/>
+                            <constraint firstItem="5Jv-wY-Anf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="UKa-0G-vr8"/>
+                            <constraint firstItem="5Jv-wY-Anf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VXX-3h-M2g"/>
                             <constraint firstItem="EYl-BE-XOg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Yk7-JZ-6Wd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EYl-BE-XOg" secondAttribute="bottom" id="djE-tD-zeB"/>
-                            <constraint firstItem="5Jv-wY-Anf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="oBp-BE-lK1"/>
-                            <constraint firstItem="5Jv-wY-Anf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="x4a-S3-Meb"/>
+                            <constraint firstItem="5Jv-wY-Anf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fSS-Us-6Lc"/>
+                            <constraint firstAttribute="trailing" secondItem="5Jv-wY-Anf" secondAttribute="trailing" constant="16" id="v1E-Hf-qnp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tDq-oB-bpE" secondAttribute="trailing" id="zuS-cx-Uru"/>
                         </constraints>
                     </view>

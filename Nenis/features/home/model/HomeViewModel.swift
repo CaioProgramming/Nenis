@@ -32,9 +32,49 @@ protocol HomeProtocol {
 
 class HomeViewModel {
     
-    private var babyService = BabyService()
+    private let babyService = BabyService()
     var child: Child? = nil
     var vaccineUpdateInfo : (Child, VaccineItem)? = nil
+
+    //MARK: ViewModelSetup
+    
+    
+    typealias T = Child
+    var delegate: HomeProtocol?
+    
+    func isUserLogged() -> Bool {
+        return Auth.auth().currentUser != nil
+    }
+    
+    
+    func initialize() {
+        
+        guard let user = Auth.auth().currentUser else {
+            delegate?.requireAuth()
+            return
+        }
+        delegate?.authSuccess(user: user)
+        let userHelper = UserHelper()
+        userHelper.updateUser(user: user)
+        
+    }
+    
+    
+    func buildHomeFromChild(with child: Child) {
+        
+        let userName = babyService.currentUser()?.displayName ?? ""
+        let sections: [any Section] = [
+            buildChildSection(with: child, userName: userName),
+            buildChildDiapers(with: child),
+            buildVaccineSection(with: child),
+            buildActionSection(with: child)
+        ]
+        delegate?.retrieveHome(with: sections)
+    }
+    
+    
+    
+    //MARK: -
     
     
     //MARK: Child tasks
@@ -57,6 +97,8 @@ class HomeViewModel {
                     onSuccess: { childs in
                         if let actualChild = childs.first {
                             childUpdated(newChild: actualChild)
+                        } else {
+                            delegate?.childNotFound()
                         }
                     },
                     onFailure: { error in
@@ -104,8 +146,8 @@ class HomeViewModel {
         
         return VaccineSection(items: Array(vaccines),
                               itemClosure: { vaccine, view in
-                                    self.selectVaccine(vaccineItem: vaccine)
-                                },
+            self.selectVaccine(vaccineItem: vaccine)
+        },
                               eventRequest: addVaccineToCalendar,
                               headerData: headerData)
         
@@ -120,17 +162,17 @@ class HomeViewModel {
                 eventService.addEvent(
                     identifier: vaccineItem.vaccine.description,
                     title: title,
-                                      note: note,
-                                      date: vaccineItem.nextDate,
-                                      onSuccess: {
-                    
+                    note: note,
+                    date: vaccineItem.nextDate,
+                    onSuccess: {
+                        
                         self.delegate?.showMessage(message: "\(title) adicionada ao calendário.")
-                    
-                },
-               onFailure: {
-                   
-                   self.delegate?.showMessage(message: "Ocorreu um erro ao adicionar ao calendário.")
-               })
+                        
+                    },
+                    onFailure: {
+                        
+                        self.delegate?.showMessage(message: "Ocorreu um erro ao adicionar ao calendário.")
+                    })
             } else {
                 // Fallback on earlier versions
             }
@@ -238,7 +280,7 @@ class HomeViewModel {
     func buildChildDiapers(with child: Child) -> DiaperHomeSection {
         let headerData : HeaderComponent? = HeaderComponent(
             title: "Fraldas",
-            actionLabel: "Ver todas",
+            actionLabel: nil,
             actionIcon: IconConfiguration(image: UIImage(systemName: "chevron.right")),
             trailingIcon: nil,
             actionClosure: { view in self.delegate?.openDiapers() })
@@ -259,50 +301,4 @@ class HomeViewModel {
         }, headerData: headerData, footerData: footerData)
     }
     
-    
-    
-    //MARK: ViewModelSetup
-    
-    
-    typealias T = Child
-    var delegate: HomeProtocol?
-    
-    func isUserLogged() -> Bool {
-        return Auth.auth().currentUser != nil
-    }
-    
-    
-    func initialize() {
-        babyService = BabyService()
-        
-        if let user = Auth.auth().currentUser {
-            delegate?.authSuccess(user: user)
-            let userHelper = UserHelper()
-            userHelper.updateUser(user: user)
-            
-            fetchChild(uid: user.uid)
-        } else {
-            delegate?.requireAuth()
-        }
-    }
-    
-    
-    func buildHomeFromChild(with child: Child) {
-        
-        let userName = babyService.currentUser()?.displayName ?? ""
-        let sections: [any Section] = [
-            buildChildSection(with: child, userName: userName),
-            buildChildDiapers(with: child),
-            buildVaccineSection(with: child),
-            buildActionSection(with: child)
-        ]
-        delegate?.retrieveHome(with: sections)
-    }
-    
-    
 }
-
-
-
-
-

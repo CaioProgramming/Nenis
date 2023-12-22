@@ -43,7 +43,6 @@ class EventService {
             event.notes = note
             
             // STEP 3
-            let alarmDate = calendar.date(bySettingHour: 08, minute: 30, second: 0, of: date)
             event.calendar = self.eventStore.defaultCalendarForNewEvents
             let alarm = EKAlarm(relativeOffset: -600 * 3)
             event.addAlarm(alarm)

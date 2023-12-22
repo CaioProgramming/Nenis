@@ -82,23 +82,31 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         homeViewModel.initialize()
+        startLoading()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         homeViewModel.delegate = self
         setupTableView()
+       
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+    }
+    
+    private func startLoading() {
+        toggleViews(views: [emptyBabyView, activityTable], isHidden: true)
         if #available(iOS 17.0, *) {
             performIconAnimation()
         } else {
             loadingIndicator.startAnimating()
-            
         }
-        
-        
-        navigationController?.setNavigationBarHidden(true, animated: true)
-        
+    }
+    
+    private func hideLoading() {
+        loadingView.fadeOut()
+        loadingIndicator.stopAnimating()
+        activityTable.refreshControl?.endRefreshing()
     }
     
     @available(iOS 17.0, *)
@@ -135,20 +143,13 @@ class HomeViewController: UIViewController {
     
     
     func showError(message: String, buttonMessage: String) {
-        loadingIndicator.stopAnimating()
-        emptyBabyView.fadeIn()
+        hideLoading()
         errorLabel.text = message
         errorButton.setTitle(buttonMessage, for: .normal)
-        toggleViews(views: [activityTable,loadingIndicator], isHidden: true)
-        
-        
+        emptyBabyView.fadeIn()
     }
     
-    func toggleViews(views: [UIView], isHidden: Bool) {
-        views.forEach({ view in
-            view.isHidden = isHidden
-        })
-    }
+   
     
     @IBAction func errorClick(_ sender: UIButton) {
         if let closure = errorClosure {
@@ -178,30 +179,33 @@ class HomeViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "NewActivitySegue") {
-            let destination = segue.destination as! NewActionViewController
-            destination.activtyProtocol = self
-            if let currentChild = homeViewModel.child {
-                destination.birthDate = currentChild.birthDate
-                let validSizes = currentChild.diapers.map({ diaper in
-                    return diaper.type.getDiaperSizeByDescription() ?? SizeType.RN
-                })
-                destination.validSizes = validSizes
-            }
-        } else if (segue.identifier == VaccinesViewController.identifier) {
-            if  let destination = segue.destination as? VaccinesViewController {
-                destination.delegate = self
-                destination.child = homeViewModel.child
-            }
-        } else if(segue.identifier == UpdateVaccineViewController.identifier) {
-            if let destination = segue.destination as? UpdateVaccineViewController {
-                destination.delegate = self
-                destination.info = homeViewModel.vaccineUpdateInfo
-            }
+        guard let child = homeViewModel.child else {
+            return
         }
+        if let actionDestination = segue.destination as? NewActionViewController {
+            
+            actionDestination.activtyProtocol = self
+            actionDestination.birthDate = child.birthDate
+            let validSizes = child.diapers.map({ diaper in
+                return diaper.type.getDiaperSizeByDescription() ?? SizeType.RN
+            })
+            actionDestination.validSizes = validSizes
+        }
+        
+        if let vaccinesDestination = segue.destination as? VaccinesViewController {
+            vaccinesDestination.delegate = self
+            vaccinesDestination.child = child
+        }
+        
+        if let updateVaccineDestination = segue.destination as? UpdateVaccineViewController {
+            updateVaccineDestination.delegate = self
+            updateVaccineDestination.info = homeViewModel.vaccineUpdateInfo
+        }
+      
     }
 }
 
+//MARK: -
 
 
 //MARK: - VaccineProtocols
@@ -286,9 +290,9 @@ extension HomeViewController: HomeProtocol {
             isViewsRegistered = true
         }
             sections = homeSection
-            activityTable.refreshControl?.endRefreshing()
             activityTable.reloadData()
-            loadingIndicator.stopAnimating()
+            activityTable.fadeIn()
+            hideLoading()
     }
     
     
@@ -329,10 +333,11 @@ extension HomeViewController: HomeProtocol {
             self.signIn()
         }
         signIn()
+        
     }
     
     func authSuccess(user: User) {
-        emptyBabyView.fadeOut()
+        homeViewModel.fetchChild(uid: user.uid)
     }
     
     func requestNewAction() {

@@ -48,7 +48,7 @@ class VaccineHelper {
              vaccination.vaccine.caseInsensitiveCompare(vaccine.description) == .orderedSame
          })
         
-        var currentDose = (childVaccine?.dose ?? 0)
+        let currentDose = (childVaccine?.dose ?? 0)
         var periodIndex = currentDose
         
         if(currentDose == vaccine.periods.count) {

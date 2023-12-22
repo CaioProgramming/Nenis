@@ -22,7 +22,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="100" id="j6Y-1h-sqt"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                     <color key="textColor" systemColor="systemBackgroundColor"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -36,7 +36,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v1D-LI-W0b">
-                    <rect key="frame" x="2" y="118" width="212" height="19"/>
+                    <rect key="frame" x="2" y="117.66666666666667" width="212" height="19.333333333333329"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -73,7 +73,7 @@
             <color red="0.95599997043609619" green="0.90799999237060547" blue="0.56000000238418579" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

@@ -48,8 +48,6 @@ struct DiaperHomeSection : Section {
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
         let header = H.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
         header.setupHeader(info: headerData)
-        header.mainContainerView.backgroundColor = UIColor(named: "CardBackColor")
-        header.mainContainerView.roundTopCorners(radius: 15)
         header.dividerView.isHidden = true
         return header
     }

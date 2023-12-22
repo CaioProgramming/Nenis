@@ -14,14 +14,11 @@ class NewChildViewController: UIViewController {
 
     @IBOutlet weak var babyBirthDatePicker: UIDatePicker!
     @IBOutlet weak var babyImage: UIImageView!
-    @IBOutlet weak var imageBackground: UIView!
     @IBOutlet weak var babyNameTextField: UITextField!
     var imagePickerController: UIImagePickerController? = nil
     var selectedPhoto: UIImage? = nil
-    @IBOutlet weak var photoPlaceHolder: UIImageView!
     var childCompletition: ((Child) -> Void )? = nil
     let newBabyViewModel = NewChildViewModel()
-    @IBOutlet weak var imageUploadIndicator: UIActivityIndicatorView!
     
     
     var currentGender = Gender.boy
@@ -29,31 +26,25 @@ class NewChildViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(openPicker))
-        imageBackground.addGestureRecognizer(tapGesture)
-        imageBackground.clipImageToCircle(color: UIColor.systemGray4)
-        babyImage.clipImageToCircle(color: Gender.boy.color)
+        
+        babyImage.clipImageToCircle(color: currentGender.color)
         babyNameTextField.delegate = self
         newBabyViewModel.delegate = self
         setupDatePicker()
-        babyImage.fadeOut()
+        babyImage.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.openPicker)))
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
-    private func updateGenderUi() {
-        
-    }
     
     @IBAction func genderSelected(_ sender: UISegmentedControl) {
         let gender = Gender.allCases[sender.selectedSegmentIndex]
         currentGender = gender
-        imageBackground.clipImageToCircle(color: currentGender.color)
- 
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "InviteSegue") {
-            let viewController = segue.destination as! InviteViewController
-            viewController.inviteDelegate = self
+        if let destination = segue.destination as? InviteViewController {
+            destination.inviteDelegate = self
+            destination.preferredContentSize = CGSize(width: self.view.frame.width, height: 250)
         }
     }
     
@@ -63,14 +54,15 @@ class NewChildViewController: UIViewController {
     func updateKidImage(with newPhoto: UIImage) {
         selectedPhoto = newPhoto
         babyImage.image = newPhoto
-        babyImage.fadeIn()
-        photoPlaceHolder.fadeOut()
-        imageBackground.clipImageToCircle(color: currentGender.color)
-        imageUploadIndicator.stopAnimating()
+        babyImage.contentMode = .scaleAspectFill
+        babyImage.tintColor = currentGender.color
+        babyImage.scaleAnimation(xScale: 1, yScale: 1)
+        babyImage.clipImageToCircle(color: currentGender.color)
     }
     
     @objc func openPicker() {
         print("Open image picker")
+        babyImage.scaleAnimation(xScale: 0.8, yScale: 0.8)
         imagePickerController = UIImagePickerController()
         imagePickerController?.delegate = self
         imagePickerController?.mediaTypes = [UTType.image.identifier]
@@ -146,6 +138,7 @@ extension NewChildViewController:  UIImagePickerControllerDelegate, UINavigation
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
+        babyImage.scaleAnimation(xScale: 1, yScale: 1)
         
         print(info.debugDescription)
         updateSelectedImage(info: info)
@@ -165,18 +158,16 @@ extension NewChildViewController:  UIImagePickerControllerDelegate, UINavigation
 
 extension NewChildViewController: NewChildProtocol {
     func saveSuccess(child: Child) {
-        Toast.text("Criança salva com sucesso!").show()
-        delay(with: 3.0, closure: {
-            self.dismiss(animated: true)
-        })
-       
+        DispatchQueue.main.async {
+            Toast.text("Criança salva com sucesso!").show()
+             self.dismiss(animated: true)
+        }
     }
     
     func errorSaving(errorMessage: String) {
+        babyImage.scaleAnimation(xScale: 1, yScale: 1)
         babyImage.showPopOver(viewController: self,message: errorMessage, presentationDelegate: self)
-
+        
     }
-    
-    
-}
 
+}

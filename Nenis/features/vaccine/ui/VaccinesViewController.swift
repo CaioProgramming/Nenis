@@ -185,8 +185,6 @@ extension VaccinesViewController: UICollectionViewDelegate, UICollectionViewDele
 
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let currentSection = vaccines[section]
-         
         return CGSize(width: collectionView.contentSize.width, height: 75)
     }
     

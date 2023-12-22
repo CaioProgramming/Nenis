@@ -9,7 +9,15 @@ import Foundation
 import UIKit
 import os
 
+func toggleViews(views: [UIView], isHidden: Bool) {
+    views.forEach({ view in
+        view.isHidden = isHidden
+    })
+}
+
 extension UIView {
+    
+  
     
     func clipImageToCircle( color: UIColor) {
         self.backgroundColor = color
@@ -168,14 +176,12 @@ extension UITableView {
     }
 }
 
-
-
 extension UIImageView {
     
     func loadImage(url: String?, placeHolder: UIImage?, onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
         sd_setImage(with: URL(string: url ?? ""),placeholderImage: placeHolder, completed: { image, error ,_,_ in
         
-            guard let image else {
+            guard image != nil else {
                 onFailure()
                 return
             }

@@ -19,7 +19,10 @@ class InviteViewController: UIViewController {
     @IBOutlet weak var kidImage: UIImageView!
     @IBOutlet weak var inviteTextField: UITextField!
     
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var mainContentView: UIStackView!
     @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var messageLabel: UILabel!
     var selectedChild: Child? = nil
     var inviteDelegate: InviteDelegate? = nil
@@ -30,19 +33,53 @@ class InviteViewController: UIViewController {
         }
     }
     
+    @IBAction func cancelChildTap(_ sender: UIButton) {
+        toggleViews(views: [cancelButton, kidImage, kidName, confirmButton, messageLabel], isHidden: true)
+        inviteTextField.fadeIn()
+    }
     @IBAction func confirmChildTap(_ sender: UIButton) {
         if let currentChild = selectedChild {
             inviteViewModel.addTutorToChild(with: currentChild)
         }
     }
+    override func updateViewConstraints() {
+                // they're now "cards"
+                let TOP_CARD_DISTANCE: CGFloat = 50
+                
+                let height: CGFloat = self.view.wrapHeight() + TOP_CARD_DISTANCE
+           
+                view.frame.size.height = height
+                // reposition the view (if not it will be near the top)
+                view.frame.origin.y = UIScreen.main.bounds.height - height - TOP_CARD_DISTANCE
+                view.backgroundColor = UIColor.secondarySystemBackground
+                view.roundTopCorners(radius: 15)
+                super.updateViewConstraints()
+    }
     
     override func viewDidLoad() {
         inviteViewModel.delegate = self
+        inviteTextField.delegate = self
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         kidImage.isHidden = true
         kidName.isHidden = true
         messageLabel.isHidden = true
         confirmButton.isHidden = true
-        inviteTextField.delegate = self
+        titleLabel.font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .largeTitle).pointSize)
+    }
+    
+    func updateChildData(_ child: Child) {
+        kidImage.loadImage(url: child.photo, placeHolder: UIImage(named: "smile.out"), onSuccess: {}, onFailure: {})
+        kidName.text = child.name
+        messageLabel.fadeIn()
+        kidImage.fadeIn()
+        kidName.fadeIn()
+        confirmButton.fadeIn()
+        cancelButton.fadeIn()
+        kidImage.clipImageToCircle(color: UIColor.accent)
+        selectedChild = child
+        inviteTextField.isHidden = true
     }
 }
 
@@ -72,23 +109,24 @@ extension  InviteViewController: UIPopoverPresentationControllerDelegate {
 extension InviteViewController: InviteProtcol {
     
     func childUpdated(child: Child) {
-        inviteDelegate?.childUpdated(child: child)
-        self.dismiss(animated: true)
+        DispatchQueue.main.async {
+            self.dismiss(animated: true, completion: {
+                self.inviteDelegate?.childUpdated(child: child)
+            })
+        }
+       
     }
     
     func childRetrieved(child: Child) {
-        kidImage.moa.url = child.photo
-        kidName.text = child.name
-        messageLabel.fadeIn()
-        kidImage.fadeIn()
-        kidName.fadeIn()
-        confirmButton.fadeIn()
-        kidImage.clipImageToCircle(color: UIColor.accent)
-        selectedChild = child
+        DispatchQueue.main.async {
+            self.updateChildData(child)
+        }
     }
     
     func childNotFound() {
-        inviteTextField.showPopOver(viewController: self, message: "Invalid code, please try again.", presentationDelegate: self)
+        DispatchQueue.main.async {
+            self.inviteTextField.showPopOver(viewController: self, message: "Invalid code, please try again.", presentationDelegate: self)
+        }
     }
     
 }

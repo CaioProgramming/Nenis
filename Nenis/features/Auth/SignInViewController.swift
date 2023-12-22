@@ -10,6 +10,7 @@ import Lottie
 import FirebaseCore
 import GoogleSignIn
 import FirebaseAuth
+import Toast
 
 class SignInViewController: UIViewController {
     
@@ -96,14 +97,6 @@ class SignInViewController: UIViewController {
         updateView()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if(segue.identifier == "PopOverSegue") {
-            let destination = segue.destination as! PopOverViewController
-            if let message = errorMessage {
-                destination.message = message
-            }
-        }
-    }
     
     func showErrorAlert(with message: String, anchor: UIView? = nil) {
         anchor?.showPopOver(viewController: self, message: message, presentationDelegate: self)
@@ -170,12 +163,11 @@ extension SignInViewController: AuthProtocol {
     
     func loginSuccess(userName: String?) {
         toggleLoginButton(hidden: false)
-        let alert = UIAlertController(title: "Success!", message: "Welcome \(userName ?? "")", preferredStyle: .alert)
-         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in
-             alert.dismiss(animated: true)
-             self.dismiss(animated: true)
-         }))
-         self.present(alert, animated: true)
+        Toast.default(image: UIImage(systemName: "checkmark")!, title: "Bem-vindo \(userName ?? "")!").show()
+        delay {
+            self.dismiss(animated: true)
+
+        }
     }
     
     func loginError() {
@@ -195,12 +187,11 @@ extension SignInViewController: AuthProtocol {
     
     func signUpSuccess(userName: String?) {
         toggleLoginButton(hidden: false)
-        let alert = UIAlertController(title: "Success!", message: "Welcome \(userName ?? "")", preferredStyle: .alert)
-         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in
-             alert.dismiss(animated: true)
-             self.dismiss(animated: true)
-         }))
-         self.present(alert, animated: true)
+        Toast.default(image: UIImage(systemName: "checkmark")!, title: "Bem-vindo \(userName ?? "")!").show()
+        delay {
+            self.dismiss(animated: true)
+
+        }
     }
 }
 

@@ -23,10 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
         FirebaseApp.configure()
-        //IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enable = true
         if #available(iOS 17.0, *) {
             Task {
-                try? await Tips.configure()
+                try? Tips.configure()
             }
 
         }
