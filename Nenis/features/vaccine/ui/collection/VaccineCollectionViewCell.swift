@@ -44,18 +44,18 @@ class VaccineVerticalViewCell: UICollectionViewCell, CustomViewProtocol {
     static var viewType: ViewType = .cell
     
     
-    @IBOutlet weak var iconBackground: UIView!
+    @IBOutlet weak var vaccineLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
-    @IBOutlet weak var vaccineIcon: UIImageView!
     
-    func setupVaccine(vaccine: String, progress: Float, nextDate: String, status: Status) {
+    func setupVaccine(label: String,vaccine: String, progress: Float, nextDate: String, status: Status) {
         nameLabel.text = vaccine
         dateLabel.text = nextDate
         let color = status.color
-        vaccineIcon.tintColor = color
-        iconBackground.clipImageToCircle(color: color.withAlphaComponent(0.3))
+        vaccineLabel.text = label
+        vaccineLabel.textColor = color
+        vaccineLabel.clipImageToCircle(color: color.withAlphaComponent(0.3))
         progressView.setProgress(progress, animated: true)
         progressView.progressTintColor = color
         self.roundedCorner(radius: 15)

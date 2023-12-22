@@ -30,11 +30,15 @@ struct TutorSection: Section {
                                     cell.iconImage.clipImageToCircle(color: UIColor.systemGray5)
                                  },
                                  onFailure: {
-                                    cell.iconImage.clipImageToCircle(color: UIColor.link.withAlphaComponent(0.4))
-                                    cell.iconImage.backgroundColor = UIColor.systemGray5
-                                    cell.iconImage.image = placeHolder
-                                    cell.iconImage.contentMode = .scaleAspectFit
-                                    
+                                     let alpha = 0.7
+                                     let colors = [UIColor.red, UIColor.blue, UIColor.yellow, UIColor.accent, UIColor.label]
+                                     guard let color = colors.randomElement() else {
+                                         return
+                                     }
+                                     cell.iconImage.image = placeHolder
+                                     cell.iconImage.contentMode = .scaleAspectFit
+                                     cell.iconImage.clipImageToCircle(color: color.withAlphaComponent(alpha))
+
                                  }
         )
         cell.containerView.fadeIn()

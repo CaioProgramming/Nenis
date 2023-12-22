@@ -23,7 +23,7 @@ class ActivityTableViewCell: UITableViewCell, CustomViewProtocol {
         // Initialization code
     }
     
-    func setupAction(activity: Action, isFirst: Bool, isLast: Bool) {
+    func setupAction(activity: Activity, isFirst: Bool, isLast: Bool) {
         
         let actionType = activity.type.getAction()
         icon.backgroundColor = UIColor.clear

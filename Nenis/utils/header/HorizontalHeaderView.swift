@@ -26,7 +26,8 @@ class HorizontalHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
         mainContainerView.isHidden = true
         if let headerExtras = info {
             headerButton.setTitle(headerExtras.actionLabel, for: .normal)
-            headerButton.setImage(headerExtras.actionIcon, for: .normal)
+            headerButton.setImage(headerExtras.actionIcon?.image, for: .normal)
+            headerButton.tintColor = headerExtras.actionIcon?.tintColor
             headerButton.semanticContentAttribute = .forceRightToLeft
 
             self.buttonAction = headerExtras.actionClosure
@@ -34,7 +35,8 @@ class HorizontalHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
             self.fadeIn()
             if let titleIcon = headerExtras.trailingIcon {
                 iconImage.isHidden = false
-                iconImage.image = titleIcon
+                iconImage.image = titleIcon.image
+                iconImage.tintColor = titleIcon.tintColor
                 
             } else {
                 iconImage.heightConstraint?.constant = 0.0

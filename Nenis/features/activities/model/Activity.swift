@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct Action : Codable, Equatable {
+struct Activity : Codable, Equatable {
     let description: String
     let type: String
     let time: Date
@@ -73,15 +73,15 @@ extension String {
       })
     }
 }
-extension Action {
+extension Activity {
     func formatDate() -> String {
         return self.time.formatted(date: .complete, time: .shortened)
     }
     
 }
 
-extension [Action] {
-    func sortByDate() -> [ Action] {
+extension [Activity] {
+    func sortByDate() -> [ Activity] {
         return sorted(by: { firstData, secondData in
             firstData.time.compare(secondData.time) == .orderedDescending
         })

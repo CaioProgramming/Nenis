@@ -9,7 +9,7 @@ import Foundation
 
 struct DiaperItem {
     let diaper: Diaper
-    let linkedActions: [Action]
+    let linkedActions: [Activity]
 }
 
 class DiaperMapper {

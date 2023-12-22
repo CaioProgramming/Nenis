@@ -11,7 +11,7 @@ class ActionsListViewController: UIViewController {
 
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var actionstableView: UITableView!
-    var actions: [Action] = []
+    var actions: [Activity] = []
     var message: String? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +21,7 @@ class ActionsListViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
  
-    func setActions(newActions: [Action]) {
+    func setActions(newActions: [Activity]) {
         actions = newActions
     }
     

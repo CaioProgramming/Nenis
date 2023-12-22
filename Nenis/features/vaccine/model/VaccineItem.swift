@@ -17,7 +17,7 @@ struct VaccineItem: Equatable {
 }
 
 extension VaccineItem {
-    func formatDate() -> String {
+    func formatNextDate() -> String {
         return nextDate.formatted(date: .abbreviated, time: .omitted) 
     }
 }

@@ -17,6 +17,7 @@ struct VaccineSection: Section {
     var items: [VaccineItem]
 
     var itemClosure: ((VaccineItem, UIView?) -> Void)
+    var eventRequest: ((VaccineItem ) -> Void)
     
     var headerData: HeaderComponent?
     var footerData: FooterComponent?
@@ -49,8 +50,13 @@ struct VaccineSection: Section {
         let cell = tableView.dequeueReusableCell(withIdentifier: C.identifier, for: indexPath) as! C
         cell.updateVaccines(vaccineList: items)
         
-        cell.selectVaccine = { (item, view) in
-            itemClosure(item, view)
+        cell.selectVaccine = { (item, action) in
+            if(action == .open) {
+                itemClosure(item, nil)
+
+            } else {
+                eventRequest(item)
+            }
         }
         return cell
     }
@@ -119,5 +125,35 @@ struct VaccineSettingsSection: Section {
     
     var cellHeight: CGFloat = 75
     
+    
+}
+
+struct VaccineCollectionSection: Section {
+    var items: [VaccineItem]
+    
+    var itemClosure: ((VaccineItem, UIView?) -> Void)
+    
+    typealias T = VaccineItem
+    
+    typealias H = HorizontalHeaderView
+    
+    typealias C = VaccineVerticalViewCell
+    
+    typealias F = VaccineFooterView
+    
+    var headerData: HeaderComponent?
+    
+    var footerData: FooterComponent?
+    
+    var cellHeight: CGFloat
+    
+    var editingStyle: UITableViewCell.EditingStyle
+    
+    func dequeueCollectionCell(with collectionView: UICollectionView, indexpath: IndexPath) -> VaccineVerticalViewCell {
+        let item = items[indexpath.row]
+        let cell = C.dequeueCollectionCell(collectionView, cellForItemAt: indexpath)
+        cell.setupVaccine(label: item.vaccine.description, vaccine: item.vaccine.title, progress: item.doseProgress, nextDate: item.formatNextDate(), status: item.status)
+        return cell
+    }
     
 }

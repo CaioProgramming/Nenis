@@ -10,6 +10,7 @@ import FirebaseAuth
 import FirebaseFirestoreSwift
 import os
 import UIKit
+import EventKit
 
 protocol HomeProtocol {
     
@@ -23,6 +24,7 @@ protocol HomeProtocol {
     func authSuccess(user: User)
     func requestNewAction()
     func confirmVaccine()
+    func showMessage(message: String)
 }
 
 
@@ -32,7 +34,7 @@ class HomeViewModel {
     
     private var babyService = BabyService()
     var child: Child? = nil
-    var vaccineUpdateInfo : (Child, Vaccine, Int)? = nil
+    var vaccineUpdateInfo : (Child, VaccineItem)? = nil
     
     
     //MARK: Child tasks
@@ -97,13 +99,43 @@ class HomeViewModel {
         let headerData = HeaderComponent(
             title: vaccinesTitle,
             actionLabel: "Ver mais",
-            actionIcon: UIImage(systemName: "chevron.right"),
+            actionIcon: IconConfiguration(image: UIImage(systemName: "chevron.right")),
             trailingIcon: nil,
             actionClosure: { _ in self.delegate?.openVaccines() })
         
-        return VaccineSection(items: Array(vaccines), itemClosure: { vaccine, view in
-            self.selectVaccine(vaccineItem: vaccine)
-        }, headerData: headerData)
+        return VaccineSection(items: Array(vaccines),
+                              itemClosure: { vaccine, view in
+                                    self.selectVaccine(vaccineItem: vaccine)
+                                },
+                              eventRequest: addVaccineToCalendar,
+                              headerData: headerData)
+        
+    }
+    
+    func addVaccineToCalendar(vaccineItem: VaccineItem) {
+        if let currentChild = child {
+            let eventService = EventService()
+            let title = "Vacina \(vaccineItem.vaccine.title)"
+            let note = "\(vaccineItem.nextDose + 1)º dose de \(vaccineItem.vaccine.title) para o \(currentChild.name)"
+            if #available(iOS 17.0, *) {
+                eventService.addEvent(
+                    identifier: vaccineItem.vaccine.description,
+                    title: title,
+                                      note: note,
+                                      date: vaccineItem.nextDate,
+                                      onSuccess: {
+                    
+                        self.delegate?.showMessage(message: "\(title) adicionada ao calendário.")
+                    
+                },
+               onFailure: {
+                   
+                   self.delegate?.showMessage(message: "Ocorreu um erro ao adicionar ao calendário.")
+               })
+            } else {
+                // Fallback on earlier versions
+            }
+        }
         
     }
     
@@ -124,7 +156,7 @@ class HomeViewModel {
     
     func selectVaccine(vaccineItem: VaccineItem) {
         if let currentChild = child {
-            vaccineUpdateInfo = (currentChild, vaccineItem.vaccine, vaccineItem.nextDose + 1)
+            vaccineUpdateInfo = (currentChild, vaccineItem)
             delegate?.confirmVaccine()
         }
     }
@@ -148,7 +180,7 @@ class HomeViewModel {
             HeaderComponent(
                 title: actionsTitle,
                 actionLabel: nil,
-                actionIcon: UIImage(systemName: "plus.circle.fill"),
+                actionIcon: IconConfiguration(image: UIImage(systemName: "plus.circle.fill")),
                 trailingIcon: nil,
                 actionClosure: { _ in self.delegate?.requestNewAction() })
             
@@ -156,7 +188,7 @@ class HomeViewModel {
         return ActionSection(items: child.actions.sortByDate(), itemClosure: { action, view in } , headerData:  headerData, footerData: footerData, editingStyle: .delete )
     }
     
-    func addNewAction(action: Action) {
+    func addNewAction(action: Activity) {
         if var currentChild = child {
             var newAction = action
             if(action.type.getAction() != .bath) {
@@ -208,7 +240,7 @@ class HomeViewModel {
         let headerData : HeaderComponent? = HeaderComponent(
             title: "Fraldas",
             actionLabel: "Ver todas",
-            actionIcon: UIImage(systemName: "chevron.right"),
+            actionIcon: IconConfiguration(image: UIImage(systemName: "chevron.right")),
             trailingIcon: nil,
             actionClosure: { view in self.delegate?.openDiapers() })
         

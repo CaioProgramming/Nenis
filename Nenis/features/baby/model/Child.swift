@@ -17,7 +17,7 @@ public struct Child: DocumentProtocol {
     var photo: String
     var gender: String
     var tutors: [String]
-    var actions: [Action] = []
+    var actions: [Activity] = []
     var vaccines: [Vaccination] = []
     var diapers: [Diaper] = []
     var extraInfo: [ExtraData] = []
@@ -36,6 +36,7 @@ public struct Child: DocumentProtocol {
 }
 
 struct ExtraData: Codable, Equatable {
+    var icon: String?
     var title: String
     var infos: [DetailModel]
 }
@@ -112,8 +113,8 @@ extension Child {
     }
     
     func getFullAge() -> String {
-        let calendar = NSCalendar.current
         let birth = self.birthDate
+        let calendar = NSCalendar.current
         let currentDate = Date.now
         let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
         

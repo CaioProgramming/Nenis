@@ -52,8 +52,9 @@ struct SettingsDetailsSection: Section {
         footer.setupView(info: footerData)
         if(isSettings) {
             footer.footerButton.tintColor = UIColor.red
-            footer.footerButton.configuration = UIButton.Configuration.tinted()
         }
+        footer.footerButton.configuration = UIButton.Configuration.tinted()
+
         footer.contentView.isHidden = footerData == nil
         return footer
     }
@@ -68,8 +69,7 @@ struct SettingsDetailsSection: Section {
     typealias F = VerticalTableFooterView
     
  
-
-    let cellHeight: CGFloat = 75
+    let cellHeight: CGFloat = 50
     
     
 }

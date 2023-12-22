@@ -239,19 +239,20 @@ extension SettingDetailViewModel: InfoProtocol {
             sections.append(firstDetailSection)
             
             currentChild.extraInfo.map({ data in
-                
-                SettingsDetailsSection(items: data.infos,
+                let iconOpt = IconOptions.getIconByName(value: data.icon)
+
+             return SettingsDetailsSection(items: data.infos,
                                        itemClosure: { detail, view in
                     
-                    if let groupIndex = currentChild.extraInfo.firstIndex(of: data), let itemIndex = data.infos.firstIndex(of: detail) {
-                        self.delegate?.showEditForDetail(groupIndex: groupIndex, itemIndex: itemIndex, item: detail, view: view)
-                    }
-                },
+                                                if let groupIndex = currentChild.extraInfo.firstIndex(of: data), let itemIndex = data.infos.firstIndex(of: detail) {
+                                                        self.delegate?.showEditForDetail(groupIndex: groupIndex, itemIndex: itemIndex, item: detail, view: view)
+                                                }
+                                        },
                                        headerData: HeaderComponent(
                                         title: data.title,
                                         actionLabel: "",
-                                        actionIcon: UIImage(systemName: "ellipsis.circle"),
-                                        trailingIcon: nil,
+                                        actionIcon: IconConfiguration(image:UIImage(systemName: "ellipsis.circle")),
+                                        trailingIcon: IconConfiguration(image: iconOpt?.icon, tintColor: iconOpt?.color),
                                         actionClosure: nil
                                        ),
                                        footerData: FooterComponent(
@@ -345,7 +346,8 @@ extension SettingDetailViewModel : DiaperDetailProtocol {
                 })
                 let headerData = HeaderComponent(
                     title: "Fraldas \(size?.description ?? "")",
-                    actionLabel: nil, actionIcon: UIImage(systemName: "ellipsis"),
+                    actionLabel: nil,
+                    actionIcon: IconConfiguration(image: UIImage(systemName: "ellipsis")),
                     trailingIcon: nil,
                     actionClosure: nil
                 )
@@ -371,7 +373,7 @@ extension SettingDetailViewModel: ActionDetailProtocol {
         
     }
     
-    func deleteAction(action: Action) {
+    func deleteAction(action: Activity) {
         
     }
     
@@ -388,8 +390,8 @@ extension SettingDetailViewModel: ActionDetailProtocol {
                 let headerData = HeaderComponent(
                     title: action.title,
                     actionLabel: nil,
-                    actionIcon: UIImage(systemName: "ellipsis"),
-                    trailingIcon: action.cellImage,
+                    actionIcon: IconConfiguration(image: UIImage(systemName: "ellipsis"), tintColor: UIColor.accent),
+                    trailingIcon: IconConfiguration(image: action.cellImage, tintColor: action.imageTint) ,
                     actionClosure: nil
                 )
                 

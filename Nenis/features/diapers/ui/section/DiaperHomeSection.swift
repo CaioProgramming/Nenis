@@ -94,7 +94,6 @@ struct DiaperDetailSection: Section {
         header.setupHeader(info: headerData)
         header.mainContainerView.backgroundColor = UIColor.systemBackground
         header.mainContainerView.roundTopCorners(radius: 15)
-        header.headerButton.tintColor = color
         let closure = { (action: UIAction) in
             menuClosure(sectionIndex)
         }

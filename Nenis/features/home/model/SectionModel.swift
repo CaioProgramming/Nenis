@@ -23,6 +23,10 @@ protocol Section<T, H, C, F> {
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> C
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H
     func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> F
+    
+    func dequeueCollectionCell(with collectionView: UICollectionView, indexpath: IndexPath) -> C
+    func dequeueReusableViewHeader(_ collectionView: UICollectionView, at indexPath: IndexPath) -> H
+    func dequeueReusableViewFooter(_ collectionView: UICollectionView, at indexPath: IndexPath) -> F
     var itemClosure: ((T, UIView?) -> Void) { get }
     func footerHeight() -> CGFloat
     func headerHeight() -> CGFloat
@@ -45,30 +49,53 @@ struct Component {
     
 }
 
+struct IconConfiguration {
+    let image: UIImage?
+    var tintColor: UIColor? = UIColor.accent
+}
+
 struct HeaderComponent {
     let title: String
     let actionLabel: String?
-    let actionIcon: UIImage?
-    let trailingIcon: UIImage?
+    let actionIcon: IconConfiguration?
+    let trailingIcon: IconConfiguration?
     let actionClosure: ((UIView?) -> Void)?
 }
 
 struct FooterComponent {
     let message: String
     let actionLabel: String
-    let messageIcon: UIImage?
+    let messageIcon: IconConfiguration?
     let actionClosure: ((UIView?) -> Void)?
 }
 
 extension Section {
     
-    
+    func dequeueReusableView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> CustomViewProtocol {
+        if(kind == UICollectionView.elementKindSectionHeader) {
+            return dequeueReusableViewFooter(collectionView, at: indexPath)
+        } else {
+            return dequeueReusableViewHeader(collectionView, at: indexPath)
+        }
+    }
     
     func getUIComponents() -> [Component] {
         
         return [ C.getComponent(),H.getComponent(), F.getComponent() ]
     }
 
+    func dequeueReusableViewHeader(_ collectionView: UICollectionView,  at indexPath: IndexPath) -> H {
+        
+        return H.dequeueReusableSupplementaryView(collectionView, at:  indexPath)
+        
+        
+    }
+    func dequeueReusableViewFooter(_ collectionView: UICollectionView,at indexPath: IndexPath) -> F {
+        
+        return F.dequeueReusableSupplementaryView(collectionView, at:  indexPath)
+        
+        
+    }
     
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
         return H.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
@@ -76,8 +103,13 @@ extension Section {
     func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> F {
         return F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
     }
-
-  func registerTableViewCells(_  tableView: UITableView) {
+    func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> C {
+        return C.dequeueTableViewCell(with: tableView,indexPath: indexPath)
+    }
+    func dequeueCollectionCell(with collectionView: UICollectionView, indexpath: IndexPath) -> C {
+        return C.dequeueCollectionCell(_: collectionView, cellForItemAt: indexpath)
+    }
+    func registerTableViewCells(_  tableView: UITableView) {
         self.getUIComponents().forEach({ nibData in
             switch nibData.viewType {
             case  .cell, .reusableView:
@@ -94,7 +126,7 @@ extension Section {
     }
     
     func headerHeight() -> CGFloat {
-        return if(headerData == nil) { 0.0 } else { 75 }
+        return if(headerData == nil) { 0.0 } else { 60 }
     }
     
     

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol ActionProtocol: AnyObject {
-    func retrieveActivity(with newAction: Action)
+    func retrieveActivity(with newAction: Activity)
 }
 
 class NewActionViewController: UIViewController, UIPopoverPresentationControllerDelegate {
@@ -95,7 +95,7 @@ class NewActionViewController: UIViewController, UIPopoverPresentationController
     @IBAction func saveActivityTap(_ sender: UIButton) {
         let text = textField.text
         if(textField.hasText) {
-            activtyProtocol?.retrieveActivity(with: Action(description: text!, type: activityType.description, time: datePicker.date, usedDiaper: selectedSize?.description))
+            activtyProtocol?.retrieveActivity(with: Activity(description: text!, type: activityType.description, time: datePicker.date, usedDiaper: selectedSize?.description))
             self.dismiss(animated: true)
         } else {
             textField.showPopOver(viewController: self, message: "Fill the information", presentationDelegate: self)

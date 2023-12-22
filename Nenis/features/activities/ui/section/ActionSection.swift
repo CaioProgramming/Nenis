@@ -13,13 +13,13 @@ struct ActionSection: Section {
     
     
     let cellHeight: CGFloat = 90
-    typealias T = Action
+    typealias T = Activity
     typealias H = HorizontalHeaderView
     typealias C = ActivityTableViewCell
     typealias F = VerticalTableFooterView
     
-    var items: [Action]
-    var itemClosure: ((Action, UIView?) -> Void)
+    var items: [Activity]
+    var itemClosure: ((Activity, UIView?) -> Void)
     var headerData: HeaderComponent?
     var footerData: FooterComponent?
     var editingStyle: UITableViewCell.EditingStyle
@@ -61,9 +61,9 @@ struct ActionSection: Section {
 
 struct ActionSettingSection : Section {
 
-    var items: [Action]
+    var items: [Activity]
     var actionType: ActionType
-    var itemClosure: ((Action, UIView?) -> Void)
+    var itemClosure: ((Activity, UIView?) -> Void)
     var headerData: HeaderComponent?
     var footerData: FooterComponent?
     var editingStyle: UITableViewCell.EditingStyle
@@ -108,7 +108,7 @@ struct ActionSettingSection : Section {
     }
     
     
-    typealias T = Action
+    typealias T = Activity
     
     typealias H = HorizontalHeaderView
     

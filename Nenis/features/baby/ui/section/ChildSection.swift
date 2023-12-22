@@ -59,19 +59,11 @@ struct ChildSection : Section {
         cell.childClosure = { view in
             self.itemClosure(child, view)
          }
-        cell.childImage.sd_setImage(with: URL(string: child.photo), placeholderImage: UIImage(named: "smile.out"), completed: { image, error ,_,_ in
-        
-            guard let failure = image else {
-                cell.childImage.image = UIImage(named: "smile.out")
-                cell.childImage.tintColor = child.gender.getGender()?.color.withAlphaComponent(0.4)
-                cell.childImage.contentMode = .scaleAspectFit
-                return
-            }
-            
-            cell.childImage.image = image
-            cell.childImage.contentMode = .scaleAspectFill
-
-            
+        cell.childImage.loadImage(url: child.photo, placeHolder: UIImage(named: "smile.out"), onSuccess: {
+            cell.childImage.fadeIn()
+        }, onFailure: {
+            cell.childImage.tintColor = child.gender.getGender()?.color
+            cell.childImage.backgroundColor = UIColor.systemGray6
         })
         cell.setupChild(child: child)
         cell.childImage.fadeIn()

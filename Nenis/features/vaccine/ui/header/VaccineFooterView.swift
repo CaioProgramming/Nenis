@@ -10,12 +10,11 @@ import UIKit
 class VaccineFooterView: UICollectionReusableView, CustomViewProtocol {
     static var viewType: ViewType = .footer
     
-    
+    var calendarClosure: (() -> Void)? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
         footerLabel.text = NSLocalizedString("vaccineFooterDescription", comment: "")
     }
-    
     @IBOutlet weak var footerLabel: UILabel!
 }

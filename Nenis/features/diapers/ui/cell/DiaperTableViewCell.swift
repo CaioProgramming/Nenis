@@ -30,7 +30,7 @@ class DiaperTableViewCell: UITableViewCell, CustomViewProtocol {
         layout.minimumLineSpacing = 0
         diapersCollection.collectionViewLayout = layout
         self.diapersCollection.backgroundColor = UIColor(named: "CardBackColor")
-        self.diapersCollection.roundedCorner(radius: 15)
+        self.diapersCollection.roundBottomCorners(radius: 15)
         diapersCollection.register(DiaperCollectionViewCell.buildNib(), forCellWithReuseIdentifier: DiaperCollectionViewCell.identifier)
         diapersCollection.delegate = self
         diapersCollection.dataSource = self

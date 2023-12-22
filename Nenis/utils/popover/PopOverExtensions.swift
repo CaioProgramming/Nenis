@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 extension UIView {
+    
     func showPopOver(viewController: UIViewController, message: String, presentationDelegate: UIPopoverPresentationControllerDelegate?, direction: UIPopoverArrowDirection = .any) {
         
         
@@ -33,18 +34,39 @@ extension UIView {
         }
     }
     
-    func showMenuPopOver(viewController: UIViewController, closure: @escaping ((Gender) -> Void), presentationDelegate: UIPopoverPresentationControllerDelegate?, direction: UIPopoverArrowDirection = .any) {
+    func showGenderPopOver(viewController: UIViewController, closure: @escaping ((Gender) -> Void), presentationDelegate: UIPopoverPresentationControllerDelegate?, direction: UIPopoverArrowDirection = .any) {
         let sourceView = self
         let controller = GenderMenuViewController()
         controller.modalPresentationStyle = .popover
         if let popoverPresentationController = controller.popoverPresentationController {
-            controller.preferredContentSize = CGSize(width: frame.width, height: 150)
+            let width = sourceView.frame.size.width / 2
+            controller.preferredContentSize = CGSize(width: width, height: sourceView.frame.height)
             popoverPresentationController.permittedArrowDirections = direction
             popoverPresentationController.sourceView = sourceView
             popoverPresentationController.sourceRect = self.bounds
             popoverPresentationController.delegate = presentationDelegate
             controller.setupItems(closure: closure)
             viewController.present(controller, animated: true)
+        }
+    }
+    
+    func showInfoIconPopOver(viewController: UIViewController, arrow: UIPopoverArrowDirection = .any, presentationDelegate: UIPopoverPresentationControllerDelegate?, closure: @escaping (String) -> Void) {
+        
+        let controller = InfoIconViewController()
+        let height = CGFloat( 25 * IconOptions.allCases.count)
+        controller.preferredContentSize = CGSize(width: frame.width, height: height)
+        controller.iconClosure = closure
+        controller.modalPresentationStyle = .popover
+        
+        if let popoverPresentationController = controller.popoverPresentationController {
+            
+            
+            popoverPresentationController.permittedArrowDirections = arrow
+            popoverPresentationController.sourceView = self
+            popoverPresentationController.sourceRect = self.bounds
+            popoverPresentationController.delegate = presentationDelegate
+            viewController.present(controller, animated: true)
+            
         }
     }
     

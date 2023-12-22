@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -12,11 +12,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VaccineCollectionHeaderView" customModule="Nenis" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="1056" height="215"/>
+            <rect key="frame" x="0.0" y="0.0" width="460" height="135"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pE1-c0-nhH">
-                    <rect key="frame" x="0.0" y="69" width="1056" height="102"/>
+                    <rect key="frame" x="16" y="67" width="428" height="20.333333333333329"/>
                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -25,17 +25,15 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="pE1-c0-nhH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="BoO-7d-jhZ"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pE1-c0-nhH" secondAttribute="bottom" constant="10" id="LHz-Dm-0oL"/>
-                <constraint firstItem="pE1-c0-nhH" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="p4I-c0-ABY"/>
-                <constraint firstItem="pE1-c0-nhH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="vl5-2W-PZ6"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pE1-c0-nhH" secondAttribute="trailing" id="wfN-dq-fLt"/>
+                <constraint firstItem="pE1-c0-nhH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="BoO-7d-jhZ"/>
+                <constraint firstItem="pE1-c0-nhH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="vl5-2W-PZ6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pE1-c0-nhH" secondAttribute="trailing" constant="16" id="wfN-dq-fLt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="headerLabel" destination="pE1-c0-nhH" id="kkX-Mb-aXj"/>
             </connections>
-            <point key="canvasLocation" x="532.82442748091603" y="-235.56338028169014"/>
+            <point key="canvasLocation" x="77.862595419847324" y="-216.5492957746479"/>
         </view>
     </objects>
     <resources>

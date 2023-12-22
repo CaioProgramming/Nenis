@@ -122,13 +122,23 @@ class ChildSettingsViewModel {
                 )
                 var sections: [any Section] = [childSection, optionsSection]
                 child.extraInfo.forEach({ data in
+                    let iconOption = IconOptions.getIconByName(value: data.icon).map({ option in
                     
-                    let header = HeaderComponent(title: data.title, actionLabel: nil, actionIcon: nil, trailingIcon: nil, actionClosure: nil)
-                    let footer: FooterComponent? = if(data != child.extraInfo.last) { nil } else { FooterComponent(message: "Suas informações estão sempre protegidas.", actionLabel: "Excluir", messageIcon: UIImage(systemName: "lock.circle.dotted"), actionClosure: { _ in
-                        
-                        self.deleteChild(with: child)
-                        
+                        IconConfiguration(image: option.icon, tintColor: option.color)
                     })
+                    let header = HeaderComponent(title: data.title, actionLabel: nil, actionIcon: nil, trailingIcon: iconOption, actionClosure: nil)
+                    let footer: FooterComponent? = if(data != child.extraInfo.last) { nil } else {
+                        FooterComponent(
+                            message: "Suas informações estão sempre protegidas.",
+                            actionLabel: "Excluir",
+                            messageIcon: IconConfiguration(image: UIImage(systemName: "lock.circle.dotted"),
+                                                           tintColor: UIColor.link) ,
+                            actionClosure: { _ in
+                        
+                                self.deleteChild(with: child)
+                        
+                            }
+                        )
                     }
                     let section = SettingsDetailsSection(items: data.infos, itemClosure: { _ ,_ in
                         

@@ -10,32 +10,37 @@ import UIKit
 class GenderMenuViewController: UIViewController {
     
     
-    @IBOutlet weak var girlButton: UIButton!
+   
+
     @IBOutlet weak var boyButton: UIButton!
+    @IBOutlet weak var girlButton: UIButton!
     var selectClosure: ((Gender) -> Void)? = nil
      override func viewDidLoad() {
         super.viewDidLoad()
+         let boyColor = Gender.boy.color
+         let girlColor = Gender.girl.color
+
+         boyButton.tintColor = boyColor
+         girlButton.tintColor = girlColor
          
-         girlButton.setTitle(Gender.girl.info, for: .normal)
-         girlButton.tintColor = Gender.girl.color
-         boyButton.tintColor = Gender.boy.color
-         boyButton.setTitle(Gender.boy.info, for: .normal)
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func girlTouchInside(_ sender: Any) {
+    @IBAction func selectBoy(_ sender: UIButton) {
         if let closure = selectClosure {
-            closure(Gender.girl)
+            closure(.boy)
             self.dismiss(animated: true)
         }
     }
     
-    @IBAction func boyTouchInside(_ sender: Any) {
+    @IBAction func selectGirl(_ sender: UIButton) {
         if let closure = selectClosure {
-            closure(Gender.boy)
+            closure(.girl)
             self.dismiss(animated: true)
         }
     }
+
+    
     func setupItems(closure: @escaping ((Gender) -> Void)) {
         self.selectClosure = closure
         

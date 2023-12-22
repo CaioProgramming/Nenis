@@ -49,8 +49,8 @@ extension CustomViewProtocol {
         return cell
     }
     
-    static func dequeueReusableSupplementaryView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath)  -> Self {
-        let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: identifier, for: indexPath) as! Self
+    static func dequeueReusableSupplementaryView(_ collectionView: UICollectionView, at indexPath: IndexPath)  -> Self {
+        let supplementaryView = collectionView.dequeueReusableSupplementaryView(ofKind: getKindOfReusableView(), withReuseIdentifier: identifier, for: indexPath) as! Self
         return supplementaryView
     }
     
@@ -63,5 +63,8 @@ extension CustomViewProtocol {
         return Self.buildNib()
     }
     
+    static func getKindOfReusableView() -> String {
+       return if(viewType == .footer) { UICollectionView.elementKindSectionFooter } else { UICollectionView.elementKindSectionHeader }
+    }
     
 }

@@ -9,6 +9,7 @@ import UIKit
 import FirebaseAuth
 import moa
 import os
+import Toast
 //MARK: UI SECTION
 class HomeViewController: UIViewController {
     
@@ -213,6 +214,10 @@ extension HomeViewController: VaccinesProtocol {
 }
 
 extension HomeViewController: VaccineUpdateDelegate {
+    func addToCalendar(vaccineItem: VaccineItem) {
+        homeViewModel.addVaccineToCalendar(vaccineItem: vaccineItem)
+    }
+    
     func updateVaccine(vaccination: Vaccination) {
         homeViewModel.updateChildVaccine(vaccinate: vaccination)
     }
@@ -244,7 +249,7 @@ extension HomeViewController: DiaperTableProcol {
 
 extension HomeViewController: ActionProtocol {
     
-    func retrieveActivity(with newAction: Action) {
+    func retrieveActivity(with newAction: Activity) {
         homeViewModel.addNewAction(action: newAction)
     }
     
@@ -253,6 +258,13 @@ extension HomeViewController: ActionProtocol {
 
 //MARK: - HomeProtocols section
 extension HomeViewController: HomeProtocol {
+    
+    func showMessage(message: String) {
+        DispatchQueue.main.async {
+            Toast.text(message).show()
+        }
+    }
+    
     
     func openChild(child: Child) {
         let babyStoryBoard = UIStoryboard(name: "Baby", bundle: nil)

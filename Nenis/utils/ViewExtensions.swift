@@ -175,7 +175,7 @@ extension UIImageView {
     func loadImage(url: String?, placeHolder: UIImage?, onSuccess: @escaping () -> (), onFailure: @escaping () -> ()) {
         sd_setImage(with: URL(string: url ?? ""),placeholderImage: placeHolder, completed: { image, error ,_,_ in
         
-            guard let failure = image else {
+            guard let image else {
                 onFailure()
                 return
             }

@@ -25,7 +25,8 @@ class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
          if let footerInfo = info {
             footerLabel.text = footerInfo.message
             footerButton.setTitle(footerInfo.actionLabel, for: .normal)
-            footerIcon.image = footerInfo.messageIcon
+             footerIcon.image = footerInfo.messageIcon?.image
+             footerIcon.tintColor = footerInfo.messageIcon?.tintColor
             footerIcon.isHidden = footerInfo.messageIcon == nil
             self.footerClosure = footerInfo.actionClosure
             self.fadeIn()

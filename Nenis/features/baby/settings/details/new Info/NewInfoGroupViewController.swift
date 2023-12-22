@@ -11,16 +11,38 @@ class NewInfoGroupViewController: UIViewController {
     
     var newInfoClosure: ((ExtraData) -> Void)?
     
+    @IBOutlet weak var infoIcon: UIImageView!
     @IBOutlet weak var infosTableView: UITableView!
     @IBOutlet weak var dataTitle: UITextField!
     private var infos: [DetailModel] = []
-    
+    private var iconValue: String? = nil
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCells()
         infosTableView.delegate = self
         infosTableView.dataSource = self
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(selectInfoIcon))
+        infoIcon.addGestureRecognizer(tapGesture)
+        if let randomIcon = IconOptions.allCases.randomElement() {
+            updateIcon(value: randomIcon.description)
+        }
         // Do any additional setup after loading the view.
+    }
+    
+    func updateIcon(value: String) {
+        iconValue = value
+        if let icon = IconOptions.getIconByName(value: value) {
+            infoIcon.image = icon.icon
+            infoIcon.tintColor = icon.color
+        }
+        
+    }
+    
+    @objc func selectInfoIcon() {
+        dataTitle.showInfoIconPopOver(viewController: self, arrow: .up, presentationDelegate: self, closure: { icon in
+            
+            self.updateIcon(value: icon)
+        })
     }
     
     private func registerCells() {
@@ -39,10 +61,10 @@ class NewInfoGroupViewController: UIViewController {
             return
         }
         if(infos.isEmpty) {
-            infosTableView.showPopOver(viewController: self, message: "Adicione informações para salvar.", presentationDelegate: self)
+            dataTitle.showPopOver(viewController: self, message: "Adicione informações para salvar.", presentationDelegate: self)
         } else {
             self.dismiss(animated: true, completion: {
-                closure(ExtraData(title: title, infos: self.infos))
+                closure(ExtraData(icon: self.iconValue,title: title, infos: self.infos))
             })
         }
         sender.configuration?.showsActivityIndicator = true

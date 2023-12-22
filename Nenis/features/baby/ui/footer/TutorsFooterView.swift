@@ -47,7 +47,7 @@ extension TutorsFooterView: UICollectionViewDelegate, UICollectionViewDataSource
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return tutors.count
+        return if(tutors.count < 4) { tutors.count } else { 4 }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -56,11 +56,16 @@ extension TutorsFooterView: UICollectionViewDelegate, UICollectionViewDataSource
         let placeHolder = UIImage(named: "smile.out")
         cell.tutorIcon.loadImage(url: tutor.photoURL, placeHolder: placeHolder, onSuccess: {
             cell.tutorIcon.contentMode = .scaleAspectFill
+            cell.clipImageToCircle(color: UIColor.systemBackground)
         }, onFailure: {
+            let colors = [UIColor.red, UIColor.link, UIColor.accent, UIColor.magenta, UIColor.systemTeal]
+            guard let color = colors.randomElement() else {
+                return
+            }
             cell.tutorIcon.image = placeHolder
             cell.tutorIcon.contentMode = .scaleAspectFit
+            cell.clipImageToCircle(color: color.withAlphaComponent(0.7))
         })
-        cell.clipImageToCircle(color: UIColor.systemGray5)
         return cell
     }
     

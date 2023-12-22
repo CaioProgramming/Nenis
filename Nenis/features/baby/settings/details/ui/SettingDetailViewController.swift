@@ -119,10 +119,10 @@ extension SettingDetailViewController : DetailProtocol {
     
     func showEditGender(view: UIView?) {
         
-        view?.showMenuPopOver(viewController: self, closure: { gender in
+        view?.showGenderPopOver(viewController: self, closure: { gender in
         
             self.viewModel.editGender(gender: gender)
-        }, presentationDelegate: self, direction: .unknown)
+        }, presentationDelegate: self, direction: .up)
         
     }
  
