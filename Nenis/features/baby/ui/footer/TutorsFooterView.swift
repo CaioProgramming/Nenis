@@ -64,7 +64,7 @@ extension TutorsFooterView: UICollectionViewDelegate, UICollectionViewDataSource
             }
             cell.tutorIcon.image = placeHolder
             cell.tutorIcon.contentMode = .scaleAspectFit
-            cell.clipImageToCircle(color: color.withAlphaComponent(0.7))
+            cell.clipImageToCircle(color: color.withAlphaComponent(0.4))
         })
         return cell
     }

@@ -42,7 +42,7 @@ class HomeViewModel {
     private func childUpdated(newChild: Child) {
         DispatchQueue.main.async {
             self.child = newChild
-            self.buildHomeFromChild(with: newChild)
+            self.delegate?.childRetrieved(with: newChild)
         }
         
     }
@@ -57,7 +57,6 @@ class HomeViewModel {
                     onSuccess: { childs in
                         if let actualChild = childs.first {
                             childUpdated(newChild: actualChild)
-                            delegate?.childRetrieved(with: actualChild)
                         }
                     },
                     onFailure: { error in
