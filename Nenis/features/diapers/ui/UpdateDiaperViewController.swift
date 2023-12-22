@@ -20,7 +20,7 @@ class UpdateDiaperViewController: UIViewController {
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var diaperPickerView: UIPickerView!
     
-    private var selectedDiaper: Diaper? = nil
+   private var selectedDiaper: DiaperItem? = nil
    private var diaperSize: SizeType = .RN
    private var quantity = 1
    private var multiplier = 1
@@ -47,12 +47,12 @@ class UpdateDiaperViewController: UIViewController {
         diaperPickerView.delegate = self
         diaperPickerView.dataSource = self
         diaperPickerView.reloadAllComponents()
-        if let diaper = selectedDiaper {
-            quantity = diaper.quantity - diaper.discarded
-            diaperSize = diaper.type.getDiaperSizeByDescription() ?? SizeType.RN
+        if let diaperItem = selectedDiaper {
+            quantity = diaperItem.diaper.quantity - diaperItem.linkedActions.count
+            diaperSize = diaperItem.diaper.type.getDiaperSizeByDescription() ?? SizeType.RN
             
             let sizeIndex = SizeType.allCases.firstIndex(where: {size in
-                size.description == diaper.type
+                size == diaperSize
             })
            
             if(quantity > 100) {
@@ -74,14 +74,17 @@ class UpdateDiaperViewController: UIViewController {
       
     }
     
-    func loadSelectedDiaper(diaper: Diaper) {
+    func loadSelectedDiaper(diaper: DiaperItem) {
         selectedDiaper = diaper
     
     }
 
     @IBAction func deleteDiaper(_ sender: UIButton) {
-        guard selectedDiaper == nil else { return }
-        delegate?.deleteDiaper(diaper: selectedDiaper!)
+        if let diaper = selectedDiaper?.diaper {
+            
+            delegate?.deleteDiaper(diaper: diaper)
+
+        }
     }
     
     @IBAction func dismissButton(_ sender: UIBarButtonItem) {

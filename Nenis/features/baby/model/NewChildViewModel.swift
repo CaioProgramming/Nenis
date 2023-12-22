@@ -18,71 +18,66 @@ protocol NewChildProtocol {
     func errorSaving(errorMessage: String)
 }
 
-struct UploadTask {
-    let error: String?
-    let sucess: String?
-}
 
-class NewChildViewModel: DatabaseDelegate {
+class NewChildViewModel {
     
-    func updateSuccess(data: Child) {
+   private var photo: Data? = nil
+
+    var babyService = BabyService()
+    var storageService: StorageSource = StorageSource(path: "Childs")
+
+    var delegate: NewChildProtocol? = nil
+    
+    private func uploadPic(id: String, child: Child, file: Data) {
+        Task {
+            await storageService
+                .uploadFile(
+                    fileName: id,
+                    fileData: file,
+                    extension:".JPEG",
+                    onSuccess: { downloadURL in
+                        self.updateChildPic(with: child, url: downloadURL)
+                    },
+                    onError: {_ in
+                        sendError(messsage: "Erro ao salvar foto da criança.")
+                    })
+        }
+    }
+    
+    func updateChildPic(with child: Child, url: String) {
         
+        Task {
+            var newChild = child
+            newChild.photo = url
+            
+           await babyService.updateData(data: newChild, onSuccess: { updatedChild in
+                delegate?.saveSuccess(child: updatedChild)
+            }, onFailure: { error in
+            
+                sendError(messsage: "Erro ao concluir informações da criança.")
+            })
+        }
     }
-    
-    
-    func saveSuccess(data: Child) {
-        newChildDelegate?.saveSuccess(child: data)
-    }
-    
-    func taskFailure(databaseError: ErrorType) {
-        newChildDelegate?.errorSaving(errorMessage: databaseError.description)
-    }
-    
-    
-    func retrieveListData(dataList: [Child]) {
-        
-    }
-    
-    func retrieveData(data: Child) {
-        
-    }
-    
-    func taskSuccess(message: String) {
-        
-    }
-    
-    typealias T = Child
-    
-    
-    var babyService : BabyService? = nil
-    var storageService: StorageService? = nil
-    init() {
-        self.babyService = BabyService(delegate: self)
-        self.storageService = StorageService(path:"Childs")
-        
-    }
-    
-    var newChildDelegate: NewChildProtocol? = nil
-    
     
     func saveChild(name: String, birthDate: Date, photoPath: Data, gender: String) {
         if let currentUser = Auth.auth().currentUser {
-            storageService?.uploadFile(fileName: name, fileData: photoPath, extension: ".JPEG") { downloadURL in
-                do {
-                    let fileURL = try downloadURL.get()
-                    self.babyService?.saveData(data: Child(name: name, birthDate: birthDate, photo: fileURL, gender: gender,tutors: [currentUser.uid]))
-                    
-                } catch {
-                    self.sendError(messsage: "Error uploading file.")
-                }
+            Task {
+                let child = Child(name: name, birthDate: birthDate, photo: "", gender: gender,tutors: [currentUser.uid])
+                await babyService.saveData(
+                    data: child,
+                    onSuccess: { savedChild, id in
+                        self.uploadPic(id: id, child: savedChild, file: photoPath)
+                    },
+                    onFailure: { error in
+                        sendError(messsage: "Erro ao salvar dados.")
+                    }
+                )
             }
-        } else {
-            newChildDelegate?.errorSaving(errorMessage: "User not authenticated")
         }
     }
     
     
     private func sendError(messsage: String) {
-        newChildDelegate?.errorSaving(errorMessage: messsage)
+        delegate?.errorSaving(errorMessage: messsage)
     }
 }

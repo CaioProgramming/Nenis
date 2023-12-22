@@ -8,11 +8,13 @@
 import UIKit
 
 class VaccineTableViewCell: UITableViewCell, CustomViewProtocol {
+    static var viewType: ViewType = ViewType.cell
+    
     
     
     @IBOutlet var collectionView: UICollectionView!
     var vaccines = [VaccineItem]()
-    var selectVaccine: ((VaccineItem) -> Void)? = nil
+    var selectVaccine: ((VaccineItem, VaccineAction) -> Void)? = nil
     
     
     func updateVaccines(vaccineList : [VaccineItem]) {
@@ -23,7 +25,13 @@ class VaccineTableViewCell: UITableViewCell, CustomViewProtocol {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        let size = collectionView.contentSize
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+        layout.itemSize = CGSize(width: size.width/2, height: size.height/2)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        collectionView.collectionViewLayout = layout
         collectionView.register(VaccineCollectionViewCell.buildNib(), forCellWithReuseIdentifier: VaccineCollectionViewCell.identifier)
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -39,15 +47,20 @@ extension VaccineTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let vaccineItem = vaccines[indexPath.row]
+        guard vaccineItem.status != .done else {
+            return nil
+        }
+        var actions = [MenuActions(title: "Confirmar vaccina",image: "checkmark.circle.fill",
+                                   closure: { if let vaccineClosure = self.selectVaccine { vaccineClosure(vaccineItem, .open) } }
+                                  )]
+        if #available(iOS 17.0, *) {
+            actions.append( MenuActions(title: "Adicionar ao calendário", image: "calendar", closure: {
+                if let vaccineClosure = self.selectVaccine { vaccineClosure(vaccineItem, .event) }
+            }))
+        }
         return getContextualMenu(
             title: "Opçoes",
-            actions: [
-                MenuActions(title: "Confirmar vaccina",image: "checkmark.circle.fill",
-                            closure: {
-                                if let vaccineClosure = self.selectVaccine { vaccineClosure(vaccineItem) }
-                            }
-                           )
-            ]
+            actions: actions
         )
     }
     
@@ -56,15 +69,17 @@ extension VaccineTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VaccineCollectionViewCell.identifier, for: indexPath) as! VaccineCollectionViewCell
+        
         let vaccine = vaccines[indexPath.row]
-        cell.setupVaccine(vaccine: vaccine.vaccine.title, progress: vaccine.doseProgress  , nextDate: vaccine.formatDate(), status: vaccine.status)
+        let cell = VaccineCollectionViewCell.dequeueCollectionCell(collectionView, cellForItemAt: indexPath)
+        cell.setupVaccine(vaccine: vaccine.vaccine.title, progress: vaccine.doseProgress  , nextDate: vaccine.formatNextDate(), status: vaccine.status)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width/2
-        let height : CGFloat = 75
+        let width = collectionView.visibleSize.width / 2
+        let height : CGFloat = collectionView.visibleSize.height / 2.25
         return CGSize(width: width, height: height)
         
     }
@@ -76,10 +91,15 @@ extension VaccineTableViewCell: UICollectionViewDelegate, UICollectionViewDataSo
         let vaccineItem = vaccines[indexPath.row]
         if(vaccineItem.status != .done) {
             if let vaccineClosure = selectVaccine {
-                vaccineClosure(vaccineItem)
+                vaccineClosure(vaccineItem, .open)
             }
             
         }
     }
     
+}
+
+
+enum VaccineAction {
+    case open, event
 }

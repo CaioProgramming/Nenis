@@ -10,6 +10,8 @@ import CoreData
 import FirebaseCore
 import FirebaseAuth
 import GoogleSignIn
+import IQKeyboardManagerSwift
+import TipKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -21,7 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
         FirebaseApp.configure()
-       
+        //IQKeyboardManager.shared.enable = true
+        if #available(iOS 17.0, *) {
+            Task {
+                try? await Tips.configure()
+            }
+
+        }
+
         return true
     }
     

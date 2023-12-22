@@ -12,7 +12,6 @@ public struct Diaper: Codable, Equatable {
     
     let type: String
     var quantity: Int
-    var discarded: Int = 0
 
 }
 

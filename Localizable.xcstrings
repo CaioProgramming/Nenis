@@ -19,6 +19,9 @@
         }
       }
     },
+    "Add vaccines to calendar to keep in day." : {
+
+    },
     "BathroomAction" : {
       "comment" : "Bathroom action description",
       "extractionState" : "manual",
@@ -139,6 +142,9 @@
         }
       }
     },
+    "Masculino" : {
+
+    },
     "NapAction" : {
       "comment" : "Nap action description",
       "extractionState" : "manual",
@@ -172,6 +178,9 @@
           }
         }
       }
+    },
+    "Save Vaccines" : {
+
     },
     "SaveButton" : {
       "extractionState" : "manual",

@@ -9,28 +9,30 @@ import UIKit
 import FirebaseAuth
 import moa
 import os
+import Toast
 //MARK: UI SECTION
 class HomeViewController: UIViewController {
     
     let homeViewModel = HomeViewModel()
     var authHandler: AuthStateDidChangeListenerHandle? = nil
     var sections: [any Section] = []
+    var isViewsRegistered: Bool = false
     @IBOutlet weak var emptyBabyView: UIStackView!
     @IBOutlet weak var activityTable: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var errorButton: UIButton!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var loadingIcon: UIImageView!
+    @IBOutlet weak var loadingView: UIView!
     //@IBOutlet weak var navBar: UINavigationBar!
     var errorClosure: (() -> Void)? = nil
-    
+    var iconsCount = 0
     
     
     func setupTableView(){
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(reloadChild), for: .valueChanged)
-
-        registerTableViews()
         activityTable.dataSource = self
         activityTable.delegate = self
         activityTable.refreshControl = refreshControl
@@ -79,20 +81,51 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        activityTable.refreshControl?.beginRefreshing()
+        homeViewModel.initialize()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        homeViewModel.homeDelegate = self
-        homeViewModel.sectionDelegate = self
+        homeViewModel.delegate = self
         setupTableView()
-        homeViewModel.initialize()
-        loadingIndicator.startAnimating()
+        if #available(iOS 17.0, *) {
+            performIconAnimation()
+        } else {
+            loadingIndicator.startAnimating()
+            
+        }
+        
+        
         navigationController?.setNavigationBarHidden(true, animated: true)
         
     }
+    
+    @available(iOS 17.0, *)
+    func performIconAnimation() {
+        loadingView.fadeIn()
+        
+        delay { [self] in
+            if(iconsCount < Option.allCases.count) {
+                let option = Option.allCases[iconsCount]
+                let icon = option.icon ?? UIImage(named: "bear_color")
+                loadingIcon.setSymbolImage(icon!, contentTransition: .replace)
+                iconsCount += 1
+                performIconAnimation()
+            } else {
+                loadingIcon.setSymbolImage(UIImage(named: "bear_color")!, contentTransition: .replace)
+
+                loadingIcon.scaleAnimation(xScale: 0, yScale: 0, onCompletion: {
+                    self.loadingView.fadeOut()
+
+                })
+            }
+        }
+        
+        
+    }
+    
+    
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         loadingIndicator.startAnimating()
@@ -140,7 +173,7 @@ class HomeViewController: UIViewController {
     }
     
     
-     func createNewActivity() {
+    func createNewActivity() {
         performSegue(withIdentifier: "NewActivitySegue", sender: self)
     }
     
@@ -169,7 +202,7 @@ class HomeViewController: UIViewController {
     }
 }
 
- 
+
 
 //MARK: - VaccineProtocols
 extension HomeViewController: VaccinesProtocol {
@@ -181,12 +214,16 @@ extension HomeViewController: VaccinesProtocol {
 }
 
 extension HomeViewController: VaccineUpdateDelegate {
+    func addToCalendar(vaccineItem: VaccineItem) {
+        homeViewModel.addVaccineToCalendar(vaccineItem: vaccineItem)
+    }
+    
     func updateVaccine(vaccination: Vaccination) {
         homeViewModel.updateChildVaccine(vaccinate: vaccination)
     }
     
     
-
+    
     
     
 }
@@ -198,9 +235,7 @@ extension HomeViewController: DiaperTableProcol {
         self.homeViewModel.deleteDiaper(with: diaper)
     }
     
-    func requestDiscard(diaper: Diaper) {
-        self.homeViewModel.discardDiaper(with: diaper)
-
+    func requestDiscard(diaper: Diaper) {        
     }
     
     func requestUpdate(diaper: Diaper) {
@@ -214,8 +249,8 @@ extension HomeViewController: DiaperTableProcol {
 
 extension HomeViewController: ActionProtocol {
     
-    func retrieveActivity(with newAction: Action, diaperSize: SizeType) {
-        homeViewModel.addNewAction(action: newAction, diaperSize: diaperSize)
+    func retrieveActivity(with newAction: Activity) {
+        homeViewModel.addNewAction(action: newAction)
     }
     
     
@@ -224,15 +259,36 @@ extension HomeViewController: ActionProtocol {
 //MARK: - HomeProtocols section
 extension HomeViewController: HomeProtocol {
     
+    func showMessage(message: String) {
+        DispatchQueue.main.async {
+            Toast.text(message).show()
+        }
+    }
+    
+    
+    func openChild(child: Child) {
+        let babyStoryBoard = UIStoryboard(name: "Baby", bundle: nil)
+        
+        let viewController = babyStoryBoard.instantiateViewController(withIdentifier: "ChildSettingsViewController") as! ChildSettingsViewController
+        viewController.child = child
+        self.show(viewController, sender: self)
+    }
+    
+    
     func confirmVaccine() {
         updateVaccine()
     }
     
     func retrieveHome(with homeSection: [any Section]) {
-        sections = homeSection
-        Logger.init().info("Sections updated -> \(homeSection.debugDescription)")
-        activityTable.reloadData()
-        activityTable.refreshControl?.endRefreshing()
+            
+        if(!isViewsRegistered) {
+            activityTable.registerSectionsViews(sections: homeSection)
+            isViewsRegistered = true
+        }
+            sections = homeSection
+            activityTable.refreshControl?.endRefreshing()
+            activityTable.reloadData()
+            loadingIndicator.stopAnimating()
     }
     
     
@@ -247,17 +303,24 @@ extension HomeViewController: HomeProtocol {
     }
     
     func childRetrieved(with child: Child) {
-        loadingIndicator.stopAnimating()
-        parent?.title = child.name
+        DispatchQueue.main.async { [self] in
+            loadingIndicator.stopAnimating()
+            parent?.title = child.name
+            homeViewModel.buildHomeFromChild(with: child)
+        }
+        
     }
     
     
     func childNotFound() {
-        loadingIndicator.stopAnimating()
-        showError(message: "Você não é responsável por nenhuma criança, adicione uma para começar.", buttonMessage: "Adicionar criança")
-        self.errorClosure = {
-            self.createNewBaby()
+        DispatchQueue.main.async { [self] in
+            loadingIndicator.stopAnimating()
+            showError(message: "Você não é responsável por nenhuma criança, adicione uma para começar.", buttonMessage: "Adicionar criança")
+            errorClosure = {
+                self.createNewBaby()
+            }
         }
+      
     }
     
     func requireAuth() {
@@ -272,6 +335,18 @@ extension HomeViewController: HomeProtocol {
         emptyBabyView.fadeOut()
     }
     
+    func requestNewAction() {
+        createNewActivity()
+    }
+    
+    func openVaccines() {
+        showVaccines()
+    }
+    
+    func openDiapers() {
+        showDiapers()
+    }
+    
     
 }
 
@@ -280,16 +355,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     
-    private func registerTableViews() {
-        let cells : [any CustomViewProtocol] = [ ActivityTableViewCell(), VaccineTableViewCell(), ChildTableViewCell(), DiaperTableViewCell()]
-        let headers : [any CustomViewProtocol] = [HorizontalHeaderView(), VaccineHeaderView(), ChildHeaderView(), DiaperHeaderView(), VerticalTableFooterView()]
-        cells.forEach({ view in
-            activityTable.register(view.getNib(), forCellReuseIdentifier: (view as CustomViewProtocol).getIdentifier())
-        })
-        headers.forEach({ item in
-            activityTable.register(item.getNib(), forHeaderFooterViewReuseIdentifier: (item as CustomViewProtocol).getIdentifier())
-        })
-    }
+    
     
     
     
@@ -297,11 +363,7 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
         let section = sections[indexPath.section]
-        if(section is ActionSection) {
-            return .delete
-        } else {
-            return .none
-        }
+        return section.editingStyle
     }
     
     
@@ -346,12 +408,12 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let customSection = sections[section]
-        return customSection.dequeueHeader(with: tableView, sectionIndex: section)
-
+        return customSection.dequeueHeader(with: tableView, sectionIndex: section) as? UIView
+        
     }
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let customSection = sections[section]
-        return customSection.dequeueFooter(with: tableView, sectionIndex: section)
+        return customSection.dequeueFooter(with: tableView, sectionIndex: section) as? UIView
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -363,14 +425,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
                 diaperCell.delegate = self
             }
         }
-        if(cell is VaccineTableViewCell) {
-            if let vaccineCell = cell as? VaccineTableViewCell {
-                vaccineCell.selectVaccine = { vaccineItem in
-                    self.homeViewModel.selectVaccine(vaccineItem: vaccineItem)
-                }
-            }
-        }
-        return cell
+        
+        return cell as! UITableViewCell
         
     }
     
@@ -387,21 +443,4 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     
 }
-
-//MARK: SECTIONS DELEGATES
-extension HomeViewController: SectionsProtocol {
-    
-    func requestNewAction() {
-        createNewActivity()
-    }
-    
-    func openVaccines() {
-        showVaccines()
-    }
-    
-    func openDiapers() {
-        showDiapers()
-    }
-}
-
 

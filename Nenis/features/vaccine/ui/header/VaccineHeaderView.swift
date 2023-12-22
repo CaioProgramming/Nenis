@@ -9,24 +9,22 @@ import UIKit
 
 class VaccineHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     
+    static var viewType: ViewType = .header
+    
+    var hideCardListener: (() -> Void)? = nil
     
     @IBOutlet weak var titleLabel: UILabel!
-    var buttonAction: (() -> Void)? = nil
 
-    @IBOutlet weak var headerAction: UIButton!
-    func setButtonAction(action: @escaping (() -> Void)) {
-        self.buttonAction = action
-        headerAction.isHidden = false
-    }
+    @IBOutlet weak var tipCard: UIView!
     
-    @IBAction func headerTap(_ sender: UIButton) {
-        if let closure = buttonAction {
-            closure()
-        }
-    }
-    
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
+        tipCard.roundedCorner(radius: 15)
+        tipCard.backgroundColor = UIColor.link.withAlphaComponent(0.4)
     }
+
     
+    @IBAction func dismissCard(_ sender: Any) {
+        tipCard.isHidden = true
+    }
 }

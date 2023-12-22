@@ -17,8 +17,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="489" height="246"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="X4e-Eg-fuO">
-                        <rect key="frame" x="0.0" y="0.0" width="489" height="246"/>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="X4e-Eg-fuO">
+                        <rect key="frame" x="16" y="0.0" width="457" height="246"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="n62-05-qzP">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -27,14 +28,20 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="X4e-Eg-fuO" secondAttribute="trailing" id="QUf-zm-RTb"/>
+                    <constraint firstAttribute="trailing" secondItem="X4e-Eg-fuO" secondAttribute="trailing" constant="16" id="7R1-Yk-5W9"/>
+                    <constraint firstAttribute="bottom" secondItem="X4e-Eg-fuO" secondAttribute="bottom" id="DjD-ff-54l"/>
+                    <constraint firstItem="X4e-Eg-fuO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JfD-QZ-gN4"/>
+                    <constraint firstItem="X4e-Eg-fuO" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="MbE-US-KFB"/>
                     <constraint firstAttribute="bottom" secondItem="X4e-Eg-fuO" secondAttribute="bottom" id="dvb-we-sQQ"/>
+                    <constraint firstItem="X4e-Eg-fuO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="qf3-YC-qR8"/>
+                    <constraint firstItem="X4e-Eg-fuO" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sYn-x9-Ijm"/>
                     <constraint firstItem="X4e-Eg-fuO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uT4-lv-5mh"/>
-                    <constraint firstItem="X4e-Eg-fuO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="vj4-5u-sR2"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="collectionView" destination="X4e-Eg-fuO" id="kLU-2S-Zye"/>
             </connections>

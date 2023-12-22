@@ -9,21 +9,22 @@ import UIKit
 
 class DiaperHeaderView: UITableViewHeaderFooterView, CustomViewProtocol {
     
+    static var viewType: ViewType = .header
     
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var titleButton: UILabel!
     
-    @IBOutlet weak var headerActionButton: UIButton!
-    
-    @IBAction func headerButtonTap(_ sender: Any) {
-        if let headerClosure = headerAction {
-            headerClosure()
-        }
-    }
+    @IBOutlet weak var diaperContainer: UIView!
+    @IBOutlet weak var verticalDivider: UIView!
+
     
     var headerAction: (() -> Void)? = nil
     
-    func setupHeader(with title: String) {
-        titleLabel.text = title
+    func setupHeader(with title: String, color: UIColor) {
+        titleButton.text = title
+        titleButton.textColor = color
+        //diaperContainer.setGradientBackground(colors: [color, color.withAlphaComponent(0.5), UIColor.systemBackground])
+        //diaperContainer.clipImageToCircle(color: UIColor.clear)
+        verticalDivider.backgroundColor = color
     }
     
     

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct VaccineItem {
+struct VaccineItem: Equatable {
     let vaccine: Vaccine
     let nextDate: Date
     let doseProgress: Float
@@ -17,7 +17,7 @@ struct VaccineItem {
 }
 
 extension VaccineItem {
-    func formatDate() -> String {
+    func formatNextDate() -> String {
         return nextDate.formatted(date: .abbreviated, time: .omitted) 
     }
 }
@@ -50,6 +50,19 @@ enum Status {
                 #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
             case .soon:
                 #colorLiteral(red: 0.2388284206, green: 0.6591930389, blue: 0.664681673, alpha: 1)
+            }
+        }
+    }
+    
+    var icon: UIImage? {
+        get {
+            switch self {
+            case .done:
+                UIImage(systemName: "checkmark.shield.fill")
+            case .soon:
+                UIImage(systemName: "clock.circle")
+            case .late:
+                UIImage(systemName: "exclamationmark.triangle.fill")
             }
         }
     }

@@ -7,11 +7,11 @@
 
 import UIKit
 import UniformTypeIdentifiers
+import Toast
 
 
 class NewChildViewController: UIViewController {
 
-    @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var babyBirthDatePicker: UIDatePicker!
     @IBOutlet weak var babyImage: UIImageView!
     @IBOutlet weak var imageBackground: UIView!
@@ -34,7 +34,7 @@ class NewChildViewController: UIViewController {
         imageBackground.clipImageToCircle(color: UIColor.systemGray4)
         babyImage.clipImageToCircle(color: Gender.boy.color)
         babyNameTextField.delegate = self
-        newBabyViewModel.newChildDelegate = self
+        newBabyViewModel.delegate = self
         setupDatePicker()
         babyImage.fadeOut()
     }
@@ -49,9 +49,7 @@ class NewChildViewController: UIViewController {
         imageBackground.clipImageToCircle(color: currentGender.color)
  
     }
-    @IBAction func saveChild(_ sender: UIBarButtonItem) {
-        saveChild(sender: nil)
-    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "InviteSegue") {
             let viewController = segue.destination as! InviteViewController
@@ -106,15 +104,7 @@ class NewChildViewController: UIViewController {
     @IBAction func saveBabyTouch(_ sender: UIButton) {
      saveChild(sender: sender)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
@@ -175,13 +165,11 @@ extension NewChildViewController:  UIImagePickerControllerDelegate, UINavigation
 
 extension NewChildViewController: NewChildProtocol {
     func saveSuccess(child: Child) {
-        let alert = UIAlertController(title: "Success!", message: "Saved new child as \(child.name)", preferredStyle: .alert)
-         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {_ in
-             alert.dismiss(animated: true)
-             self.dismiss(animated: true)
-             self.saveSuccess(child: child)
-         }))
-         self.present(alert, animated: true)
+        Toast.text("Criança salva com sucesso!").show()
+        delay(with: 3.0, closure: {
+            self.dismiss(animated: true)
+        })
+       
     }
     
     func errorSaving(errorMessage: String) {

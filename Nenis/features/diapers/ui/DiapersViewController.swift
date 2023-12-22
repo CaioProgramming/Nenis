@@ -13,42 +13,42 @@ class DiapersViewController: UIViewController {
     
     static let identifier = "DiapersView"
     var child: Child? = nil
-    private var diapers: [Diaper] = []
-    var diaperViewModel : DiapersViewModel? = nil
-    @IBOutlet weak var emptyView: UIStackView!
-    @IBOutlet weak var diaperCollectionView: UICollectionView!
+    private var diapers: [DiaperItem] = []
+    var diaperViewModel = DiapersViewModel()
+
+    @IBOutlet weak var diapersCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(false, animated: true)
-        registerCells()
-        diaperViewModel = DiapersViewModel()
-        diaperViewModel?.delegate = self
-        diaperViewModel?.getDiapers(currentChild: child)
+
+        diaperViewModel.delegate = self
+        diaperViewModel.getDiapers(currentChild: child)
         let button = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill"), style: .plain, target: self, action: #selector(menuButtonTapped))
         
         self.navigationItem.setRightBarButton(button, animated: true)
-        
+       setupCollectionView()
         // Do any additional setup after loading the view.
     }
     
     @objc func menuButtonTapped() {
         updateDiapers()
     }
-
-    func registerCells() {
-        diaperCollectionView.register(DiaperCollectionViewCell.buildNib(), forCellWithReuseIdentifier: DiaperCollectionViewCell.identifier)
-        diaperCollectionView.register(CollectionFooterView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: CollectionFooterView.identifier)
-        diaperCollectionView.delegate = self
-        diaperCollectionView.dataSource = self
-      
+    
+    private func setupCollectionView() {
+        diapersCollectionView.register(DiaperCollectionViewCell.buildNib(), forCellWithReuseIdentifier: DiaperCollectionViewCell.identifier)
+        diapersCollectionView.register(CollectionFooterView.buildNib(), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter , withReuseIdentifier: CollectionFooterView.identifier)
+        diapersCollectionView.delegate = self
+        diapersCollectionView.dataSource = self
     }
+
+     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.destination is UpdateDiaperViewController) {
             let destination = segue.destination as! UpdateDiaperViewController
             destination.delegate = self
-            if let selectedDiaper = diaperViewModel?.selectedDiaper {
+            if let selectedDiaper = diaperViewModel.selectedDiaper {
                 destination.loadSelectedDiaper(diaper: selectedDiaper)
                 
             }
@@ -60,31 +60,22 @@ class DiapersViewController: UIViewController {
         performSegue(withIdentifier: "updateDiapersSegue", sender: self)
         
     }
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+
 }
 
 extension DiapersViewController: UpdateDiaperDelegate {
     
     func deleteDiaper(diaper: Diaper) {
-        diaperViewModel?.deleteDiaper(diaper: diaper)
+        diaperViewModel.deleteDiaper(diaper: diaper)
     }
     
     
     func retrieveNewDiaper(diaper: Diaper) {
-        diaperViewModel?.addDiaper(diaper: diaper)
+        diaperViewModel.addDiaper(diaper: diaper)
     }
     
     func retrieveUpdatedDiaper(diaper: Diaper) {
-        diaperViewModel?.updateDiaper(diaper: diaper)
+        diaperViewModel.updateDiaper(diaper: diaper)
     }
     
     func updateDiaper() {
@@ -114,7 +105,7 @@ extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let diaper = diapers[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaperCollectionViewCell.identifier, for: indexPath) as! DiaperCollectionViewCell
-        cell.setupDiaper(diaper: diaper)
+        cell.setupDiaper(diaper: diaper.diaper, discarded: diaper.linkedActions.count)
         return cell
     }
     
@@ -122,15 +113,7 @@ extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDeleg
         return CGSize(width: collectionView.frame.width, height: 200)
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: CollectionFooterView.identifier, for: indexPath) as! CollectionFooterView
-           
-           footerView.footerClosure = {
-               self.updateDiapers()
-           }
-            return footerView
-    }
+
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width / 2.3
@@ -142,8 +125,8 @@ extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDeleg
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let diaper = diapers[indexPath.row]
-        self.diaperViewModel?.selectDiaper(diaper: diaper)
+        let diaperItem = diapers[indexPath.row]
+        self.diaperViewModel.selectDiaper(diaper: diaperItem)
         
     }
     
@@ -151,31 +134,41 @@ extension DiapersViewController: UICollectionViewDelegate, UICollectionViewDeleg
     
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-        let diaper = diapers[indexPath.row]
-        return getContextualMenu(title: "Opçoes", actions: [
+        let diaperItem = diapers[indexPath.row]
+        let viewController = ActionsListViewController()
+        viewController.setActions(newActions: diaperItem.linkedActions)
+        if(diaperItem.linkedActions.isEmpty) {
+            viewController.showMessage("Não foram encontradas atividades relacionadas a fralda \(diaperItem.diaper.type)")
+        }
+        viewController.preferredContentSize = CGSize(width: collectionView.contentSize.width, height: 200)
+        viewController.view.backgroundColor = UIColor.clear
+        return getContextualMenu(title: "Opções", actions: [
             
             MenuActions(title: "Adicionar fraldas", image: "plus.diamond.fill", closure: {
-                self.diaperViewModel?.selectDiaper(diaper: diaper)
-            }),
-            MenuActions(title: "Descartar fralda", image: "minus.diamond.fill", closure: {
-                self.diaperViewModel?.discardDiaper(diaper: diaper)
+                self.diaperViewModel.selectDiaper(diaper: diaperItem)
             }),
             MenuActions(title: "Excluir fralda", image: "trash.fill", closure: {
-                self.diaperViewModel?.deleteDiaper(diaper: diaper)
+                self.diaperViewModel.deleteDiaper(diaper: diaperItem.diaper)
             })
             
-        ])
+        ], preview: viewController)
     }
     
 }
 
-
-
 extension DiapersViewController: DiaperProtocol {
+    func requestActivity() {
+        self.dismiss(animated: true)
+    }
     
-    func retrieveDiapers(diapers: [Diaper]) {
+    
+    func retrieveDiapers(diaperItems diapers: [DiaperItem]) {
         self.diapers = diapers
-        diaperCollectionView.reloadData()
+        diapersCollectionView.register(DiaperCollectionViewCell.buildNib(), forCellWithReuseIdentifier: DiaperCollectionViewCell.identifier)
+        diapersCollectionView.reloadData()
+        if(diapers.isEmpty) {
+            navigationController?.navigationBar.showPopOver(viewController: self, message: "Adicione fraldas." , presentationDelegate: self)
+        }
     }
     
     
@@ -191,4 +184,19 @@ extension DiapersViewController: DiaperProtocol {
     }
     
     
+}
+
+extension DiapersViewController: UIPopoverPresentationControllerDelegate {
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
+    }
+
+    func popoverPresentationControllerDidDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) {
+
+    }
+
+    func popoverPresentationControllerShouldDismissPopover(_ popoverPresentationController: UIPopoverPresentationController) -> Bool {
+        return true
+    }
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,9 +18,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8K8-dV-gVJ">
+                        <rect key="frame" x="16" y="0.0" width="288" height="1"/>
+                        <color key="backgroundColor" systemColor="systemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="2sw-80-FFg"/>
+                        </constraints>
+                    </view>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="E25-Ev-Xg9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="175"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <rect key="frame" x="16" y="0.0" width="288" height="175"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YZh-9B-2P9">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -29,15 +36,22 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
-                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XQ1-sx-TSO"/>
+                    <constraint firstItem="8K8-dV-gVJ" firstAttribute="leading" secondItem="E25-Ev-Xg9" secondAttribute="leading" id="1jG-EU-U86"/>
+                    <constraint firstItem="8K8-dV-gVJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="HNK-UI-3KU"/>
+                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="XQ1-sx-TSO"/>
                     <constraint firstAttribute="bottom" secondItem="E25-Ev-Xg9" secondAttribute="bottom" id="dVE-P3-NME"/>
-                    <constraint firstAttribute="trailing" secondItem="E25-Ev-Xg9" secondAttribute="trailing" id="fkf-c6-Jfj"/>
+                    <constraint firstAttribute="trailing" secondItem="E25-Ev-Xg9" secondAttribute="trailing" constant="16" id="fkf-c6-Jfj"/>
                     <constraint firstItem="E25-Ev-Xg9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="g0a-FG-Wbf"/>
+                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="trailing" secondItem="8K8-dV-gVJ" secondAttribute="trailing" id="mNa-zq-bam"/>
+                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="xAM-0M-Pfp"/>
+                    <constraint firstItem="E25-Ev-Xg9" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ymj-DX-8Zv"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" systemColor="tintColor"/>
             <connections>
                 <outlet property="diapersCollection" destination="E25-Ev-Xg9" id="WbB-0W-bmX"/>
             </connections>
@@ -45,8 +59,11 @@
         </tableViewCell>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGroupedBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

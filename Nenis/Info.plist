@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCalendarsUsageDescription</key>
+	<string>We need to access your calendar, sou you can save important events from the app.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to acess your gallery, for you user share pics that you would like.</string>
 	<key>CFBundleIdentifier</key>

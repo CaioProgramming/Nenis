@@ -36,4 +36,16 @@ extension UIView {
         )
     }
     
+   
+    
+    func scaleAnimation(_ duration: TimeInterval = 0.5, xScale: CGFloat, yScale: CGFloat, onCompletion: (() -> Void)? = nil) {
+        UIView.animate(withDuration: duration, animations: {
+            self.transform = CGAffineTransformMakeScale(xScale, yScale)
+        }, completion: { (value: Bool) in
+            if let complete = onCompletion { complete() }
+        })
+    }
+    
+    
+    
 }

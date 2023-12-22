@@ -9,78 +9,133 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestoreSwift
 import os
+import UIKit
+import EventKit
 
 protocol HomeProtocol {
     
     func retrieveHome(with homeSection: [any Section])
     func childRetrieved(with child: Child)
+    func openChild(child: Child)
+    func openDiapers()
+    func openVaccines()
     func childNotFound()
     func requireAuth()
     func authSuccess(user: User)
     func requestNewAction()
     func confirmVaccine()
+    func showMessage(message: String)
 }
 
 
 
 
-class HomeViewModel: DatabaseDelegate {
+class HomeViewModel {
     
+    private var babyService = BabyService()
     var child: Child? = nil
-    var vaccineUpdateInfo : (Child, Vaccine, Int)? = nil
+    var vaccineUpdateInfo : (Child, VaccineItem)? = nil
     
     
     //MARK: Child tasks
     
-    private func fetchChild(uid: String) {
-        babyService?.queryData(field: "tutors", value: uid, isArray: true)
+    private func childUpdated(newChild: Child) {
+        DispatchQueue.main.async {
+            self.child = newChild
+            self.buildHomeFromChild(with: newChild)
+        }
+        
     }
     
-    func updateSuccess(data: Child) {
-        self.child = data
-        buildHomeFromChild(with: data)
-    }
-    
-    func retrieveListData(dataList: [Child]) {
-        if let child = dataList.first {
-            homeDelegate?.childRetrieved(with: child)
-            self.child = child
-            buildHomeFromChild(with: child)
+    func fetchChild(uid: String) {
+        Task {
+            await babyService
+                .queryData(
+                    field: "tutors",
+                    value: uid,
+                    isArray: true,
+                    onSuccess: { childs in
+                        if let actualChild = childs.first {
+                            childUpdated(newChild: actualChild)
+                            delegate?.childRetrieved(with: actualChild)
+                        }
+                    },
+                    onFailure: { error in
+                        delegate?.childNotFound()
+                    }
+                )
         }
     }
     
+    func updateChild(newChild: Child) {
+        Task {
+            await babyService
+                .updateData(
+                    data: newChild,
+                    onSuccess: { newData in
+                        childUpdated(newChild: newData)
+                    },
+                    onFailure: { error in
+                        
+                    }
+                )
+        }
+    }
+    
+    
     func buildChildSection(with child: Child, userName: String) -> ChildSection {
-        return ChildSection(items: [child], title: "Olá, \(userName)!", subtitle: Date.now.formatted(date: .complete, time: .omitted))
-    }
-    
-    
-    
-    func retrieveData(data: Child) {
-        print(data)
-        child = data
-        homeDelegate?.childRetrieved(with: data)
-        buildHomeFromChild(with: data)
-    
-    }
-    
-    
-    func taskFailure(databaseError: ErrorType) {
-        homeDelegate?.childNotFound()
+        return ChildSection( title: "Olá, \(userName)!", subtitle: Date.now.formatted(date: .complete, time: .omitted), items: [child],
+                             itemClosure: { child, _ in  self.delegate?.openChild(child: child) })
     }
     
     //MARK: - Vaccine Tasks
     
     func buildVaccineSection(with child: Child) -> VaccineSection {
         let vaccineHelper = VaccineHelper()
-   
-        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon).prefix(6)
+        
+        let vaccines = vaccineHelper.filterVaccineStatus(with: child, status: Status.soon).prefix(4)
         
         let vaccinesTitle =  String(localized: "NextVaccines", table: "Localizable")
-        return VaccineSection(items: Array(vaccines),title: vaccinesTitle, itemClosure: { vaccine in
-            self.selectVaccine(vaccineItem: vaccine)
-        }, headerClosure: { section in
-            self.sectionDelegate?.openVaccines()
-        })
+        let headerData = HeaderComponent(
+            title: vaccinesTitle,
+            actionLabel: "Ver mais",
+            actionIcon: IconConfiguration(image: UIImage(systemName: "chevron.right")),
+            trailingIcon: nil,
+            actionClosure: { _ in self.delegate?.openVaccines() })
+        
+        return VaccineSection(items: Array(vaccines),
+                              itemClosure: { vaccine, view in
+                                    self.selectVaccine(vaccineItem: vaccine)
+                                },
+                              eventRequest: addVaccineToCalendar,
+                              headerData: headerData)
+        
+    }
+    
+    func addVaccineToCalendar(vaccineItem: VaccineItem) {
+        if let currentChild = child {
+            let eventService = EventService()
+            let title = "Vacina \(vaccineItem.vaccine.title)"
+            let note = "\(vaccineItem.nextDose + 1)º dose de \(vaccineItem.vaccine.title) para o \(currentChild.name)"
+            if #available(iOS 17.0, *) {
+                eventService.addEvent(
+                    identifier: vaccineItem.vaccine.description,
+                    title: title,
+                                      note: note,
+                                      date: vaccineItem.nextDate,
+                                      onSuccess: {
+                    
+                        self.delegate?.showMessage(message: "\(title) adicionada ao calendário.")
+                    
+                },
+               onFailure: {
+                   
+                   self.delegate?.showMessage(message: "Ocorreu um erro ao adicionar ao calendário.")
+               })
+            } else {
+                // Fallback on earlier versions
+            }
+        }
         
     }
     
@@ -95,43 +150,61 @@ class HomeViewModel: DatabaseDelegate {
             } else {
                 currentChild.vaccines[vaccineIndex!] = vaccinate
             }
-            babyService?.updateData( data: currentChild)
+            updateChild(newChild: currentChild)
         }
     }
     
     func selectVaccine(vaccineItem: VaccineItem) {
         if let currentChild = child {
-            vaccineUpdateInfo = (currentChild, vaccineItem.vaccine, vaccineItem.nextDose + 1)
-            homeDelegate?.confirmVaccine()
+            vaccineUpdateInfo = (currentChild, vaccineItem)
+            delegate?.confirmVaccine()
         }
     }
     
     //MARK: - Action Tasks
     
-    func addNewAction(action: Action, diaperSize: SizeType) {
+    func buildActionSection(with child: Child) -> ActionSection {
+        let actionsTitle = String.localizedStringWithFormat(NSLocalizedString("ActivitiesTitle", comment: ""), child.name)
+        
+        let footerData: FooterComponent? = if(child.actions.isEmpty) {
+            FooterComponent(
+                message: "\(child.name) nao possui atividades, adicione algumas para acompanha-lo.",
+                actionLabel: "Adicionar atividades",
+                messageIcon: nil,
+                actionClosure: { _ in self.delegate?.requestNewAction() }
+            )
+            
+        } else { nil }
+        let headerData: HeaderComponent? = if(child.actions.isEmpty) {  nil } else {
+            
+            HeaderComponent(
+                title: actionsTitle,
+                actionLabel: nil,
+                actionIcon: IconConfiguration(image: UIImage(systemName: "plus.circle.fill")),
+                trailingIcon: nil,
+                actionClosure: { _ in self.delegate?.requestNewAction() })
+            
+        }
+        return ActionSection(items: child.actions.sortByDate(), itemClosure: { action, view in } , headerData:  headerData, footerData: footerData, editingStyle: .delete )
+    }
+    
+    func addNewAction(action: Activity) {
         if var currentChild = child {
-            currentChild.actions.append(action)
-            if(action.type.getAction() == .bath) {
-               var diapers = currentChild.diapers
-               if var sizeDiaper = diapers.first(where: { diaper in
-                    diaper.type == diaperSize.description
-               }) {
-                   if let index = diapers.firstIndex(of: sizeDiaper) {
-                       sizeDiaper.discarded += 1
-                       diapers[index] = sizeDiaper
-                       currentChild.diapers = diapers
-                   }
-               }
+            var newAction = action
+            if(action.type.getAction() != .bath) {
+                newAction.usedDiaper = nil
             }
-            babyService?.updateData(data: currentChild)
+            currentChild.actions.append(newAction)
+            updateChild(newChild: currentChild)
         }
     }
     
     
     func deleteAction(actionIndex: Int) {
-        if var currentChild = child {
-            currentChild.actions.remove(at: actionIndex)
-            babyService?.updateData(data: currentChild)
+        if let currentChild = child {
+            var newChild = currentChild
+            newChild.actions.remove(at: actionIndex)
+            updateChild(newChild: currentChild)
         }
     }
     
@@ -141,60 +214,59 @@ class HomeViewModel: DatabaseDelegate {
     func addDiaper(with diaper: Diaper) {
         if var currentChild = child {
             currentChild.diapers.append(diaper)
-            babyService?.updateData(data: currentChild)
+            updateChild(newChild: currentChild)
         }
     }
-
+    
     func deleteDiaper(with diaper: Diaper) {
         if var currentChild = child {
             if let diaperIndex = currentChild.diapers.firstIndex(of: diaper) {
                 currentChild.diapers.remove(at: diaperIndex)
-                babyService?.updateData(data: currentChild)
+                updateChild(newChild: currentChild)
             }
             
         }
     }
-    
-    func discardDiaper(with diaper: Diaper) {
-        if var currentChild = child {
-            if let diaperIndex = currentChild.diapers.firstIndex(of: diaper) {
-                var newDiaper = diaper
-                newDiaper.discarded += 1
-                var diapers = currentChild.diapers
-                diapers[diaperIndex] = newDiaper
-                currentChild.diapers = diapers
-                babyService?.updateData(data: currentChild)
-            }
-            
-        }
-    }
-    
     
     
     func updateDiaper(with diaper: Diaper, index: Int) {
         if var currentChild = child {
             currentChild.diapers[index] = diaper
-            babyService?.updateData(data: currentChild)
+            updateChild(newChild: currentChild)
         }
     }
     
-    func buildChildDiapers(with child: Child) -> DiaperSection {
-        return DiaperSection(title: "Fraldas", items: child.diapers, headerClosure: { section in
-            self.sectionDelegate?.openDiapers()
-        }, footerClosure: { section in
-            self.sectionDelegate?.openDiapers()
-        })
+    func buildChildDiapers(with child: Child) -> DiaperHomeSection {
+        let headerData : HeaderComponent? = HeaderComponent(
+            title: "Fraldas",
+            actionLabel: "Ver todas",
+            actionIcon: IconConfiguration(image: UIImage(systemName: "chevron.right")),
+            trailingIcon: nil,
+            actionClosure: { view in self.delegate?.openDiapers() })
+        
+        let footerData: FooterComponent? = if(!child.diapers.isEmpty) { nil } else {
+            FooterComponent(
+                message: "\(child.name) nao possui fraldas salvas, adicione algumas para acompanhar.",
+                actionLabel: "Adicionar Fraldas",
+                messageIcon: nil,
+                actionClosure: { _ in  self.delegate?.openDiapers() }
+            )
+            
+        }
+        let diaperHelper = DiaperMapper()
+        let diaperItems = diaperHelper.mapDiapers(child: child)
+        return DiaperHomeSection(items: diaperItems, itemClosure: { diaper, view in
+            self.delegate?.openDiapers()
+        }, headerData: headerData, footerData: footerData)
     }
     
     
-
+    
     //MARK: ViewModelSetup
-
-  
+    
+    
     typealias T = Child
-    var homeDelegate: HomeProtocol?
-    var sectionDelegate: SectionsProtocol?
-    private var babyService: BabyService?
+    var delegate: HomeProtocol?
     
     func isUserLogged() -> Bool {
         return Auth.auth().currentUser != nil
@@ -202,37 +274,34 @@ class HomeViewModel: DatabaseDelegate {
     
     
     func initialize() {
-        babyService = BabyService(delegate: self)
-
+        babyService = BabyService()
+        
         if let user = Auth.auth().currentUser {
-            homeDelegate?.authSuccess(user: user)
+            delegate?.authSuccess(user: user)
+            let userHelper = UserHelper()
+            userHelper.updateUser(user: user)
+            
             fetchChild(uid: user.uid)
         } else {
-            homeDelegate?.requireAuth()
+            delegate?.requireAuth()
         }
     }
     
+    
     func buildHomeFromChild(with child: Child) {
         
-        let actionsTitle = String.localizedStringWithFormat(NSLocalizedString("ActivitiesTitle", comment: ""), child.name)
-        let userName = babyService?.currentUser()?.displayName ?? ""
+        let userName = babyService.currentUser()?.displayName ?? ""
         let sections: [any Section] = [
             buildChildSection(with: child, userName: userName),
             buildChildDiapers(with: child),
             buildVaccineSection(with: child),
-            ActionSection(items: child.actions.sortByDate(), title: actionsTitle, headerClosure: { section in
-                self.homeDelegate?.requestNewAction()
-            }, footerClosure: { section in
-                self.homeDelegate?.requestNewAction()
-            })
+            buildActionSection(with: child)
         ]
-        Logger().info("Home sections -> \(sections.debugDescription)")
-        homeDelegate?.retrieveHome(with: sections)
+        delegate?.retrieveHome(with: sections)
     }
     
-
+    
 }
-
 
 
 

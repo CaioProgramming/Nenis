@@ -10,16 +10,17 @@ import FirebaseFirestoreSwift
 import UIKit
 import os
 
-public struct Child: Codable {
+public struct Child: DocumentProtocol {
     var id: String?
-    let name: String
-    let birthDate: Date
-    let photo: String
-    let gender: String
+    var name: String
+    var birthDate: Date
+    var photo: String
+    var gender: String
     var tutors: [String]
-    var actions: [Action] = []
+    var actions: [Activity] = []
     var vaccines: [Vaccination] = []
     var diapers: [Diaper] = []
+    var extraInfo: [ExtraData] = []
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -30,7 +31,14 @@ public struct Child: Codable {
         case actions
         case vaccines
         case diapers
+        case extraInfo
     }
+}
+
+struct ExtraData: Codable, Equatable {
+    var icon: String?
+    var title: String
+    var infos: [DetailModel]
 }
 
 struct Vaccination: Codable {
@@ -44,6 +52,16 @@ enum Gender : Codable, CaseIterable {
     
     var description: String { get { return "\(self)".uppercased() } }
     
+    var info: String {
+        get {
+            switch self {
+            case .boy:
+                NSLocalizedString("Masculino", comment: "")
+            case .girl:
+                "Feminino"
+            }
+        }
+    }
     
     var color: UIColor {
         get {
@@ -95,8 +113,8 @@ extension Child {
     }
     
     func getFullAge() -> String {
-        let calendar = NSCalendar.current
         let birth = self.birthDate
+        let calendar = NSCalendar.current
         let currentDate = Date.now
         let components = calendar.dateComponents([.year, .month, .weekOfYear, .day], from: birth, to: currentDate)
         

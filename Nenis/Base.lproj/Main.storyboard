@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -51,30 +52,6 @@
             </objects>
             <point key="canvasLocation" x="-2542" y="-734"/>
         </scene>
-        <!--UtilsScene-->
-        <scene sceneID="bYM-iG-GTs">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Utils" referencedIdentifier="UtilsScene" id="3BJ-0t-evC" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ZSK-A5-KWa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1466" y="-395"/>
-        </scene>
-        <!--VaccineScene-->
-        <scene sceneID="FQH-W1-EEJ">
-            <objects>
-                <viewControllerPlaceholder storyboardName="VaccineStoryBoard" referencedIdentifier="VaccineScene" id="l3g-ir-J8E" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zrc-0u-LmD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1453" y="-328"/>
-        </scene>
-        <!--DiaperScene-->
-        <scene sceneID="wrl-rv-z3X">
-            <objects>
-                <viewControllerPlaceholder storyboardName="DiaperStoryboard" referencedIdentifier="DiaperScene" id="1xv-H3-Y0q" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XGL-pz-ftX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1396" y="-232"/>
-        </scene>
         <!--Explorar-->
         <scene sceneID="Fdr-L3-Pjn">
             <objects>
@@ -116,32 +93,6 @@
                                 <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yvb-TG-VaC">
-                                        <rect key="frame" x="0.0" y="55.333332061767578" width="375" height="75"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yvb-TG-VaC" id="EPB-ay-KDj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gAp-aR-DNH">
-                                        <rect key="frame" x="0.0" y="130.33333206176758" width="375" height="75"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gAp-aR-DNH" id="W4D-n6-pI6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="RrL-7t-Wzp">
-                                        <rect key="frame" x="0.0" y="205.33333206176758" width="375" height="75"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="RrL-7t-Wzp" id="fVW-7f-OAC">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="75"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                                 <sections/>
                             </tableView>
                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="5Jv-wY-Anf">
@@ -167,17 +118,39 @@
                                 <rect key="frame" x="0.0" y="384" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDq-oB-bpE">
+                                <rect key="frame" x="0.0" y="94" width="375" height="635"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear.fill" translatesAutoresizingMaskIntoConstraints="NO" id="h8R-h4-Acn">
+                                        <rect key="frame" x="112.66666666666669" y="242.66666666666669" width="150" height="150"/>
+                                        <color key="tintColor" name="AccentColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" id="TQq-Y7-aAm"/>
+                                            <constraint firstAttribute="width" constant="150" id="eAi-yt-hIe"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="h8R-h4-Acn" firstAttribute="centerY" secondItem="tDq-oB-bpE" secondAttribute="centerY" id="GK1-9B-SqW"/>
+                                    <constraint firstItem="h8R-h4-Acn" firstAttribute="centerX" secondItem="tDq-oB-bpE" secondAttribute="centerX" id="dbY-Zn-7qw"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="EYl-BE-XOg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="0pV-lU-yah"/>
+                            <constraint firstItem="tDq-oB-bpE" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="12b-BL-Gbu"/>
+                            <constraint firstItem="tDq-oB-bpE" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="AVf-y5-lOM"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EYl-BE-XOg" secondAttribute="trailing" id="M2d-E0-chF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="tDq-oB-bpE" secondAttribute="bottom" id="N7Y-VU-lCJ"/>
                             <constraint firstAttribute="trailing" secondItem="5Jv-wY-Anf" secondAttribute="trailing" constant="16" id="TFi-jF-aHv"/>
                             <constraint firstItem="EYl-BE-XOg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Yk7-JZ-6Wd"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EYl-BE-XOg" secondAttribute="bottom" id="djE-tD-zeB"/>
                             <constraint firstItem="5Jv-wY-Anf" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="oBp-BE-lK1"/>
                             <constraint firstItem="5Jv-wY-Anf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="x4a-S3-Meb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="tDq-oB-bpE" secondAttribute="trailing" id="zuS-cx-Uru"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Meu bebê" image="face.smiling.inverse" catalog="system" id="ItM-jL-7kL"/>
@@ -186,7 +159,9 @@
                         <outlet property="emptyBabyView" destination="5Jv-wY-Anf" id="krD-WU-ZOY"/>
                         <outlet property="errorButton" destination="7U2-wt-PEV" id="Pu4-k1-ttE"/>
                         <outlet property="errorLabel" destination="MwK-WE-efn" id="Vow-XE-CrF"/>
+                        <outlet property="loadingIcon" destination="h8R-h4-Acn" id="PBd-sN-zPF"/>
                         <outlet property="loadingIndicator" destination="1oR-N8-hYU" id="Stf-bi-6lt"/>
+                        <outlet property="loadingView" destination="tDq-oB-bpE" id="MOv-U4-WNw"/>
                         <segue destination="1VF-F9-7CU" kind="presentation" identifier="NewActivitySegue" id="ouB-nq-R9l"/>
                         <segue destination="t6o-99-X6j" kind="presentation" identifier="SignUpSegue" id="sCn-NF-SAV"/>
                     </connections>
@@ -308,14 +283,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HFP-YN-FkT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1505" y="1395"/>
-        </scene>
-        <!--BabyScene-->
-        <scene sceneID="4uh-ve-cm1">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Baby" referencedIdentifier="BabyScene" id="EeZ-cl-ZOQ" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OYr-0a-Edr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-954" y="-1180"/>
         </scene>
         <!--Eu-->
         <scene sceneID="pF0-7N-sEr">
@@ -548,10 +515,14 @@
     </scenes>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
+        <image name="bear.fill" width="17" height="16"/>
         <image name="face.smiling.inverse" catalog="system" width="128" height="123"/>
         <image name="g.circle.fill" catalog="system" width="128" height="123"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="safari.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="AccentColor">
+            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

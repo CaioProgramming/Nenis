@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TutorsFooterView" customModule="Nenis" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TutorsFooterView" customModule="Nenis" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="727" height="319"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="cPd-WC-Exh">
+                    <rect key="frame" x="0.0" y="59" width="727" height="226"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rEo-qN-dfp">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="cPd-WC-Exh" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="3Xj-aj-JMU"/>
+                <constraint firstItem="cPd-WC-Exh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="JdK-fO-dDi"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="cPd-WC-Exh" secondAttribute="bottom" id="iCc-pa-tJ1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="cPd-WC-Exh" secondAttribute="trailing" id="xYZ-Xn-ksN"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="tutorsCollectionView" destination="cPd-WC-Exh" id="YKR-bv-8ms"/>
+            </connections>
+            <point key="canvasLocation" x="223.66412213740458" y="-198.94366197183101"/>
+        </view>
+    </objects>
+</document>
