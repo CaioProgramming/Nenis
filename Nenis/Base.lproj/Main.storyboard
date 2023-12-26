@@ -487,6 +487,7 @@
                         <viewLayoutGuide key="safeArea" id="Xr6-Zl-r51"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="rc6-AO-NQ5" firstAttribute="top" secondItem="NbB-Gg-130" secondAttribute="bottom" constant="10" id="6vd-w6-L2w"/>
                             <constraint firstItem="Xr6-Zl-r51" firstAttribute="bottom" secondItem="rc6-AO-NQ5" secondAttribute="bottom" constant="10" id="AKZ-b5-mrw"/>
                             <constraint firstItem="rc6-AO-NQ5" firstAttribute="leading" secondItem="Xr6-Zl-r51" secondAttribute="leading" id="Ac7-rn-kFf"/>
                             <constraint firstItem="rc6-AO-NQ5" firstAttribute="trailing" secondItem="Xr6-Zl-r51" secondAttribute="trailing" id="DRj-1e-vOw"/>
@@ -496,7 +497,6 @@
                             <constraint firstItem="NbB-Gg-130" firstAttribute="top" secondItem="Xr6-Zl-r51" secondAttribute="top" constant="37" id="UkF-VK-2nz"/>
                             <constraint firstItem="NbB-Gg-130" firstAttribute="leading" secondItem="Xr6-Zl-r51" secondAttribute="leading" constant="32" id="b2k-NR-GbG"/>
                             <constraint firstItem="rc6-AO-NQ5" firstAttribute="top" secondItem="NbB-Gg-130" secondAttribute="bottom" constant="10" id="hur-Jj-6G7"/>
-                            <constraint firstItem="Xr6-Zl-r51" firstAttribute="bottom" secondItem="rc6-AO-NQ5" secondAttribute="bottom" constant="10" id="wrW-8q-qrw"/>
                         </constraints>
                     </view>
                     <connections>
@@ -522,7 +522,7 @@
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="safari.fill" catalog="system" width="128" height="123"/>
         <namedColor name="AccentColor">
-            <color red="1" green="0.79199999570846558" blue="0.15700000524520874" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.80000001192092896" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

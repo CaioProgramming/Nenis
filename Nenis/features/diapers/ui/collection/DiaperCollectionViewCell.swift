@@ -27,11 +27,14 @@ class DiaperCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
         let currentAmount = diaper.quantity - discarded
         let color = sizeType?.color ?? UIColor.accent
         let progress = Double(currentAmount) / Double(diaper.quantity)
-        self.clipImageToCircle(color: UIColor.clear)
         progressView.progress = progress
         progressView.progressColors = [color]
+        progressView.trackThickness = 0.5
         diaperLabel.textColor = diaper.getSizeType()?.color
         diaperLabel.text = diaper.type.description
+        diaperLabel.font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize)
         subtitleLabel.text = "\(currentAmount) de \(diaper.quantity)"
+        //self.clipImageToCircle(color: UIColor.clear)
+
     }
 }

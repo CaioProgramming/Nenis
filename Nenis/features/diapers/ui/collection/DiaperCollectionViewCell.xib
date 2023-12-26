@@ -22,7 +22,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="243" height="247"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trR-R6-Vrk" customClass="KDCircularProgress" customModule="KDCircularProgress">
-                                <rect key="frame" x="0.0" y="8" width="243" height="231"/>
+                                <rect key="frame" x="0.0" y="4" width="243" height="239"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="startAngle">
                                         <real key="value" value="90"/>
@@ -34,10 +34,10 @@
                                         <real key="value" value="0.0"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="trackThickness">
-                                        <real key="value" value="0.0"/>
+                                        <real key="value" value="1"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="color" keyPath="trackColor">
-                                        <color key="value" systemColor="systemBackgroundColor"/>
+                                        <color key="value" systemColor="systemGray6Color"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
@@ -58,16 +58,17 @@
                                         <size key="shadowOffset" width="0.0" height="0.0"/>
                                     </label>
                                 </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="7Ia-6v-EIb" firstAttribute="centerX" secondItem="trR-R6-Vrk" secondAttribute="centerX" id="NIE-zw-qpg"/>
-                            <constraint firstAttribute="bottom" secondItem="trR-R6-Vrk" secondAttribute="bottom" constant="8" id="c0w-eG-AqY"/>
+                            <constraint firstAttribute="bottom" secondItem="trR-R6-Vrk" secondAttribute="bottom" constant="4" id="c0w-eG-AqY"/>
                             <constraint firstItem="trR-R6-Vrk" firstAttribute="leading" secondItem="7fO-eQ-feU" secondAttribute="leading" id="cpL-sj-4sM"/>
                             <constraint firstAttribute="trailing" secondItem="trR-R6-Vrk" secondAttribute="trailing" id="fsx-g6-9sx"/>
                             <constraint firstItem="7Ia-6v-EIb" firstAttribute="centerY" secondItem="trR-R6-Vrk" secondAttribute="centerY" id="jOk-KM-8vz"/>
-                            <constraint firstItem="trR-R6-Vrk" firstAttribute="top" secondItem="7fO-eQ-feU" secondAttribute="top" constant="8" id="syD-bI-MRG"/>
+                            <constraint firstItem="trR-R6-Vrk" firstAttribute="top" secondItem="7fO-eQ-feU" secondAttribute="top" constant="4" id="syD-bI-MRG"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -92,8 +93,8 @@
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

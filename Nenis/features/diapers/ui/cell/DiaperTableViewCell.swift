@@ -14,7 +14,6 @@ protocol DiaperTableProcol {
 }
 class DiaperTableViewCell: UITableViewCell, CustomViewProtocol {
     static var viewType: ViewType = .cell
-    
 
     var diaperSelectClosure: ((Diaper) -> Void)?
     @IBOutlet weak var diapersCollection: UICollectionView!
@@ -22,14 +21,6 @@ class DiaperTableViewCell: UITableViewCell, CustomViewProtocol {
     var delegate: DiaperTableProcol? = nil
     override func awakeFromNib() {
         super.awakeFromNib()
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let size = diapersCollection.contentSize
-        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
-        layout.itemSize = CGSize(width: size.width/2, height: size.height/2)
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        diapersCollection.collectionViewLayout = layout
-        self.diapersCollection.backgroundColor = UIColor.systemGray6
         self.diapersCollection.roundedCorner(radius: 15)
         diapersCollection.register(DiaperCollectionViewCell.buildNib(), forCellWithReuseIdentifier: DiaperCollectionViewCell.identifier)
         diapersCollection.delegate = self
@@ -59,10 +50,18 @@ extension DiaperTableViewCell : UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let visibleSize = collectionView.visibleSize
-        let width = visibleSize.width / 2.75
+        let width = visibleSize.width / 3.5
         let height = visibleSize.height * 0.90
         return CGSize(width: width, height: height)
         
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 4.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 4.0
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
