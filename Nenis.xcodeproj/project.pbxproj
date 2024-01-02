@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F00490442B3B548900C6952C /* cute.loading.json in Resources */ = {isa = PBXBuildFile; fileRef = F00490432B3B548900C6952C /* cute.loading.json */; };
 		F00E6CEA2B0FF6AF001A1404 /* DiapersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00E6CE92B0FF6AF001A1404 /* DiapersViewModel.swift */; };
 		F00E6CED2B100000001A1404 /* Toast in Frameworks */ = {isa = PBXBuildFile; productRef = F00E6CEC2B100000001A1404 /* Toast */; };
 		F01132582B11823400530CA6 /* CollectionFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01132562B11823400530CA6 /* CollectionFooterView.swift */; };
@@ -169,6 +170,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F00490432B3B548900C6952C /* cute.loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = cute.loading.json; sourceTree = "<group>"; };
 		F00E6CE92B0FF6AF001A1404 /* DiapersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiapersViewModel.swift; sourceTree = "<group>"; };
 		F01132562B11823400530CA6 /* CollectionFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFooterView.swift; sourceTree = "<group>"; };
 		F01132572B11823400530CA6 /* CollectionFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionFooterView.xib; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				F0EF9E0B2B2B33F600701A61 /* remote */,
+				F00490432B3B548900C6952C /* cute.loading.json */,
 				F09D40BB2ABFAFDD0006E4BF /* baby_sleep.json */,
 				F01A916B2ABE189D00139466 /* baby_yoda.json */,
 				F0B3105F2ABD2CA100530994 /* utils */,
@@ -1200,6 +1203,7 @@
 				F0DE1F9B2AFA7314005209AB /* ChildTableViewCell.xib in Resources */,
 				F0DE1FA12AFB5507005209AB /* VaccineStoryboard.storyboard in Resources */,
 				F0AC1ACA2B0C51C100481C5E /* DiaperTableViewCell.xib in Resources */,
+				F00490442B3B548900C6952C /* cute.loading.json in Resources */,
 				F0B982562B2110E300E923AD /* VaccineHorizontalTableViewCell.xib in Resources */,
 				F0B9824A2B20B16C00E923AD /* PopOverDatePickerViewController.xib in Resources */,
 				F0C133A82B1935C500A7E8C1 /* HorizontalTableViewCell.xib in Resources */,

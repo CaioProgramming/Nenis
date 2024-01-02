@@ -10,6 +10,7 @@ import FirebaseAuth
 import moa
 import os
 import Toast
+import Lottie
 //MARK: UI SECTION
 class HomeViewController: UIViewController {
     
@@ -21,11 +22,8 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var activityTable: UITableView!
     @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var errorButton: UIButton!
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
-    
-    @IBOutlet weak var loadingIcon: UIImageView!
     @IBOutlet weak var loadingView: UIView!
-    //@IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var loadingAnimation: LottieAnimationView!
     var errorClosure: (() -> Void)? = nil
     var iconsCount = 0
     
@@ -96,47 +94,16 @@ class HomeViewController: UIViewController {
     
     private func startLoading() {
         toggleViews(views: [emptyBabyView, activityTable], isHidden: true)
-        if #available(iOS 17.0, *) {
-            performIconAnimation()
-        } else {
-            loadingIndicator.startAnimating()
-        }
+        loadingView.fadeIn()
+        loadingAnimation.play()
     }
     
     private func hideLoading() {
         loadingView.fadeOut()
-        loadingIndicator.stopAnimating()
         activityTable.refreshControl?.endRefreshing()
     }
-    
-    @available(iOS 17.0, *)
-    func performIconAnimation() {
-        loadingView.fadeIn()
-        
-        delay { [self] in
-            if(iconsCount < Option.allCases.count) {
-                let option = Option.allCases[iconsCount]
-                let icon = option.icon ?? UIImage(named: "bear_color")
-                loadingIcon.setSymbolImage(icon!, contentTransition: .replace)
-                iconsCount += 1
-                performIconAnimation()
-            } else {
-                loadingIcon.setSymbolImage(UIImage(named: "bear_color")!, contentTransition: .replace)
 
-                loadingIcon.scaleAnimation(xScale: 0, yScale: 0, onCompletion: {
-                    self.loadingView.fadeOut()
-
-                })
-            }
-        }
-        
-        
-    }
-    
-    
-    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        loadingIndicator.startAnimating()
         sections = []
         homeViewModel.initialize()
     }
@@ -165,7 +132,7 @@ class HomeViewController: UIViewController {
     
     
     func signIn() {
-        loadingIndicator.startAnimating()
+        startLoading()
         performSegue(withIdentifier: "SignUpSegue", sender: self)
     }
     
@@ -292,7 +259,6 @@ extension HomeViewController: HomeProtocol {
             sections = homeSection
             activityTable.reloadData()
             activityTable.fadeIn()
-            hideLoading()
     }
     
     
@@ -308,7 +274,7 @@ extension HomeViewController: HomeProtocol {
     
     func childRetrieved(with child: Child) {
         DispatchQueue.main.async { [self] in
-            loadingIndicator.stopAnimating()
+            hideLoading()
             parent?.title = child.name
             homeViewModel.buildHomeFromChild(with: child)
         }
@@ -318,7 +284,6 @@ extension HomeViewController: HomeProtocol {
     
     func childNotFound() {
         DispatchQueue.main.async { [self] in
-            loadingIndicator.stopAnimating()
             showError(message: "Você não é responsável por nenhuma criança, adicione uma para começar.", buttonMessage: "Adicionar criança")
             errorClosure = {
                 self.createNewBaby()
@@ -360,11 +325,6 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     
-    
-    
-    
-    
-    
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         
         let section = sections[indexPath.section]
@@ -391,8 +351,8 @@ extension HomeViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if(editingStyle == .delete) {
-            if sections[indexPath.section] is ActionSection {
-                homeViewModel.deleteAction(actionIndex: indexPath.row)
+            if let actionSection = sections[indexPath.section] as? ActionSection {
+                homeViewModel.deleteAction(action: actionSection.items[indexPath.row])
             }
         }
     }

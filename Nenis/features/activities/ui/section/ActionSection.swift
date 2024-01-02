@@ -9,10 +9,8 @@ import Foundation
 import UIKit
 struct ActionSection: Section {
     
-    
-    
-    
-    let cellHeight: CGFloat = 90
+
+    let cellHeight: CGFloat = 75
     typealias T = Activity
     typealias H = HorizontalHeaderView
     typealias C = ActivityTableViewCell
@@ -42,7 +40,7 @@ struct ActionSection: Section {
     func dequeueHeader(with tableView: UITableView, sectionIndex: Int) -> H {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: H.identifier) as! H
         header.setupHeader(info: headerData)
-        header.mainContainerView.backgroundColor = UIColor.clear
+        header.backgroundColor = UIColor.clear
         header.isHidden = items.isEmpty
 
         return header
@@ -121,7 +119,11 @@ struct ActionSettingSection : Section {
     var cellHeight: CGFloat = 75
     
     func headerHeight() -> CGFloat {
-        return cellHeight
+        return if headerData == nil { 0 } else { cellHeight }
+    }
+    
+    func footerHeight() -> CGFloat {
+        return if footerData == nil { 0 } else { 100 }
     }
     
 

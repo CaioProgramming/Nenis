@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -95,10 +94,6 @@
                                 <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
                                 <sections/>
                             </tableView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="1oR-N8-hYU">
-                                <rect key="frame" x="0.0" y="384" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </activityIndicatorView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="5Jv-wY-Anf">
                                 <rect key="frame" x="16" y="359.66666666666669" width="343" height="93"/>
                                 <subviews>
@@ -121,19 +116,20 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tDq-oB-bpE">
                                 <rect key="frame" x="0.0" y="94" width="375" height="635"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bear.fill" translatesAutoresizingMaskIntoConstraints="NO" id="h8R-h4-Acn">
-                                        <rect key="frame" x="112.66666666666669" y="242.66666666666669" width="150" height="150"/>
-                                        <color key="tintColor" name="AccentColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="150" id="TQq-Y7-aAm"/>
-                                            <constraint firstAttribute="width" constant="150" id="eAi-yt-hIe"/>
-                                        </constraints>
-                                    </imageView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PbL-qN-odJ" customClass="LottieAnimationView" customModule="Lottie">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="635"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="animationName" value="cute.loading"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="h8R-h4-Acn" firstAttribute="centerY" secondItem="tDq-oB-bpE" secondAttribute="centerY" id="GK1-9B-SqW"/>
-                                    <constraint firstItem="h8R-h4-Acn" firstAttribute="centerX" secondItem="tDq-oB-bpE" secondAttribute="centerX" id="dbY-Zn-7qw"/>
+                                    <constraint firstItem="PbL-qN-odJ" firstAttribute="top" secondItem="tDq-oB-bpE" secondAttribute="top" id="0v6-KU-Gpg"/>
+                                    <constraint firstItem="PbL-qN-odJ" firstAttribute="leading" secondItem="tDq-oB-bpE" secondAttribute="leading" id="6wq-fT-wYF"/>
+                                    <constraint firstAttribute="trailing" secondItem="PbL-qN-odJ" secondAttribute="trailing" id="wRK-mZ-w0C"/>
+                                    <constraint firstAttribute="bottom" secondItem="PbL-qN-odJ" secondAttribute="bottom" id="x6x-JF-05f"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -160,8 +156,7 @@
                         <outlet property="emptyBabyView" destination="5Jv-wY-Anf" id="krD-WU-ZOY"/>
                         <outlet property="errorButton" destination="7U2-wt-PEV" id="Pu4-k1-ttE"/>
                         <outlet property="errorLabel" destination="MwK-WE-efn" id="Vow-XE-CrF"/>
-                        <outlet property="loadingIcon" destination="h8R-h4-Acn" id="PBd-sN-zPF"/>
-                        <outlet property="loadingIndicator" destination="1oR-N8-hYU" id="Stf-bi-6lt"/>
+                        <outlet property="loadingAnimation" destination="PbL-qN-odJ" id="iNi-tk-ETc"/>
                         <outlet property="loadingView" destination="tDq-oB-bpE" id="MOv-U4-WNw"/>
                         <segue destination="1VF-F9-7CU" kind="presentation" identifier="NewActivitySegue" id="ouB-nq-R9l"/>
                         <segue destination="t6o-99-X6j" kind="presentation" identifier="SignUpSegue" id="sCn-NF-SAV"/>
@@ -516,14 +511,10 @@
     </scenes>
     <resources>
         <image name="apple.logo" catalog="system" width="105" height="128"/>
-        <image name="bear.fill" width="17" height="16"/>
         <image name="face.smiling.inverse" catalog="system" width="128" height="123"/>
         <image name="g.circle.fill" catalog="system" width="128" height="123"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
         <image name="safari.fill" catalog="system" width="128" height="123"/>
-        <namedColor name="AccentColor">
-            <color red="1" green="0.80000001192092896" blue="0.20000000298023224" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -241,12 +241,22 @@ class HomeViewModel {
     }
     
     
-    func deleteAction(actionIndex: Int) {
-        if let currentChild = child {
-            var newChild = currentChild
-            newChild.actions.remove(at: actionIndex)
-            updateChild(newChild: currentChild)
+    func deleteAction(action: Activity) {
+        guard let child else {
+            print("no child!")
+            return
         }
+        guard let activityIndex = child.actions.firstIndex(of: action) else {
+            print("activity not found")
+            return
+        }
+        var newChild = child
+        var actions = child.actions
+        
+        actions.remove(at: activityIndex)
+        newChild.actions = actions
+        updateChild(newChild: newChild)
+        
     }
     
     
