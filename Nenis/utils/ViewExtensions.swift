@@ -126,6 +126,11 @@ extension UIView {
         })
         return constraint
     }
+    
+    func addCustomConstraints(_ constraints: NSLayoutConstraint) {
+        translatesAutoresizingMaskIntoConstraints = false
+        addConstraints([constraints])
+    }
 
 }
 

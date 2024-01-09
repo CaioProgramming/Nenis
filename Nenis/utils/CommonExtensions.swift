@@ -23,3 +23,15 @@ extension String {
         return self.replacingOccurrences(of: " ", with: "")
     }
 }
+
+extension Double {
+    func twoPointsFormat() -> String {
+        return String(format: "%.2f", self)
+    }
+}
+
+extension Float {
+    func twoPointsFormat() -> String {
+        return String(format: "%.2f", self)
+    }
+}

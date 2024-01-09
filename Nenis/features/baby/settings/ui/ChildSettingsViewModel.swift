@@ -146,7 +146,7 @@ class ChildSettingsViewModel {
                         
                     },
                                                          headerData: header,
-                                                         footerData: footer,
+                                                         footerData: nil,
                                                          headerMenuClosure: { _ in}, editingStyle: .none, isSettings: true)
                     sections.append(section)
                 })
@@ -174,12 +174,16 @@ extension ChildSettingsViewModel {
 
 
 enum Option: CaseIterable {
-    case  info, tutors, vaccines, diapers, actions
+    case  info, tutors, weight, height, vaccines, diapers, actions
     
     var title: String { get {
         switch self {
         case .info:
             "Informações"
+        case .weight:
+            "Peso"
+        case .height:
+            "Altura"
         case .tutors:
             "Responsáveis"
         case .vaccines:
@@ -199,6 +203,10 @@ enum Option: CaseIterable {
                 UIImage(systemName: "shared.with.you")
             case .tutors:
                 UIImage(systemName: "person.2.fill")
+            case .weight:
+                UIImage(named: "weight.outline")
+            case .height:
+                UIImage(named: "ruler.fill")
             case .vaccines:
                 UIImage(systemName: "heart.circle.fill")
             case .diapers:
@@ -214,7 +222,7 @@ enum Option: CaseIterable {
         get {
             switch self {
             case .info:
-                #colorLiteral(red: 0.476841867, green: 0.5048075914, blue: 1, alpha: 1)
+                #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
             case .tutors:
                 #colorLiteral(red: 0.4508578777, green: 0.9882974029, blue: 0.8376303315, alpha: 1)
             case .vaccines:
@@ -223,6 +231,10 @@ enum Option: CaseIterable {
                 ActionType.bath.imageTint
             case .actions:
                 ActionType.exercise.imageTint
+            case .weight:
+                #colorLiteral(red: 0.9084576368, green: 0.5737797618, blue: 0.4192893803, alpha: 1)
+            case .height:
+                #colorLiteral(red: 0.5642350316, green: 0.8247739077, blue: 0.6974377036, alpha: 1)
             }
         }
     }

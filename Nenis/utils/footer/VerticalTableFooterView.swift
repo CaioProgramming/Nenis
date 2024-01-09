@@ -10,6 +10,7 @@ import UIKit
 class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
     
 
+    @IBOutlet weak var mainContentView: UIView!
     static var viewType: ViewType = .footer
     @IBOutlet weak var footerLabel: UILabel!
     @IBOutlet weak var footerButton: UIButton!
@@ -28,6 +29,7 @@ class VerticalTableFooterView: UITableViewHeaderFooterView, CustomViewProtocol {
              footerIcon.image = footerInfo.messageIcon?.image
              footerIcon.tintColor = footerInfo.messageIcon?.tintColor
             footerIcon.isHidden = footerInfo.messageIcon == nil
+             footerButton.isHidden = footerInfo.actionClosure == nil
             self.footerClosure = footerInfo.actionClosure
             self.fadeIn()
         }

@@ -17,6 +17,8 @@ protocol DetailProtocol {
     func showEditName(view: UIView?, name: String)
     func showEditBirthDate(view: UIView?)
     func showEditGender(view: UIView?)
+    func showEditWeight()
+    func showEditHeight()
 }
 
 protocol InfoProtocol {
@@ -49,6 +51,16 @@ protocol TutorDetailProtocol {
     func deleteTutor(index: Int)
 }
 
+protocol WeightProtocol {
+    func buildSectionsForWeight() -> [StatsDataSection]
+    func requestWeightUpdate()
+}
+
+protocol HeightProtocol {
+    func buildSectionsForHeight() -> [StatsDataSection]
+    func requestWeightUpdate()
+}
+
 class SettingDetailViewModel {
     typealias T = Child
     
@@ -70,6 +82,10 @@ class SettingDetailViewModel {
             delegate?.retrieveSections(buildSectionsForActions())
         case .tutors:
             getTutors()
+        case .weight:
+            delegate?.retrieveSections(buildSectionsForWeight())
+        case .height:
+            delegate?.retrieveSections(buildSectionsForHeight())
         default: break
         }
         if let currentOption = selectedOption {
@@ -78,7 +94,22 @@ class SettingDetailViewModel {
         }
     }
     
-    
+    func updateWeight(_ weight: Float, date: Date) {
+        guard var newChild = child else {
+            return
+        }
+        
+        newChild.weightData.append(UpdateData(value: Double(weight), date: date))
+        updateChild(newChild: newChild)
+    }
+    func updateHeight(_ height: Float, date: Date) {
+        guard var newChild = child else {
+            return
+        }
+        
+        newChild.heightData.append(UpdateData(value: Double(height), date: date))
+        updateChild(newChild: newChild)
+    }
     
     func updateSuccess(data: Child) {
         DispatchQueue.main.async {
@@ -264,7 +295,12 @@ extension SettingDetailViewModel: InfoProtocol {
                                                 self.delegate?.requestNewInfo(group: groupIndex, sender: view)
                                             }
                                         }),
-                                       headerMenuClosure: { position in self.deleteGroupInfo(index: position - 1) }
+                                       headerMenuClosure: { position in self.deleteGroupInfo(index: position - 1) },
+                                       saveDataClosure: { field, value in
+                 if let groupIndex = currentChild.extraInfo.firstIndex(of: data) {
+                     self.addItemToGroup(groupIndex: groupIndex, item: DetailModel(name: field, value: value))
+                 }
+             }
                 )
                 
             }).forEach({ section in
@@ -352,12 +388,24 @@ extension SettingDetailViewModel : DiaperDetailProtocol {
                     actionClosure: nil
                 )
                 
+                let footerData: FooterComponent? = if(item.linkedActions.isEmpty) { 
+                    FooterComponent(
+                        message: "Não há nenhuma atividade relacionada a esse grupo de fraldas.",
+                        actionLabel: "",
+                        messageIcon: nil,
+                        actionClosure: nil)
+                } else {
+                    nil
+                }
+                
                 return  DiaperDetailSection(
                     color: item.diaper.getSizeType()?.color ?? UIColor.accent,
                     items: details,
                     itemClosure: { detail, view in },
                     menuClosure: { index in self.deleteDiaper(diaper: item.diaper) },
-                    headerData: headerData)
+                    headerData: headerData,
+                    footerData: footerData
+                )
             })
             sections = diaperSections
         }
@@ -454,3 +502,110 @@ extension SettingDetailViewModel: TutorDetailProtocol {
     
     
 }
+
+extension SettingDetailViewModel: WeightProtocol {
+    
+    func buildSectionsForWeight() -> [StatsDataSection] {
+        guard let child else {
+            return []
+        }
+        let weightList = child.weightData.sorted(by: { firstData, secondData in
+            firstData.date.compare(secondData.date) == .orderedDescending
+        })
+        var header: HeaderComponent? = nil
+        var caption: String? = nil
+        if let lastUpdate = weightList.first {
+            header = HeaderComponent(title: lastUpdate.value.twoPointsFormat() + "kg", actionLabel: nil, actionIcon: nil, trailingIcon: nil, actionClosure: nil)
+            caption = "Última atualização \(lastUpdate.date.formatted(date: .abbreviated, time: .omitted))"
+        }
+        return [
+            StatsDataSection(
+                items: weightList,
+                headerData: header,
+                footerData: FooterComponent(
+                    message: "",
+                  actionLabel: "Atualizar informações de peso",
+                  messageIcon: nil,
+                  actionClosure: { _ in
+                      self.delegate?.showEditWeight()
+                  }),
+                caption: caption,
+                metric: "kg",
+                chartStyle: (selectedOption!.title, selectedOption!.color),
+                itemClosure: { _,_ in },
+                deleteClosure: {
+                    guard let index = child.weightData.firstIndex(of: $0) else {
+                        return
+                    }
+                    self.deleteWeightInfo(at: index)
+                })
+        ]
+    }
+    
+    func requestWeightUpdate() {
+        delegate?.showEditWeight()
+    }
+    
+    func deleteWeightInfo(at position: Int) {
+        guard var newChild = child else {
+            return
+        }
+        var weightData = newChild.weightData
+        weightData.remove(at: position)
+        newChild.weightData = weightData
+        updateChild(newChild: newChild)
+        
+    }
+    
+}
+
+extension SettingDetailViewModel: HeightProtocol {
+    func buildSectionsForHeight() -> [StatsDataSection] {
+        guard let child else {
+            return []
+        }
+        let heightList = child.heightData.sorted(by: { firstData, secondData in
+            firstData.date.compare(secondData.date) == .orderedDescending
+        })
+        var header: HeaderComponent? = nil
+        var caption: String? = nil
+        if let lastUpdate = heightList.first {
+            header = HeaderComponent(title: lastUpdate.value.twoPointsFormat() + "cm", actionLabel: nil, actionIcon: nil, trailingIcon: nil, actionClosure: nil)
+            caption = "Última atualização \(lastUpdate.date.formatted(date: .abbreviated, time: .omitted))"
+        }
+        return [
+            StatsDataSection(
+                items: heightList,
+                headerData: header,
+                footerData: FooterComponent(
+                    message: "",
+                  actionLabel: "Atualizar informações de altura",
+                  messageIcon: nil,
+                  actionClosure: { _ in
+                      self.delegate?.showEditHeight()
+                  }),
+                caption: caption,
+                metric: "cm",
+                chartStyle: (selectedOption!.title, selectedOption!.color),
+                itemClosure: { _,_ in },
+                deleteClosure: {
+                    guard let index = heightList.firstIndex(of: $0) else {
+                        return
+                    }
+                    self.deleteHeightInfo(at: index)
+                })
+        ]
+    }
+    
+    func deleteHeightInfo(at position: Int) {
+        guard var newChild = child else {
+            return
+        }
+        var heightData = newChild.heightData
+        heightData.remove(at: position)
+        newChild.heightData = heightData
+        updateChild(newChild: newChild)
+        
+    }
+}
+

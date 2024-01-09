@@ -64,13 +64,13 @@ extension TutorsFooterView: UICollectionViewDelegate, UICollectionViewDataSource
             }
             cell.tutorIcon.image = placeHolder
             cell.tutorIcon.contentMode = .scaleAspectFit
-            cell.clipImageToCircle(color: color.withAlphaComponent(0.4))
+            cell.clipImageToCircle(color: color)
         })
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.visibleSize.width /  5
+        let width = collectionView.visibleSize.width /  5.5
         let height = collectionView.visibleSize.height
         return CGSize(width: width, height: height)
     }
