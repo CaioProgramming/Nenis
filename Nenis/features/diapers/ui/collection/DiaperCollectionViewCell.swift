@@ -10,9 +10,7 @@ import KDCircularProgress
 
 class DiaperCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
     static var viewType: ViewType = .cell
-    
-        
-
+    var hideLabel: Bool = false
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var diaperLabel: UILabel!
     @IBOutlet weak var progressView: KDCircularProgress!
@@ -22,7 +20,7 @@ class DiaperCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
     }
 
     func setupDiaper(diaper: Diaper, discarded: Int) {
-        
+        subtitleLabel.isHidden = hideLabel
         let sizeType = diaper.getSizeType()
         let currentAmount = diaper.quantity - discarded
         let color = sizeType?.color ?? UIColor.accent
@@ -32,7 +30,7 @@ class DiaperCollectionViewCell: UICollectionViewCell, CustomViewProtocol {
         progressView.trackThickness = 0.5
         diaperLabel.textColor = diaper.getSizeType()?.color
         diaperLabel.text = diaper.type.description
-        diaperLabel.font = UIFont.boldSystemFont(ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize)
+        diaperLabel.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .headline).pointSize, weight: .heavy)
         subtitleLabel.text = "\(currentAmount) de \(diaper.quantity)"
         //self.clipImageToCircle(color: UIColor.clear)
 

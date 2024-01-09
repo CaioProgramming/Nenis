@@ -21,7 +21,8 @@ public struct Child: DocumentProtocol {
     var vaccines: [Vaccination] = []
     var diapers: [Diaper] = []
     var extraInfo: [ExtraData] = []
-    
+    var weightData: [UpdateData] = []
+    var heightData: [UpdateData] = []
     enum CodingKeys: String, CodingKey {
         case name
         case birthDate
@@ -32,7 +33,14 @@ public struct Child: DocumentProtocol {
         case vaccines
         case diapers
         case extraInfo
+        case weightData
+        case heightData
     }
+}
+
+struct UpdateData: Codable, Equatable {
+    let value: Double
+    var date: Date = Date()
 }
 
 struct ExtraData: Codable, Equatable {
@@ -84,6 +92,7 @@ extension String {
         })
     }
 }
+
 extension Child {
     
     func getSpacers(year: Int, months: Int, weeks: Int, days: Int) -> (String, String, String, String) {
@@ -127,10 +136,10 @@ extension Child {
         var ageFormatted = ""
         let spaces = getSpacers(year: year, months: months, weeks: weeks, days: days)
         
-        ageFormatted += addField(count: year, description: "ano", withSpace: spaces.0)
-        ageFormatted += addField(count: months, description: "mes", withSpace: spaces.1)
-        ageFormatted += addField(count: weeks, description: "semana", withSpace: spaces.2)
-        ageFormatted += addField(count: days, description: "dia", withSpace: spaces.3)
+        ageFormatted += addField(count: year, description: "ano", withSpace: spaces.0, plural: nil)
+        ageFormatted += addField(count: months, description: "mes", withSpace: spaces.1, plural: "es")
+        ageFormatted += addField(count: weeks, description: "semana", withSpace: spaces.2, plural: nil)
+        ageFormatted += addField(count: days, description: "dia", withSpace: spaces.3, plural: nil)
         
         return ageFormatted
     }
@@ -151,16 +160,16 @@ extension Child {
         
         if(year > 0) {
             mainAgeInfo = String(year)
-            ageFormatted += addField(count: year, description: "ano")
+            ageFormatted += addField(count: year, description: "ano", plural: nil)
         } else if(months > 0) {
             mainAgeInfo = String(months)
-            ageFormatted += addField(count: months, description: "mes", withSpace: ",")
+            ageFormatted += addField(count: months, description: "mes", withSpace: ",", plural: "es")
         } else if(weeks > 0) {
             mainAgeInfo = String(weeks)
-            ageFormatted += addField(count: weeks, description: "semana", withSpace: ",")
+            ageFormatted += addField(count: weeks, description: "semana", withSpace: ",", plural: nil)
         } else if(days > 0) {
             mainAgeInfo = String(days)
-            ageFormatted += addField(count: days, description: "dia", withSpace: "e")
+            ageFormatted += addField(count: days, description: "dia", withSpace: "e", plural: nil)
         }
         ageFormatted += "."
         
@@ -168,13 +177,13 @@ extension Child {
         return (mainAgeInfo, ageFormatted)
     }
     
-    func addField(count: Int, description: String, withSpace: String? = nil) -> String {
+    func addField(count: Int, description: String, withSpace: String? = nil, plural: String?) -> String {
         var text = ""
         
         if(count > 0) {
             
             text += " \(count) \(description)"
-            text += addFieldPlural(count: count)
+            text += addFieldPlural(count: count, plural: plural)
             if let spacer = withSpace {
                 text += spacer
             }
@@ -184,9 +193,9 @@ extension Child {
         return text
     }
     
-    func addFieldPlural(count: Int) -> String {
+    func addFieldPlural(count: Int, plural: String?) -> String {
         if(count > 1) {
-            return "s"
+            return plural ?? "s"
         }
         return ""
     }

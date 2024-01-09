@@ -59,7 +59,11 @@ extension SettingDetailViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+        if let section = (sections[indexPath.section] as? StatsDataSection) {
+            if let deleteClosure = section.deleteClosure {
+                deleteClosure(section.items[indexPath.row])
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,6 +103,31 @@ extension SettingDetailViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 extension SettingDetailViewController : DetailProtocol {
+    func showEditHeight() {
+        let controller = StatusUpdateViewController()
+        controller.title = "Atualizar tamanho"
+        controller.metricDescription = "cm"
+        controller.maxValue = 2.0
+        controller.modalPresentationStyle = .automatic
+        controller.saveClosure = {
+            self.viewModel.updateHeight($0, date: $1)
+        }
+        present(controller, animated: true)
+    }
+    
+    func showEditWeight() {
+        let controller = StatusUpdateViewController()
+        controller.title = "Atualizar peso"
+        controller.metricDescription = "kg"
+        controller.maxValue = 10.0
+        controller.modalPresentationStyle = .automatic
+        
+        controller.saveClosure = {
+            self.viewModel.updateWeight($0, date: $1)
+        }
+        present(controller, animated: true)
+    }
+    
     func setupNavItem(option: Option) {
         parent?.title = option.title
         navigationController?.setNavigationBarHidden(false, animated: true)

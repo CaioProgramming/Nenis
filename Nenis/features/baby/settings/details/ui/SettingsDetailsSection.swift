@@ -17,6 +17,7 @@ struct SettingsDetailsSection: Section {
     var headerMenuClosure: ((Int) -> Void)
     var editingStyle: UITableViewCell.EditingStyle = .delete
     var isSettings: Bool = false
+    var saveDataClosure: ((String, String) -> Void)? = nil
 
     func dequeueCell(with tableView: UITableView, indexPath: IndexPath) -> HorizontalTableViewCell {
         let item = items[indexPath.row]
@@ -46,16 +47,17 @@ struct SettingsDetailsSection: Section {
         return header
     }
     
-    func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> VerticalTableFooterView {
-        let footer = VerticalTableFooterView.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
+    func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> InputOptionFooterView {
+        let footer = F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
         footer.isHidden = true
-        footer.setupView(info: footerData)
-        if(isSettings) {
-            footer.footerButton.tintColor = UIColor.red
+        guard let data = footerData else {
+            
+            return footer
         }
-        footer.footerButton.configuration = UIButton.Configuration.tinted()
-
-        footer.contentView.isHidden = footerData == nil
+        footer.fieldTextField.placeholder = headerData?.title
+        footer.valueTextField.placeholder = data.actionLabel
+        footer.setupFooter(closure: saveDataClosure)
+        footer.fadeIn()
         return footer
     }
     
@@ -66,10 +68,13 @@ struct SettingsDetailsSection: Section {
     
     typealias C = HorizontalTableViewCell
     
-    typealias F = VerticalTableFooterView
+    typealias F = InputOptionFooterView
     
  
     let cellHeight: CGFloat = 50
+    func footerHeight() -> CGFloat {
+        return if(footerData != nil){ 75 } else { 0 }
+    }
     
     
 }

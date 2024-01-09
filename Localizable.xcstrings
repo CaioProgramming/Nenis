@@ -145,6 +145,9 @@
     "Masculino" : {
 
     },
+    "name" : {
+
+    },
     "NapAction" : {
       "comment" : "Nap action description",
       "extractionState" : "manual",
@@ -233,6 +236,9 @@
           }
         }
       }
+    },
+    "value" : {
+
     }
   },
   "version" : "1.0"

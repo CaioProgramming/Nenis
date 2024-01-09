@@ -111,6 +111,9 @@ struct DiaperDetailSection: Section {
     func dequeueFooter(with tableView: UITableView, sectionIndex: Int) -> VerticalTableFooterView {
         let footer = F.dequeueHeaderOrFooter(with: tableView, sectionIndex: sectionIndex)
         footer.setupView(info: footerData)
+        footer.mainContentView.backgroundColor = UIColor.systemBackground
+        footer.mainContentView.roundBottomCorners(radius: 15)
+
         return footer
     }
     
@@ -128,6 +131,10 @@ struct DiaperDetailSection: Section {
     
     func headerHeight() -> CGFloat {
         return cellHeight
+    }
+    
+    func footerHeight() -> CGFloat {
+        return if(footerData == nil) { 0 } else { 150 }
     }
     
     func numberOfRows() -> Int {

@@ -44,6 +44,7 @@ extension DiaperTableViewCell : UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let diaper = diapers[indexPath.row]
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DiaperCollectionViewCell.identifier, for: indexPath) as! DiaperCollectionViewCell
+        cell.hideLabel = true
         cell.setupDiaper(diaper: diaper.diaper, discarded: diaper.linkedActions.count)
         return cell
     }

@@ -131,6 +131,8 @@
 		F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */; };
 		F0CDFE282AF90FD90016984A /* HorizontalHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CDFE272AF90FD90016984A /* HorizontalHeaderView.swift */; };
 		F0CDFE2A2AF90FE60016984A /* HorizontalHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0CDFE292AF90FE60016984A /* HorizontalHeaderView.xib */; };
+		F0D089A42B483B8B00EB0B01 /* StatusUpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D089A22B483B8B00EB0B01 /* StatusUpdateViewController.swift */; };
+		F0D089A52B483B8B00EB0B01 /* StatusUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0D089A32B483B8B00EB0B01 /* StatusUpdateViewController.xib */; };
 		F0D2807B2AFC768E00ED800A /* VaccinesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D2807A2AFC768E00ED800A /* VaccinesViewController.swift */; };
 		F0DE1F932AFA7104005209AB /* ChildHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DE1F922AFA7104005209AB /* ChildHeaderView.swift */; };
 		F0DE1F952AFA7116005209AB /* ChildHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0DE1F942AFA7116005209AB /* ChildHeaderView.xib */; };
@@ -150,6 +152,10 @@
 		F0E931DB2B277A180047D165 /* TutorUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E931DA2B277A180047D165 /* TutorUser.swift */; };
 		F0EF9E092B2B313600701A61 /* UserHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF9E082B2B313600701A61 /* UserHelper.swift */; };
 		F0EF9E0D2B2B340C00701A61 /* FireStoreDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0EF9E0C2B2B340C00701A61 /* FireStoreDataSource.swift */; };
+		F0F059102B45CFA900934A74 /* StatsDataSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0590F2B45CFA900934A74 /* StatsDataSection.swift */; };
+		F0F059172B47246E00934A74 /* StatsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F059162B47246E00934A74 /* StatsHeaderView.swift */; };
+		F0F059192B47247A00934A74 /* StatsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0F059182B47247A00934A74 /* StatsHeaderView.xib */; };
+		F0F0591B2B47298000934A74 /* ChartStatsUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0591A2B47298000934A74 /* ChartStatsUIView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -284,6 +290,8 @@
 		F0CDB99E2AC9447A00430A96 /* InviteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InviteViewModel.swift; sourceTree = "<group>"; };
 		F0CDFE272AF90FD90016984A /* HorizontalHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalHeaderView.swift; sourceTree = "<group>"; };
 		F0CDFE292AF90FE60016984A /* HorizontalHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HorizontalHeaderView.xib; sourceTree = "<group>"; };
+		F0D089A22B483B8B00EB0B01 /* StatusUpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusUpdateViewController.swift; sourceTree = "<group>"; };
+		F0D089A32B483B8B00EB0B01 /* StatusUpdateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatusUpdateViewController.xib; sourceTree = "<group>"; };
 		F0D2807A2AFC768E00ED800A /* VaccinesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaccinesViewController.swift; sourceTree = "<group>"; };
 		F0DE1F922AFA7104005209AB /* ChildHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildHeaderView.swift; sourceTree = "<group>"; };
 		F0DE1F942AFA7116005209AB /* ChildHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChildHeaderView.xib; sourceTree = "<group>"; };
@@ -303,6 +311,10 @@
 		F0E931DA2B277A180047D165 /* TutorUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorUser.swift; sourceTree = "<group>"; };
 		F0EF9E082B2B313600701A61 /* UserHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHelper.swift; sourceTree = "<group>"; };
 		F0EF9E0C2B2B340C00701A61 /* FireStoreDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreDataSource.swift; sourceTree = "<group>"; };
+		F0F0590F2B45CFA900934A74 /* StatsDataSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDataSection.swift; sourceTree = "<group>"; };
+		F0F059162B47246E00934A74 /* StatsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsHeaderView.swift; sourceTree = "<group>"; };
+		F0F059182B47247A00934A74 /* StatsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StatsHeaderView.xib; sourceTree = "<group>"; };
+		F0F0591A2B47298000934A74 /* ChartStatsUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartStatsUIView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -677,6 +689,7 @@
 		F0A83A502B1F6BC3009A23D6 /* section */ = {
 			isa = PBXGroup;
 			children = (
+				F0F059152B47240E00934A74 /* weight */,
 				F0A83A512B1F6BD3009A23D6 /* OptionSection.swift */,
 			);
 			path = section;
@@ -817,6 +830,9 @@
 				F09B42CC2AC30BB4004910F7 /* ViewExtensions.swift */,
 				F0C170932AF95E8400BD6326 /* CustomViewProtocol.swift */,
 				F0C133992B18BBBA00A7E8C1 /* CommonExtensions.swift */,
+				F0F0591A2B47298000934A74 /* ChartStatsUIView.swift */,
+				F0D089A22B483B8B00EB0B01 /* StatusUpdateViewController.swift */,
+				F0D089A32B483B8B00EB0B01 /* StatusUpdateViewController.xib */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -1035,6 +1051,16 @@
 			path = remote;
 			sourceTree = "<group>";
 		};
+		F0F059152B47240E00934A74 /* weight */ = {
+			isa = PBXGroup;
+			children = (
+				F0F0590F2B45CFA900934A74 /* StatsDataSection.swift */,
+				F0F059162B47246E00934A74 /* StatsHeaderView.swift */,
+				F0F059182B47247A00934A74 /* StatsHeaderView.xib */,
+			);
+			path = weight;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1193,6 +1219,8 @@
 				F09D40BC2ABFAFDD0006E4BF /* baby_sleep.json in Resources */,
 				F0891AE72AC1F37600BC6C6B /* Baby.storyboard in Resources */,
 				F0B6B84C2AFCAFCC008AED04 /* VaccineVerticalViewCell.xib in Resources */,
+				F0F059192B47247A00934A74 /* StatsHeaderView.xib in Resources */,
+				F0D089A52B483B8B00EB0B01 /* StatusUpdateViewController.xib in Resources */,
 				F0B758862B154F9700568D0C /* VerticalTableFooterView.xib in Resources */,
 				F0A0D87C2B17E3360034E6AB /* OptionTableViewCell.xib in Resources */,
 				F0B3105C2ABD1F3200530994 /* GoogleService-Info.plist in Resources */,
@@ -1242,6 +1270,7 @@
 				F0B9075C2B337428006EB6C8 /* IconCollectionViewCell.swift in Sources */,
 				F0C133A22B19128D00A7E8C1 /* DetailModel.swift in Sources */,
 				F0C1709B2AF996A500BD6326 /* VaccineItem.swift in Sources */,
+				F0F0591B2B47298000934A74 /* ChartStatsUIView.swift in Sources */,
 				F0DE1F9E2AFB5323005209AB /* UpdateVaccineViewController.swift in Sources */,
 				F0891AE92AC1F3A700BC6C6B /* NewChildViewController.swift in Sources */,
 				F0CBE7962AC5A42400AD6185 /* BabyService.swift in Sources */,
@@ -1295,7 +1324,9 @@
 				F0B907532B331744006EB6C8 /* InfoIconViewController.swift in Sources */,
 				F0C1339C2B1903B700A7E8C1 /* SettingDetailViewController.swift in Sources */,
 				F0CDB99F2AC9447A00430A96 /* InviteViewModel.swift in Sources */,
+				F0F059172B47246E00934A74 /* StatsHeaderView.swift in Sources */,
 				F0B9C7592B21FE86001AEADF /* DiaperMapper.swift in Sources */,
+				F0F059102B45CFA900934A74 /* StatsDataSection.swift in Sources */,
 				F04CE8482B17D7D400C8B905 /* ChildSettingsViewController.swift in Sources */,
 				F0AF67E02B0E9098000360E9 /* UpdateDiaperViewController.swift in Sources */,
 				F0C133A72B1935C500A7E8C1 /* HorizontalTableViewCell.swift in Sources */,
@@ -1309,6 +1340,7 @@
 				F0B9C75C2B226702001AEADF /* ActionsListViewController.swift in Sources */,
 				F01E30802AA75C11003AF470 /* ExploreViewController.swift in Sources */,
 				F0E4C5572B35D46400EF361F /* VaccineTip.swift in Sources */,
+				F0D089A42B483B8B00EB0B01 /* StatusUpdateViewController.swift in Sources */,
 				F0C170942AF95E8400BD6326 /* CustomViewProtocol.swift in Sources */,
 				F0C1339F2B190F9800A7E8C1 /* SettingDetailViewModel.swift in Sources */,
 				F0E8B3942B32215A00C3A10D /* TutorCollectionViewCell.swift in Sources */,
